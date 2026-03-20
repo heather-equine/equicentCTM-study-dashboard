@@ -3118,6 +3118,23 @@ a:hover { text-decoration: underline; }
 
 
 
+
+/* Race schematic active chart highlight */
+.chart-card[data-race-measure] {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.chart-card[data-race-measure]:hover {
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+.chart-card.race-active {
+  box-shadow: 0 0 0 2px var(--color-primary);
+  border-color: var(--color-primary);
+}
+.race-horse {
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 </style>
 </head>
 <body>
@@ -4397,7 +4414,7 @@ a:hover { text-decoration: underline; }
 </div>
 
 <div class="charts-grid two-col animate-in">
-  <div class="race-schematic chart-card" data-chart-explain="race-schematic-pain" onclick="openClinOverlay('race-schematic-pain')">
+  <div class="race-schematic chart-card" id="clinical-race-schematic" data-chart-explain="race-schematic-pain" data-active-measure="pain" onclick="openClinOverlay('race-schematic-pain')">
   <div class="race-header">
     <div>
       <div class="race-title">RACE SCHEMATIC</div>
@@ -4442,7 +4459,7 @@ a:hover { text-decoration: underline; }
   </div>
 </div>
 </div>
-  <div class="chart-card" data-chart-explain="pain-score" onclick="openClinOverlay('pain-score')">
+  <div class="chart-card" data-chart-explain="pain-score" onclick="openClinOverlay('pain-score')" data-race-measure="pain">
   <div class="chart-header">
     <div>
       <div class="chart-title">Pain Score</div>
@@ -4482,8 +4499,81 @@ a:hover { text-decoration: underline; }
 </div>
 </div>
 
+
+<div class="data-table-wrap animate-in">
+  <div class="chart-header" style="padding: var(--space-5) var(--space-5) 0;">
+    <div><div class="chart-title">PAIN SCORE — DETAILED SCORES</div></div>
+  </div>
+  <table class="data-table">
+    <thead><tr><th>Timepoint</th><th>equicenta™ CTM</th><th>Standard of Care</th><th>Difference</th><th>Advantage</th></tr></thead>
+    <tbody><tr><td>Baseline</td><td>3.8</td><td>3.9</td><td>+0.1</td><td>—</td></tr><tr><td>Week 1</td><td>3.1</td><td>3.6</td><td>+0.5</td><td>+14%</td></tr><tr><td>Week 2</td><td class="highlight">2.3</td><td class="highlight">3.2</td><td class="highlight">+0.9</td><td class="highlight">+28% ★ p&lt;0.05</td></tr><tr><td>Week 4</td><td class="highlight">1.6</td><td class="highlight">2.7</td><td class="highlight">+1.1</td><td class="highlight">+41%</td></tr><tr><td>Week 8</td><td class="highlight">0.9</td><td class="highlight">2.1</td><td class="highlight">+1.2</td><td class="highlight">+57%</td></tr><tr><td>Week 12</td><td class="highlight">0.5</td><td class="highlight">1.7</td><td class="highlight">+1.2</td><td class="highlight">+71%</td></tr></tbody>
+  </table>
+</div>
+
+<!-- Swelling and Lameness Score Charts -->
+<div class="charts-grid two-col animate-in" style="margin-top: var(--space-6);">
+  <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-swelling-score')" data-race-measure="swelling">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Swelling Score</div>
+        <div class="chart-subtitle">Joint/soft tissue swelling grade (0–4 scale) over 12 weeks. Lower scores indicate less swelling.</div>
+      </div>
+      <span class="p-badge significant">p &lt; 0.03</span>
+    </div>
+    <div class="chart-wrap"><canvas id="clin-chart-swelling"></canvas></div>
+    <div class="chart-legend">
+      <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta&trade; CTM</div>
+      <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
+    </div>
+    <div class="chart-info-overlay" id="clin-overlay-swelling-score">
+      <div class="chart-info-overlay-header">
+        <h4>Swelling Score</h4>
+        <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">&times;</button>
+      </div>
+      <div class="chart-info-overlay-content">
+        <div class="info-label">What is this chart showing?</div>
+        <p class="info-text">This chart tracks swelling scores over 12 weeks, measured on a 0&ndash;4 scale by the veterinarian. Swelling around a joint or soft tissue structure indicates ongoing inflammation. Lower scores mean less swelling and less inflammation. The cumulative improvement shows how quickly and how much swelling decreased in each treatment group.</p>
+        <div class="info-label">Why does this matter?</div>
+        <p class="info-text">Swelling was one of the <strong>earliest measures to show significant differences</strong> &mdash; by just 2 weeks post-injection, equicenta&trade; CTM was already producing significantly greater swelling reduction than standard of care (p&lt;0.03). This rapid anti-inflammatory response is consistent with the product&rsquo;s mechanism of action: the anti-inflammatory proteins in eCTM (like IL-1Ra and IL-10) are actively reducing the inflammatory cascade at the injury site.</p>
+        <div class="info-label">Bottom line:</div>
+        <p class="info-takeaway">equicenta&trade; CTM reduced swelling faster and more completely than SOC, with significant differences by Week 2 (p&lt;0.03) that were sustained through 12 weeks.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-lameness-score')" data-race-measure="lameness">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Lameness Score</div>
+        <div class="chart-subtitle">Lameness grade (0–5 scale) over 12 weeks. Lower scores indicate less lameness.</div>
+      </div>
+      <span class="p-badge trending">p &le; 0.06</span>
+    </div>
+    <div class="chart-wrap"><canvas id="clin-chart-lameness"></canvas></div>
+    <div class="chart-legend">
+      <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta&trade; CTM</div>
+      <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
+    </div>
+    <div class="chart-info-overlay" id="clin-overlay-lameness-score">
+      <div class="chart-info-overlay-header">
+        <h4>Lameness Score</h4>
+        <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">&times;</button>
+      </div>
+      <div class="chart-info-overlay-content">
+        <div class="info-label">What is this chart showing?</div>
+        <p class="info-text">This chart tracks the percentage of conditions that achieved a lameness score of zero (completely sound) over 12 weeks. Lameness is graded on a 0–5 scale by the veterinarian, where 0 means the horse moves without any detectable abnormality. The chart shows the proportion of conditions in each group that reached this best possible outcome at each time point.</p>
+        <div class="info-label">Why does this matter?</div>
+        <p class="info-text">By week 12, equicenta&trade; CTM horses were <strong>1.6 times more likely</strong> to achieve a lameness score of zero compared to standard of care. This means more eCTM-treated horses were moving completely normally. Lameness is the most visible sign of musculoskeletal problems &mdash; owners and trainers can often see it with the naked eye &mdash; so achieving zero lameness is one of the most meaningful outcomes for everyone involved.</p>
+        <div class="info-label">Bottom line:</div>
+        <p class="info-takeaway">equicenta&trade; CTM horses were significantly more likely to become completely sound, with 1.6:1 odds of achieving zero lameness by 12 weeks (p&le;0.06).</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 <div class="charts-grid two-col animate-in">
-  <div class="chart-card" data-chart-explain="composite-score" onclick="openClinOverlay('composite-score')">
+  <div class="chart-card" data-chart-explain="composite-score" onclick="openClinOverlay('composite-score')" data-race-measure="composite">
   <div class="chart-header">
     <div>
       <div class="chart-title">Composite Clinical Score</div>
@@ -4524,77 +4614,6 @@ a:hover { text-decoration: underline; }
   <div></div>
 </div>
 
-<div class="data-table-wrap animate-in">
-  <div class="chart-header" style="padding: var(--space-5) var(--space-5) 0;">
-    <div><div class="chart-title">PAIN SCORE — DETAILED SCORES</div></div>
-  </div>
-  <table class="data-table">
-    <thead><tr><th>Timepoint</th><th>equicenta™ CTM</th><th>Standard of Care</th><th>Difference</th><th>Advantage</th></tr></thead>
-    <tbody><tr><td>Baseline</td><td>3.8</td><td>3.9</td><td>+0.1</td><td>—</td></tr><tr><td>Week 1</td><td>3.1</td><td>3.6</td><td>+0.5</td><td>+14%</td></tr><tr><td>Week 2</td><td class="highlight">2.3</td><td class="highlight">3.2</td><td class="highlight">+0.9</td><td class="highlight">+28% ★ p&lt;0.05</td></tr><tr><td>Week 4</td><td class="highlight">1.6</td><td class="highlight">2.7</td><td class="highlight">+1.1</td><td class="highlight">+41%</td></tr><tr><td>Week 8</td><td class="highlight">0.9</td><td class="highlight">2.1</td><td class="highlight">+1.2</td><td class="highlight">+57%</td></tr><tr><td>Week 12</td><td class="highlight">0.5</td><td class="highlight">1.7</td><td class="highlight">+1.2</td><td class="highlight">+71%</td></tr></tbody>
-  </table>
-</div>
-
-<!-- Lameness Score Chart (Figure 1A/B) -->
-<div class="charts-grid two-col animate-in" style="margin-top: var(--space-6);">
-  <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-lameness-score')">
-    <div class="chart-header">
-      <div>
-        <div class="chart-title">Lameness Score</div>
-        <div class="chart-subtitle">Lameness grade (0–5 scale) over 12 weeks. Lower scores indicate less lameness.</div>
-      </div>
-      <span class="p-badge trending">p &le; 0.06</span>
-    </div>
-    <div class="chart-wrap"><canvas id="clin-chart-lameness"></canvas></div>
-    <div class="chart-legend">
-      <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta&trade; CTM</div>
-      <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
-    </div>
-    <div class="chart-info-overlay" id="clin-overlay-lameness-score">
-      <div class="chart-info-overlay-header">
-        <h4>Lameness Score</h4>
-        <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">&times;</button>
-      </div>
-      <div class="chart-info-overlay-content">
-        <div class="info-label">What is this chart showing?</div>
-        <p class="info-text">This chart tracks the percentage of conditions that achieved a lameness score of zero (completely sound) over 12 weeks. Lameness is graded on a 0–5 scale by the veterinarian, where 0 means the horse moves without any detectable abnormality. The chart shows the proportion of conditions in each group that reached this best possible outcome at each time point.</p>
-        <div class="info-label">Why does this matter?</div>
-        <p class="info-text">By week 12, equicenta&trade; CTM horses were <strong>1.6 times more likely</strong> to achieve a lameness score of zero compared to standard of care. This means more eCTM-treated horses were moving completely normally. Lameness is the most visible sign of musculoskeletal problems &mdash; owners and trainers can often see it with the naked eye &mdash; so achieving zero lameness is one of the most meaningful outcomes for everyone involved.</p>
-        <div class="info-label">Bottom line:</div>
-        <p class="info-takeaway">equicenta&trade; CTM horses were significantly more likely to become completely sound, with 1.6:1 odds of achieving zero lameness by 12 weeks (p&le;0.06).</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-swelling-score')">
-    <div class="chart-header">
-      <div>
-        <div class="chart-title">Swelling Score</div>
-        <div class="chart-subtitle">Joint/soft tissue swelling grade (0–4 scale) over 12 weeks. Lower scores indicate less swelling.</div>
-      </div>
-      <span class="p-badge significant">p &lt; 0.03</span>
-    </div>
-    <div class="chart-wrap"><canvas id="clin-chart-swelling"></canvas></div>
-    <div class="chart-legend">
-      <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta&trade; CTM</div>
-      <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
-    </div>
-    <div class="chart-info-overlay" id="clin-overlay-swelling-score">
-      <div class="chart-info-overlay-header">
-        <h4>Swelling Score</h4>
-        <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">&times;</button>
-      </div>
-      <div class="chart-info-overlay-content">
-        <div class="info-label">What is this chart showing?</div>
-        <p class="info-text">This chart tracks swelling scores over 12 weeks, measured on a 0&ndash;4 scale by the veterinarian. Swelling around a joint or soft tissue structure indicates ongoing inflammation. Lower scores mean less swelling and less inflammation. The cumulative improvement shows how quickly and how much swelling decreased in each treatment group.</p>
-        <div class="info-label">Why does this matter?</div>
-        <p class="info-text">Swelling was one of the <strong>earliest measures to show significant differences</strong> &mdash; by just 2 weeks post-injection, equicenta&trade; CTM was already producing significantly greater swelling reduction than standard of care (p&lt;0.03). This rapid anti-inflammatory response is consistent with the product&rsquo;s mechanism of action: the anti-inflammatory proteins in eCTM (like IL-1Ra and IL-10) are actively reducing the inflammatory cascade at the injury site.</p>
-        <div class="info-label">Bottom line:</div>
-        <p class="info-takeaway">equicenta&trade; CTM reduced swelling faster and more completely than SOC, with significant differences by Week 2 (p&lt;0.03) that were sustained through 12 weeks.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Zero Score Odds Chart (Figure 1A/B Summary) -->
 <div class="charts-grid two-col animate-in" style="margin-top: var(--space-4);">
   <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-zero-scores')" style="grid-column: 1 / -1;">
@@ -4621,6 +4640,7 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
   </div>
+</div>
 </div>
 </div>
 
@@ -8830,6 +8850,11 @@ function toggleClinOverlay(event, overlayId) {
     document.querySelectorAll('#study-clinical .chart-info-overlay.active').forEach(o => o.classList.remove('active'));
     overlay.classList.add('active');
   }
+  // Update race schematic if this card has a data-race-measure
+  const card = event.currentTarget || event.target.closest('.chart-card[data-race-measure]');
+  if (card && card.dataset && card.dataset.raceMeasure) {
+    updateRaceSchematic(card.dataset.raceMeasure);
+  }
 }
 
 function openClinOverlay(key) {
@@ -8837,6 +8862,11 @@ function openClinOverlay(key) {
   document.querySelectorAll('#study-clinical .chart-info-overlay.active').forEach(o => o.classList.remove('active'));
   const overlay = document.getElementById('clin-overlay-' + key);
   if (overlay) overlay.classList.add('active');
+  // Update race schematic based on the key
+  const measureMap = { 'pain-score': 'pain', 'composite-score': 'composite', 'race-schematic-pain': 'pain' };
+  if (measureMap[key] && typeof updateRaceSchematic === 'function') {
+    updateRaceSchematic(measureMap[key]);
+  }
 }
 
 function closeClinOverlay(event) {
@@ -8849,6 +8879,126 @@ function closeClinOverlay(event) {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     document.querySelectorAll('.chart-info-overlay.active').forEach(o => o.classList.remove('active'));
+  }
+});
+
+
+// ========== DYNAMIC RACE SCHEMATIC ==========
+const raceSchematicData = {
+  pain: {
+    subtitle: 'Pain Score: equicenta™ CTM vs SOC',
+    studyLength: '12 Week Study',
+    pValue: 'p < 0.05',
+    pSignificant: true,
+    // Horse positions: [wk0, wk1, wk2, wk4, wk8, wk12] as % left
+    soc:  [5, 15, 28, 40, 52, 65],
+    ectm: [5, 18, 38, 58, 78, 95],
+    timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
+  },
+  swelling: {
+    subtitle: 'Swelling Score: equicenta™ CTM vs SOC',
+    studyLength: '12 Week Study',
+    pValue: 'p < 0.03',
+    pSignificant: true,
+    soc:  [5, 12, 22, 38, 48, 55],
+    ectm: [5, 20, 42, 62, 80, 95],
+    timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
+  },
+  lameness: {
+    subtitle: 'Lameness Score: equicenta™ CTM vs SOC',
+    studyLength: '12 Week Study',
+    pValue: 'p ≤ 0.06',
+    pSignificant: false,
+    soc:  [5, 14, 25, 38, 50, 60],
+    ectm: [5, 20, 40, 58, 76, 92],
+    timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
+  },
+  composite: {
+    subtitle: 'Composite Clinical Score: equicenta™ CTM vs SOC',
+    studyLength: '12 Week Study',
+    pValue: 'p < 0.003',
+    pSignificant: true,
+    soc:  [5, 12, 20, 33, 47, 55],
+    ectm: [5, 22, 42, 62, 82, 98],
+    timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
+  }
+};
+
+function updateRaceSchematic(measure) {
+  const schematic = document.getElementById('clinical-race-schematic');
+  if (!schematic) return;
+  
+  const data = raceSchematicData[measure];
+  if (!data) return;
+  
+  // Update active measure
+  schematic.dataset.activeMeasure = measure;
+  
+  // Update subtitle
+  const subtitle = schematic.querySelector('.race-subtitle');
+  if (subtitle) subtitle.textContent = data.subtitle;
+  
+  // Update study label
+  const studyLabel = schematic.querySelector('.race-study-label');
+  if (studyLabel) studyLabel.textContent = data.studyLength;
+  
+  // Update p-value badge
+  const pBadge = schematic.querySelector('.p-badge');
+  if (pBadge) {
+    pBadge.textContent = data.pValue;
+    pBadge.className = 'p-badge ' + (data.pSignificant ? 'significant' : 'trending');
+  }
+  
+  // Update horse positions
+  const tracks = schematic.querySelectorAll('.race-track');
+  if (tracks.length >= 2) {
+    // SOC track (first)
+    const socHorses = tracks[0].querySelectorAll('.race-horse');
+    data.soc.forEach((pos, i) => {
+      if (socHorses[i]) {
+        socHorses[i].style.left = pos + '%';
+        socHorses[i].style.transition = 'left 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+    });
+    
+    // eCTM track (second)
+    const ectmHorses = tracks[1].querySelectorAll('.race-horse');
+    data.ectm.forEach((pos, i) => {
+      if (ectmHorses[i]) {
+        ectmHorses[i].style.left = pos + '%';
+        ectmHorses[i].style.transition = 'left 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+    });
+  }
+  
+  // Update timeline markers
+  const timeline = schematic.querySelector('.race-timeline');
+  if (timeline) {
+    const markers = timeline.querySelectorAll('.race-time-marker');
+    data.timeline.forEach((label, i) => {
+      if (markers[i]) markers[i].textContent = label;
+    });
+  }
+  
+  // Highlight the active chart card
+  document.querySelectorAll('#sub-clin-outcomes .chart-card[data-race-measure]').forEach(card => {
+    card.classList.remove('race-active');
+  });
+  const activeCard = document.querySelector('#sub-clin-outcomes .chart-card[data-race-measure="' + measure + '"]');
+  if (activeCard) activeCard.classList.add('race-active');
+  
+  // Scroll the race schematic into view smoothly
+  schematic.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Add click handlers to chart cards that have data-race-measure
+document.addEventListener('click', function(e) {
+  const card = e.target.closest('.chart-card[data-race-measure]');
+  if (card && card.closest('#sub-clin-outcomes')) {
+    const measure = card.dataset.raceMeasure;
+    if (measure) {
+      updateRaceSchematic(measure);
+    }
   }
 });
 
