@@ -4533,7 +4533,6 @@ a:hover { text-decoration: underline; }
     <tbody><tr><td>Baseline</td><td>3.8</td><td>3.9</td><td>+0.1</td><td>—</td></tr><tr><td>Week 1</td><td>3.1</td><td>3.6</td><td>+0.5</td><td>+14%</td></tr><tr><td>Week 2</td><td class="highlight">2.3</td><td class="highlight">3.2</td><td class="highlight">+0.9</td><td class="highlight">+28% ★ p&lt;0.05</td></tr><tr><td>Week 4</td><td class="highlight">1.6</td><td class="highlight">2.7</td><td class="highlight">+1.1</td><td class="highlight">+41%</td></tr><tr><td>Week 8</td><td class="highlight">0.9</td><td class="highlight">2.1</td><td class="highlight">+1.2</td><td class="highlight">+57%</td></tr><tr><td>Week 12</td><td class="highlight">0.5</td><td class="highlight">1.7</td><td class="highlight">+1.2</td><td class="highlight">+71%</td></tr></tbody>
   </table>
 </div>
-</div>
 
 <!-- Lameness Score Chart (Figure 1A/B) -->
 <div class="charts-grid two-col animate-in" style="margin-top: var(--space-6);">
@@ -4622,6 +4621,7 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
   </div>
+</div>
 </div>
 
   <div class="sub-panel" id="sub-clin-performance">
@@ -5221,7 +5221,6 @@ a:hover { text-decoration: underline; }
     <tbody><tr><td>Baseline</td><td>5.0</td><td>5.0</td><td>0.0</td><td>—</td></tr><tr><td>Week 4</td><td>5.2</td><td>5.0</td><td>+0.2</td><td>+4%</td></tr><tr><td>Week 8</td><td>5.5</td><td>5.1</td><td>+0.4</td><td>+8%</td></tr><tr><td>Week 12</td><td class="highlight">5.8</td><td class="highlight">5.2</td><td class="highlight">+0.6</td><td class="highlight">+12% ★ p&lt;0.004</td></tr><tr><td>Week 20</td><td class="highlight">6.2</td><td class="highlight">5.0</td><td class="highlight">+1.2</td><td class="highlight">+24%</td></tr><tr><td>Week 26</td><td class="highlight">6.5</td><td class="highlight">5.0</td><td class="highlight">+1.5</td><td class="highlight">+30%</td></tr></tbody>
   </table>
 </div>
-</div>
   
 <!-- Client Assessment Categories (Figure 5) -->
 <div class="charts-grid two-col animate-in" style="margin-top: var(--space-6);">
@@ -5253,6 +5252,7 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div class="sub-panel" id="sub-clin-safety">
@@ -7583,6 +7583,7 @@ safetySubTabBtns.forEach(btn => {
       panel.parentElement.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
       panel.classList.add('active');
     }
+    if (container) container.scrollIntoView({ behavior: 'instant', block: 'nearest' });
     destroyAllCharts();
     initCurrentCharts();
     if (typeof initClinicalCharts === 'function') initClinicalCharts();
@@ -7605,6 +7606,8 @@ if (clinicalStudyPanel) {
         panel.parentElement.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
         panel.classList.add('active');
       }
+      // Scroll to the sub-tab container so the new content is visible
+      if (container) container.scrollIntoView({ behavior: 'instant', block: 'nearest' });
       destroyAllCharts();
       initCurrentCharts();
       if (typeof initClinicalCharts === 'function') initClinicalCharts();
@@ -7653,19 +7656,19 @@ function chartDefaults(colors) {
         borderWidth: 1,
         cornerRadius: 8,
         padding: 12,
-        titleFont: { family: 'Inter', weight: '600', size: 13 },
-        bodyFont: { family: 'Inter', size: 12 },
+        titleFont: { family: 'Montserrat', weight: '600', size: 13 },
+        bodyFont: { family: 'Montserrat', size: 12 },
         boxPadding: 4
       }
     },
     scales: {
       x: {
         grid: { color: colors.divider, drawBorder: false },
-        ticks: { color: colors.textMuted, font: { family: 'Inter', size: 11 } }
+        ticks: { color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }
       },
       y: {
         grid: { color: colors.divider, drawBorder: false },
-        ticks: { color: colors.textMuted, font: { family: 'Inter', size: 11 } }
+        ticks: { color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }
       }
     }
   };
@@ -7712,7 +7715,7 @@ function makeDualLineChart(canvasId, labels, data1, data2, label1, label2, color
       ...defaults,
       scales: {
         ...defaults.scales,
-        y: { ...defaults.scales.y, title: { display: !!yLabel, text: yLabel || '', color: colors.textMuted, font: { family: 'Inter', size: 11 } } }
+        y: { ...defaults.scales.y, title: { display: !!yLabel, text: yLabel || '', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } }
       }
     }
   });
@@ -7749,7 +7752,7 @@ function makeDualBarChart(canvasId, labels, data1, data2, label1, label2, colors
       ...defaults,
       scales: {
         ...defaults.scales,
-        y: { ...defaults.scales.y, title: { display: !!yLabel, text: yLabel || '', color: colors.textMuted, font: { family: 'Inter', size: 11 } } }
+        y: { ...defaults.scales.y, title: { display: !!yLabel, text: yLabel || '', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } }
       }
     }
   });
@@ -7781,7 +7784,7 @@ function makeSingleLineChart(canvasId, labels, data, label, color, colors, yLabe
       ...defaults,
       scales: {
         ...defaults.scales,
-        y: { ...defaults.scales.y, title: { display: !!yLabel, text: yLabel || '', color: colors.textMuted, font: { family: 'Inter', size: 11 } } }
+        y: { ...defaults.scales.y, title: { display: !!yLabel, text: yLabel || '', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } }
       }
     }
   });
@@ -7880,7 +7883,7 @@ function initCharacterizationCharts(colors) {
         x: {
           ...defaults.scales.x,
           max: 105,
-          title: { display: true, text: '% Donors Expressing', color: colors.textMuted, font: { family: 'Inter', size: 11 } },
+          title: { display: true, text: '% Donors Expressing', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } },
           ticks: { ...defaults.scales.x.ticks, callback: v => v + '%' }
         },
         y: {
@@ -7946,7 +7949,7 @@ function initDiseasedCharts(colors) {
         ...defaults,
         scales: {
           ...defaults.scales,
-          y: { ...defaults.scales.y, min: 0, max: 5, title: { display: true, text: 'Lameness Score (0–5)', color: colors.textMuted, font: { family: 'Inter', size: 11 } } }
+          y: { ...defaults.scales.y, min: 0, max: 5, title: { display: true, text: 'Lameness Score (0–5)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } }
         }
       }
     });
@@ -7993,7 +7996,7 @@ function initDiseasedCharts(colors) {
         ...defaults,
         scales: {
           ...defaults.scales,
-          y: { ...defaults.scales.y, min: 0, max: 4, title: { display: true, text: 'Pain Score', color: colors.textMuted, font: { family: 'Inter', size: 11 } } }
+          y: { ...defaults.scales.y, min: 0, max: 4, title: { display: true, text: 'Pain Score', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } }
         }
       }
     });
@@ -8024,7 +8027,7 @@ function initDiseasedCharts(colors) {
           ...defaults.scales,
           y: {
             ...defaults.scales.y,
-            title: { display: true, text: 'Ratio', color: colors.textMuted, font: { family: 'Inter', size: 11 } },
+            title: { display: true, text: 'Ratio', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } },
           }
         },
         plugins: {
@@ -8044,7 +8047,7 @@ function initDiseasedCharts(colors) {
                   position: 'end',
                   backgroundColor: 'transparent',
                   color: colors.textFaint,
-                  font: { family: 'Inter', size: 10 }
+                  font: { family: 'Montserrat', size: 10 }
                 }
               }
             }
@@ -8076,7 +8079,7 @@ function initSafetyCharts(colors) {
       ...defaults,
       scales: {
         ...defaults.scales,
-        y: { ...defaults.scales.y, title: { display: true, text: 'SAA (µg/mL)', color: colors.textMuted, font: { family: 'Inter', size: 11 } } },
+        y: { ...defaults.scales.y, title: { display: true, text: 'SAA (µg/mL)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } },
         x: { ...defaults.scales.x, grid: { display: false } }
       }
     }
@@ -8690,9 +8693,9 @@ function initCharCharts() {
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: c.text, font: { family: 'Inter', size: 12 } } } },
+        plugins: { legend: { labels: { color: c.text, font: { family: 'Montserrat', size: 12 } } } },
         scales: {
-          y: { title: { display: true, text: 'Protein (µg/mL)', color: c.textMuted, font: { family: 'Inter', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
+          y: { title: { display: true, text: 'Protein (µg/mL)', color: c.textMuted, font: { family: 'Montserrat', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
           x: { ticks: { color: c.textMuted }, grid: { display: false } }
         }
       }
@@ -8714,9 +8717,9 @@ function initCharCharts() {
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: c.text, font: { family: 'Inter', size: 12 } } } },
+        plugins: { legend: { labels: { color: c.text, font: { family: 'Montserrat', size: 12 } } } },
         scales: {
-          y: { title: { display: true, text: 'TIMP-2 Concentration (relative)', color: c.textMuted, font: { family: 'Inter', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
+          y: { title: { display: true, text: 'TIMP-2 Concentration (relative)', color: c.textMuted, font: { family: 'Montserrat', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
           x: { ticks: { color: c.textMuted }, grid: { display: false } }
         }
       }
@@ -8737,9 +8740,9 @@ function initCharCharts() {
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: c.text, font: { family: 'Inter', size: 12 } } } },
+        plugins: { legend: { labels: { color: c.text, font: { family: 'Montserrat', size: 12 } } } },
         scales: {
-          y: { title: { display: true, text: 'Mean Concentration (µg/mL)', color: c.textMuted, font: { family: 'Inter', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
+          y: { title: { display: true, text: 'Mean Concentration (µg/mL)', color: c.textMuted, font: { family: 'Montserrat', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
           x: { ticks: { color: c.textMuted, font: { size: 11 } }, grid: { display: false } }
         }
       }
@@ -8762,11 +8765,11 @@ function initCharCharts() {
       options: {
         responsive: true, maintainAspectRatio: false,
         plugins: {
-          legend: { labels: { color: c.text, font: { family: 'Inter', size: 12 } } },
+          legend: { labels: { color: c.text, font: { family: 'Montserrat', size: 12 } } },
           tooltip: { callbacks: { label: function(ctx) { return ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' particles'; } } }
         },
         scales: {
-          y: { title: { display: true, text: 'Total Particles', color: c.textMuted, font: { family: 'Inter', size: 12 } }, ticks: { color: c.textMuted, callback: v => v.toLocaleString() }, grid: { color: c.grid } },
+          y: { title: { display: true, text: 'Total Particles', color: c.textMuted, font: { family: 'Montserrat', size: 12 } }, ticks: { color: c.textMuted, callback: v => v.toLocaleString() }, grid: { color: c.grid } },
           x: { ticks: { color: c.textMuted, font: { size: 10 } }, grid: { display: false } }
         }
       }
@@ -8923,7 +8926,7 @@ function initClinicalCharts() {
               },
               scales: {
                 x: { ...d.scales.x, beginAtZero: true, max: 4,
-                  title: { display: true, text: 'Odds Ratio (eCTM : SOC)', color: colors.textMuted, font: { family: 'Inter', size: 11 } },
+                  title: { display: true, text: 'Odds Ratio (eCTM : SOC)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } },
                   ticks: { ...d.scales.x.ticks, callback: function(v) { return v + 'x'; } }
                 },
                 y: { ...d.scales.y, grid: { display: false } }
@@ -9040,7 +9043,7 @@ function initClinicalCharts() {
               },
               scales: {
                 y: { ...d.scales.y, min: 8, max: 10,
-                  title: { display: true, text: 'Score (0-10)', color: colors.textMuted, font: { family: 'Inter', size: 11 } }
+                  title: { display: true, text: 'Score (0-10)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }
                 },
                 x: { ...d.scales.x, grid: { display: false }, ticks: { ...d.scales.x.ticks, font: { size: 10 } } }
               }
@@ -9138,7 +9141,7 @@ function initClinicalCharts() {
               },
               scales: {
                 y: { ...d.scales.y,
-                  title: { display: true, text: 'Asymmetry Change (lower = improvement)', color: colors.textMuted, font: { family: 'Inter', size: 11 } }
+                  title: { display: true, text: 'Asymmetry Change (lower = improvement)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }
                 },
                 x: { ...d.scales.x, grid: { display: false } }
               }
@@ -9189,7 +9192,7 @@ function initClinicalCharts() {
               },
               scales: {
                 y: { ...d.scales.y, beginAtZero: true,
-                  title: { display: true, text: 'Horses (%)', color: colors.textMuted, font: { family: 'Inter', size: 11 } },
+                  title: { display: true, text: 'Horses (%)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } },
                   ticks: { ...d.scales.y.ticks, callback: function(v) { return v + '%'; } }
                 },
                 x: { ...d.scales.x, grid: { display: false }, ticks: { ...d.scales.x.ticks, font: { size: 10 }, maxRotation: 45, minRotation: 45 } }
@@ -9231,7 +9234,7 @@ function initClinicalCharts() {
               },
               scales: {
                 y: { ...d.scales.y, beginAtZero: true,
-                  title: { display: true, text: 'Horses (%)', color: colors.textMuted, font: { family: 'Inter', size: 11 } },
+                  title: { display: true, text: 'Horses (%)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } },
                   ticks: { ...d.scales.y.ticks, callback: function(v) { return v + '%'; } }
                 },
                 x: { ...d.scales.x, grid: { display: false } }
@@ -9267,7 +9270,7 @@ function makeClinLineChart(canvasId, labels, data1, data2, colors, yLabel, opts)
         position: 'start',
         backgroundColor: 'transparent',
         color: colors.textFaint,
-        font: { family: 'Inter', size: 10 }
+        font: { family: 'Montserrat', size: 10 }
       }
     };
   }
@@ -9309,7 +9312,7 @@ function makeClinLineChart(canvasId, labels, data1, data2, colors, yLabel, opts)
       ...defaults,
       scales: {
         ...defaults.scales,
-        y: { ...defaults.scales.y, title: { display: true, text: yLabel || '', color: colors.textMuted, font: { family: 'Inter', size: 11 } } }
+        y: { ...defaults.scales.y, title: { display: true, text: yLabel || '', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } }
       },
       plugins: {
         ...defaults.plugins,
@@ -9338,7 +9341,7 @@ function makeClinHorizBar(canvasId, labels, data, colors, xLabel) {
       ...defaults,
       indexAxis: 'y',
       scales: {
-        x: { ...defaults.scales.x, title: { display: true, text: xLabel, color: colors.textMuted, font: { family: 'Inter', size: 11 } } },
+        x: { ...defaults.scales.x, title: { display: true, text: xLabel, color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } },
         y: { ...defaults.scales.y, grid: { display: false } }
       },
       plugins: { ...defaults.plugins, legend: { display: false } }
@@ -9366,7 +9369,7 @@ function initClinDemoCharts(colors) {
         ...defaults,
         indexAxis: 'y',
         scales: {
-          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Horses', color: colors.textMuted, font: { family: 'Inter', size: 11 } } },
+          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Horses', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } },
           y: { ...defaults.scales.y, grid: { display: false } }
         },
         plugins: { ...defaults.plugins, legend: { display: false } }
@@ -9391,7 +9394,7 @@ function initClinDemoCharts(colors) {
         ...defaults,
         indexAxis: 'y',
         scales: {
-          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Horses', color: colors.textMuted, font: { family: 'Inter', size: 11 } } },
+          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Horses', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } },
           y: { ...defaults.scales.y, grid: { display: false } }
         },
         plugins: { ...defaults.plugins, legend: { display: false } }
@@ -9419,7 +9422,7 @@ function initClinCondCharts(colors) {
         ...defaults,
         indexAxis: 'y',
         scales: {
-          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Conditions', color: colors.textMuted, font: { family: 'Inter', size: 11 } } },
+          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Conditions', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } },
           y: { ...defaults.scales.y, grid: { display: false } }
         },
         plugins: { ...defaults.plugins, legend: { display: false } }
@@ -9443,7 +9446,7 @@ function initClinCondCharts(colors) {
         ...defaults,
         indexAxis: 'y',
         scales: {
-          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Conditions', color: colors.textMuted, font: { family: 'Inter', size: 11 } } },
+          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Conditions', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } },
           y: { ...defaults.scales.y, grid: { display: false } }
         },
         plugins: { ...defaults.plugins, legend: { display: false } }
@@ -9486,7 +9489,7 @@ function initClinCondCharts(colors) {
           },
           scales: {
             y: { ...d.scales.y, beginAtZero: true,
-              title: { display: true, text: 'Number of Conditions', color: colors.textMuted, font: { family: 'Inter', size: 11 } }
+              title: { display: true, text: 'Number of Conditions', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }
             },
             x: { ...d.scales.x, grid: { display: false } }
           }
