@@ -3546,6 +3546,10 @@ a:hover { text-decoration: underline; }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
       Study Design
     </button>
+    <button class="tab-btn" data-tab="discussion" role="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Discussion
+    </button>
     <button class="tab-btn" data-tab="conclusions" role="tab">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       Conclusions
@@ -4274,6 +4278,255 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
   </div>
+</div>
+
+<!-- ========== DISCUSSION TAB ========== -->
+<div class="tab-panel" id="tab-discussion">
+<div class="section-label">DISCUSSION — KEY TOPICS</div>
+
+<div class="overarching-panel animate-in">
+  <div class="overarching-icon">💬</div>
+  <div>
+    <div class="overarching-title">Discussion Highlights</div>
+    <div class="overarching-text">Key discussion points from the <strong>first controlled, randomized, in vivo evaluation</strong> of an equine umbilical cord allograft for musculoskeletal tissues. This study fills a critical gap in peer-reviewed publications on the characterization and biocompatibility of resourced tissue for MSK supplementation. Click any topic below for details.</div>
+  </div>
+</div>
+
+<div class="disc-topic-grid">
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-gap')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+    <div class="disc-topic-title">Filling the Evidence Gap</div>
+    <div class="disc-topic-subtitle">First controlled study of UC allograft biocompatibility in vivo</div>
+    <div class="disc-topic-preview">Despite the rapid increase in biologic tissue products for MSK tissues over the past decade, products that offer safety, quality, biocompatibility, convenience, and consistent characterization are still in the early stages of development. Peer-reviewed studies are lacking, particularly regarding controls for in vivo studies.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-anti-inflam')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <div class="disc-topic-title">Anti-Inflammatory Response</div>
+    <div class="disc-topic-subtitle">IL-1ra surge and favorable cytokine shift after UC injection</div>
+    <div class="disc-topic-preview">IL-1ra increased significantly (P&lt;0.001) after UC injection, producing a several-fold increase in the IL-1ra/IL-1 ratio that persisted beyond the transient synovitis. IL-10 was also significantly elevated (P&lt;0.01). This anti-inflammatory cytokine shift could block the catabolic effect of IL-1, suggesting a protective mechanism for joint cartilage.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-transient')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+    <div class="disc-topic-title">Transient Synovitis</div>
+    <div class="disc-topic-subtitle">Mild, self-resolving response typical of intra-articular injections</div>
+    <div class="disc-topic-preview">A transient transudative synovitis peaked on Day 1 and returned to normal by Day 5–10. This response was greater in UC than saline control but did not produce clinical lameness or pain at any time point. The transient nature is consistent with known responses to intra-articular injections and resolved without treatment.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-protein')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/></svg></div>
+    <div class="disc-topic-title">Protein Consistency</div>
+    <div class="disc-topic-subtitle">2,645 proteins with 4.7% mean batch variation</div>
+    <div class="disc-topic-preview">Proteomics revealed 2,645 annotated proteins consistently present across different donors and within batches. The 4.7% mean within-batch variation demonstrates unprecedented product consistency. Proteins included fibrillar collagens, glycan proteins, and regulatory factors with established roles in connective tissue matrix maintenance and repair.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-cryo')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20M20.5 7.5l-17 9M3.5 7.5l17 9"/></svg></div>
+    <div class="disc-topic-title">Cryopreservation Advantage</div>
+    <div class="disc-topic-subtitle">Why frozen microparticles outperform fresh or lyophilized tissue</div>
+    <div class="disc-topic-preview">Fresh allografts carry proven risk of disease transmission. Intact frozen allografts suffer from limited cryoprotectant penetration. Lyophilization may degrade proteins. The cryopreserved microparticulate approach preserves protein integrity while eliminating transmission risk and enabling off-the-shelf convenience with rapid thawing (~10 minutes from −80°C).</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-histopath')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <div class="disc-topic-title">Histologically Normal Tissues</div>
+    <div class="disc-topic-subtitle">Pathologic study confirmed no tissue damage</div>
+    <div class="disc-topic-preview">The controlled pathologic study evaluated joint and ligament tissues at 2 and 5 days after injection, along with corresponding lymph nodes. Synovial membrane, articular cartilage, and lymph nodes were histologically normal with an average score of 90/100, with only mild inflammation in the injection tracts — confirming the allograft does not cause tissue damage.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-immune')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg></div>
+    <div class="disc-topic-title">Immune Privilege</div>
+    <div class="disc-topic-subtitle">Why UC tissue avoids rejection</div>
+    <div class="disc-topic-preview">The lack of adverse events has been attributed to the primitive nature of fetal umbilical tissue and its inherent immune privilege — a property also recognized in human and equine stem cells. UC has been successfully used in over 180 homologous sites as tissue supplement grafts in humans, showing significant improvements without reported adverse events.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-systemic')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+    <div class="disc-topic-title">No Systemic Effects</div>
+    <div class="disc-topic-subtitle">SAA, hematology, and blood chemistry all normal</div>
+    <div class="disc-topic-preview">Blood hematology, chemistries, and serum amyloid A (SAA) did not reveal systemic effects. SAA values actually decreased from a mean baseline of 32 to a mean of 6 after injection and remained low for the duration of the study. No adverse events attributable to UC administration were observed in any of the three in vivo studies.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-diseased')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+    <div class="disc-topic-title">Efficacy in Diseased Horses</div>
+    <div class="disc-topic-subtitle">OA and desmitis/tendonitis cases improved over 28 days</div>
+    <div class="disc-topic-preview">The in vivo case study of horses with osteoarthritis and desmitis/tendonitis showed improvement in lameness and pain over 28 days. Synovial fluid results paralleled the normal horse study, also without adverse events. This suggests equicentCTM™ is not only safe but shows clinical promise in real disease conditions.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+  <div class="disc-topic-card animate-in" onclick="openDiscussion('safety-future')">
+    <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+    <div class="disc-topic-title">Contribution to the Field</div>
+    <div class="disc-topic-subtitle">Pre-clinical foundation for equine and human applications</div>
+    <div class="disc-topic-preview">This study serves as an essential first step to characterize and determine in vivo safety of the first reported use of allogeneic Wharton's jelly in equine, and also serves as a pre-clinical study for humans. Human clinical trials for UC allograft injectables for OA are just getting started. The data support advancement to a clinical trial in client-owned horses.</div>
+    <div class="disc-click-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Click to explore
+    </div>
+  </div>
+
+</div>
+
+<!-- Discussion Modals -->
+<div class="disc-overlay-backdrop" id="disc-modal-safety-gap">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="disc-topic-title">Filling the Evidence Gap</div><div class="disc-topic-subtitle">First controlled study of UC allograft biocompatibility in vivo</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>Despite the rapid increase in the use of biologic tissue products for MSK tissues in both human and equine athletes over the past decade, products that offer safety, quality, biocompatibility, convenience, and consistent characterization are still in the early stages of development. Peer-reviewed studies, human and equine, are lacking or limited, particularly regarding the inclusion of controls for in vivo studies.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">Many tissue-based products are sold to veterinarians without rigorous testing. This study is one of the first to actually test an umbilical cord allograft in a controlled setting with proper comparisons, providing the evidence that was previously missing in this field.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>First controlled, randomized, in vivo evaluation of an equine UC allograft</li><li>Three separate in vivo studies with different designs (normal horses, diseased horses, pathologic evaluation)</li><li>Fills a critical gap in peer-reviewed literature on tissue allografts for MSK use</li><li>Human clinical trials for UC allograft injectables are just getting started — this equine data serves as pre-clinical foundation</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-anti-inflam">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><div><div class="disc-topic-title">Anti-Inflammatory Response</div><div class="disc-topic-subtitle">IL-1ra surge and favorable cytokine shift</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>IL-1ra increased significantly (P&lt;0.001) on Days 1, 3, and 10 after UC injection and were greater than saline control and baseline. The statistically significant increase of IL-1ra with UC administration resulted in an increase of the IL-1ra to IL-1 ratio several-fold greater than baseline and control (P&lt;0.001). IL-10 was significantly greater (P&lt;0.01) than both baseline and control after UC injection.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">When eCTM is injected into a joint, it triggers a powerful anti-inflammatory response. The body produces significantly more IL-1ra (a natural inflammation blocker) and IL-10 (an anti-inflammatory molecule). This protective shift lasts well beyond the initial injection response, suggesting the product actively helps protect joint cartilage from breakdown.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>IL-1ra increased significantly (P&lt;0.001) — greater than saline control and baseline</li><li>IL-1ra/IL-1 ratio increased several-fold, persisting beyond the transient synovitis</li><li>IL-10 significantly elevated (P&lt;0.01) — anti-inflammatory and chondroprotective</li><li>Seven of eight horses maintained elevated IL-1ra for the full study duration</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-transient">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="disc-topic-title">Transient Synovitis</div><div class="disc-topic-subtitle">Mild, self-resolving response</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>Synovial fluid showed a transient transudative synovitis after UC injection that was greater than baseline and control and returned to normal after Day 5 (P&lt;0.001). Horses administered UC did not demonstrate clinical signs of lameness, pain, or inflammation after Day 1 for at least 21 days.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">After injection, there's a brief, mild fluid response in the joint that peaks on Day 1 and clears up within 5–10 days. Importantly, this did not cause any lameness or pain — the horses were comfortable throughout. This kind of mild response is completely normal and expected with any intra-articular injection.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>Peaked on Day 1, returned to normal by Day 5–10</li><li>Zero clinical lameness or pain at any time point</li><li>Consistent response pattern across both first and second injections (21 days apart)</li><li>Typical of any intra-articular injection — resolved without treatment</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-protein">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/></svg></div><div><div class="disc-topic-title">Protein Consistency</div><div class="disc-topic-subtitle">2,645 proteins with 4.7% mean batch variation</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>Proteomics revealed 2,645 annotated TSCs. Proteins of >89 TSC were considered abundant and were present in all donors. Proteins within the same donor had a 4.7% mean variation. Inflammatory cytokines were low in UC.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">Every batch of eCTM contains the same rich mix of over 2,600 proteins with remarkably little variation between batches. This means veterinarians can expect the same product quality and effectiveness every time they use it, unlike blood-derived products which vary from patient to patient.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>2,645 annotated proteins identified via mass spectrometry</li><li>4.7% mean within-batch variation — exceptional consistency</li><li>Abundant proteins present in all 11 donors tested</li><li>Low inflammatory cytokine profile in the product itself</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-cryo">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20M20.5 7.5l-17 9M3.5 7.5l17 9"/></svg></div><div><div class="disc-topic-title">Cryopreservation Advantage</div><div class="disc-topic-subtitle">Why frozen microparticles outperform alternatives</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>Fresh allogeneic grafts offer the advantages of living tissue but carry the proven risk of disease transmission. Intact frozen allografts are subject to the effects of freezing tissue in bulk, in part due to limited penetration of cryoprotectants. The underlying quality of the product is assured by cryopreservation of fresh tissue, donor health and uniformity, and a meticulously selected tissue source of low immunogenicity.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">The microparticulate approach solves problems that other tissue products face. By breaking the tissue into tiny particles before freezing, the cryoprotectant can penetrate evenly, preserving protein integrity. The result is an off-the-shelf product that's ready in about 10 minutes from the freezer, with no disease transmission risk and consistent quality.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>Fresh grafts risk disease transmission; lyophilization may degrade proteins</li><li>Microparticulate form allows uniform cryoprotectant penetration</li><li>Rapid thawing (~10 minutes from −80°C) for same-day use</li><li>Donor health screening and uniformity ensure consistent quality</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-histopath">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div><div class="disc-topic-title">Histologically Normal Tissues</div><div class="disc-topic-subtitle">Pathologic study confirmed no tissue damage</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>The in vivo pathologic study evaluated joint and ligament tissues 2 and 5 days after injection and corresponding lymph nodes for evidence of the allograft or inflammation. The synovial membrane, articular cartilage, and lymph nodes were histologically normal, except for mild inflammation in the injection tracts.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">When scientists examined the actual joint tissues under a microscope after eCTM injection, everything looked completely normal and healthy. The joint lining, cartilage, and lymph nodes showed no damage or concerning inflammation — only the tiny needle track showed any reaction, which is expected from any injection.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>Tissues examined at both 2 and 5 days post-injection</li><li>Synovial membrane, articular cartilage, and lymph nodes all histologically normal</li><li>Average histopathology score: 90/100 — healthy, organized tissue</li><li>Only mild inflammation at injection tract sites (expected)</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-immune">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg></div><div><div class="disc-topic-title">Immune Privilege</div><div class="disc-topic-subtitle">Why UC tissue avoids rejection</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>The lack of adverse events has putatively been attributed to the primitive nature of the tissue and immune privilege that is also recognized in human and equine stem cells. WJ has been successfully used in over 180 homologous sites as tissue supplement grafts in humans, showing significant improvements in pain and function scores without reported adverse events.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">Umbilical cord tissue has a special property called "immune privilege" — the body doesn't recognize it as foreign and doesn't mount a rejection response. This is the same property that allows a fetus to grow without being attacked by the mother's immune system. It's why eCTM can be used as an allograft (from a donor) without adverse reactions.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>Fetal tissue possesses inherent immune privilege</li><li>Over 180 successful human applications of WJ grafts without adverse events</li><li>Same immune privilege recognized in human and equine stem cells</li><li>Explains why allogeneic (donor) tissue is well-tolerated</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-systemic">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="disc-topic-title">No Systemic Effects</div><div class="disc-topic-subtitle">SAA, hematology, and blood chemistry all normal</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>Blood hematology, chemistries, and serum amyloid A did not reveal systemic effects. Low SAA values were sustained for the duration of the study with a mean baseline value of 32. SAA values after injection decreased significantly to a mean of 6 for the duration of the study.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">Blood tests showed no whole-body inflammatory response after eCTM injection. In fact, SAA (a key inflammation marker) actually went down after treatment. This means the product stays local to the injection site and doesn't cause any system-wide side effects — the horse's body handles it without any stress.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>SAA dropped from 32 (baseline) to 6 (post-injection) and stayed low</li><li>All hematology and chemistry parameters within normal limits</li><li>No systemic inflammatory response detected</li><li>Consistent across all three in vivo studies</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-diseased">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div><div class="disc-topic-title">Efficacy in Diseased Horses</div><div class="disc-topic-subtitle">OA and desmitis/tendonitis cases improved</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>The in vivo study of osteoarthritis and desmitis/tendonitis improved in lameness and pain over a 28-day study and had parallel synovial fluid results to the normal horse study, also without adverse events.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">When tested on horses that actually had joint disease and tendon/ligament problems, eCTM not only remained safe but the horses showed real improvement in lameness and pain. The joint fluid response was similar to healthy horses, confirming the product behaves consistently whether the tissue is normal or diseased.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>Tested in horses with carpal OA and forelimb desmitis/tendonitis</li><li>Lameness and pain improved over 28 days</li><li>Synovial fluid results paralleled normal horse study</li><li>Zero adverse events in diseased tissue conditions</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="disc-overlay-backdrop" id="disc-modal-safety-future">
+  <div class="disc-overlay-modal">
+    <button class="disc-modal-close" onclick="closeDiscussion(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="disc-modal-header"><div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div><div class="disc-topic-title">Contribution to the Field</div><div class="disc-topic-subtitle">Pre-clinical foundation for equine and human applications</div></div></div>
+    <div class="disc-modal-body">
+      <div class="disc-section"><div class="disc-section-label">FROM THE MANUSCRIPT</div><p>The results of our study will help to fill the gap in peer-reviewed publications on the characterization and biocompatibility of resourced tissue for MSK supplementation. For the future advancement of efficacious, particulate tissue allografts, it is critical that they be characterized, shown to be safe in target tissues in vivo, and obtained and stored with quality practices that align with FDA Guidelines for Human Cellular and Tissue-Based Products.</p></div>
+      <div class="disc-layperson"><div class="disc-layperson-label">ⓘ WHAT THIS MEANS</div><div class="disc-layperson-text">This study establishes the scientific foundation that the entire field of tissue allografts has been missing. By rigorously testing safety and characterizing the product, this research sets the standard that other products should follow — and paves the way for both equine clinical trials and future human applications of similar technology.</div></div>
+      <div class="disc-section"><div class="disc-section-label">KEY POINTS</div><ul class="disc-points"><li>First reported use of allogeneic Wharton's jelly in equine</li><li>Serves as pre-clinical study for potential human applications</li><li>Data support advancement to clinical trial in client-owned horses</li><li>Aligned with FDA Guidelines for Human Cellular and Tissue-Based Products</li></ul></div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <!-- ========== CONCLUSIONS TAB ========== -->
