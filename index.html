@@ -1621,6 +1621,102 @@ a:hover { text-decoration: underline; }
   .video-info { padding: var(--space-3) var(--space-4); }
 }
 
+/* ========== PUBLISHED EVIDENCE ========== */
+.published-evidence {
+  max-width: 900px;
+  margin: var(--space-8) auto var(--space-6);
+  padding: var(--space-6);
+  border: 1.5px dashed var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+.published-evidence-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+.published-evidence-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.published-evidence-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-border);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease;
+  border-radius: 6px;
+  margin: 0 calc(-1 * var(--space-3));
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+}
+.published-evidence-item:hover {
+  background: rgba(1, 105, 111, 0.06);
+}
+[data-theme="dark"] .published-evidence-item:hover {
+  background: rgba(255,255,255,0.04);
+}
+.published-evidence-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(1, 105, 111, 0.1);
+  color: #01696f;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+[data-theme="dark"] .published-evidence-num {
+  background: rgba(1, 105, 111, 0.2);
+  color: #2ec4b6;
+}
+.published-evidence-content {
+  flex: 1;
+  min-width: 0;
+}
+.published-evidence-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+.published-evidence-item:hover .published-evidence-title {
+  color: #01696f;
+}
+[data-theme="dark"] .published-evidence-item:hover .published-evidence-title {
+  color: #2ec4b6;
+}
+.published-evidence-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+.published-evidence-arrow {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.published-evidence-item:hover .published-evidence-arrow {
+  opacity: 1;
+}
+
 /* ========== FOOTER ========== */
 .site-footer {
   max-width: 1400px;
@@ -3776,29 +3872,34 @@ a:hover { text-decoration: underline; }
   </div>
 </div>
 
-<!-- PUBLICATION INFO -->
-<div class="overview-pubs animate-in">
-  <div class="overview-pubs-label">Published Evidence</div>
-  <div class="overview-pub-row">
-    <div class="overview-pub-badge">1</div>
-    <div>
-      <div class="overview-pub-title">Safety</div>
-      <div class="overview-pub-meta">Bertone et al. · <em>BMC Medicine</em> (2025) 23:439</div>
-    </div>
-  </div>
-  <div class="overview-pub-row">
-    <div class="overview-pub-badge">2</div>
-    <div>
-      <div class="overview-pub-title">Clinical Study — VCT26005934</div>
-      <div class="overview-pub-meta">Bertone et al. · Real-world controlled trial · 138 horses · 26 weeks</div>
-    </div>
-  </div>
-  <div class="overview-pub-row">
-    <div class="overview-pub-badge">3</div>
-    <div>
-      <div class="overview-pub-title">Product Characterization — ACVSMR 2026</div>
-      <div class="overview-pub-meta">Leise, Catunda &amp; Bertone · Louisiana State University · Presented at ACVSMR 2026</div>
-    </div>
+<!-- Published Evidence -->
+<div class="published-evidence">
+  <div class="published-evidence-label">Published Evidence</div>
+  <div class="published-evidence-list">
+    <a class="published-evidence-item" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12288288/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">1</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Safety</div>
+        <div class="published-evidence-meta">Bertone et al. · <em>BMC Medicine</em> (2025) 23:439</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="https://veterinaryclinicaltrials.org/s/clinical-safety-and-effectiveness-of-an-equine-umbilicalderived-connective-tissue-matrix-allograft-equicentctm-for-joint-ligament-and-tendon-administration-in-horses-234385/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">2</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Clinical Study &mdash; VCT26005934</div>
+        <div class="published-evidence-meta">Bertone et al. · Real-world controlled trial · 138 horses · 26 weeks</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="ACVSMR-poster-edited-2-27-26-2.pdf" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">3</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Product Characterization &mdash; ACVSMR 2026</div>
+        <div class="published-evidence-meta">Leise, Catunda &amp; Bertone · Louisiana State University · Presented at ACVSMR 2026</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
   </div>
 </div>
 
@@ -4823,6 +4924,37 @@ a:hover { text-decoration: underline; }
 
 </main>
 
+
+<!-- Published Evidence -->
+<div class="published-evidence">
+  <div class="published-evidence-label">Published Evidence</div>
+  <div class="published-evidence-list">
+    <a class="published-evidence-item" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12288288/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">1</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Safety</div>
+        <div class="published-evidence-meta">Bertone et al. · <em>BMC Medicine</em> (2025) 23:439</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="https://veterinaryclinicaltrials.org/s/clinical-safety-and-effectiveness-of-an-equine-umbilicalderived-connective-tissue-matrix-allograft-equicentctm-for-joint-ligament-and-tendon-administration-in-horses-234385/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">2</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Clinical Study &mdash; VCT26005934</div>
+        <div class="published-evidence-meta">Bertone et al. · Real-world controlled trial · 138 horses · 26 weeks</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="ACVSMR-poster-edited-2-27-26-2.pdf" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">3</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Product Characterization &mdash; ACVSMR 2026</div>
+        <div class="published-evidence-meta">Leise, Catunda &amp; Bertone · Louisiana State University · Presented at ACVSMR 2026</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+  </div>
+</div>
 
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
@@ -7074,6 +7206,37 @@ a:hover { text-decoration: underline; }
 </div>
 </div>
 
+<!-- Published Evidence -->
+<div class="published-evidence">
+  <div class="published-evidence-label">Published Evidence</div>
+  <div class="published-evidence-list">
+    <a class="published-evidence-item" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12288288/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">1</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Safety</div>
+        <div class="published-evidence-meta">Bertone et al. · <em>BMC Medicine</em> (2025) 23:439</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="https://veterinaryclinicaltrials.org/s/clinical-safety-and-effectiveness-of-an-equine-umbilicalderived-connective-tissue-matrix-allograft-equicentctm-for-joint-ligament-and-tendon-administration-in-horses-234385/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">2</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Clinical Study &mdash; VCT26005934</div>
+        <div class="published-evidence-meta">Bertone et al. · Real-world controlled trial · 138 horses · 26 weeks</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="ACVSMR-poster-edited-2-27-26-2.pdf" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">3</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Product Characterization &mdash; ACVSMR 2026</div>
+        <div class="published-evidence-meta">Leise, Catunda &amp; Bertone · Louisiana State University · Presented at ACVSMR 2026</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+  </div>
+</div>
+
 <!-- Clinical Footer -->
 <footer class="site-footer">
   <div class="footer-left">
@@ -7592,6 +7755,37 @@ a:hover { text-decoration: underline; }
 </div>
 
 </main>
+
+<!-- Published Evidence -->
+<div class="published-evidence">
+  <div class="published-evidence-label">Published Evidence</div>
+  <div class="published-evidence-list">
+    <a class="published-evidence-item" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12288288/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">1</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Safety</div>
+        <div class="published-evidence-meta">Bertone et al. · <em>BMC Medicine</em> (2025) 23:439</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="https://veterinaryclinicaltrials.org/s/clinical-safety-and-effectiveness-of-an-equine-umbilicalderived-connective-tissue-matrix-allograft-equicentctm-for-joint-ligament-and-tendon-administration-in-horses-234385/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">2</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Clinical Study &mdash; VCT26005934</div>
+        <div class="published-evidence-meta">Bertone et al. · Real-world controlled trial · 138 horses · 26 weeks</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="ACVSMR-poster-edited-2-27-26-2.pdf" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">3</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Product Characterization &mdash; ACVSMR 2026</div>
+        <div class="published-evidence-meta">Leise, Catunda &amp; Bertone · Louisiana State University · Presented at ACVSMR 2026</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+  </div>
+</div>
 
 <!-- ACVSMR Footer -->
 <footer class="site-footer">
@@ -10892,6 +11086,37 @@ function initMaintAeCharts() {
     <span>(888) 979-3625</span>
     <span>equineperformancelabs.com</span>
     <span>@equineperformancelabs</span>
+  </div>
+</div>
+
+<!-- Published Evidence -->
+<div class="published-evidence">
+  <div class="published-evidence-label">Published Evidence</div>
+  <div class="published-evidence-list">
+    <a class="published-evidence-item" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12288288/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">1</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Safety</div>
+        <div class="published-evidence-meta">Bertone et al. · <em>BMC Medicine</em> (2025) 23:439</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="https://veterinaryclinicaltrials.org/s/clinical-safety-and-effectiveness-of-an-equine-umbilicalderived-connective-tissue-matrix-allograft-equicentctm-for-joint-ligament-and-tendon-administration-in-horses-234385/" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">2</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Clinical Study &mdash; VCT26005934</div>
+        <div class="published-evidence-meta">Bertone et al. · Real-world controlled trial · 138 horses · 26 weeks</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+    <a class="published-evidence-item" href="ACVSMR-poster-edited-2-27-26-2.pdf" target="_blank" rel="noopener noreferrer">
+      <div class="published-evidence-num">3</div>
+      <div class="published-evidence-content">
+        <div class="published-evidence-title">Product Characterization &mdash; ACVSMR 2026</div>
+        <div class="published-evidence-meta">Leise, Catunda &amp; Bertone · Louisiana State University · Presented at ACVSMR 2026</div>
+      </div>
+      <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
   </div>
 </div>
 
