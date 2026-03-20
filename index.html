@@ -1626,6 +1626,128 @@ a:hover { text-decoration: underline; }
   .video-info { padding: var(--space-3) var(--space-4); }
 }
 
+/* ========== VALUE PROPOSITION TAB ========== */
+#study-value { padding: var(--space-8); }
+.vp-thesis {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid #c9a84c;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-8);
+  margin-bottom: var(--space-8);
+}
+.vp-thesis-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c9a84c; margin-bottom: var(--space-2); }
+.vp-thesis-text { font-family: 'Italiana', serif; font-size: clamp(1rem, 0.95rem + 0.3vw, 1.12rem); font-weight: 400; color: var(--color-text); line-height: 1.7; }
+
+.vp-evidence-banner {
+  background: #0d3d36;
+  border-radius: var(--radius-xl);
+  padding: clamp(var(--space-6), 3vw, var(--space-8));
+  margin-bottom: var(--space-8);
+  color: white;
+}
+.vp-evidence-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #dfc87a; margin-bottom: var(--space-4); }
+.vp-evidence-title { font-family: 'Italiana', serif; font-size: clamp(1.2rem, 1rem + 0.8vw, 1.45rem); font-weight: 400; margin-bottom: var(--space-2); line-height: 1.3; }
+.vp-evidence-sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: var(--space-6); }
+.vp-evidence-sub a { color: #c4ddd6; text-decoration: underline; text-underline-offset: 2px; }
+.vp-evidence-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); }
+.vp-evidence-kpi { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-lg); padding: var(--space-5); }
+.vp-evidence-kpi-value { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #dfc87a; line-height: 1.1; margin-bottom: var(--space-1); }
+.vp-evidence-kpi-label { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+.vp-evidence-kpi-pval { font-size: 11px; color: #a1c9bf; margin-top: var(--space-1); font-weight: 500; }
+
+.vp-price-header { text-align: center; margin-bottom: var(--space-8); }
+.vp-price-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--space-6); align-items: stretch; max-width: 900px; margin: 0 auto var(--space-8); }
+.vp-price-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8) var(--space-6); text-align: center; position: relative; }
+.vp-price-card--ctm { border-color: #0d3d36; border-width: 2px; }
+.vp-price-card--ctm::before { content: 'CLINICALLY PROVEN'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #0d3d36; color: white; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; padding: 4px 16px; border-radius: 20px; white-space: nowrap; }
+.vp-price-card-name { font-family: 'Italiana', serif; font-size: 1.1rem; color: var(--color-text); margin-bottom: var(--space-1); }
+.vp-price-card-desc { font-size: 13px; color: var(--color-text-muted); margin-bottom: var(--space-6); }
+.vp-price-card-amount { font-weight: 700; font-size: 2.5rem; line-height: 1; margin-bottom: var(--space-1); }
+.vp-price-card--status .vp-price-card-amount { color: #b85450; }
+.vp-price-card--ctm .vp-price-card-amount { color: #0d3d36; }
+.vp-price-card-unit { font-size: 12px; color: var(--color-text-muted); margin-bottom: var(--space-6); }
+.vp-price-list { list-style: none; text-align: left; padding: 0; margin: 0; }
+.vp-price-list li { font-size: 13px; color: var(--color-text-muted); padding: var(--space-2) 0; border-top: 1px solid var(--color-border); display: flex; align-items: flex-start; gap: var(--space-2); }
+.vp-price-list li::before { flex-shrink: 0; margin-top: 2px; font-size: 12px; font-weight: 700; }
+.vp-price-card--status .vp-price-list li::before { content: '\2715'; color: #b85450; }
+.vp-price-card--ctm .vp-price-list li::before { content: '\2713'; color: #0d3d36; }
+.vp-vs { display: flex; align-items: center; justify-content: center; }
+.vp-vs-circle { width: 48px; height: 48px; border-radius: 50%; background: rgba(161,201,191,0.15); border: 2px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-family: 'Italiana', serif; font-size: 14px; font-weight: 600; color: var(--color-text-muted); }
+
+.vp-status-quo { background: rgba(184,84,80,0.06); border: 1px solid rgba(184,84,80,0.12); border-radius: var(--radius-xl); padding: clamp(var(--space-6), 3vw, var(--space-8)); margin-bottom: var(--space-8); }
+.vp-status-quo .section-label { color: #b85450; }
+.vp-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-6); }
+.vp-stat-card { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-5); }
+.vp-stat-value { font-weight: 700; font-size: 1.5rem; color: #b85450; margin-bottom: var(--space-1); line-height: 1.1; }
+.vp-stat-label { font-size: 13px; font-weight: 500; color: var(--color-text); margin-bottom: var(--space-2); line-height: 1.45; }
+.vp-stat-source { font-size: 11px; color: var(--color-text-muted); }
+.vp-stat-source a { color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 2px; }
+
+.vp-driver-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-bottom: var(--space-8); }
+.vp-driver-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); position: relative; overflow: hidden; }
+.vp-driver-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+.vp-driver-card:nth-child(1)::before { background: #0d3d36; }
+.vp-driver-card:nth-child(2)::before { background: #a1c9bf; }
+.vp-driver-card:nth-child(3)::before { background: #c9a84c; }
+.vp-driver-card:nth-child(4)::before { background: #347064; }
+.vp-driver-icon { width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4); }
+.vp-driver-card:nth-child(1) .vp-driver-icon { background: rgba(13,61,54,0.08); color: #0d3d36; }
+.vp-driver-card:nth-child(2) .vp-driver-icon { background: rgba(161,201,191,0.25); color: #347064; }
+.vp-driver-card:nth-child(3) .vp-driver-icon { background: rgba(201,168,76,0.15); color: #8b6d4a; }
+.vp-driver-card:nth-child(4) .vp-driver-icon { background: rgba(52,112,100,0.1); color: #347064; }
+.vp-driver-title { font-family: 'Italiana', serif; font-size: 1.05rem; color: var(--color-text); margin-bottom: var(--space-3); }
+.vp-driver-text { font-size: 13px; color: var(--color-text-muted); line-height: 1.65; margin-bottom: var(--space-4); }
+.vp-driver-stat { background: rgba(161,201,191,0.12); border-radius: 8px; padding: var(--space-3) var(--space-4); font-size: 12px; color: var(--color-text-muted); line-height: 1.5; }
+.vp-driver-stat strong { color: var(--color-text); }
+.vp-driver-stat a { color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 2px; font-size: 11px; }
+.vp-driver-trial { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: var(--space-3) var(--space-4); font-size: 12px; color: #8b6d4a; line-height: 1.5; margin-top: var(--space-3); }
+.vp-driver-trial strong { color: var(--color-text); }
+.vp-trial-badge { display: inline-block; background: #c9a84c; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 3px; margin-right: 4px; vertical-align: 1px; }
+
+.vp-waterfall-wrap { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8); margin-bottom: var(--space-8); }
+.vp-waterfall-chart { display: flex; align-items: flex-end; gap: var(--space-4); height: 280px; padding-bottom: var(--space-10); position: relative; margin-bottom: var(--space-4); }
+.vp-wf-bar { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; position: relative; height: 100%; }
+.vp-wf-fill { width: 100%; max-width: 80px; border-radius: 8px 8px 0 0; position: relative; transition: height 0.8s cubic-bezier(0.16,1,0.3,1); min-height: 4px; }
+.vp-wf-fill--red { background: linear-gradient(180deg, #c46b67 0%, #b85450 100%); }
+.vp-wf-fill--green { background: linear-gradient(180deg, #347064 0%, #0d3d36 100%); }
+.vp-wf-fill--sage { background: linear-gradient(180deg, #a1c9bf 0%, #347064 100%); }
+.vp-wf-amount { font-weight: 700; font-size: 13px; margin-bottom: var(--space-2); white-space: nowrap; }
+.vp-wf-label-wrap { position: absolute; bottom: calc(-1 * var(--space-10)); left: 50%; transform: translateX(-50%); text-align: center; width: 110px; }
+.vp-wf-label { font-size: 11px; font-weight: 500; color: var(--color-text-muted); line-height: 1.35; }
+
+.vp-vet-section { background: rgba(161,201,191,0.08); border: 1px solid rgba(161,201,191,0.2); border-radius: var(--radius-xl); padding: clamp(var(--space-6), 3vw, var(--space-8)); margin-bottom: var(--space-8); }
+.vp-vet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+.vp-vet-card { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-5); }
+.vp-vet-title { font-family: 'Italiana', serif; font-size: 0.95rem; color: var(--color-text); margin-bottom: var(--space-2); }
+.vp-vet-text { font-size: 13px; color: var(--color-text-muted); line-height: 1.6; }
+
+.vp-pitch { background: linear-gradient(135deg, #0d3d36 0%, #1a4d45 100%); border-radius: var(--radius-xl); padding: clamp(var(--space-6), 4vw, var(--space-10)); margin-bottom: var(--space-8); text-align: center; color: white; }
+.vp-pitch-text { font-family: 'Italiana', serif; font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.2rem); font-weight: 400; line-height: 1.65; max-width: 760px; margin: 0 auto; color: rgba(255,255,255,0.9); }
+.vp-pitch-text em { color: #dfc87a; font-style: normal; font-weight: 700; }
+
+.vp-sources { border-top: 1px solid var(--color-border); padding-top: var(--space-6); }
+.vp-sources-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: var(--space-4); }
+.vp-sources-list { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); list-style: none; padding: 0; margin: 0; }
+.vp-sources-list li { font-size: 12px; color: var(--color-text-muted); }
+.vp-sources-list a { color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 2px; }
+
+@media (max-width: 768px) {
+  #study-value { padding: var(--space-4) var(--space-3); }
+  .vp-price-grid { grid-template-columns: 1fr; }
+  .vp-vs { display: none; }
+  .vp-driver-grid, .vp-vet-grid { grid-template-columns: 1fr; }
+  .vp-waterfall-chart { height: 200px; }
+  .vp-wf-amount { font-size: 10px; }
+  .vp-wf-label { font-size: 9px; }
+  .vp-thesis { padding: var(--space-4) var(--space-5); }
+  .vp-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .vp-evidence-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .vp-stat-grid, .vp-evidence-grid { grid-template-columns: 1fr; }
+}
+
 /* ========== LANDMARK EVIDENCE BANNER ========== */
 .landmark-banner {
   display: flex;
@@ -3648,6 +3770,10 @@ a:hover { text-decoration: underline; }
     <button class="study-tab" data-study="pricing">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       Pricing
+    </button>
+    <button class="study-tab" data-study="value">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Value Proposition
     </button>
     <button class="study-tab" data-study="videos">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
@@ -11974,6 +12100,201 @@ function initMaintAeCharts() {
 
 </div><!-- end study-videos -->
 
+<!-- ===== VALUE PROPOSITION TAB ===== -->
+<div class="study-panel" id="study-value">
+
+<div class="section-label">ECONOMIC VALUE</div>
+<h2 class="section-title" style="margin-bottom: var(--space-2);">Economic Value Proposition</h2>
+<p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-6); max-width: 700px;">The true cost of lameness is not the price per vial &mdash; it&rsquo;s the training days lost, the repeat injections, and the eroding asset value of every horse that stays out of work.</p>
+
+<!-- Core Thesis -->
+<div class="vp-thesis animate-in">
+  <div class="vp-thesis-label">Core Economic Thesis</div>
+  <p class="vp-thesis-text">equicenta&trade; CTM is a premium, tissue-based injectable that aims to decrease time out of work, reduce recurrence in &ldquo;repeat offender&rdquo; cases, and extend the useful competitive life of the horse &mdash; collectively delivering far greater financial impact than the cost of the product itself.</p>
+</div>
+
+<!-- Clinical Evidence Banner -->
+<div class="vp-evidence-banner animate-in">
+  <div class="vp-evidence-label">Now Backed by Clinical Evidence</div>
+  <div class="vp-evidence-title">138 Horses &middot; 195 Conditions &middot; 8 Practice Sites &middot; 26 Weeks</div>
+  <div class="vp-evidence-sub">Prospective, multi-center, randomized controlled trial (VCT#26005934) comparing eCTM vs. standard-of-care biologics in client-owned performance horses. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12288288/" target="_blank" rel="noopener">Bertone et al., BMC Medicine (2025) 23:439</a></div>
+  <div class="vp-evidence-grid">
+    <div class="vp-evidence-kpi">
+      <div class="vp-evidence-kpi-value">2.72 : 1</div>
+      <div class="vp-evidence-kpi-label">Odds of returning to or exceeding prior performance (eCTM vs. SOC)</div>
+      <div class="vp-evidence-kpi-pval">p &lt; 0.006</div>
+    </div>
+    <div class="vp-evidence-kpi">
+      <div class="vp-evidence-kpi-value">4.0&times; safer</div>
+      <div class="vp-evidence-kpi-label">Adverse event odds 4.0-fold higher in SOC than eCTM</div>
+      <div class="vp-evidence-kpi-pval">p = 0.05</div>
+    </div>
+    <div class="vp-evidence-kpi">
+      <div class="vp-evidence-kpi-value">79%</div>
+      <div class="vp-evidence-kpi-label">of eCTM horses returned to or exceeded prior performance vs. 21% SOC</div>
+      <div class="vp-evidence-kpi-pval">p &lt; 0.006</div>
+    </div>
+    <div class="vp-evidence-kpi">
+      <div class="vp-evidence-kpi-value">Single dose</div>
+      <div class="vp-evidence-kpi-label">One 1.5 mL injection vs. multi-injection SOC protocols over 6&ndash;12 months</div>
+      <div class="vp-evidence-kpi-pval">Off-the-shelf, no processing</div>
+    </div>
+  </div>
+</div>
+
+<!-- Price Comparison -->
+<div class="vp-price-header animate-in">
+  <div class="section-label">Per-Treatment Cost</div>
+  <div class="section-title">Price Per Vial Is Not the Full Picture</div>
+  <p style="font-size: 14px; color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">A higher per-treatment cost can mean a lower total cost of care when it reduces recurrence and downtime.</p>
+</div>
+<div class="vp-price-grid animate-in">
+  <div class="vp-price-card vp-price-card--status">
+    <div class="vp-price-card-name">Conventional Injectables</div>
+    <div class="vp-price-card-desc">Corticosteroids, HA, PRP, APS, ACS</div>
+    <div class="vp-price-card-amount">$400</div>
+    <div class="vp-price-card-unit">per treatment (avg.)</div>
+    <ul class="vp-price-list">
+      <li>Repeated 2&ndash;3&times; per year per joint</li>
+      <li>SOC performance declined after 12 wks in trial</li>
+      <li>Cumulative cost: $800&ndash;$1,200+/yr per joint</li>
+      <li>4.0&times; higher adverse event rate vs. eCTM</li>
+    </ul>
+  </div>
+  <div class="vp-vs"><div class="vp-vs-circle">vs</div></div>
+  <div class="vp-price-card vp-price-card--ctm">
+    <div class="vp-price-card-name">equicenta&trade; CTM</div>
+    <div class="vp-price-card-desc">Cryopreserved connective tissue matrix</div>
+    <div class="vp-price-card-amount">$650</div>
+    <div class="vp-price-card-unit">per treatment (single dose)</div>
+    <ul class="vp-price-list">
+      <li>Single injection, sustained effect through 26 wks</li>
+      <li>2.72:1 odds of full return to performance</li>
+      <li>Significant improvement in pain by 2 wks, lameness by 4 wks</li>
+      <li>Simplified handling &mdash; cryovial at 50 mg/mL</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Cost of Status Quo -->
+<div class="vp-status-quo animate-in">
+  <div class="section-label">The Cost of the Status Quo</div>
+  <div class="section-title" style="margin-bottom: var(--space-6);">Lameness Is the Industry&rsquo;s Largest Economic Drain</div>
+  <div class="vp-stat-grid">
+    <div class="vp-stat-card">
+      <div class="vp-stat-value">60%+</div>
+      <div class="vp-stat-label">of equine lameness caused by osteoarthritis</div>
+      <div class="vp-stat-source"><a href="https://cehhorsereport.vetmed.ucdavis.edu/sites/g/files/dgvnsk9021/files/inline-files/Horse_Report_Summer_21_web_1.pdf" target="_blank" rel="noopener">UC Davis CEH Report</a></div>
+    </div>
+    <div class="vp-stat-card">
+      <div class="vp-stat-value">$10K&ndash;$15K</div>
+      <div class="vp-stat-label">annual OA management cost per horse (severe cases)</div>
+      <div class="vp-stat-source"><a href="https://thehorse.com/118848/economic-impact-of-osteoarthritis-and-joint-health-supplements-aaep-2010/" target="_blank" rel="noopener">The Horse / AAEP 2010</a></div>
+    </div>
+    <div class="vp-stat-card">
+      <div class="vp-stat-value">14%</div>
+      <div class="vp-stat-label">of all horses lame at any given time</div>
+      <div class="vp-stat-source"><a href="https://www.americanfarriers.com/articles/6911-farrier-science-and-economic-loss-due-to-lameness" target="_blank" rel="noopener">American Farriers Journal</a></div>
+    </div>
+    <div class="vp-stat-card">
+      <div class="vp-stat-value">79% vs 21%</div>
+      <div class="vp-stat-label">eCTM horses returned to prior performance vs. SOC at 26 weeks</div>
+      <div class="vp-stat-source">Bertone et al. (VCT#26005934)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Value Drivers -->
+<div class="animate-in" style="text-align:center; margin-bottom: var(--space-6);">
+  <div class="section-label">Economic Value Drivers</div>
+  <div class="section-title">Where equicenta&trade; CTM Creates Value</div>
+</div>
+<div class="vp-driver-grid animate-in">
+  <div class="vp-driver-card">
+    <div class="vp-driver-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+    <div class="vp-driver-title">Fewer Lost Training &amp; Competition Days</div>
+    <div class="vp-driver-text">MSK injuries sideline horses for months. Each additional month of sound work is worth thousands in training value, show earnings, or sale price. eCTM delivered faster onset of improvement and a durable 26-week performance trajectory.</div>
+    <div class="vp-driver-stat"><strong>Pain improved by week 2</strong> (p&lt;0.05), lameness by week 4 (p&lt;0.02), sustained through 26 weeks. <a href="https://pubmed.ncbi.nlm.nih.gov/19076769/" target="_blank" rel="noopener">PubMed</a></div>
+    <div class="vp-driver-trial"><span class="vp-trial-badge">TRIAL</span> <strong>SOC performance declined after 12 wks</strong> and did not differ from baseline at 26 wks. eCTM continued to improve through 26 wks (p&lt;0.001).</div>
+  </div>
+  <div class="vp-driver-card">
+    <div class="vp-driver-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div>
+    <div class="vp-driver-title">Reduced Repeat-Procedure Burden</div>
+    <div class="vp-driver-text">Chronic OA and soft-tissue horses often require 2&ndash;3 joint injections per year at $250&ndash;$300 per joint, plus farm call, sedation, and lost work days. Each additional injection also increases infection risk.</div>
+    <div class="vp-driver-stat"><strong>$250&ndash;$300/joint</strong> per injection, repeated 2&ndash;3&times;/yr in chronic cases. <a href="https://nouvelleresearch.com/index.php/articles/16193-whats-cost-joint-injections-horse" target="_blank" rel="noopener">Nouvelle Research</a></div>
+    <div class="vp-driver-trial"><span class="vp-trial-badge">TRIAL</span> <strong>Single 1.5 mL dose of eCTM</strong> outperformed multi-injection SOC protocols. 23.4% of SOC horses needed rescue injections vs. 6.6% of eCTM.</div>
+  </div>
+  <div class="vp-driver-card">
+    <div class="vp-driver-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+    <div class="vp-driver-title">Preservation of Asset Value</div>
+    <div class="vp-driver-text">High-value performance horses are capital assets. Lameness directly erodes sale price, breeding value, and repurposing probability. A therapy that improves full return to work protects the underlying asset value, often dwarfing treatment cost.</div>
+    <div class="vp-driver-stat"><strong>Billions lost nationally</strong> each year from lameness-related loss of use. <a href="https://www.dvm360.com/view/ahc-documents-economic-impact-horse-industry" target="_blank" rel="noopener">DVM360 / AHC</a></div>
+    <div class="vp-driver-trial"><span class="vp-trial-badge">TRIAL</span> <strong>2.72:1 odds</strong> of returning to or exceeding prior performance with eCTM vs. SOC (p&lt;0.006). 45 of 57 horses scoring &ldquo;4&rdquo; were eCTM.</div>
+  </div>
+  <div class="vp-driver-card">
+    <div class="vp-driver-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+    <div class="vp-driver-title">Superior Safety Profile</div>
+    <div class="vp-driver-text">Adverse reactions add unplanned costs, stress, and downtime. Many owners struggle with unexpected large veterinary expenses. A single-dose protocol with better safety simplifies planning and lowers risk for both owner and practice.</div>
+    <div class="vp-driver-stat"><strong>Proactive protocols</strong> improve outcomes and affordability vs. emergent treatment. <a href="https://www.myvetcandy.com/blog/2025/4/7/new-study-reveals-financial-challenges-and-evolving-trends-in-equine-veterinary-care" target="_blank" rel="noopener">VetCandy</a></div>
+    <div class="vp-driver-trial"><span class="vp-trial-badge">TRIAL</span> <strong>Adverse events 4.0&times; higher in SOC</strong> (p=0.05); 8.3&times; higher in SOC joints (p&lt;0.013). All eCTM AEs were non-serious and self-resolved.</div>
+  </div>
+</div>
+
+<!-- Waterfall Chart -->
+<div class="animate-in" style="text-align:center; margin-bottom: var(--space-2);">
+  <div class="section-label">Total Cost of Lameness</div>
+  <div class="section-title">The Real Cost Comparison: 12-Month Scenario</div>
+  <p style="font-size: 14px; color: var(--color-text-muted); max-width: 680px; margin: 0 auto var(--space-6);">Annual cost profile for a chronic OA sport horse under conventional vs. equicenta&trade; CTM-supported management.</p>
+</div>
+<div class="vp-waterfall-wrap animate-in">
+  <div class="vp-waterfall-chart" id="vpWaterfallChart"></div>
+</div>
+
+<!-- Vet Practice Value -->
+<div class="vp-vet-section animate-in">
+  <div class="section-label" style="color: #347064;">Practice-Level Value</div>
+  <div class="section-title" style="margin-bottom: var(--space-6);">For the Equine Veterinary Practice</div>
+  <div class="vp-vet-grid">
+    <div class="vp-vet-card">
+      <div style="margin-bottom: var(--space-3);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#347064" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+      <div class="vp-vet-title">Premium, Evidence-Based Procedure</div>
+      <div class="vp-vet-text">CTM is now supported by a 138-horse prospective controlled trial. Simplified handling (cryovial, no processing, no PRP equipment) with peer-reviewed evidence behind every recommendation.</div>
+    </div>
+    <div class="vp-vet-card">
+      <div style="margin-bottom: var(--space-3);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#347064" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+      <div class="vp-vet-title">Case Capture &amp; Client Retention</div>
+      <div class="vp-vet-text">Offering a novel regenerative tissue matrix differentiates the practice, keeps complex lameness cases in-house, and reduces leakage to referral centers. Strong trial data builds client confidence.</div>
+    </div>
+    <div class="vp-vet-card">
+      <div style="margin-bottom: var(--space-3);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#347064" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="vp-vet-title">Increased Client Lifetime Value</div>
+      <div class="vp-vet-text">79% of eCTM horses returned to prior performance. Better outcomes keep horses in work longer, generating more routine care, dentistry, farrier workups, and preventive services over the horse&rsquo;s lifetime.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Closing Pitch -->
+<div class="vp-pitch animate-in">
+  <p class="vp-pitch-text">&ldquo;In a 138-horse controlled trial, eCTM horses were <em>2.72 times more likely to return to full performance</em> than SOC, with faster pain relief, fewer adverse events, and sustained improvement through 26 weeks &mdash; all from <em>a single injection</em>.&rdquo;</p>
+</div>
+
+<!-- Sources -->
+<div class="vp-sources animate-in">
+  <div class="vp-sources-title">Sources</div>
+  <ul class="vp-sources-list">
+    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12288288/" target="_blank" rel="noopener">Bertone et al. (2025) &mdash; BMC Medicine 23:439</a></li>
+    <li><a href="https://thehorse.com/118848/economic-impact-of-osteoarthritis-and-joint-health-supplements-aaep-2010/" target="_blank" rel="noopener">The Horse / AAEP 2010</a></li>
+    <li><a href="https://cehhorsereport.vetmed.ucdavis.edu/sites/g/files/dgvnsk9021/files/inline-files/Horse_Report_Summer_21_web_1.pdf" target="_blank" rel="noopener">UC Davis CEH Horse Report</a></li>
+    <li><a href="https://nouvelleresearch.com/index.php/articles/16193-whats-cost-joint-injections-horse" target="_blank" rel="noopener">Nouvelle Research</a></li>
+    <li><a href="https://www.americanfarriers.com/articles/6911-farrier-science-and-economic-loss-due-to-lameness" target="_blank" rel="noopener">American Farriers Journal</a></li>
+    <li><a href="https://pubmed.ncbi.nlm.nih.gov/19076769/" target="_blank" rel="noopener">PubMed (Equine Vet J)</a></li>
+    <li><a href="https://www.dvm360.com/view/ahc-documents-economic-impact-horse-industry" target="_blank" rel="noopener">DVM360 / AHC</a></li>
+    <li><a href="https://www.myvetcandy.com/blog/2025/4/7/new-study-reveals-financial-challenges-and-evolving-trends-in-equine-veterinary-care" target="_blank" rel="noopener">VetCandy</a></li>
+  </ul>
+</div>
+
+</div><!-- end study-value -->
+
 <!-- ===== PROTEIN CATEGORY MODAL ===== -->
 <div class="protein-modal-overlay" id="proteinModal" onclick="if(event.target===this)closeProteinModal()">
   <div class="protein-modal">
@@ -12028,6 +12349,53 @@ document.addEventListener('keydown', function(e) {
     closeMaintainModal();
   }
 });
+
+// ========== VALUE PROPOSITION WATERFALL CHART ==========
+function initVpWaterfall() {
+  const chart = document.getElementById('vpWaterfallChart');
+  if (!chart || chart.children.length > 0) return;
+  const colors = document.documentElement.classList.contains('dark-mode')
+    ? { text: '#e0e0e0', muted: '#a0a0a0', redVal: '#e07070' }
+    : { text: '#1a2a26', muted: '#4d665e', redVal: '#b85450' };
+  const data = [
+    { label: 'Joint Injections<br>(2\u20133\u00d7/yr)', amount: '$600\u2013$900', value: 75, type: 'red' },
+    { label: 'Diagnostics<br>& Imaging', amount: '$1,500\u2013$3,000', value: 55, type: 'red' },
+    { label: 'Lost Training<br>Days', amount: '$3,000\u2013$6,000', value: 90, type: 'red' },
+    { label: 'Lost Show/Race<br>Earnings', amount: '$2,000\u2013$5,000+', value: 70, type: 'red' },
+    { label: 'Total Status<br>Quo Cost', amount: '$10K\u2013$15K', value: 100, type: 'green' },
+    { label: 'equicenta\u2122 CTM<br>(single dose)', amount: '$650', value: 22, type: 'sage' }
+  ];
+  data.forEach(function(d, i) {
+    var bar = document.createElement('div');
+    bar.className = 'vp-wf-bar';
+    var amt = document.createElement('div');
+    amt.className = 'vp-wf-amount';
+    amt.style.color = d.type === 'red' ? colors.redVal : d.type === 'green' ? '#0d3d36' : '#347064';
+    amt.textContent = d.amount;
+    var fill = document.createElement('div');
+    fill.className = 'vp-wf-fill vp-wf-fill--' + d.type;
+    fill.style.height = '0%';
+    var labelWrap = document.createElement('div');
+    labelWrap.className = 'vp-wf-label-wrap';
+    var label = document.createElement('div');
+    label.className = 'vp-wf-label';
+    label.innerHTML = d.label;
+    labelWrap.appendChild(label);
+    bar.appendChild(amt);
+    bar.appendChild(fill);
+    bar.appendChild(labelWrap);
+    chart.appendChild(bar);
+    setTimeout(function() { fill.style.height = d.value + '%'; }, 300 + i * 150);
+  });
+}
+
+// Init waterfall when value tab becomes visible
+var vpObserver = new MutationObserver(function() {
+  var panel = document.getElementById('study-value');
+  if (panel && panel.classList.contains('active')) { initVpWaterfall(); }
+});
+var vpPanel = document.getElementById('study-value');
+if (vpPanel) { vpObserver.observe(vpPanel, { attributes: true, attributeFilter: ['class'] }); }
 </script>
 
 </body>
