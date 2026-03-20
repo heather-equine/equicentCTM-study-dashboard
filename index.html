@@ -5120,6 +5120,10 @@ a:hover { text-decoration: underline; }
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m-9.5-9h6m6 0h6"/></svg>
       Imaging (1)
     </button>
+    <button class="sub-tab-btn" data-subtab="clin-kinematics">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Kinematics (3)
+    </button>
   </div>
 
   <div class="sub-panel active" id="sub-clin-outcomes">
@@ -6321,6 +6325,235 @@ a:hover { text-decoration: underline; }
     <thead><tr><th>Timepoint</th><th>equicenta™ CTM</th><th>Standard of Care</th><th>Difference</th><th>Advantage</th></tr></thead>
     <tbody><tr><td>Baseline</td><td>0%</td><td>0%</td><td>0</td><td>—</td></tr><tr><td>Week 4</td><td>8%</td><td>0%</td><td>+8%</td><td>+8%</td></tr><tr><td>Week 8</td><td>22%</td><td>0%</td><td>+22%</td><td>+22%</td></tr><tr><td>Week 12</td><td class="highlight">36%</td><td class="highlight">0%</td><td class="highlight">+36%</td><td class="highlight">+36% ★ p&lt;0.013</td></tr></tbody>
   </table>
+</div>
+</div>
+
+  <div class="sub-panel" id="sub-clin-kinematics">
+<div class="clin-section-heading">
+  <h3>Kinematics</h3>
+  <p>Objective forelimb gait asymmetry analysis via Sleip video kinematic software (Sleip.com) — Figure 8</p>
+</div>
+
+<div class="kpi-grid animate-in">
+  <div class="clin-kpi-card">
+    <div class="clin-kpi-header">
+      <div class="clin-kpi-label">IMPACT</div>
+      <div class="clin-kpi-badge">p&lt;0.05 at Wk4</div>
+    </div>
+    <div class="clin-kpi-value">−0.82<span class="clin-kpi-unit">eCTM at Wk12</span></div>
+    <div class="clin-kpi-p">Steady improvement vs SOC (−0.08)</div>
+    <div class="clin-kpi-sparkline">
+      <svg viewBox="0 0 100 28" preserveAspectRatio="none">
+        <polyline points="5,14 30,18 60,17 95,25" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+        <polyline points="5,14 30,16 60,5 95,13" fill="none" stroke="var(--color-control)" stroke-width="2" stroke-dasharray="4,3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="clin-kpi-card">
+    <div class="clin-kpi-header">
+      <div class="clin-kpi-label">PUSH-OFF</div>
+      <div class="clin-kpi-badge">p&lt;0.003 at Wk2</div>
+    </div>
+    <div class="clin-kpi-value">−0.50<span class="clin-kpi-unit">eCTM at Wk12</span></div>
+    <div class="clin-kpi-p">Significant at Wk2 &amp; Wk12 (p&lt;0.01)</div>
+    <div class="clin-kpi-sparkline">
+      <svg viewBox="0 0 100 28" preserveAspectRatio="none">
+        <polyline points="5,14 30,17 60,16 95,22" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+        <polyline points="5,14 30,13 60,12 95,14" fill="none" stroke="var(--color-control)" stroke-width="2" stroke-dasharray="4,3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="clin-kpi-card">
+    <div class="clin-kpi-header">
+      <div class="clin-kpi-label">COMPOSITE</div>
+      <div class="clin-kpi-badge">Combined</div>
+    </div>
+    <div class="clin-kpi-value">−0.82<span class="clin-kpi-unit">eCTM at Wk12</span></div>
+    <div class="clin-kpi-p">Impact + Push-off combined asymmetry</div>
+    <div class="clin-kpi-sparkline">
+      <svg viewBox="0 0 100 28" preserveAspectRatio="none">
+        <polyline points="5,14 30,17 60,17 95,25" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+        <polyline points="5,14 30,14 60,5 95,13" fill="none" stroke="var(--color-control)" stroke-width="2" stroke-dasharray="4,3"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="charts-grid animate-in" style="grid-template-columns: 1fr;">
+  <div class="chart-card" data-chart-explain="sleip-impact" onclick="openClinOverlay('sleip-impact')">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Forelimb Asymmetry — Impact</div>
+        <div class="chart-subtitle">Cumulative change from baseline. Lower values = improvement in gait symmetry.</div>
+      </div>
+      <span class="p-badge significant">p&lt;0.05 at Wk4</span>
+    </div>
+    <div class="chart-canvas-wrap" style="height: 260px;">
+      <canvas id="clin-chart-sleip-impact"></canvas>
+    </div>
+    <div class="chart-info-overlay" id="clin-overlay-sleip-impact">
+      <div class="chart-info-overlay-header">
+        <h4>Forelimb Asymmetry — Impact</h4>
+        <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="chart-info-body">
+        <div class="info-section">
+          <div class="info-label">What is this chart showing?</div>
+          <p class="info-text">This line chart shows the cumulative change in forelimb gait asymmetry during the impact phase (hoof strike) from baseline through 12 weeks, measured objectively by Sleip video kinematic analysis. Lower (more negative) values indicate improvement toward symmetrical gait.</p>
+        </div>
+        <div class="info-section">
+          <div class="info-label">Why does this matter?</div>
+          <p class="info-text">Impact asymmetry is an objective, AI-measured indicator of lameness that removes subjective veterinary scoring bias. Horses treated with eCTM showed steady, progressive improvement reaching −0.82 at week 12, while SOC horses showed temporary worsening at week 4 (+0.40) before returning near baseline (−0.08). The difference was statistically significant at week 4 (p&lt;0.05).</p>
+        </div>
+        <div class="info-section">
+          <div class="info-label">Bottom line:</div>
+          <p class="info-takeaway">eCTM produced 10× greater objective improvement in impact gait symmetry compared to SOC by week 12, confirming that clinical lameness improvement is supported by measurable kinematic data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="charts-grid animate-in" style="grid-template-columns: 1fr;">
+  <div class="chart-card" data-chart-explain="sleip-pushoff" onclick="openClinOverlay('sleip-pushoff')">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Forelimb Asymmetry — Push-off</div>
+        <div class="chart-subtitle">Cumulative change from baseline. Lower values = improvement in gait symmetry.</div>
+      </div>
+      <span class="p-badge significant">p&lt;0.003 at Wk2, p&lt;0.01 at Wk12</span>
+    </div>
+    <div class="chart-canvas-wrap" style="height: 260px;">
+      <canvas id="clin-chart-sleip-pushoff"></canvas>
+    </div>
+    <div class="chart-info-overlay" id="clin-overlay-sleip-pushoff">
+      <div class="chart-info-overlay-header">
+        <h4>Forelimb Asymmetry — Push-off</h4>
+        <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="chart-info-body">
+        <div class="info-section">
+          <div class="info-label">What is this chart showing?</div>
+          <p class="info-text">This line chart shows the cumulative change in forelimb gait asymmetry during the push-off phase (propulsion) from baseline through 12 weeks. Push-off asymmetry captures how evenly a horse loads its forelimbs during forward propulsion.</p>
+        </div>
+        <div class="info-section">
+          <div class="info-label">Why does this matter?</div>
+          <p class="info-text">Push-off asymmetry showed the earliest and most significant separation between groups. eCTM horses achieved significant improvement over SOC as early as week 2 (p&lt;0.003) — faster than any clinical outcome — and maintained significance at week 12 (p&lt;0.01). SOC horses showed essentially no change from baseline across all time points.</p>
+        </div>
+        <div class="info-section">
+          <div class="info-label">Bottom line:</div>
+          <p class="info-takeaway">eCTM-treated horses showed significant objective improvement in push-off gait symmetry as early as 2 weeks — the fastest objective response in the entire study — while SOC horses showed no measurable improvement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="charts-grid animate-in" style="grid-template-columns: 1fr;">
+  <div class="chart-card" data-chart-explain="sleip-composite" onclick="openClinOverlay('sleip-composite')">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Forelimb Asymmetry — Composite</div>
+        <div class="chart-subtitle">Combined impact + push-off asymmetry change from baseline.</div>
+      </div>
+      <span class="p-badge significant">Combined metric</span>
+    </div>
+    <div class="chart-canvas-wrap" style="height: 260px;">
+      <canvas id="clin-chart-sleip-composite"></canvas>
+    </div>
+    <div class="chart-info-overlay" id="clin-overlay-sleip-composite">
+      <div class="chart-info-overlay-header">
+        <h4>Forelimb Asymmetry — Composite</h4>
+        <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="chart-info-body">
+        <div class="info-section">
+          <div class="info-label">What is this chart showing?</div>
+          <p class="info-text">This line chart shows the composite forelimb asymmetry change — combining both impact and push-off phases — from baseline through 12 weeks. This provides an overall view of objective gait improvement.</p>
+        </div>
+        <div class="info-section">
+          <div class="info-label">Why does this matter?</div>
+          <p class="info-text">The composite view confirms the pattern seen in individual phases: eCTM horses showed progressive, sustained improvement in overall gait symmetry through 12 weeks, while SOC horses showed temporary worsening at week 4 before returning near baseline. This aligns with the clinical lameness scores but provides objective, AI-measured confirmation.</p>
+        </div>
+        <div class="info-section">
+          <div class="info-label">Bottom line:</div>
+          <p class="info-takeaway">Composite kinematic analysis confirms that eCTM drives genuine, progressive improvement in gait symmetry — not just subjective improvement, but objective, measurable kinematic change.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="data-table-wrap animate-in">
+  <div class="chart-header" style="padding: var(--space-5) var(--space-5) 0;">
+    <div><div class="chart-title">FORELIMB ASYMMETRY — IMPACT (CHANGE FROM BASELINE)</div></div>
+  </div>
+  <table class="data-table">
+    <thead><tr><th>Timepoint</th><th>equicenta™ CTM</th><th>Standard of Care</th><th>Difference</th><th>Significance</th></tr></thead>
+    <tbody>
+      <tr><td>Baseline</td><td>0.00</td><td>0.00</td><td>0.00</td><td>—</td></tr>
+      <tr><td>Week 2</td><td>−0.35</td><td>−0.22</td><td>−0.13</td><td>—</td></tr>
+      <tr><td>Week 4</td><td class="highlight">−0.32</td><td class="highlight">+0.40</td><td class="highlight">−0.72</td><td class="highlight">★ p&lt;0.05</td></tr>
+      <tr><td>Week 12</td><td>−0.82</td><td>−0.08</td><td>−0.74</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="data-table-wrap animate-in">
+  <div class="chart-header" style="padding: var(--space-5) var(--space-5) 0;">
+    <div><div class="chart-title">FORELIMB ASYMMETRY — PUSH-OFF (CHANGE FROM BASELINE)</div></div>
+  </div>
+  <table class="data-table">
+    <thead><tr><th>Timepoint</th><th>equicenta™ CTM</th><th>Standard of Care</th><th>Difference</th><th>Significance</th></tr></thead>
+    <tbody>
+      <tr><td>Baseline</td><td>0.00</td><td>0.00</td><td>0.00</td><td>—</td></tr>
+      <tr><td>Week 2</td><td class="highlight">−0.18</td><td class="highlight">+0.05</td><td class="highlight">−0.23</td><td class="highlight">★ p&lt;0.003</td></tr>
+      <tr><td>Week 4</td><td>−0.12</td><td>+0.08</td><td>−0.20</td><td>—</td></tr>
+      <tr><td>Week 12</td><td class="highlight">−0.50</td><td class="highlight">+0.02</td><td class="highlight">−0.52</td><td class="highlight">★ p&lt;0.01</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="data-table-wrap animate-in">
+  <div class="chart-header" style="padding: var(--space-5) var(--space-5) 0;">
+    <div><div class="chart-title">FORELIMB ASYMMETRY — COMPOSITE (CHANGE FROM BASELINE)</div></div>
+  </div>
+  <table class="data-table">
+    <thead><tr><th>Timepoint</th><th>equicenta™ CTM</th><th>Standard of Care</th><th>Difference</th><th>Significance</th></tr></thead>
+    <tbody>
+      <tr><td>Baseline</td><td>0.00</td><td>0.00</td><td>0.00</td><td>—</td></tr>
+      <tr><td>Week 2</td><td>−0.25</td><td>−0.05</td><td>−0.20</td><td>—</td></tr>
+      <tr><td>Week 4</td><td>−0.22</td><td>+0.30</td><td>−0.52</td><td>—</td></tr>
+      <tr><td>Week 12</td><td class="highlight">−0.82</td><td class="highlight">−0.08</td><td class="highlight">−0.74</td><td class="highlight">Combined</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="data-table-wrap animate-in">
+  <div class="chart-header" style="padding: var(--space-5) var(--space-5) 0;">
+    <div><div class="chart-title">SAMPLE SIZES PER TIME POINT</div></div>
+  </div>
+  <table class="data-table">
+    <thead><tr><th>Group</th><th>Wk 0</th><th>Wk 2</th><th>Wk 4</th><th>Wk 12</th></tr></thead>
+    <tbody>
+      <tr><td>SOC Control</td><td>9</td><td>5</td><td>5</td><td>6</td></tr>
+      <tr><td>equicenta™ CTM</td><td>25</td><td>19</td><td>20</td><td>16</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="info-callout animate-in" style="margin-top: var(--space-5);">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <strong>Methodology Note</strong>
+  </div>
+  <p style="margin:0;font-size:13px;line-height:1.6;opacity:0.85">Kinematic gait analysis was performed using Sleip.com AI-powered video asymmetry software. Videos were captured at trot by study veterinarians at each time point. A medium filter (≥5 strides, variability ≤5.0× mean) was applied, yielding data for 104 horses from 1,058 recordings. Forelimb data showed the most consistent results; hindlimb and combined data were underpowered due to high variability (CV 38–105%).</p>
 </div>
 </div>
 </div>
@@ -10024,79 +10257,84 @@ function initClinicalCharts() {
         [36, 0],
         colors, '% Responding'
       );
-    
-      // Objective Lameness - Sleip (Figure 8)
+    }
+
+    // ===== KINEMATICS SUB-TAB (Figure 8 - Sleip) =====
+    if (activeSub.id === 'sub-clin-kinematics') {
+      var sleipLabels = ['BL', 'Wk2', 'Wk4', 'Wk12'];
+      var sleipTooltip = { callbacks: { label: function(c) {
+        var dir = c.parsed.y < 0 ? 'improvement' : 'worsening';
+        return c.dataset.label + ': ' + Math.abs(c.parsed.y).toFixed(2) + ' (' + dir + ')';
+      } } };
+      var sleipYAxis = function(d) { return { ...d.scales.y,
+        title: { display: true, text: 'Asymmetry Change From Baseline (lower = improvement)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }
+      }; };
+      var sleipLegend = {
+        display: true, position: 'bottom',
+        labels: { color: colors.text, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
+      };
+
+      // Impact chart
       (function() {
-        var ctx = document.getElementById('clin-chart-sleip');
+        var ctx = document.getElementById('clin-chart-sleip-impact');
         if (ctx) {
           var d = chartDefaults(colors);
-          chartInstances['clin-chart-sleip'] = new Chart(ctx, {
+          chartInstances['clin-chart-sleip-impact'] = new Chart(ctx, {
             type: 'line',
             data: {
-              labels: ['BL', 'Wk2', 'Wk4', 'Wk12'],
+              labels: sleipLabels,
               datasets: [
-                {
-                  label: 'eCTM Impact',
-                  data: [0, -0.35, -0.32, -0.82],
-                  borderColor: colors.primary,
-                  backgroundColor: colors.primary + '15',
-                  fill: false,
-                  tension: 0.3,
-                  pointRadius: 5,
-                  borderWidth: 3
-                },
-                {
-                  label: 'SOC Impact',
-                  data: [0, -0.22, 0.40, -0.08],
-                  borderColor: colors.control,
-                  backgroundColor: colors.control + '15',
-                  fill: false,
-                  tension: 0.3,
-                  pointRadius: 5,
-                  borderWidth: 3
-                },
-                {
-                  label: 'eCTM Push-off',
-                  data: [0, -0.18, -0.12, -0.50],
-                  borderColor: colors.primary,
-                  fill: false,
-                  tension: 0.3,
-                  pointRadius: 5,
-                  borderDash: [5, 5],
-                  borderWidth: 2
-                },
-                {
-                  label: 'SOC Push-off',
-                  data: [0, 0.05, 0.08, 0.02],
-                  borderColor: colors.control,
-                  fill: false,
-                  tension: 0.3,
-                  pointRadius: 5,
-                  borderDash: [5, 5],
-                  borderWidth: 2
-                }
+                { label: 'equicenta™ CTM', data: [0, -0.35, -0.32, -0.82], borderColor: colors.primary, backgroundColor: colors.primary + '20', fill: false, tension: 0.3, pointRadius: 5, borderWidth: 3 },
+                { label: 'SOC Control', data: [0, -0.22, 0.40, -0.08], borderColor: colors.control, backgroundColor: colors.control + '20', fill: false, tension: 0.3, pointRadius: 5, borderWidth: 3 }
               ]
             },
-            options: {
-              ...d,
-              aspectRatio: 2.2,
-              plugins: { ...d.plugins,
-                legend: {
-                  display: true,
-                  position: 'bottom',
-                  labels: { color: colors.text, usePointStyle: true, pointStyle: 'line', font: { size: 11 } }
-                },
-                tooltip: { callbacks: { label: function(c) {
-                  var dir = c.parsed.y < 0 ? 'improvement' : 'worsening';
-                  return c.dataset.label + ': ' + Math.abs(c.parsed.y).toFixed(2) + ' (' + dir + ')';
-                } } }
-              },
-              scales: {
-                y: { ...d.scales.y,
-                  title: { display: true, text: 'Asymmetry Change (lower = improvement)', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }
-                },
-                x: { ...d.scales.x, grid: { display: false } }
-              }
+            options: { ...d, aspectRatio: 2.2,
+              plugins: { ...d.plugins, legend: sleipLegend, tooltip: sleipTooltip },
+              scales: { y: sleipYAxis(d), x: { ...d.scales.x, grid: { display: false } } }
+            }
+          });
+        }
+      })();
+
+      // Push-off chart
+      (function() {
+        var ctx = document.getElementById('clin-chart-sleip-pushoff');
+        if (ctx) {
+          var d = chartDefaults(colors);
+          chartInstances['clin-chart-sleip-pushoff'] = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: sleipLabels,
+              datasets: [
+                { label: 'equicenta™ CTM', data: [0, -0.18, -0.12, -0.50], borderColor: colors.primary, backgroundColor: colors.primary + '20', fill: false, tension: 0.3, pointRadius: 5, borderWidth: 3 },
+                { label: 'SOC Control', data: [0, 0.05, 0.08, 0.02], borderColor: colors.control, backgroundColor: colors.control + '20', fill: false, tension: 0.3, pointRadius: 5, borderWidth: 3 }
+              ]
+            },
+            options: { ...d, aspectRatio: 2.2,
+              plugins: { ...d.plugins, legend: sleipLegend, tooltip: sleipTooltip },
+              scales: { y: sleipYAxis(d), x: { ...d.scales.x, grid: { display: false } } }
+            }
+          });
+        }
+      })();
+
+      // Composite chart
+      (function() {
+        var ctx = document.getElementById('clin-chart-sleip-composite');
+        if (ctx) {
+          var d = chartDefaults(colors);
+          chartInstances['clin-chart-sleip-composite'] = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: sleipLabels,
+              datasets: [
+                { label: 'equicenta™ CTM', data: [0, -0.25, -0.22, -0.82], borderColor: colors.primary, backgroundColor: colors.primary + '20', fill: false, tension: 0.3, pointRadius: 5, borderWidth: 3 },
+                { label: 'SOC Control', data: [0, -0.05, 0.30, -0.08], borderColor: colors.control, backgroundColor: colors.control + '20', fill: false, tension: 0.3, pointRadius: 5, borderWidth: 3 }
+              ]
+            },
+            options: { ...d, aspectRatio: 2.2,
+              plugins: { ...d.plugins, legend: sleipLegend, tooltip: sleipTooltip },
+              scales: { y: sleipYAxis(d), x: { ...d.scales.x, grid: { display: false } } }
             }
           });
         }
