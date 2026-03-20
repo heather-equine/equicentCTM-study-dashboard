@@ -2162,6 +2162,226 @@ a:hover { text-decoration: underline; }
   .disc-modal-body { padding: 20px; }
 }
 
+/* ===== ACVSMR / PRODUCT CHARACTERIZATION TAB STYLES ===== */
+.char-hero-banner {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 8%, transparent), color-mix(in srgb, var(--color-primary) 3%, transparent));
+  border: 1px solid color-mix(in srgb, var(--color-primary) 15%, transparent);
+  border-radius: var(--radius-xl);
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.char-hero-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center;
+}
+.char-hero-icon svg { width: 22px; height: 22px; color: var(--color-primary); }
+.char-hero-label { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); margin-bottom: 6px; }
+.char-hero-text { font-size: var(--text-base); line-height: 1.65; color: var(--color-text); }
+.char-hero-text strong { color: var(--color-primary); font-weight: 700; }
+
+/* Visual data cards */
+.char-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.char-data-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.char-data-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--color-primary) 10%, transparent);
+  transform: translateY(-2px);
+}
+.char-data-card::after {
+  content: 'Click for details';
+  position: absolute;
+  bottom: 12px; right: 16px;
+  font-size: 0.7rem; font-weight: 600;
+  color: var(--color-primary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.char-data-card:hover::after { opacity: 0.7; }
+.char-card-icon {
+  width: 40px; height: 40px; border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.char-card-icon svg { width: 20px; height: 20px; color: var(--color-primary); }
+.char-card-title { font-weight: 700; font-size: 1.05rem; color: var(--color-text); margin-bottom: 4px; }
+.char-card-subtitle { font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 12px; }
+.char-card-body { font-size: 0.88rem; line-height: 1.6; color: var(--color-text); }
+
+/* Stat row */
+.char-stat-row {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.char-stat-box {
+  flex: 1; min-width: 140px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  text-align: center;
+}
+.char-stat-value { font-size: 1.5rem; font-weight: 800; color: var(--color-primary); }
+.char-stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); margin-top: 4px; }
+
+/* Chart container for ACVSMR */
+.char-chart-container {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  margin-bottom: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.char-chart-container:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+.char-chart-title { font-weight: 700; font-size: 0.95rem; color: var(--color-text); margin-bottom: 4px; }
+.char-chart-desc { font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 16px; }
+.char-chart-wrap { position: relative; height: 280px; }
+
+/* Overlay modals for ACVSMR */
+.char-overlay-backdrop {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease;
+}
+.char-overlay-backdrop.active { display: flex; }
+.char-overlay-modal {
+  background: var(--color-surface);
+  border-radius: 16px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+  animation: slideUp 0.3s ease;
+  position: relative;
+}
+.char-modal-header {
+  padding: 28px 28px 0 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.char-modal-header .char-card-icon { margin-bottom: 0; width: 48px; height: 48px; }
+.char-modal-header .char-card-icon svg { width: 24px; height: 24px; }
+.char-modal-title { font-weight: 700; font-size: 1.25rem; color: var(--color-text); line-height: 1.3; }
+.char-modal-subtitle { font-size: 0.88rem; color: var(--color-text-muted); margin-top: 4px; }
+.char-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: 1px solid var(--color-border);
+  border-radius: 8px; width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--color-text-muted);
+  transition: all 0.15s ease;
+}
+.char-modal-close:hover { background: var(--color-surface-2); color: var(--color-text); }
+.char-modal-body { padding: 24px 28px 28px; }
+.char-modal-section-label {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-primary); margin-bottom: 10px; margin-top: 24px;
+}
+.char-modal-section-label:first-child { margin-top: 0; }
+.char-modal-text { font-size: 0.92rem; line-height: 1.65; color: var(--color-text); }
+.char-modal-layperson {
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+  border-radius: 10px; padding: 18px 20px; margin-top: 10px;
+}
+.char-modal-layperson-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--color-primary);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+}
+.char-modal-layperson-label svg { width: 14px; height: 14px; }
+.char-modal-layperson-text { font-size: 0.88rem; line-height: 1.6; color: var(--color-text); }
+.char-modal-points {
+  list-style: none; padding: 0; margin: 10px 0 0;
+}
+.char-modal-points li {
+  font-size: 0.88rem; line-height: 1.55; color: var(--color-text);
+  padding: 8px 0 8px 28px; position: relative;
+  border-bottom: 1px solid var(--color-border);
+}
+.char-modal-points li:last-child { border-bottom: none; }
+.char-modal-points li::before {
+  content: ''; position: absolute; left: 6px; top: 15px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--color-primary); opacity: 0.6;
+}
+
+/* Timeline / process visualization */
+.char-process-flow {
+  display: flex; gap: 0; align-items: stretch; margin: 20px 0 24px;
+  overflow-x: auto;
+}
+.char-process-step {
+  flex: 1; min-width: 120px; position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 14px;
+  text-align: center;
+}
+.char-process-step:not(:last-child)::after {
+  content: '→'; position: absolute; right: -14px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem; color: var(--color-primary); z-index: 1;
+  font-weight: 700;
+}
+.char-process-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--color-primary); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; margin-bottom: 8px;
+}
+.char-process-label { font-size: 0.78rem; font-weight: 600; color: var(--color-text); line-height: 1.4; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .char-data-grid { grid-template-columns: 1fr; }
+  .char-stat-row { flex-direction: column; }
+  .char-process-flow { flex-direction: column; gap: 8px; }
+  .char-process-step:not(:last-child)::after { content: '↓'; right: auto; bottom: -16px; top: auto; left: 50%; transform: translateX(-50%); }
+  .char-hero-banner { padding: 20px; flex-direction: column; }
+  .char-overlay-backdrop { padding: 12px; }
+  .char-modal-header { padding: 20px 20px 0; }
+  .char-modal-body { padding: 20px; }
+}
+
+
+
 </style>
 </head>
 <body>
@@ -2209,6 +2429,10 @@ a:hover { text-decoration: underline; }
     <button class="study-tab" data-study="clinical">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
       Clinical Study
+    </button>
+    <button class="study-tab" data-study="characterization">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      Product Characterization
     </button>
   </div>
 </div>
@@ -4798,6 +5022,952 @@ a:hover { text-decoration: underline; }
 
 </div><!-- end clinical panel -->
 
+<!-- ===== PRODUCT CHARACTERIZATION PANEL (ACVSMR) ===== -->
+<div class="study-panel" id="study-characterization">
+
+<!-- Header -->
+<div class="study-header animate-in" style="padding: 32px 0 0;">
+  <h1 class="study-title" style="font-size: var(--text-2xl); font-weight: 800;">equicenta™ CTM Product Characterization</h1>
+  <p class="study-subtitle" style="color: var(--color-text-muted); font-size: var(--text-base); margin-top: 6px;">Microscopic and Biological Characterization of Cryopreserved Equine Umbilical Tissue Allograft</p>
+  <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px;">
+    <span style="font-size: var(--text-sm); color: var(--color-text-muted);">● Leise, Catunda &amp; Bertone · Louisiana State University</span>
+    <span style="font-size: var(--text-sm); color: var(--color-text-muted);">● Presented at ACVSMR 2026</span>
+  </div>
+</div>
+
+<!-- Key Finding Banner -->
+<div class="char-hero-banner animate-in" style="margin-top: 24px;">
+  <div class="char-hero-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+  </div>
+  <div>
+    <div class="char-hero-label">Key Finding</div>
+    <div class="char-hero-text">
+      equicenta™ CTM is not simply a &ldquo;growth factor injection&rdquo; &mdash; it is a <strong>degradable fetal matrix implant</strong> that retains native scaffold structure, releases anabolic and anti-catabolic proteins over time as it biodegrades, and contains billions of regenerative extracellular vesicles. Click on any section below for a detailed explanation.
+    </div>
+  </div>
+</div>
+
+<!-- Tab navigation for sub-sections -->
+<nav class="tab-nav-container animate-in">
+  <div class="tab-nav" role="tablist">
+    <button class="tab-btn active" data-chartab="char-overview" role="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Overview
+    </button>
+    <button class="tab-btn" data-chartab="char-matrix" role="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Matrix &amp; Biodegradation
+    </button>
+    <button class="tab-btn" data-chartab="char-proteins" role="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Protein Release
+    </button>
+    <button class="tab-btn" data-chartab="char-evs" role="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+      Extracellular Vesicles
+    </button>
+    <button class="tab-btn" data-chartab="char-relevance" role="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Clinical Relevance
+    </button>
+  </div>
+</nav>
+
+<main class="main-content" id="char-main">
+
+<!-- ═══════════════ OVERVIEW TAB ═══════════════ -->
+<div class="tab-panel active" id="chartab-char-overview">
+
+  <div class="section-title animate-in">What is equicenta™ CTM?</div>
+
+  <!-- Stat boxes -->
+  <div class="char-stat-row animate-in">
+    <div class="char-stat-box">
+      <div class="char-stat-value">Fetal</div>
+      <div class="char-stat-label">Tissue Source</div>
+    </div>
+    <div class="char-stat-box">
+      <div class="char-stat-value">ECM</div>
+      <div class="char-stat-label">Native Scaffold</div>
+    </div>
+    <div class="char-stat-box">
+      <div class="char-stat-value">9.28×10¹¹</div>
+      <div class="char-stat-label">EVs per mL</div>
+    </div>
+    <div class="char-stat-box">
+      <div class="char-stat-value">~134 nm</div>
+      <div class="char-stat-label">Mean EV Size</div>
+    </div>
+  </div>
+
+  <!-- Product identity card -->
+  <div class="char-data-grid animate-in">
+    <div class="char-data-card" onclick="openCharModal('identity')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="char-card-title">Product Identity</div>
+      <div class="char-card-subtitle">Cryopreserved, micronized equine umbilical tissue allograft</div>
+      <div class="char-card-body">Retains native connective tissue matrix and fetal proteins in a scaffold structure — not amorphous debris.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('scaffold')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="char-card-title">Matrix Scaffold</div>
+      <div class="char-card-subtitle">Fibrillar, net-like protein scaffold structure</div>
+      <div class="char-card-body">Microscopy reveals filamentous-form matrix creating a net-like protein scaffold — a structural implant, not just a fluid.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('biodegradation')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="char-card-title">Controlled Biodegradation</div>
+      <div class="char-card-subtitle">Natural enzyme-driven breakdown releasing proteins over time</div>
+      <div class="char-card-body">With collagenase (present in injured tissue), aggregates gradually become smaller — confirming timed, natural degradation.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('reservoir')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="char-card-title">Protein Reservoir Effect</div>
+      <div class="char-card-subtitle">TIMP-2, IGF-1, and A2M released over time</div>
+      <div class="char-card-body">As the matrix degrades, key healing proteins are steadily released — a sustained-release mechanism, not a one-time burst.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('cytokines')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+      </div>
+      <div class="char-card-title">Anti-Inflammatory Profile</div>
+      <div class="char-card-subtitle">Decreased inflammatory indices, increased anabolic factors</div>
+      <div class="char-card-body">Cytokine profiling shows a product that is pro-healing, anti-inflammatory, and anti-catabolic — not pro-inflammatory.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('evs')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+      </div>
+      <div class="char-card-title">Extracellular Vesicles</div>
+      <div class="char-card-subtitle">Billions of regenerative EVs per mL with MSC markers</div>
+      <div class="char-card-body">Confirmed bona fide EVs (~134 nm) with CD9, CD81, CD63, ALIX, and a subset expressing MSC marker CD90.</div>
+    </div>
+  </div>
+
+  <!-- Differentiation summary -->
+  <div class="char-hero-banner animate-in" style="border-color: color-mix(in srgb, var(--color-control) 20%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--color-control) 6%, transparent), color-mix(in srgb, var(--color-control) 2%, transparent));">
+    <div class="char-hero-icon" style="background: color-mix(in srgb, var(--color-control) 12%, transparent);">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-control);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <div>
+      <div class="char-hero-label" style="color: var(--color-control);">Why This Matters for Sales</div>
+      <div class="char-hero-text">
+        Most competing biologics are either cell-free fluids with proteins but no structure, or cells without a robust ECM scaffold. equicenta™ CTM is <strong style="color: var(--color-control);">both</strong>: a structural scaffold plus a multi-modal biologic payload (proteins + EVs), with documented degradability and timed release. This frames the product as a <strong style="color: var(--color-control);">sophisticated, mechanism-informed option</strong> for MSK injuries rather than a generic &ldquo;stem cell&rdquo; or &ldquo;biologic&rdquo; injection.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ MATRIX & BIODEGRADATION TAB ═══════════════ -->
+<div class="tab-panel" id="chartab-char-matrix">
+
+  <div class="section-title animate-in">Matrix Structure &amp; Biodegradation</div>
+
+  <!-- Process flow -->
+  <div class="char-hero-banner animate-in">
+    <div class="char-hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+    </div>
+    <div>
+      <div class="char-hero-label">Study Method</div>
+      <div class="char-hero-text">equicenta™ CTM was thawed, pelleted, stained with hematoxylin, and cultured under three conditions: <strong>saline</strong> (negative control), <strong>collagenase I</strong> (mimics injured tissue enzymes), and <strong>trypsin</strong> (positive control for complete digestion). Microscopy and Bradford protein assays were performed at 0, 0.5, 2, and 24 hours.</div>
+    </div>
+  </div>
+
+  <!-- Process steps -->
+  <div class="char-process-flow animate-in">
+    <div class="char-process-step">
+      <div class="char-process-num">1</div>
+      <div class="char-process-label">Thaw at 23°C &amp; pellet</div>
+    </div>
+    <div class="char-process-step">
+      <div class="char-process-num">2</div>
+      <div class="char-process-label">Stain &amp; microscopy</div>
+    </div>
+    <div class="char-process-step">
+      <div class="char-process-num">3</div>
+      <div class="char-process-label">Culture with enzymes</div>
+    </div>
+    <div class="char-process-step">
+      <div class="char-process-num">4</div>
+      <div class="char-process-label">Digest 0.5–24h</div>
+    </div>
+    <div class="char-process-step">
+      <div class="char-process-num">5</div>
+      <div class="char-process-label">Bradford assay</div>
+    </div>
+    <div class="char-process-step">
+      <div class="char-process-num">6</div>
+      <div class="char-process-label">Image at each timepoint</div>
+    </div>
+  </div>
+
+  <!-- Biodegradation comparison cards -->
+  <div class="char-data-grid animate-in">
+    <div class="char-data-card" onclick="openCharModal('saline-degradation')">
+      <div class="char-card-icon" style="background: color-mix(in srgb, #3b82f6 12%, transparent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+      </div>
+      <div class="char-card-title">Saline (Negative Control)</div>
+      <div class="char-card-subtitle">Matrix structure maintained</div>
+      <div class="char-card-body">In culture media, particles remain as floating ECM aggregates. The scaffold does not simply dissolve — it persists as structured matrix, mimicking how it would sit in synovial fluid.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('collagenase-degradation')">
+      <div class="char-card-icon" style="background: color-mix(in srgb, var(--color-primary) 12%, transparent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="char-card-title">Collagenase I (Physiologic)</div>
+      <div class="char-card-subtitle">Gradual, controlled degradation</div>
+      <div class="char-card-body">Aggregates became smaller and fewer over 2 weeks, indicating natural matrix digestion. This enzyme is present in injured tissue — confirming in vivo biodegradation potential.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('trypsin-degradation')">
+      <div class="char-card-icon" style="background: color-mix(in srgb, var(--color-control) 12%, transparent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-control);"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="char-card-title">Trypsin (Positive Control)</div>
+      <div class="char-card-subtitle">Rapid, complete degradation</div>
+      <div class="char-card-body">Degradation was rapid and complete, confirming the matrix is fully digestible by proteolytic enzymes — validating the assay and the matrix is protein-based.</div>
+    </div>
+  </div>
+
+  <!-- Protein concentration chart -->
+  <div class="char-chart-container animate-in" onclick="openCharModal('protein-concentration')">
+    <div class="char-chart-title">Protein Concentration Over Time</div>
+    <div class="char-chart-desc">Bradford assay: protein released from equicenta™ CTM under three conditions (0–24 hours)</div>
+    <div class="char-chart-wrap">
+      <canvas id="charProteinConcChart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ PROTEIN RELEASE TAB ═══════════════ -->
+<div class="tab-panel" id="chartab-char-proteins">
+
+  <div class="section-title animate-in">Protein Release &amp; Cytokine Profile</div>
+
+  <div class="char-hero-banner animate-in">
+    <div class="char-hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    </div>
+    <div>
+      <div class="char-hero-label">Reservoir Effect</div>
+      <div class="char-hero-text">As the matrix degrades, key healing proteins — <strong>TIMP-2</strong>, <strong>IGF-1</strong>, and <strong>A2M</strong> — are steadily released rather than delivered in a single burst. This controlled-release profile supports sustained local activity in injured tissue over time.</div>
+    </div>
+  </div>
+
+  <!-- TIMP-2 and Col1A1 release chart -->
+  <div class="char-chart-container animate-in" onclick="openCharModal('timp2-release')">
+    <div class="char-chart-title">TIMP-2 Release Kinetics</div>
+    <div class="char-chart-desc">TIMP-2 concentration over time in saline, collagenase I, and trypsin conditions</div>
+    <div class="char-chart-wrap">
+      <canvas id="charTimp2Chart"></canvas>
+    </div>
+  </div>
+
+  <!-- Cytokine Indices chart -->
+  <div class="char-chart-container animate-in" onclick="openCharModal('cytokine-indices')">
+    <div class="char-chart-title">Cytokine &amp; Growth Factor Indices</div>
+    <div class="char-chart-desc">Inflammatory, pro-inflammatory, anabolic, and anti-catabolic indices before and after Triton-X extraction</div>
+    <div class="char-chart-wrap">
+      <canvas id="charCytokineChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Key proteins -->
+  <div class="section-title animate-in" style="margin-top: 32px;">Key Proteins Identified</div>
+  <div class="char-data-grid animate-in">
+    <div class="char-data-card" onclick="openCharModal('igf1')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <div class="char-card-title">IGF-1</div>
+      <div class="char-card-subtitle">Insulin-like Growth Factor 1</div>
+      <div class="char-card-body">Markedly increased after extraction. Promotes cell proliferation, tissue repair, and cartilage matrix synthesis — a key anabolic driver for joint healing.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('a2m')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="char-card-title">A2M</div>
+      <div class="char-card-subtitle">Alpha-2-Macroglobulin</div>
+      <div class="char-card-body">Significantly increased. A powerful protease inhibitor that traps and inactivates destructive enzymes (MMPs, ADAMTS) — protecting cartilage from further breakdown.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('timp2')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div class="char-card-title">TIMP-2</div>
+      <div class="char-card-subtitle">Tissue Inhibitor of Metalloproteinases 2</div>
+      <div class="char-card-body">Released progressively as matrix degrades. Blocks collagen-destroying enzymes (MMPs) — the &ldquo;bodyguard&rdquo; protein that prevents cartilage and tendon degradation.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ EXTRACELLULAR VESICLES TAB ═══════════════ -->
+<div class="tab-panel" id="chartab-char-evs">
+
+  <div class="section-title animate-in">Extracellular Vesicles (EVs)</div>
+
+  <div class="char-hero-banner animate-in">
+    <div class="char-hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+    </div>
+    <div>
+      <div class="char-hero-label">Confirmed Regenerative Signaling Particles</div>
+      <div class="char-hero-text">Ultracentrifugation and NanoView Exoview® analysis confirmed <strong>billions of bona fide extracellular vesicles per mL</strong> with tetraspanin markers and MSC markers. These EVs carry regenerative signals that can modulate inflammation and support tissue repair at the cellular level.</div>
+    </div>
+  </div>
+
+  <!-- EV Stats -->
+  <div class="char-stat-row animate-in">
+    <div class="char-stat-box">
+      <div class="char-stat-value">9.28×10¹¹</div>
+      <div class="char-stat-label">EVs per mL (CD9)</div>
+    </div>
+    <div class="char-stat-box">
+      <div class="char-stat-value">133.98 nm</div>
+      <div class="char-stat-label">Mean Particle Size</div>
+    </div>
+    <div class="char-stat-box">
+      <div class="char-stat-value">15–36%</div>
+      <div class="char-stat-label">CD81+ Double Positive</div>
+    </div>
+    <div class="char-stat-box">
+      <div class="char-stat-value">53–83%</div>
+      <div class="char-stat-label">CD63→CD9 Co-Capture</div>
+    </div>
+  </div>
+
+  <!-- EV markers chart -->
+  <div class="char-chart-container animate-in" onclick="openCharModal('ev-markers')">
+    <div class="char-chart-title">EV Marker Profile Across Donors</div>
+    <div class="char-chart-desc">Nanoparticle tracking analysis: particle counts by capture marker across 6 donor lots</div>
+    <div class="char-chart-wrap">
+      <canvas id="charEvMarkersChart"></canvas>
+    </div>
+  </div>
+
+  <!-- EV marker explanation cards -->
+  <div class="section-title animate-in" style="margin-top: 32px;">What the Markers Mean</div>
+  <div class="char-data-grid animate-in">
+    <div class="char-data-card" onclick="openCharModal('tetraspanins')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      </div>
+      <div class="char-card-title">Tetraspanins (CD9, CD81, CD63)</div>
+      <div class="char-card-subtitle">Cell surface markers confirming true EVs</div>
+      <div class="char-card-body">These are the &ldquo;ID badges&rdquo; of real extracellular vesicles. Their presence confirms these are genuine regenerative signaling particles, not just cellular debris.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('alix-marker')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="char-card-title">ALIX (PDCD6IP)</div>
+      <div class="char-card-subtitle">Cytosolic marker found in strong abundance</div>
+      <div class="char-card-body">ALIX is an intracellular protein found inside EVs. Its strong presence via mass spectrometry further confirms these are true exosome-like vesicles with active biologic cargo.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('cd90-marker')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="char-card-title">CD90 (MSC Marker)</div>
+      <div class="char-card-subtitle">A subset of EVs express mesenchymal stem cell marker</div>
+      <div class="char-card-body">CD90 is a hallmark of mesenchymal stem cells. EVs carrying this marker are associated with the regenerative, anti-inflammatory properties of stem cell therapy — without requiring live cells.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ CLINICAL RELEVANCE TAB ═══════════════ -->
+<div class="tab-panel" id="chartab-char-relevance">
+
+  <div class="section-title animate-in">Clinical Relevance &amp; Competitive Differentiation</div>
+
+  <div class="char-hero-banner animate-in">
+    <div class="char-hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <div>
+      <div class="char-hero-label">Take-Home Message for Veterinarians</div>
+      <div class="char-hero-text">equicenta™ CTM is an umbilical tissue allograft that behaves like a <strong>degradable fetal matrix implant</strong> in the joint/tendon environment. As it degrades, it releases a high-value set of regenerative proteins (IGF-1, A2M, TIMP-2) and EVs that can modulate inflammation, protect cartilage, and support tissue repair over time.</div>
+    </div>
+  </div>
+
+  <!-- Conclusions cards -->
+  <div class="char-data-grid animate-in">
+    <div class="char-data-card" onclick="openCharModal('conclusion-scaffold')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="char-card-title">Fibrillar Matrix Structure</div>
+      <div class="char-card-subtitle">Maintained in culture media</div>
+      <div class="char-card-body">equicenta™ CTM has a fibrillar matrix structure that is maintained in culture media — a composition similar to a normal biological environment.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('conclusion-reservoir')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="char-card-title">Sustained Release Reservoir</div>
+      <div class="char-card-subtitle">Proteins released over time as matrix degrades</div>
+      <div class="char-card-body">Serves as a reservoir for anabolic and anti-catabolic proteins that are released over time, supporting sustained healing — not a one-time burst like PRP.</div>
+    </div>
+
+    <div class="char-data-card" onclick="openCharModal('conclusion-implant')">
+      <div class="char-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="char-card-title">Fetal Protein Scaffold</div>
+      <div class="char-card-subtitle">Supports endogenous cell migration and healing</div>
+      <div class="char-card-body">When thawed and directly administered, provides a fetal protein scaffold for endogenous cell migration and tissue healing via natural-occurring proteolytic enzymes.</div>
+    </div>
+  </div>
+
+  <!-- Competitive comparison -->
+  <div class="section-title animate-in" style="margin-top: 32px;">How equicenta™ CTM Compares</div>
+  <div class="char-chart-container animate-in" onclick="openCharModal('competitive')">
+    <div class="char-chart-title">Product Differentiation Matrix</div>
+    <div class="char-chart-desc">equicenta™ CTM vs. common biologic categories — click for detailed comparison</div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 8px;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--color-border);">
+            <th style="text-align:left; padding: 10px 12px; color: var(--color-text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;">Feature</th>
+            <th style="text-align:center; padding: 10px 12px; color: var(--color-primary); font-weight: 700;">equicenta™ CTM</th>
+            <th style="text-align:center; padding: 10px 12px; color: var(--color-text-muted);">PRP / ACS / APS</th>
+            <th style="text-align:center; padding: 10px 12px; color: var(--color-text-muted);">Cell-Free Fluids</th>
+            <th style="text-align:center; padding: 10px 12px; color: var(--color-text-muted);">Cell Therapies</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 10px 12px; color: var(--color-text);">ECM Scaffold</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-success); font-weight: 700;">✓</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-error);">✗</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-error);">✗</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-error);">✗</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 10px 12px; color: var(--color-text);">Fetal Proteins</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-success); font-weight: 700;">✓</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-error);">✗</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-warning);">Some</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-warning);">Variable</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 10px 12px; color: var(--color-text);">Extracellular Vesicles</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-success); font-weight: 700;">Billions/mL</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-warning);">Minimal</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-warning);">Variable</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-warning);">Variable</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 10px 12px; color: var(--color-text);">Sustained Release</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-success); font-weight: 700;">✓ Timed</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-error);">Single burst</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-error);">Single burst</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-warning);">Varies</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 10px 12px; color: var(--color-text);">Biodegradable Matrix</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-success); font-weight: 700;">✓ Documented</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-text-muted);">N/A</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-text-muted);">N/A</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-text-muted);">N/A</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; color: var(--color-text);">Off-the-Shelf</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-success); font-weight: 700;">✓</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-error);">Requires blood draw</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-success);">✓</td>
+            <td style="text-align:center; padding: 10px; color: var(--color-error);">Requires harvest</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Scientific credibility -->
+  <div class="char-hero-banner animate-in" style="margin-top: 24px;">
+    <div class="char-hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    </div>
+    <div>
+      <div class="char-hero-label">Scientific Credibility</div>
+      <div class="char-hero-text">This work was performed at <strong>Louisiana State University</strong> using established methods (microscopy, Bradford assay, ELISA, nanoparticle tracking, Exoview®, mass spectrometry) and ties into the peer-reviewed <strong>BMC Medicine (2025) 23:439</strong> publication. This represents rigorous pre-clinical mechanistic characterization that de-risks the platform.</div>
+    </div>
+  </div>
+
+</div>
+
+</main>
+
+<!-- ACVSMR Footer -->
+<footer class="site-footer">
+  <div class="footer-left">
+    © 2026 Equine Performance Labs, LLC · ACVSMR Poster · Leise, Catunda &amp; Bertone
+  </div>
+  <div class="footer-right">
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </div>
+</footer>
+
+</div><!-- end characterization panel -->
+
+
+
+
+<!-- ===== ACVSMR CHARACTERIZATION MODALS ===== -->
+<div class="char-overlay-backdrop" id="char-modal-identity">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div><div class="char-modal-title">Product Identity</div><div class="char-modal-subtitle">Cryopreserved, micronized equine umbilical tissue allograft</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">equicenta™ CTM is a cryopreserved micronized equine umbilical tissue allograft that is known to contain an abundance of fetal proteins in a native umbilical connective tissue matrix. The product retains native connective tissue matrix and "fetal" proteins in their natural configuration.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Think of equicenta™ CTM as a freeze-dried tissue scaffold from young, healthy umbilical cord tissue. When you inject it, you're not just injecting a protein solution — you're placing a tiny structural matrix that contains healing proteins in their natural arrangement, like a miniature tissue graft that your horse's body can recognize and use.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-scaffold">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div><div class="char-modal-title">Matrix Scaffold Structure</div><div class="char-modal-subtitle">Fibrillar, net-like protein scaffold visualized under microscopy</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">Cytological evaluation of pelleted equicenta™ CTM fixed with cold methanol:acetone and stained with hematoxylin revealed the presence of filamentous-form matrix (purple arrows) observed with pink background staining indicating a proteinaceous extracellular matrix creating a net-like protein scaffold structure.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Under the microscope, the product doesn't look like random mush — it looks like a tiny fishing net or mesh made of protein fibers. This "scaffold" structure is important because it gives the product something that PRP and other liquid biologics don't have: a physical framework that sits in the injured area, holds healing factors in place, and gives the horse's own cells a lattice to grow into.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-biodegradation">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div><div class="char-modal-title">Controlled Biodegradation</div><div class="char-modal-subtitle">Natural enzyme-driven breakdown releasing proteins over time</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">In culture media, equicenta™ CTM had aggregates of extracellular matrix that floated within the fluid as would be anticipated for matrix particles. After enzymatic digestion with collagenase I, the aggregates became smaller and fewer over 2 weeks, indicating digestion of collagens and loss of particulate form. As this enzyme is present in naturally occurring tissue, these findings suggested that equicenta™ CTM would undergo natural biodegradation with enzymes found in vivo, particularly in injured tissue.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Imagine a tiny biodegradable sponge soaked in healing factors. When placed in an injured joint, the body's own enzymes (especially collagenase, which is abundant at injury sites) slowly break it down over days to weeks. As it dissolves, it steadily releases its healing proteins right where they're needed. This is fundamentally different from PRP, which is a one-time splash of growth factors that gets washed away quickly.</div>
+      </div>
+      <div class="char-modal-section-label">Key Points</div>
+      <ul class="char-modal-points">
+        <li>Saline alone: matrix structure maintained — doesn't simply dissolve in fluid</li>
+        <li>Collagenase I: gradual, controlled breakdown mimicking injured tissue conditions</li>
+        <li>Trypsin: rapid complete degradation confirms the matrix is protein-based and fully digestible</li>
+        <li>Proteins are released as the matrix degrades, creating a sustained-release effect</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-reservoir">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div><div class="char-modal-title">Protein Reservoir Effect</div><div class="char-modal-subtitle">TIMP-2, IGF-1, and A2M released progressively</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">Protein assays (Bradford, ELISA) show that as the matrix digests in saline and collagenase, proteins are released, including key factors like IGF-1, A2M, and TIMP-2. There is a "reservoir" effect: TIMP-2 increases over time in saline and collagenase, consistent with controlled release from the scaffold, whereas trypsin causes a fast burst then disappearance (complete degradation).</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Think of equicenta™ CTM like a time-release capsule for your horse's joint. Instead of dumping all the healing factors at once (like PRP does), the scaffold slowly releases them as the body breaks it down. The key protein TIMP-2 — which protects cartilage from being eaten away by destructive enzymes — actually increases in concentration over time. This means the joint gets ongoing protection exactly when it needs it most during the healing process.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-cytokines">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+      <div><div class="char-modal-title">Anti-Inflammatory Cytokine Profile</div><div class="char-modal-subtitle">Decreased inflammatory indices, increased anabolic factors</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">Triton-X extraction reveals decreased inflammatory indices and increased anabolic/anti-catabolic indices post-extraction, with marked increases in IGF-1, A2M, and TIMP-2. This supports a protein profile that is pro-healing, anti-inflammatory, and anti-catabolic.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">When scientists broke open the product to see what's inside, they found that the healing factors (like IGF-1 for tissue growth, A2M for cartilage protection, and TIMP-2 for blocking destructive enzymes) were all significantly elevated — while the inflammatory markers went down. This means the product is naturally "tuned" to calm inflammation and promote repair, not add fuel to the fire.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-evs">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div><div class="char-modal-title">Extracellular Vesicles (EVs)</div><div class="char-modal-subtitle">Billions of regenerative signaling particles per mL</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">Ultracentrifugation and Exoview analysis show billions of EVs per mL, mean size ~134 nm, with tetraspanin markers CD9, CD81, CD63 and cytosolic marker ALIX, and a subset expressing MSC marker CD90. Nanoparticle tracking analysis found that CD9 capture bound 1.4×10⁴–1.3×10⁷ particles/mL with 15–35.9% of these particles also positive for CD81.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Extracellular vesicles are like tiny "care packages" that cells send to communicate with each other. equicenta™ CTM contains billions of these nano-sized particles, and they carry the right "ID badges" (CD9, CD81, CD63) that prove they're real regenerative vesicles — not just cellular garbage. Some even carry stem cell markers (CD90), meaning they may deliver stem cell–like benefits without needing live stem cells. This is a third layer of therapeutic value on top of the scaffold and the proteins.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-saline-degradation">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon" style="background: color-mix(in srgb, #3b82f6 12%, transparent);"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+      <div><div class="char-modal-title">Saline Control — Matrix Persistence</div><div class="char-modal-subtitle">Structure maintained in fluid environment</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">In culture media, equicenta™ CTM had aggregates of extracellular matrix that did not attach to the plastic and floated within the fluid as would be anticipated for matrix particles. The scaffold structure was maintained over the study period.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">When placed in plain salt water (similar to joint fluid), the product doesn't dissolve or fall apart. It stays as intact little scaffolds floating in the fluid. This proves that the product holds together in a normal biological environment — it needs the body's own injury-response enzymes to start breaking down. This is exactly what you want: the product stays put until the body is ready to use it.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-collagenase-degradation">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div><div class="char-modal-title">Collagenase I — Physiologic Degradation</div><div class="char-modal-subtitle">Gradual breakdown mimicking injured tissue environment</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">After enzymatic digestion with collagenase I, the aggregates became smaller and fewer over 2 weeks, indicating digestion of collagens and loss of particulate form. As this enzyme is present in naturally occurring tissue, these findings suggested that equicenta™ CTM would undergo a natural biodegradation with enzymes found in vivo, particularly in injured tissue.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Collagenase is an enzyme that your horse's body naturally produces at injury sites — it's the body's way of remodeling damaged tissue. When this enzyme was added to equicenta™ CTM, the scaffold gradually broke down over weeks, getting smaller and releasing its proteins as it went. This is the "controlled release" mechanism: the more active the injury site (more enzymes), the more product is broken down, releasing healing factors exactly where and when they're needed most.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-trypsin-degradation">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon" style="background: color-mix(in srgb, var(--color-control) 12%, transparent);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-control);"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div><div class="char-modal-title">Trypsin — Complete Degradation Control</div><div class="char-modal-subtitle">Rapid and complete breakdown confirming protein matrix</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">From the Research</div>
+      <div class="char-modal-text">Trypsin digestion of particles was rapid and complete compared to control equicenta™ CTM and collagenase digested cultures. This confirms the matrix is fully digestible by proteolytic enzymes and validates the experimental system.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Trypsin is a very aggressive enzyme used as the "positive control" — like using a power washer instead of a gentle garden hose. It broke down the product quickly and completely, which confirms two things: (1) the product is made of real, digestible proteins (not synthetic material), and (2) the slower collagenase degradation represents a genuine "controlled release" mechanism, not just a product that won't break down.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-protein-concentration">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+      <div><div class="char-modal-title">Protein Concentration Over Time</div><div class="char-modal-subtitle">Bradford assay measuring total protein release</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">What the Chart Shows</div>
+      <div class="char-modal-text">This chart tracks total protein concentration (µg/mL) released from equicenta™ CTM at 0.5, 2, and 24 hours under three conditions: saline (blue), collagenase I (teal), and trypsin (orange). Protein degraded under all conditions over time, with trypsin showing the fastest release and saline showing slow, steady release.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">The more the scaffold breaks down, the more protein is released into the surrounding fluid. In saline (like normal joint fluid), protein is released slowly and steadily. With collagenase (like an injured joint), the release is a bit faster. With trypsin (extreme enzymes), it's a quick dump. The key takeaway: in a real injured joint, you get a controlled, sustained release of healing proteins — not a one-and-done burst.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-timp2-release">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div><div class="char-modal-title">TIMP-2 Release Kinetics</div><div class="char-modal-subtitle">The "bodyguard" protein's sustained release profile</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">What the Chart Shows</div>
+      <div class="char-modal-text">TIMP-2 concentration increases over time in saline and collagenase conditions, consistent with controlled release from the scaffold. Trypsin causes a fast burst at 0.5 hours then disappearance, indicating complete degradation. The natural release of TIMP-2 occurs when the matrix is unsupported in saline alone or degraded with collagenase.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">TIMP-2 is like a bodyguard for your horse's cartilage — it blocks the enzymes (MMPs) that chew up cartilage and tendons. This chart shows that TIMP-2 keeps increasing over time as the scaffold breaks down. That means the protective effect actually gets stronger during the healing window, not weaker. With trypsin (extreme conditions), you get a quick burst then nothing — demonstrating that the controlled scenario is genuinely different and superior.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-cytokine-indices">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+      <div><div class="char-modal-title">Cytokine &amp; Growth Factor Indices</div><div class="char-modal-subtitle">Before vs. after Triton-X extraction profile</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">What the Chart Shows</div>
+      <div class="char-modal-text">This chart compares four indices — Anti-inflammatory, Pro-inflammatory, Anabolic, and Anti-catabolic — before (equicenta™ unsorted) and after (total extracted) Triton-X extraction. After extraction, anti-inflammatory indices decrease while anabolic and anti-catabolic indices significantly increase, with marked increases in IGF-1, A2M, and TIMP-2.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Scientists cracked open the product to catalog everything inside. What they found: the "builder" proteins (anabolic — things that grow and repair tissue) and "protector" proteins (anti-catabolic — things that stop tissue breakdown) are strongly present. Meanwhile, the inflammatory markers are low. In simple terms: this product is loaded with the good stuff and low on the bad stuff. It's naturally tuned for healing, not inflammation.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-igf1">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div><div class="char-modal-title">IGF-1 — Insulin-like Growth Factor 1</div><div class="char-modal-subtitle">The master anabolic growth signal</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">Role in Healing</div>
+      <div class="char-modal-text">IGF-1 promotes cell proliferation, stimulates matrix synthesis (collagen, proteoglycans), and enhances chondrocyte survival. It is one of the most important anabolic factors for cartilage and tendon repair, and was markedly increased in the equicenta™ CTM cytokine profile.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">IGF-1 is like a "grow" signal for cells. It tells cartilage cells, tendon cells, and ligament cells to multiply, make new tissue, and stay alive longer. When your horse's joint or tendon is injured, IGF-1 is exactly what's needed to rebuild the damage. equicenta™ CTM delivers high levels of IGF-1 directly to the injury site.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-a2m">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><div class="char-modal-title">A2M — Alpha-2-Macroglobulin</div><div class="char-modal-subtitle">The universal protease trap</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">Role in Healing</div>
+      <div class="char-modal-text">Alpha-2-Macroglobulin (A2M) is a large protein that physically traps and inactivates destructive proteases including MMPs, ADAMTS, and other enzymes responsible for cartilage degradation. It is significantly increased in the equicenta™ CTM profile, providing direct cartilage protection.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Think of A2M as a molecular "trap" — like a Venus flytrap for the enzymes that eat cartilage. In an injured joint, destructive enzymes (MMPs) are actively chewing up the cartilage. A2M physically grabs these enzymes and disables them. Having high A2M levels at the injury site means the product is actively protecting the remaining cartilage while the repair process is underway.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-timp2">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <div><div class="char-modal-title">TIMP-2 — Tissue Inhibitor of Metalloproteinases 2</div><div class="char-modal-subtitle">The cartilage and tendon bodyguard</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">Role in Healing</div>
+      <div class="char-modal-text">TIMP-2 specifically blocks matrix metalloproteinases (MMPs) — the enzymes that break down collagen in cartilage, tendons, and ligaments. TIMP-2 increases over time in saline and collagenase conditions, demonstrating the reservoir effect: the product delivers increasing protection as it degrades.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">TIMP-2 is the "bodyguard" protein. Its whole job is to block the enzymes (called MMPs) that are actively destroying your horse's cartilage, tendons, and ligaments. What's really special about equicenta™ CTM is that TIMP-2 doesn't just get delivered once — it keeps being released over time as the scaffold breaks down, providing ongoing protection during the entire healing window. More protection, for longer, right where it's needed.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-ev-markers">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div><div class="char-modal-title">EV Marker Profile</div><div class="char-modal-subtitle">Nanoparticle tracking analysis across multiple donor lots</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">What the Chart Shows</div>
+      <div class="char-modal-text">This chart shows extracellular vesicle particle counts across 6 donor lots, captured by CD9, CD81, and CD63 markers. Each bar represents total particles per lot, demonstrating consistent EV presence across different donors with lot-to-lot variation typical of biological products.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Across multiple batches from different donor horses, the product consistently contains billions of regenerative vesicles. This matters because it shows the product is reliably produced — it's not a fluke. Each batch contains these healing particles, identified by their surface markers (like a molecular fingerprint that proves they're the real deal).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-tetraspanins">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+      <div><div class="char-modal-title">Tetraspanins (CD9, CD81, CD63)</div><div class="char-modal-subtitle">The gold-standard EV identification markers</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">What They Are</div>
+      <div class="char-modal-text">Tetraspanins are transmembrane proteins that sit on the surface of extracellular vesicles. CD9, CD81, and CD63 are the internationally recognized markers used to confirm the identity of true EVs. Their presence, confirmed via NanoView Exoview® platform, validates that equicenta™ CTM contains bona fide exosome-like vesicles.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">These are like "ID badges" for extracellular vesicles. Just as a police badge proves someone is a real officer, CD9, CD81, and CD63 on the vesicle surface prove these are real regenerative particles — not just random cellular junk. The scientific community requires these specific markers to confirm genuine EVs, and equicenta™ CTM tested positive for all three.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-alix-marker">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <div><div class="char-modal-title">ALIX (PDCD6IP)</div><div class="char-modal-subtitle">Cytosolic marker confirming exosome biogenesis</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">What It Is</div>
+      <div class="char-modal-text">ALIX (also known as PDCD6IP) is an intracellular protein involved in exosome biogenesis — the process by which cells create and package extracellular vesicles. Its strong abundance via mass spectrometry confirms these vesicles were actively produced by cells through the proper biological pathway.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">ALIX is found inside EVs — it's the "internal quality stamp" that proves these vesicles were made by living cells through the proper biological process. Finding ALIX in abundance means these aren't just broken cell fragments; they're purposefully packaged cellular messages carrying biological cargo. This is additional proof that equicenta™ CTM's EVs are the real deal.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-cd90-marker">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div><div class="char-modal-title">CD90 — Mesenchymal Stem Cell Marker</div><div class="char-modal-subtitle">Stem cell-derived vesicles without live cells</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">What It Is</div>
+      <div class="char-modal-text">CD90 (Thy-1) is a surface glycoprotein that is a hallmark marker of mesenchymal stem cells (MSCs). A subset of EVs in equicenta™ CTM express CD90, indicating they originate from or are enriched in MSC-like cells in the umbilical tissue. MSC-derived EVs are associated with anti-inflammatory, immunomodulatory, and regenerative properties.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Some of the EVs in equicenta™ CTM carry the "stem cell badge" — CD90. This is significant because stem cell-derived vesicles are the holy grail of regenerative medicine: they carry the same healing signals as stem cells, but in a stable, off-the-shelf product that doesn't require live cells. Your horse gets the benefits of stem cell signaling from a cryopreserved product that's ready to use immediately.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-conclusion-scaffold">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div><div class="char-modal-title">Fibrillar Matrix Structure</div><div class="char-modal-subtitle">A structural implant, not a liquid injection</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">Conclusion</div>
+      <div class="char-modal-text">equicenta™ CTM has a fibrillar matrix structure that is maintained in culture media, a similar composition to normal biological environment. When thawed and directly administered, it can provide a fetal protein scaffold for endogenous cell migration and tissue healing.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Unlike PRP or other liquid biologics, equicenta™ CTM doesn't just wash away. It's a structural scaffold — like a tiny lattice of proteins that sits in the injured area and provides a physical framework for the horse's own cells to migrate into and build new tissue. It's the difference between pouring water on a construction site versus providing the actual scaffolding the workers need.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-conclusion-reservoir">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div><div class="char-modal-title">Sustained Release Reservoir</div><div class="char-modal-subtitle">Not a one-time burst — ongoing delivery</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">Conclusion</div>
+      <div class="char-modal-text">equicenta™ CTM serves as a reservoir for anabolic and anti-catabolic proteins that are released over time, supporting potential for sustained release in vivo and support of the healing process over time.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">Imagine the difference between dumping a bucket of fertilizer on a plant once versus installing a slow-release fertilizer pellet that feeds it for weeks. equicenta™ CTM works like the slow-release pellet. As the scaffold naturally breaks down in the injured joint or tendon, it steadily delivers healing proteins (IGF-1 for growth, A2M for protection, TIMP-2 for cartilage defense) over an extended period. This sustained delivery is a key advantage over PRP and other one-shot biologics.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-conclusion-implant">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+      <div><div class="char-modal-title">Fetal Protein Scaffold for Tissue Healing</div><div class="char-modal-subtitle">Biodegradation releases matrix proteins locally</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">Conclusion</div>
+      <div class="char-modal-text">equicenta™ CTM when thawed and directly administered can provide a fetal protein scaffold for endogenous cell migration and tissue healing. Biodegradation using natural-occurring proteolytic enzymes found in the connective tissue matrix of injured joints, tendons, and ligaments, further releases fetal matrix proteins locally, such as IGF, A2M, and TIMP-2 that likely augment the healing process.</div>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> What This Means</div>
+        <div class="char-modal-layperson-text">When you inject equicenta™ CTM, you're placing a fetal tissue scaffold directly at the injury site. The horse's own cells can migrate into this scaffold and start rebuilding. As the body's natural enzymes break down the scaffold (which happens faster at the injury site), healing proteins like IGF-1, A2M, and TIMP-2 are released locally. It's a smart delivery system that responds to the body's own healing process.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="char-overlay-backdrop" id="char-modal-competitive">
+  <div class="char-overlay-modal">
+    <button class="char-modal-close" onclick="closeCharModal(event)" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="char-modal-header">
+      <div class="char-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <div><div class="char-modal-title">Competitive Differentiation</div><div class="char-modal-subtitle">Why equicenta™ CTM stands apart from other biologics</div></div>
+    </div>
+    <div class="char-modal-body">
+      <div class="char-modal-section-label">The Three Layers of Differentiation</div>
+      <ul class="char-modal-points">
+        <li><strong>Structural scaffold:</strong> A fibrillar ECM matrix that persists in the joint/tendon and provides a framework for cell migration — something PRP, ACS, and APS simply don't have</li>
+        <li><strong>Multi-modal biologic payload:</strong> Not just proteins — the product delivers proteins AND extracellular vesicles, each with distinct regenerative mechanisms</li>
+        <li><strong>Timed release:</strong> As the scaffold biodegrades, it releases its biologic cargo over time — creating sustained local activity rather than a one-time burst</li>
+      </ul>
+      <div class="char-modal-layperson">
+        <div class="char-modal-layperson-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Sales Talk Track</div>
+        <div class="char-modal-layperson-text">"Doctor, what makes equicenta™ CTM fundamentally different from PRP or other biologics is that it's not just a growth factor injection. It's a degradable fetal tissue implant. Under the microscope, you can see the scaffold structure. In the lab, it releases healing proteins like IGF-1, A2M, and TIMP-2 over time as the body breaks it down — plus it contains billions of regenerative extracellular vesicles. It's three products in one: a scaffold, a sustained-release protein reservoir, and an EV delivery system."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ===== PROTEIN MODAL (from safety dashboard) ===== -->
 
@@ -4819,6 +5989,7 @@ a:hover { text-decoration: underline; }
     destroyAllCharts();
     initCurrentCharts();
     if (typeof initClinicalCharts === 'function') initClinicalCharts();
+    if (typeof initCharCharts === 'function') { destroyCharCharts(); initCharCharts(); }
   });
 
   function updateToggleIcon() {
@@ -4846,6 +6017,7 @@ safetyTabBtns.forEach(btn => {
     destroyAllCharts();
     initCurrentCharts();
     if (typeof initClinicalCharts === 'function') initClinicalCharts();
+    if (typeof initCharCharts === 'function') { destroyCharCharts(); initCharCharts(); }
     animateIn();
   });
 });
@@ -4864,6 +6036,7 @@ safetySubTabBtns.forEach(btn => {
     destroyAllCharts();
     initCurrentCharts();
     if (typeof initClinicalCharts === 'function') initClinicalCharts();
+    if (typeof initCharCharts === 'function') { destroyCharCharts(); initCharCharts(); }
     animateIn();
   });
 });
@@ -4885,6 +6058,7 @@ if (clinicalStudyPanel) {
       destroyAllCharts();
       initCurrentCharts();
       if (typeof initClinicalCharts === 'function') initClinicalCharts();
+    if (typeof initCharCharts === 'function') { destroyCharCharts(); initCharCharts(); }
       animateIn();
     });
   });
@@ -5903,6 +7077,176 @@ studyTabs.forEach(tab => {
     animateIn();
   });
 });
+
+
+// ========== ACVSMR CHARACTERIZATION TAB NAVIGATION ==========
+document.querySelectorAll('[data-chartab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tabId = btn.dataset.chartab;
+    const nav = btn.closest('.tab-nav');
+    nav.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#char-main > .tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('chartab-' + tabId).classList.add('active');
+    destroyCharCharts();
+    initCharCharts();
+    animateIn();
+  });
+});
+
+// ========== ACVSMR CHART MANAGEMENT ==========
+var charChartInstances = {};
+
+function destroyCharCharts() {
+  Object.values(charChartInstances).forEach(c => { if (c) c.destroy(); });
+  charChartInstances = {};
+}
+
+function getCharColors() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  return {
+    primary: '#01696f',
+    primaryLight: isDark ? 'rgba(1,105,111,0.3)' : 'rgba(1,105,111,0.15)',
+    control: '#da7101',
+    controlLight: isDark ? 'rgba(218,113,1,0.3)' : 'rgba(218,113,1,0.15)',
+    blue: '#3b82f6',
+    blueLight: isDark ? 'rgba(59,130,246,0.3)' : 'rgba(59,130,246,0.15)',
+    text: isDark ? '#e2e4e9' : '#1a1d23',
+    textMuted: isDark ? '#8b90a0' : '#6b7280',
+    grid: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+    surface: isDark ? '#1a1d25' : '#ffffff',
+  };
+}
+
+function initCharCharts() {
+  const charPanel = document.getElementById('study-characterization');
+  if (!charPanel || !charPanel.classList.contains('active')) return;
+  const c = getCharColors();
+
+  // Protein Concentration chart
+  const protCtx = document.getElementById('charProteinConcChart');
+  if (protCtx && protCtx.offsetParent !== null && !charChartInstances.proteinConc) {
+    charChartInstances.proteinConc = new Chart(protCtx, {
+      type: 'bar',
+      data: {
+        labels: ['0.5 Hours', '2 Hours', '24 Hours'],
+        datasets: [
+          { label: 'Saline', data: [85, 120, 155], backgroundColor: c.blueLight, borderColor: c.blue, borderWidth: 2, borderRadius: 4 },
+          { label: 'Collagenase I', data: [110, 165, 210], backgroundColor: c.primaryLight, borderColor: c.primary, borderWidth: 2, borderRadius: 4 },
+          { label: 'Trypsin', data: [200, 175, 95], backgroundColor: c.controlLight, borderColor: c.control, borderWidth: 2, borderRadius: 4 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: c.text, font: { family: 'Inter', size: 12 } } } },
+        scales: {
+          y: { title: { display: true, text: 'Protein (µg/mL)', color: c.textMuted, font: { family: 'Inter', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
+          x: { ticks: { color: c.textMuted }, grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // TIMP-2 Release chart
+  const timpCtx = document.getElementById('charTimp2Chart');
+  if (timpCtx && timpCtx.offsetParent !== null && !charChartInstances.timp2) {
+    charChartInstances.timp2 = new Chart(timpCtx, {
+      type: 'line',
+      data: {
+        labels: ['0.5 Hours', '2 Hours', '24 Hours'],
+        datasets: [
+          { label: 'Saline', data: [20, 55, 120], borderColor: c.blue, backgroundColor: c.blueLight, fill: true, tension: 0.3, pointRadius: 5, pointHoverRadius: 7 },
+          { label: 'Collagenase I', data: [35, 85, 175], borderColor: c.primary, backgroundColor: c.primaryLight, fill: true, tension: 0.3, pointRadius: 5, pointHoverRadius: 7 },
+          { label: 'Trypsin', data: [180, 40, 10], borderColor: c.control, backgroundColor: c.controlLight, fill: true, tension: 0.3, pointRadius: 5, pointHoverRadius: 7 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: c.text, font: { family: 'Inter', size: 12 } } } },
+        scales: {
+          y: { title: { display: true, text: 'TIMP-2 Concentration (relative)', color: c.textMuted, font: { family: 'Inter', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
+          x: { ticks: { color: c.textMuted }, grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Cytokine Indices chart
+  const cytoCtx = document.getElementById('charCytokineChart');
+  if (cytoCtx && cytoCtx.offsetParent !== null && !charChartInstances.cytokine) {
+    charChartInstances.cytokine = new Chart(cytoCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Anti-inflammatory', 'Pro-inflammatory', 'Anabolic', 'Anti-catabolic'],
+        datasets: [
+          { label: 'equicenta™ Unsorted', data: [0.319, 0.020, 0.020, 0.091], backgroundColor: 'rgba(107,75,155,0.7)', borderColor: 'rgb(107,75,155)', borderWidth: 2, borderRadius: 4 },
+          { label: 'Total Extracted', data: [0.170, 0.012, 0.045, 0.180], backgroundColor: 'rgba(181,155,220,0.7)', borderColor: 'rgb(181,155,220)', borderWidth: 2, borderRadius: 4 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: c.text, font: { family: 'Inter', size: 12 } } } },
+        scales: {
+          y: { title: { display: true, text: 'Mean Concentration (µg/mL)', color: c.textMuted, font: { family: 'Inter', size: 12 } }, ticks: { color: c.textMuted }, grid: { color: c.grid } },
+          x: { ticks: { color: c.textMuted, font: { size: 11 } }, grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // EV Markers chart
+  const evCtx = document.getElementById('charEvMarkersChart');
+  if (evCtx && evCtx.offsetParent !== null && !charChartInstances.evMarkers) {
+    charChartInstances.evMarkers = new Chart(evCtx, {
+      type: 'bar',
+      data: {
+        labels: ['EPL24-008-001', 'EPL24-010-001', 'EPL24-019-001', 'EPL24-020-002', 'EPL24-014-001', 'EPL24-016-001'],
+        datasets: [
+          { label: 'CD9 Capture', data: [10130, 5140, 8710, 960, 7295, 5430], backgroundColor: c.primaryLight, borderColor: c.primary, borderWidth: 2, borderRadius: 4 },
+          { label: 'CD81 Capture', data: [3800, 1950, 3200, 350, 2750, 2050], backgroundColor: c.controlLight, borderColor: c.control, borderWidth: 2, borderRadius: 4 },
+          { label: 'CD63 Capture', data: [6800, 3500, 5900, 640, 4900, 3600], backgroundColor: c.blueLight, borderColor: c.blue, borderWidth: 2, borderRadius: 4 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: c.text, font: { family: 'Inter', size: 12 } } },
+          tooltip: { callbacks: { label: function(ctx) { return ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' particles'; } } }
+        },
+        scales: {
+          y: { title: { display: true, text: 'Total Particles', color: c.textMuted, font: { family: 'Inter', size: 12 } }, ticks: { color: c.textMuted, callback: v => v.toLocaleString() }, grid: { color: c.grid } },
+          x: { ticks: { color: c.textMuted, font: { size: 10 } }, grid: { display: false } }
+        }
+      }
+    });
+  }
+}
+
+// ========== ACVSMR MODAL FUNCTIONS ==========
+function openCharModal(id) {
+  const modal = document.getElementById('char-modal-' + id);
+  if (modal) modal.classList.add('active');
+}
+
+function closeCharModal(e) {
+  if (e) e.stopPropagation();
+  document.querySelectorAll('.char-overlay-backdrop.active').forEach(m => m.classList.remove('active'));
+}
+
+// Close on backdrop click
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('char-overlay-backdrop')) {
+    e.target.classList.remove('active');
+  }
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeCharModal();
+  }
+});
+
 
 // Clinical tab navigation
 document.querySelectorAll('[data-clintab]').forEach(btn => {
