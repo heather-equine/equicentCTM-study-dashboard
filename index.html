@@ -6677,21 +6677,104 @@ a:hover { text-decoration: underline; }
 <!-- Demographics -->
 <div class="sub-panel" id="sub-clin-design-demographics">
   <div class="section-title" style="margin-bottom: var(--space-6);">Demographics</div>
-  <div class="kpi-grid animate-in">
-    <div class="kpi-card"><div class="kpi-value">8.7 yr</div><div class="kpi-label">Mean Age</div></div>
-    <div class="kpi-card"><div class="kpi-value">490 kg</div><div class="kpi-label">Mean Body Weight</div></div>
-    <div class="kpi-card"><div class="kpi-value">89</div><div class="kpi-label">Males</div></div>
-    <div class="kpi-card"><div class="kpi-value">49</div><div class="kpi-label">Females</div></div>
+  <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-4);">No significant differences in breed, age, gender, body weight, or discipline between eCTM and SOC groups (Tables 3, 4 &amp; 7).</p>
+
+  <div class="kpi-grid animate-in" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="kpi-card" style="text-align:center;">
+      <div class="kpi-value" style="font-size:var(--text-xl);">91</div>
+      <div class="kpi-label">equicenta™ CTM Horses</div>
+    </div>
+    <div class="kpi-card" style="text-align:center;">
+      <div class="kpi-value" style="font-size:var(--text-xl);">47</div>
+      <div class="kpi-label">SOC Control Horses</div>
+    </div>
   </div>
+
   <div class="charts-grid two-col animate-in">
     <div class="chart-card">
-      <div class="chart-header"><div><div class="chart-title">Breed Distribution</div></div></div>
-      <div class="chart-canvas-wrap" style="height: 260px;"><canvas id="clin-chart-breed"></canvas></div>
+      <div class="chart-header"><div>
+        <div class="chart-title">Breed Distribution</div>
+        <div class="chart-subtitle">eCTM vs SOC — no significant difference (Table 3)</div>
+      </div></div>
+      <div class="chart-canvas-wrap" style="height: 280px;"><canvas id="clin-chart-breed"></canvas></div>
+      <div class="chart-legend" style="margin-top:8px">
+        <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta™ CTM</div>
+        <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
+      </div>
     </div>
     <div class="chart-card">
-      <div class="chart-header"><div><div class="chart-title">Discipline Distribution</div></div></div>
-      <div class="chart-canvas-wrap" style="height: 260px;"><canvas id="clin-chart-discipline"></canvas></div>
+      <div class="chart-header"><div>
+        <div class="chart-title">Discipline Distribution</div>
+        <div class="chart-subtitle">eCTM vs SOC — no significant difference (Table 7)</div>
+      </div></div>
+      <div class="chart-canvas-wrap" style="height: 280px;"><canvas id="clin-chart-discipline"></canvas></div>
+      <div class="chart-legend" style="margin-top:8px">
+        <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta™ CTM</div>
+        <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
+      </div>
     </div>
+  </div>
+
+  <div class="charts-grid two-col animate-in">
+    <div class="chart-card">
+      <div class="chart-header"><div>
+        <div class="chart-title">Sex Distribution</div>
+        <div class="chart-subtitle">eCTM vs SOC — no significant difference (Table 4)</div>
+      </div></div>
+      <div class="chart-canvas-wrap" style="height: 220px;"><canvas id="clin-chart-sex"></canvas></div>
+      <div class="chart-legend" style="margin-top:8px">
+        <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta™ CTM</div>
+        <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header"><div>
+        <div class="chart-title">Limb Distribution</div>
+        <div class="chart-subtitle">Front vs hind — no significant difference (p=0.3)</div>
+      </div></div>
+      <div class="chart-canvas-wrap" style="height: 220px;"><canvas id="clin-chart-demo-limb"></canvas></div>
+      <div class="chart-legend" style="margin-top:8px">
+        <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta™ CTM</div>
+        <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-table-wrap animate-in" style="margin-top: var(--space-4);">
+    <div class="chart-header"><div>
+      <div class="chart-title">Demographic Comparison — eCTM vs SOC</div>
+      <div class="chart-subtitle">No significant differences between groups for any demographic parameter</div>
+    </div></div>
+    <table class="data-table" style="font-size: var(--text-sm);">
+      <thead><tr><th>Parameter</th><th>equicenta™ CTM (n=91)</th><th>SOC Control (n=47)</th><th>Overall (n=138)</th><th>p-value</th></tr></thead>
+      <tbody>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td colspan="5">General</td></tr>
+        <tr><td>Mean Age</td><td>8.7 yr</td><td>8.7 yr</td><td>8.7 yr</td><td>NS</td></tr>
+        <tr><td>Mean Body Weight</td><td>490 kg</td><td>490 kg</td><td>490 kg</td><td>NS</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td colspan="5">Sex</td></tr>
+        <tr><td>Gelding</td><td>40 (44.0%)</td><td>21 (44.7%)</td><td>61 (44.2%)</td><td>NS</td></tr>
+        <tr><td>Mare</td><td>32 (35.2%)</td><td>17 (36.2%)</td><td>49 (35.5%)</td><td>NS</td></tr>
+        <tr><td>Stallion</td><td>19 (20.9%)</td><td>9 (19.1%)</td><td>28 (20.3%)</td><td>NS</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td colspan="5">Breed</td></tr>
+        <tr><td>Thoroughbred</td><td>36 (39.6%)</td><td>19 (40.4%)</td><td>55 (39.9%)</td><td>NS</td></tr>
+        <tr><td>Quarter Horse</td><td>22 (24.2%)</td><td>12 (25.5%)</td><td>34 (24.6%)</td><td>NS</td></tr>
+        <tr><td>Warmblood</td><td>22 (24.2%)</td><td>12 (25.5%)</td><td>34 (24.6%)</td><td>NS</td></tr>
+        <tr><td>Gaited</td><td>4 (4.4%)</td><td>2 (4.3%)</td><td>6 (4.3%)</td><td>NS</td></tr>
+        <tr><td>Standardbred</td><td>3 (3.3%)</td><td>1 (2.1%)</td><td>4 (2.9%)</td><td>NS</td></tr>
+        <tr><td>Arabian</td><td>2 (2.2%)</td><td>1 (2.1%)</td><td>3 (2.2%)</td><td>NS</td></tr>
+        <tr><td>Other</td><td>2 (2.2%)</td><td>0 (0.0%)</td><td>2 (1.4%)</td><td>NS</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td colspan="5">Discipline</td></tr>
+        <tr><td>Racing</td><td>33 (36.3%)</td><td>17 (36.2%)</td><td>50 (36.2%)</td><td>NS</td></tr>
+        <tr><td>Western</td><td>20 (22.0%)</td><td>10 (21.3%)</td><td>30 (21.7%)</td><td>NS</td></tr>
+        <tr><td>Eventer / Hunter / Jumper</td><td>17 (18.7%)</td><td>9 (19.1%)</td><td>26 (18.8%)</td><td>NS</td></tr>
+        <tr><td>Dressage</td><td>13 (14.3%)</td><td>6 (12.8%)</td><td>19 (13.8%)</td><td>NS</td></tr>
+        <tr><td>Other</td><td>8 (8.8%)</td><td>5 (10.6%)</td><td>13 (9.4%)</td><td>NS</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td colspan="5">Limb</td></tr>
+        <tr><td>Forelimb</td><td>66 (72.5%)</td><td>29 (61.7%)</td><td>95 (68.8%)</td><td>p=0.3</td></tr>
+        <tr><td>Hindlimb</td><td>62 (68.1%)</td><td>38 (80.9%)</td><td>100 (72.5%)</td><td>p=0.3</td></tr>
+      </tbody>
+    </table>
+    <p style="color: var(--color-text-muted); font-size: 12px; margin-top: 8px;">NS = not significant. Limb counts reflect conditions (some horses had multiple).</p>
   </div>
 </div>
 
@@ -10529,53 +10612,77 @@ function makeClinHorizBar(canvasId, labels, data, colors, xLabel) {
 
 function initClinDemoCharts(colors) {
   const defaults = chartDefaults(colors);
-  // Breed distribution
+  const groupedOpts = (yLabel) => ({
+    ...defaults,
+    scales: {
+      x: { ...defaults.scales.x, grid: { display: false }, ticks: { ...defaults.scales.x.ticks, font: { family: 'Montserrat', size: 11 } } },
+      y: { ...defaults.scales.y, beginAtZero: true, max: 50, title: { display: true, text: yLabel, color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }, ticks: { callback: v => v + '%', color: colors.textMuted, font: { family: 'Montserrat', size: 10 } } }
+    },
+    plugins: { ...defaults.plugins, legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } } }
+  });
+  // Breed distribution — grouped bar
   const breedCtx = document.getElementById('clin-chart-breed');
   if (breedCtx) {
     chartInstances['clin-chart-breed'] = new Chart(breedCtx, {
       type: 'bar',
       data: {
-        labels: ['Quarter Horse', 'Thoroughbred', 'Warmblood', 'Paint', 'Other'],
-        datasets: [{
-          data: [45, 28, 22, 18, 25],
-          backgroundColor: [colors.primary, colors.primary + 'cc', colors.primary + '99', colors.primary + '66', colors.primary + '44'],
-          borderRadius: 6,
-          barThickness: 24
-        }]
+        labels: ['TB', 'QH', 'WB', 'Gaited', 'STB', 'Arabian', 'Other'],
+        datasets: [
+          { label: 'equicenta™ CTM', data: [39.6, 24.2, 24.2, 4.4, 3.3, 2.2, 2.2], backgroundColor: colors.primary, borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.7 },
+          { label: 'Standard of Care', data: [40.4, 25.5, 25.5, 4.3, 2.1, 2.1, 0], backgroundColor: colors.control, borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.7 }
+        ]
       },
-      options: {
-        ...defaults,
-        indexAxis: 'y',
-        scales: {
-          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Horses', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } },
-          y: { ...defaults.scales.y, grid: { display: false } }
-        },
-        plugins: { ...defaults.plugins, legend: { display: false } }
-      }
+      options: groupedOpts('% of Group')
     });
   }
-  // Discipline
+  // Discipline — grouped bar
   const discCtx = document.getElementById('clin-chart-discipline');
   if (discCtx) {
     chartInstances['clin-chart-discipline'] = new Chart(discCtx, {
       type: 'bar',
       data: {
-        labels: ['Hunter/Jumper', 'Western Performance', 'Dressage', 'Eventing', 'Racing', 'Other'],
-        datasets: [{
-          data: [35, 30, 20, 18, 15, 20],
-          backgroundColor: [colors.primary, colors.primary + 'cc', colors.primary + '99', colors.primary + '77', colors.primary + '55', colors.primary + '33'],
-          borderRadius: 6,
-          barThickness: 22
-        }]
+        labels: ['Racing', 'Western', 'Eventer/HJ', 'Dressage', 'Other'],
+        datasets: [
+          { label: 'equicenta™ CTM', data: [36.3, 22.0, 18.7, 14.3, 8.8], backgroundColor: colors.primary, borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.7 },
+          { label: 'Standard of Care', data: [36.2, 21.3, 19.1, 12.8, 10.6], backgroundColor: colors.control, borderRadius: 4, barPercentage: 0.7, categoryPercentage: 0.7 }
+        ]
+      },
+      options: groupedOpts('% of Group')
+    });
+  }
+  // Sex — grouped bar (convert counts to %)
+  const sexCtx = document.getElementById('clin-chart-sex');
+  if (sexCtx) {
+    chartInstances['clin-chart-sex'] = new Chart(sexCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Gelding', 'Mare', 'Stallion'],
+        datasets: [
+          { label: 'equicenta™ CTM', data: [44.0, 35.2, 20.9], backgroundColor: colors.primary, borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.65 },
+          { label: 'Standard of Care', data: [44.7, 36.2, 19.1], backgroundColor: colors.control, borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.65 }
+        ]
+      },
+      options: groupedOpts('% of Group')
+    });
+  }
+  // Limb — grouped bar (convert counts to %)
+  const limbCtx = document.getElementById('clin-chart-demo-limb');
+  if (limbCtx) {
+    chartInstances['clin-chart-demo-limb'] = new Chart(limbCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Forelimb', 'Hindlimb'],
+        datasets: [
+          { label: 'equicenta™ CTM', data: [72.5, 68.1], backgroundColor: colors.primary, borderRadius: 4, barPercentage: 0.55, categoryPercentage: 0.55 },
+          { label: 'Standard of Care', data: [61.7, 80.9], backgroundColor: colors.control, borderRadius: 4, barPercentage: 0.55, categoryPercentage: 0.55 }
+        ]
       },
       options: {
-        ...defaults,
-        indexAxis: 'y',
+        ...groupedOpts('% of Group'),
         scales: {
-          x: { ...defaults.scales.x, title: { display: true, text: 'Number of Horses', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } } },
-          y: { ...defaults.scales.y, grid: { display: false } }
-        },
-        plugins: { ...defaults.plugins, legend: { display: false } }
+          x: { ...defaults.scales.x, grid: { display: false }, ticks: { ...defaults.scales.x.ticks, font: { family: 'Montserrat', size: 11 } } },
+          y: { ...defaults.scales.y, beginAtZero: true, max: 100, title: { display: true, text: '% of Group', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } }, ticks: { callback: v => v + '%', color: colors.textMuted, font: { family: 'Montserrat', size: 10 } } }
+        }
       }
     });
   }
