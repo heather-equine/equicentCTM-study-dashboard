@@ -1737,7 +1737,8 @@ a:hover { text-decoration: underline; }
   .vp-price-grid { grid-template-columns: 1fr; }
   .vp-vs { display: none; }
   .vp-driver-grid, .vp-vet-grid { grid-template-columns: 1fr; }
-  .vp-waterfall-chart { height: 200px; }
+  .vp-waterfall-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .vp-waterfall-chart { height: 200px; min-width: 500px; }
   .vp-wf-amount { font-size: 10px; }
   .vp-wf-label { font-size: 9px; }
   .vp-thesis { padding: var(--space-4) var(--space-5); }
