@@ -3561,7 +3561,11 @@ a:hover { text-decoration: underline; }
 
   <!-- Sub-tabs -->
   <div class="sub-tab-container">
-    <button class="sub-tab-btn active" data-subtab="characterization">
+    <button class="sub-tab-btn active" data-subtab="safety">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      Safety
+    </button>
+    <button class="sub-tab-btn" data-subtab="characterization">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/></svg>
       Characterization
     </button>
@@ -3577,14 +3581,10 @@ a:hover { text-decoration: underline; }
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Histopathology
     </button>
-    <button class="sub-tab-btn" data-subtab="safety">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-      Safety
-    </button>
   </div>
 
   <!-- ===== CHARACTERIZATION ===== -->
-  <div class="sub-panel active" id="sub-characterization">
+  <div class="sub-panel" id="sub-characterization">
     <div class="section-label">Proteomics &amp; ELISA Analysis</div>
     <div class="section-title">Product Characterization</div>
     <div class="section-desc">Comprehensive proteomic analysis via LC-MS/MS and ELISA quantification of key inflammatory mediators across 11 donors.</div>
@@ -4048,7 +4048,7 @@ a:hover { text-decoration: underline; }
   </div>
 
   <!-- ===== SAFETY ===== -->
-  <div class="sub-panel" id="sub-safety">
+  <div class="sub-panel active" id="sub-safety">
     <div class="section-label">Safety Profile</div>
     <div class="section-title">Safety Assessment</div>
     <div class="section-desc">Serum Amyloid A (SAA) monitoring and adverse event tracking across all three in vivo studies.</div>
