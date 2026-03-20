@@ -679,7 +679,9 @@ a:hover { text-decoration: underline; }
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   margin-bottom: var(--space-8);
 }
 
@@ -1362,6 +1364,9 @@ a:hover { text-decoration: underline; }
 }
 
 /* Pricing table enhancements */
+.pricing-table {
+  min-width: 700px;
+}
 .pricing-table th {
   white-space: nowrap;
 }
