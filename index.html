@@ -1621,6 +1621,64 @@ a:hover { text-decoration: underline; }
   .video-info { padding: var(--space-3) var(--space-4); }
 }
 
+/* ========== LANDMARK EVIDENCE BANNER ========== */
+.landmark-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  margin: 20px 0 24px;
+  background: linear-gradient(135deg, rgba(1, 105, 111, 0.06), rgba(1, 105, 111, 0.02));
+  border: 1.5px solid rgba(1, 105, 111, 0.15);
+  border-radius: 12px;
+}
+[data-theme="dark"] .landmark-banner {
+  background: linear-gradient(135deg, rgba(1, 105, 111, 0.12), rgba(1, 105, 111, 0.04));
+  border-color: rgba(46, 196, 182, 0.2);
+}
+.landmark-banner-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(1, 105, 111, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #01696f;
+}
+[data-theme="dark"] .landmark-banner-icon {
+  background: rgba(46, 196, 182, 0.15);
+  color: #2ec4b6;
+}
+.landmark-banner-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.landmark-banner-content {
+  flex: 1;
+  min-width: 0;
+}
+.landmark-banner-title {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+.landmark-banner-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+.landmark-banner-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+@media (max-width: 640px) {
+  .landmark-banner { flex-direction: column; gap: 12px; padding: 16px; }
+}
+
 /* ========== PUBLISHED EVIDENCE ========== */
 .published-evidence {
   max-width: 900px;
@@ -3608,14 +3666,15 @@ a:hover { text-decoration: underline; }
 
 </div>
 
-<!-- ELEVATOR PITCH -->
-<div class="overview-pitch animate-in">
-  <div class="overview-pitch-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+<!-- LANDMARK EVIDENCE -->
+<div class="landmark-banner animate-in">
+  <div class="landmark-banner-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 22V2h4v20"/><path d="M8 22h8"/><path d="M7 9a5 5 0 0 0 10 0"/></svg>
   </div>
-  <div class="overview-pitch-content">
-    <div class="overview-pitch-label">The 10-Second Pitch</div>
-    <div class="overview-pitch-text">equicenta™ CTM is a <strong>cryopreserved equine umbilical tissue allograft</strong> — a single off-the-shelf injection that outperformed standard-of-care biologics across pain, swelling, lameness, and performance in the <strong>largest controlled clinical trial</strong> of its kind in horses, that was <strong>4× safer than standard of care</strong> with confirmed structural tissue repair.</div>
+  <div class="landmark-banner-content">
+    <div class="landmark-banner-title">Landmark Evidence</div>
+    <div class="landmark-banner-subtitle">First controlled trial for any allograft MSK therapy in animals</div>
+    <div class="landmark-banner-text">equicenta™ CTM is the first tissue-based injectable in horses to undergo a prospective, randomized, controlled clinical trial against best-available standard of care — setting a new evidence standard for equine ortho-biologics.</div>
   </div>
 </div>
 
@@ -3939,6 +3998,18 @@ a:hover { text-decoration: underline; }
     </button>
   </div>
 </nav>
+
+<!-- LANDMARK EVIDENCE -->
+<div class="landmark-banner animate-in" style="margin: 20px auto 0; max-width: 1200px;">
+  <div class="landmark-banner-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 22V2h4v20"/><path d="M8 22h8"/><path d="M7 9a5 5 0 0 0 10 0"/></svg>
+  </div>
+  <div class="landmark-banner-content">
+    <div class="landmark-banner-title">Landmark Evidence</div>
+    <div class="landmark-banner-subtitle">Comprehensive safety across 3 in vivo studies</div>
+    <div class="landmark-banner-text">equicenta™ CTM demonstrated 4× fewer adverse events than standard of care, with zero systemic inflammation detected across all safety endpoints — the most rigorous safety profile ever documented for an equine tissue allograft.</div>
+  </div>
+</div>
 
 <!-- ===== MAIN CONTENT ===== -->
 <main class="main-content">
@@ -4980,8 +5051,17 @@ a:hover { text-decoration: underline; }
     <span><span class="stat-dot"></span>12-wk: <strong>138 horses / 195 conditions</strong></span>
     <span><span class="stat-dot"></span>26-wk: <strong>135 horses / 191 conditions</strong></span>
   </div>
-  <div class="clinical-hero-finding">
-    Cumulative improvement was greater for equicenta™ CTM versus SOC by 2 weeks for pain (p&lt;0.05) and swelling (p&lt;0.03), by 4 weeks for lameness (p&lt;0.02), and through 12 weeks for all clinical outcomes (p&lt;0.003).
+</div>
+
+<!-- LANDMARK EVIDENCE -->
+<div class="landmark-banner animate-in">
+  <div class="landmark-banner-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 22V2h4v20"/><path d="M8 22h8"/><path d="M7 9a5 5 0 0 0 10 0"/></svg>
+  </div>
+  <div class="landmark-banner-content">
+    <div class="landmark-banner-title">Landmark Evidence</div>
+    <div class="landmark-banner-subtitle">Largest controlled clinical trial of a tissue allograft in horses</div>
+    <div class="landmark-banner-text">138 horses across 8 practices and 11 veterinarians in a prospective, randomized, controlled design — equicenta™ CTM outperformed standard of care across all clinical outcomes by 12 weeks (p&lt;0.003).</div>
   </div>
 </div>
 
@@ -7266,16 +7346,15 @@ a:hover { text-decoration: underline; }
   </div>
 </div>
 
-<!-- Key Finding Banner -->
-<div class="char-hero-banner animate-in" style="margin-top: 24px;">
-  <div class="char-hero-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<!-- LANDMARK EVIDENCE -->
+<div class="landmark-banner animate-in" style="margin-top: 24px;">
+  <div class="landmark-banner-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 22V2h4v20"/><path d="M8 22h8"/><path d="M7 9a5 5 0 0 0 10 0"/></svg>
   </div>
-  <div>
-    <div class="char-hero-label">Key Finding</div>
-    <div class="char-hero-text">
-      equicenta™ CTM is not simply a &ldquo;growth factor injection&rdquo; &mdash; it is a <strong>degradable fetal matrix implant</strong> that retains native scaffold structure, releases anabolic and anti-catabolic proteins over time as it biodegrades, and contains billions of regenerative extracellular vesicles. Click on any section below for a detailed explanation.
-    </div>
+  <div class="landmark-banner-content">
+    <div class="landmark-banner-title">Landmark Evidence</div>
+    <div class="landmark-banner-subtitle">First full microscopic and biological characterization of an equine tissue allograft</div>
+    <div class="landmark-banner-text">equicenta™ CTM is a degradable fetal matrix implant — not a simple growth factor injection. It retains native scaffold structure, releases proteins over time as it biodegrades, and contains billions of regenerative extracellular vesicles.</div>
   </div>
 </div>
 
@@ -10635,6 +10714,18 @@ function initMaintAeCharts() {
       <span class="maint-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg> Off-the-Shelf</span>
       <span class="maint-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg> Calibrated for Maintenance</span>
     </div>
+  </div>
+</div>
+
+<!-- LANDMARK EVIDENCE -->
+<div class="landmark-banner animate-in">
+  <div class="landmark-banner-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 22V2h4v20"/><path d="M8 22h8"/><path d="M7 9a5 5 0 0 0 10 0"/></svg>
+  </div>
+  <div class="landmark-banner-content">
+    <div class="landmark-banner-title">Landmark Evidence</div>
+    <div class="landmark-banner-subtitle">Same CTM science, calibrated for proactive maintenance</div>
+    <div class="landmark-banner-text">Built on the same platform proven 4× safer than standard of care in a 138-horse controlled trial, maintain delivers consistent fetal matrix proteins calibrated specifically for routine joint maintenance.</div>
   </div>
 </div>
 
