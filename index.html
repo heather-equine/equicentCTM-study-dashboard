@@ -20,20 +20,20 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>equicenta™ CTM — Combined Study Dashboard</title>
+<title>equicenta™ CTM — Combined Study Dashboard | Equine Performance Labs</title>
 <meta name="description" content="Interactive dashboard presenting findings from the equicenta™ CTM published manuscripts — Safety, Characterization, Biocompatibility & Clinical Study">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 
 <style>
 /* ========== DESIGN TOKENS ========== */
 :root, [data-theme="light"] {
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Inter', -apple-system, sans-serif;
+  --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Italiana', 'Playfair Display', Georgia, serif;
 
   /* Type Scale */
   --text-xs:   clamp(0.6875rem, 0.65rem + 0.2vw, 0.8125rem);
@@ -63,12 +63,12 @@
   --color-text-inverse: #ffffff;
 
   /* Brand */
-  --color-primary: #01696f;
-  --color-primary-hover: #015a5f;
-  --color-primary-light: #e6f3f4;
-  --color-primary-surface: #f0f8f8;
-  --color-primary-10: rgba(1,105,111,0.1);
-  --color-primary-20: rgba(1,105,111,0.2);
+  --color-primary: #0d3d36;
+  --color-primary-hover: #0a2e29;
+  --color-primary-light: #e8f2ef;
+  --color-primary-surface: #f0f6f4;
+  --color-primary-10: rgba(13,61,54,0.1);
+  --color-primary-20: rgba(13,61,54,0.2);
 
   --color-control: #da7101;
   --color-control-light: #fff3e6;
@@ -112,12 +112,12 @@
   --color-text-faint: #5c6070;
   --color-text-inverse: #1a1d23;
 
-  --color-primary: #3db8bf;
-  --color-primary-hover: #2fa0a6;
-  --color-primary-light: #0d2e30;
-  --color-primary-surface: #0f2224;
-  --color-primary-10: rgba(61,184,191,0.12);
-  --color-primary-20: rgba(61,184,191,0.2);
+  --color-primary: #a1c9bf;
+  --color-primary-hover: #8ab8ad;
+  --color-primary-light: #0d2e28;
+  --color-primary-surface: #0f2220;
+  --color-primary-10: rgba(161,201,191,0.12);
+  --color-primary-20: rgba(161,201,191,0.2);
 
   --color-control: #f0a050;
   --color-control-light: #2a1f10;
@@ -158,6 +158,13 @@ body {
 ::selection {
   background: var(--color-primary-20);
   color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6, .section-title, .card-title, .stat-label,
+.maint-section-title, .maint-card-title, .maint-hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
@@ -211,9 +218,10 @@ a:hover { text-decoration: underline; }
 
 .brand-text h1 {
   font-size: var(--text-lg);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 400;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 }
 .brand-text h1 span { color: var(--color-primary); }
 
@@ -254,6 +262,10 @@ a:hover { text-decoration: underline; }
   background: var(--color-surface-offset);
   color: var(--color-text);
 }
+
+/* EPL logo dark mode adaptation */
+[data-theme="dark"] .brand-icon svg path[fill="#0d3d36"] { fill: #a1c9bf; }
+[data-theme="dark"] .brand-icon svg path[fill="#a1c9bf"] { fill: #e8f2ef; }
 
 /* ========== TAB NAVIGATION ========== */
 .tab-nav-container {
@@ -1269,7 +1281,7 @@ a:hover { text-decoration: underline; }
 }
 
 .abundance-tag.high {
-  background: rgba(1,105,111,0.12);
+  background: rgba(13,61,54,0.12);
   color: var(--color-primary);
 }
 
@@ -1481,7 +1493,7 @@ a:hover { text-decoration: underline; }
   margin: 0 auto;
 }
 .maint-hero {
-  background: linear-gradient(135deg, #0a3d3f 0%, #01696f 40%, #018a91 100%);
+  background: linear-gradient(135deg, #0a2e29 0%, #0d3d36 40%, #1a5c52 100%);
   border-radius: var(--radius-xl);
   padding: var(--space-12) var(--space-8);
   text-align: center;
@@ -1698,7 +1710,7 @@ a:hover { text-decoration: underline; }
 .maint-compare-m, .maint-compare-e { text-align: center; }
 .maint-tag-primary {
   display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.05em; background: rgba(1,105,111,0.12); color: var(--color-primary);
+  letter-spacing: 0.05em; background: rgba(13,61,54,0.12); color: var(--color-primary);
   padding: 2px 8px; border-radius: var(--radius-sm); margin-right: 4px;
 }
 .maint-tag-flagship {
@@ -1881,7 +1893,7 @@ a:hover { text-decoration: underline; }
   display: flex;
   gap: var(--space-5);
   align-items: flex-start;
-  background: linear-gradient(135deg, var(--color-primary), #018a91);
+  background: linear-gradient(135deg, var(--color-primary), #1a5c52);
   color: #fff;
   padding: var(--space-6) var(--space-8);
   border-radius: var(--radius-xl);
@@ -3117,11 +3129,17 @@ a:hover { text-decoration: underline; }
   <div class="header-inner">
     <div class="header-brand">
       <div class="brand-logo">
-        <div class="brand-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
+        <div class="brand-icon" style="background: transparent; border-radius: 0;">
+          <svg width="40" height="40" viewBox="0 0 162 162" aria-label="Equine Performance Labs">
+            <path fill="#0d3d36" d="M36.37,70.73c3.29,2.3,19.42,5.6,26.66-10.53,7.24-16.13-1.13-29.65-2.3-31.93-1.17-2.28-17.22-1.44-24.36,15.14-6.8,15.78-3.29,25.02,0,27.32Z"/>
+            <path fill="#0d3d36" d="M81.46,41.76c12.84,5.6,20.59-2.99,20.92-6.61.33-3.62-.84-7.55-12.69-12.81-11.85-5.27-18.21-.9-19.86,2.05-1.64,2.95-1.21,11.77,11.63,17.37Z"/>
+            <path fill="#0d3d36" d="M110.1,68.42c3.86,5.57,15.14,14.48,22.06,10.2,6.91-4.28-.46-19.19-4.41-25.12-3.95-5.93-12.74-17.62-15.01-18-3.27-.56-3.95-1.98-8.86,10.2-4.91,12.18,3.66,19.01,6.23,22.71Z"/>
+            <path fill="#a1c9bf" d="M105.85,121.81c7.54,2.96,11.54-.66,13.28-8.23,1.74-7.57-4.84-25.35-9.78-33.58-4.94-8.23-10.53-15.97-17.12-19.34-6.58-3.37-10.83-4.11-11.52,0-.64,3.77,17.59,58.19,25.14,61.15Z"/>
+            <path fill="#a1c9bf" d="M76.72,73.63c-.81-3.88-14.08-7.57-22.25,16.23-5.68,16.56-2.76,28.61,3.95,30.83,3.92,1.3,19.86-39.58,18.3-47.07Z"/>
+            <path fill="#0d3d36" d="M127.89,88.96c-3.54,1.88-6.66,9.68-3.95,15.47,2.09,4.46,3.29,6.58,7.24,0,2.67-4.45,3.51-9.92,3.8-13.54.29-3.62-4.2-3.46-7.09-1.93Z"/>
+            <path fill="#0d3d36" d="M41.34,119.8c14.81,11.85-3.1-32.58-4.84-36.04-1.74-3.46-5.03-13.08-8.66-7.12-2.07,3.41-1.32,31.31,13.5,43.16Z"/>
+            <path fill="#a1c9bf" d="M86.37,112.89c-3.54,3.64-3.57,21.56,1.56,26.03,5.13,4.47,10.1,4.01,13.38.14,3.28-3.87-10.85-30.37-14.94-26.17Z"/>
+            <path fill="#a1c9bf" d="M75.22,140.13c5.93-3.34,3.69-21.56,2.13-22.85-4.51-3.73-21.26,14.95-18.83,19.4,2.43,4.46,10.77,6.78,16.7,3.44Z"/>
           </svg>
         </div>
         <div class="brand-text">
@@ -7521,6 +7539,7 @@ a:hover { text-decoration: underline; }
     initCurrentCharts();
     if (typeof initClinicalCharts === 'function') initClinicalCharts();
     if (typeof initCharCharts === 'function') { destroyCharCharts(); initCharCharts(); }
+    if (typeof destroyMaintAeCharts === 'function') { destroyMaintAeCharts(); initMaintAeCharts(); }
   });
 
   function updateToggleIcon() {
@@ -8605,6 +8624,8 @@ studyTabs.forEach(tab => {
     destroyAllCharts();
     initCurrentCharts();
     initClinicalCharts();
+    if (typeof destroyMaintAeCharts === 'function') destroyMaintAeCharts();
+    if (typeof initMaintAeCharts === 'function') initMaintAeCharts();
     animateIn();
   });
 });
@@ -8636,8 +8657,8 @@ function destroyCharCharts() {
 function getCharColors() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   return {
-    primary: '#01696f',
-    primaryLight: isDark ? 'rgba(1,105,111,0.3)' : 'rgba(1,105,111,0.15)',
+    primary: '#0d3d36',
+    primaryLight: isDark ? 'rgba(13,61,54,0.3)' : 'rgba(13,61,54,0.15)',
     control: '#da7101',
     controlLight: isDark ? 'rgba(218,113,1,0.3)' : 'rgba(218,113,1,0.15)',
     blue: '#3b82f6',
@@ -9637,6 +9658,94 @@ function closeMaintainModal() {
   document.body.style.overflow = '';
 }
 
+// ========== MAINTAIN TAB — ADVERSE EVENT CHARTS ==========
+var maintAeCharts = {};
+
+function destroyMaintAeCharts() {
+  Object.values(maintAeCharts).forEach(c => { if (c) c.destroy(); });
+  maintAeCharts = {};
+}
+
+function initMaintAeCharts() {
+  const panel = document.getElementById('study-maintain');
+  if (!panel || !panel.classList.contains('active')) return;
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const primary = isDark ? '#a1c9bf' : '#0d3d36';
+  const control = isDark ? '#f0a050' : '#da7101';
+  const text = isDark ? '#e2e4e9' : '#1a1d23';
+  const textMuted = isDark ? '#8b90a0' : '#6b7280';
+  const grid = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+
+  const baseOpts = {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 800, easing: 'easeOutQuart' },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: isDark ? '#1a1d25' : '#ffffff',
+        titleColor: text,
+        bodyColor: textMuted,
+        borderColor: isDark ? '#2d3140' : '#dde1e6',
+        borderWidth: 1,
+        padding: 10,
+        cornerRadius: 8,
+        displayColors: true,
+        boxPadding: 4,
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        grid: { color: grid },
+        ticks: { color: textMuted, font: { family: 'Montserrat', size: 11 } },
+        title: { display: true, text: 'Fold Risk', color: textMuted, font: { family: 'Montserrat', size: 11 } }
+      },
+      y: {
+        grid: { display: false },
+        ticks: { color: text, font: { family: 'Montserrat', size: 12, weight: '500' } }
+      }
+    }
+  };
+
+  // Overall AE chart
+  const overallCtx = document.getElementById('maintAeOverallChart');
+  if (overallCtx && !maintAeCharts.overall) {
+    maintAeCharts.overall = new Chart(overallCtx, {
+      type: 'bar',
+      data: {
+        labels: ['equicenta\u2122 CTM', 'Standard of Care'],
+        datasets: [{
+          data: [1, 4],
+          backgroundColor: [primary, control],
+          borderRadius: 4,
+          barThickness: 28
+        }]
+      },
+      options: { ...baseOpts, scales: { ...baseOpts.scales, x: { ...baseOpts.scales.x, max: 5 } } }
+    });
+  }
+
+  // Joint AE chart
+  const jointCtx = document.getElementById('maintAeJointChart');
+  if (jointCtx && !maintAeCharts.joint) {
+    maintAeCharts.joint = new Chart(jointCtx, {
+      type: 'bar',
+      data: {
+        labels: ['equicenta\u2122 CTM', 'Standard of Care'],
+        datasets: [{
+          data: [1, 8.3],
+          backgroundColor: [primary, control],
+          borderRadius: 4,
+          barThickness: 28
+        }]
+      },
+      options: { ...baseOpts, scales: { ...baseOpts.scales, x: { ...baseOpts.scales.x, max: 9 } } }
+    });
+  }
+}
+
 </script>
 
 
@@ -9740,7 +9849,7 @@ function closeMaintainModal() {
 
 <div class="maint-protein-grid animate-in">
   <div class="maint-protein-card" onclick="openMaintainModal('cartilage-protection')">
-    <div class="maint-prot-icon" style="background: rgba(1,105,111,0.1); color: var(--color-primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="maint-prot-icon" style="background: rgba(13,61,54,0.1); color: var(--color-primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
     <div class="maint-prot-title">Cartilage Protection</div>
     <div class="maint-prot-desc">Proteins that shield cartilage from enzymatic breakdown, neutralize destructive cytokines, and maintain cartilage matrix integrity</div>
     <div class="maint-prot-count">5 key proteins &#8594;</div>
@@ -9784,10 +9893,34 @@ function closeMaintainModal() {
 </div>
 
 <div class="maint-safety-grid animate-in">
-  <div class="maint-safety-card"><div class="maint-safety-value">0</div><div class="maint-safety-label">Adverse Events</div><div class="maint-safety-context">Across all equicenta&#8482; CTM studies</div></div>
+  <div class="maint-safety-card"><div class="maint-safety-value">0</div><div class="maint-safety-label">Adverse Events (eCTM)</div><div class="maint-safety-context">Zero adverse events across all equicenta&#8482; CTM studies</div></div>
+  <div class="maint-safety-card"><div class="maint-safety-value">4&#215;</div><div class="maint-safety-label">Safer Than SOC</div><div class="maint-safety-context">SOC had 4&#215; more adverse events overall (p = 0.05)</div></div>
+  <div class="maint-safety-card" style="border-top-color: var(--color-control);"><div class="maint-safety-value" style="color: var(--color-control);">8.3&#215;</div><div class="maint-safety-label">Joint Adverse Events</div><div class="maint-safety-context">SOC had 8.3-fold higher joint adverse event rate (p &lt; 0.013)</div></div>
   <div class="maint-safety-card"><div class="maint-safety-value">4.7%</div><div class="maint-safety-label">Mean Batch CV</div><div class="maint-safety-context">Protein consistency across 11 donors</div></div>
-  <div class="maint-safety-card"><div class="maint-safety-value">2,645</div><div class="maint-safety-label">Proteins Identified</div><div class="maint-safety-context">Comprehensive proteomic analysis</div></div>
-  <div class="maint-safety-card"><div class="maint-safety-value">4&#215;</div><div class="maint-safety-label">Safer Than SOC</div><div class="maint-safety-context">SOC had 4&#215; more adverse events in trial</div></div>
+</div>
+
+<!-- Adverse Events Chart -->
+<div class="maint-safety-chart-row animate-in" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-8);">
+  <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5);">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: var(--space-3);">
+      <div style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 400;">Adverse Events (Overall)</div>
+      <span style="font-size: var(--text-xs); background: var(--color-primary-10); color: var(--color-primary); padding: 3px 10px; border-radius: var(--radius-full); font-weight: 600;">4.0&#215; higher in SOC, p = 0.05</span>
+    </div>
+    <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-4); line-height:1.4;">Overall injection-related adverse event rate. SOC was 4.0-fold higher than eCTM. Lower is better.</div>
+    <div style="position:relative; height: 120px;">
+      <canvas id="maintAeOverallChart"></canvas>
+    </div>
+  </div>
+  <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5);">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: var(--space-3);">
+      <div style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 400;">Adverse Events (Joints)</div>
+      <span style="font-size: var(--text-xs); background: var(--color-primary-10); color: var(--color-primary); padding: 3px 10px; border-radius: var(--radius-full); font-weight: 600;">8.3&#215; higher in SOC, p &lt; 0.013</span>
+    </div>
+    <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-4); line-height:1.4;">Joint injection-related adverse event rate. SOC was 8.3-fold higher than eCTM. Lower is better.</div>
+    <div style="position:relative; height: 120px;">
+      <canvas id="maintAeJointChart"></canvas>
+    </div>
+  </div>
 </div>
 
 <!-- WHEN TO USE -->
@@ -9886,7 +10019,7 @@ function closeMaintainModal() {
 <!-- TWO-PRODUCT STRATEGY -->
 <div class="maint-strategy animate-in">
   <div class="maint-strategy-left">
-    <div class="maint-strategy-badge" style="background: rgba(1,105,111,0.1); color: var(--color-primary);">MAINTENANCE</div>
+    <div class="maint-strategy-badge" style="background: rgba(13,61,54,0.1); color: var(--color-primary);">MAINTENANCE</div>
     <div class="maint-strategy-product">maintain</div>
     <div class="maint-strategy-sub">by equicenta&#8482; CTM</div>
     <div class="maint-strategy-desc">to keep them <em>at peak</em></div>
