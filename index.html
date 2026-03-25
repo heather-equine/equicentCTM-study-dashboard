@@ -7157,8 +7157,8 @@ a:hover { text-decoration: underline; }
       <div class="kpi-label">Product Categories</div>
     </div>
     <div class="kpi-card" style="text-align:center;">
-      <div class="kpi-value" style="font-size:var(--text-lg);">30%</div>
-      <div class="kpi-label">ProStride Share</div>
+      <div class="kpi-value" style="font-size:var(--text-lg);">36%</div>
+      <div class="kpi-label">APS/ProStride Share</div>
     </div>
   </div>
 
@@ -7180,15 +7180,15 @@ a:hover { text-decoration: underline; }
     <table class="data-table" style="font-size: var(--text-sm);">
       <thead><tr><th style="text-align:left;">Category / Product</th><th style="text-align:center;">Horses</th><th style="text-align:center;">% of SOC</th></tr></thead>
       <tbody>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>APS / ProStride</td><td style="text-align:center;">14</td><td style="text-align:center;">29.8%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>APS / ProStride</td><td style="text-align:center;">17</td><td style="text-align:center;">36.2%</td></tr>
         <tr><td style="padding-left:24px;">ProStride</td><td style="text-align:center;">11</td><td style="text-align:center;">23.4%</td></tr>
         <tr><td style="padding-left:24px;">ProStride APS</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
+        <tr><td style="padding-left:24px;">Provet (Dechra)</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td>PRP Products</td><td style="text-align:center;">5</td><td style="text-align:center;">10.6%</td></tr>
         <tr><td style="padding-left:24px;">PRP (generic)</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
         <tr><td style="padding-left:24px;">PRP (Zoetis)</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
         <tr><td style="padding-left:24px;">Restigem PRP</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Chondroprotective</td><td style="text-align:center;">4</td><td style="text-align:center;">8.5%</td></tr>
-        <tr><td style="padding-left:24px;">Provet (Dechra)</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Chondroprotective</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
         <tr><td style="padding-left:24px;">Adequan (PSGAG)</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td>Alpha-2-Macroglobulin</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
         <tr><td style="padding-left:24px;">A2M / PPP</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
@@ -10920,7 +10920,6 @@ function initSOCProductsChart(colors) {
   var categories = [
     'APS / ProStride',
     'PRP Products',
-    'Chondroprotective',
     'A2M / PPP',
     'IRAP / ACS',
     'Hyaluronic Acid',
@@ -10929,10 +10928,11 @@ function initSOCProductsChart(colors) {
     'Non-Injectable',
     'Polyacrylamide',
     'Regenaflex',
+    'Chondroprotective',
     'BMAC',
     'Not Specified'
   ];
-  var counts = [14, 5, 4, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1];
+  var counts = [17, 5, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1, 1];
 
   // Color palette — control orange for the dominant bar, muted tones for the rest
   var barColors = counts.map(function(c, i) {
@@ -10973,7 +10973,7 @@ function initSOCProductsChart(colors) {
         x: {
           ...d.scales.x,
           beginAtZero: true,
-          max: 16,
+          max: 20,
           grid: { color: colors.divider, drawBorder: false },
           title: { display: true, text: 'Number of Horses', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } },
           ticks: { ...d.scales.x.ticks, stepSize: 2 }
