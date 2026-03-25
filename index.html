@@ -3780,6 +3780,10 @@ a:hover { text-decoration: underline; }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
       Educational Videos
     </button>
+    <button class="study-tab" data-study="competitive">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+      Why eCTM
+    </button>
   </div>
 </div>
 
@@ -12479,6 +12483,1054 @@ function initMaintAeCharts() {
 </div>
 
 </div><!-- end study-value -->
+
+<div class="study-panel" id="study-competitive">
+
+<style>
+/* ===== WHY eCTM TAB — SCOPED STYLES ===== */
+#study-competitive .comp-callout {
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  line-height: 1.7;
+  font-size: var(--text-sm);
+}
+#study-competitive .comp-callout strong {
+  color: #fff;
+  font-weight: 700;
+}
+#study-competitive .comp-intro {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+  line-height: 1.7;
+}
+
+/* Evidence badges */
+#study-competitive .badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  line-height: 1.5;
+}
+#study-competitive .badge-green {
+  background: rgba(22, 163, 74, 0.12);
+  color: var(--color-success);
+}
+#study-competitive .badge-yellow {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--color-warning);
+}
+#study-competitive .badge-red {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--color-error);
+}
+#study-competitive .badge-gray {
+  background: rgba(107, 114, 128, 0.12);
+  color: var(--color-text-muted);
+}
+
+/* Evidence dot indicator */
+#study-competitive .ev-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  margin-right: 4px;
+  vertical-align: middle;
+}
+#study-competitive .ev-dot.green { background: var(--color-success); }
+#study-competitive .ev-dot.yellow { background: var(--color-warning); }
+#study-competitive .ev-dot.red { background: var(--color-error); }
+#study-competitive .ev-dot.gray { background: var(--color-text-faint); }
+
+/* Highlighted eCTM row */
+#study-competitive .data-table tr.row-ectm {
+  background: rgba(13, 61, 54, 0.04);
+}
+#study-competitive .data-table tr.row-ectm td {
+  font-weight: 600;
+  color: var(--color-primary);
+  border-left: 3px solid var(--color-primary);
+}
+#study-competitive .data-table tr.row-ectm td:first-child {
+  border-left: 3px solid var(--color-primary);
+}
+#study-competitive .data-table tr.row-ectm td:not(:first-child) {
+  border-left: none;
+}
+[data-theme="dark"] #study-competitive .data-table tr.row-ectm {
+  background: rgba(13, 61, 54, 0.15);
+}
+
+/* Section spacing */
+#study-competitive .comp-section {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-divider);
+}
+#study-competitive .comp-section:last-child {
+  border-bottom: none;
+}
+
+/* Value reframe grid */
+#study-competitive .reframe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+@media (max-width: 768px) {
+  #study-competitive .reframe-grid {
+    grid-template-columns: 1fr;
+  }
+}
+#study-competitive .reframe-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+}
+#study-competitive .reframe-card-name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+#study-competitive .reframe-card-cost {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-3);
+}
+#study-competitive .reframe-card-msg {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Scrollable table on mobile */
+#study-competitive .scroll-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#study-competitive .scroll-table-wrap .data-table {
+  min-width: 900px;
+}
+
+/* Battle cards */
+#study-competitive .battle-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+  transition: box-shadow var(--transition-fast);
+}
+#study-competitive .battle-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+#study-competitive .battle-card-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5);
+  user-select: none;
+}
+#study-competitive .battle-card-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+#study-competitive .battle-card-company {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+#study-competitive .battle-card-product {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+}
+#study-competitive .battle-card-chevron {
+  transition: transform 0.2s ease;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+#study-competitive .battle-card.open .battle-card-chevron {
+  transform: rotate(180deg);
+}
+#study-competitive .battle-card-body {
+  display: none;
+  padding: 0 var(--space-5) var(--space-5);
+}
+#study-competitive .battle-card.open .battle-card-body {
+  display: block;
+}
+#study-competitive .battle-card-section {
+  margin-bottom: var(--space-4);
+}
+#study-competitive .battle-card-section:last-child {
+  margin-bottom: 0;
+}
+#study-competitive .battle-card-section-title {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-2);
+}
+#study-competitive .battle-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#study-competitive .battle-card-list li {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.6;
+  padding-left: var(--space-4);
+  position: relative;
+  margin-bottom: var(--space-1);
+}
+#study-competitive .battle-card-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-text-faint);
+}
+#study-competitive .battle-card-list.strengths li::before {
+  background: var(--color-success);
+}
+#study-competitive .battle-card-list.weaknesses li::before {
+  background: var(--color-control);
+}
+#study-competitive .battle-card-diff {
+  background: rgba(13, 61, 54, 0.06);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.7;
+  font-weight: 500;
+}
+[data-theme="dark"] #study-competitive .battle-card-diff {
+  background: rgba(13, 61, 54, 0.15);
+}
+
+/* Bullet cards for coverage gap */
+#study-competitive .bullet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+@media (max-width: 768px) {
+  #study-competitive .bullet-grid {
+    grid-template-columns: 1fr;
+  }
+}
+#study-competitive .bullet-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+}
+#study-competitive .bullet-card-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+#study-competitive .bullet-card-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Talk card grid (for objection handlers) */
+#study-competitive .talk-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+</style>
+
+<!-- ===== SECTION 1: Evidence Quality Comparison ===== -->
+<div class="comp-section animate-in">
+  <div class="section-label">CLINICAL EVIDENCE COMPARISON</div>
+  <h2 class="section-title">Evidence Quality — eCTM vs. Competitors</h2>
+  <p class="comp-intro">In equine regenerative medicine, not all evidence is created equal. The credibility hierarchy — from randomized controlled trials down to case series and expert opinion — separates products that can withstand clinical scrutiny from those that cannot. Here's how eCTM's evidence stacks up against every competitor in the market.</p>
+
+  <div class="comp-callout animate-in">
+    <strong>Key Insight:</strong> Lead author <strong>Dr. Alicia Bertone</strong> authored BOTH the Pro-Stride landmark RCT (2014, n=40) AND the equicenta CTM trial (2026, n=138). Same researcher, <strong>3.5× the horses</strong>, real-world SOC comparator instead of saline.
+  </div>
+
+  <div class="data-table-wrap animate-in">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Evidence Quality Comparison</div>
+        <div class="chart-subtitle">Published clinical evidence by product — design, size, outcomes, and credibility level</div>
+      </div>
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Product / Modality</th>
+          <th>Best Published Study</th>
+          <th>Design</th>
+          <th>N</th>
+          <th>Key Outcome</th>
+          <th>Limitations</th>
+          <th>Study Credibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-ectm">
+          <td class="highlight">equicenta CTM</td>
+          <td>Bertone et al. 2026 (manuscript in prep)</td>
+          <td>Prospective, multicenter, randomized, controlled</td>
+          <td class="highlight">138</td>
+          <td class="highlight">2.72:1 RTP odds; 4× safety; sustained to 26 wks</td>
+          <td>Open-label; 60:40 allocation</td>
+          <td><span class="badge badge-green">Level I–II</span></td>
+        </tr>
+        <tr>
+          <td>Pro-Stride APS (Zoetis)</td>
+          <td>Bertone 2014 (AJVR)</td>
+          <td>RCT (blinded, placebo-controlled)</td>
+          <td>40</td>
+          <td>Significant lameness improvement at 14 days</td>
+          <td>Small n; best in mild OA</td>
+          <td><span class="badge badge-green">Level II</span></td>
+        </tr>
+        <tr>
+          <td>IRAP / ACS (Dechra)</td>
+          <td>Weinberger 2008</td>
+          <td>Retrospective case series</td>
+          <td>262</td>
+          <td>76% lameness improvement at 6 weeks</td>
+          <td>No control; unblinded</td>
+          <td><span class="badge badge-yellow">Level III</span></td>
+        </tr>
+        <tr>
+          <td>PRP (general)</td>
+          <td>2025 PRISMA systematic review (Animals MDPI)</td>
+          <td>Systematic review</td>
+          <td>11 studies</td>
+          <td>Generally safe; heterogeneity issues</td>
+          <td>No single definitive equine RCT</td>
+          <td><span class="badge badge-yellow">Level III–IV</span></td>
+        </tr>
+        <tr>
+          <td>VetStem Adipose MSC</td>
+          <td>Retrospective surveys (VetStem)</td>
+          <td>Owner survey</td>
+          <td>66 (tendon)</td>
+          <td>77% tendon RTW</td>
+          <td>Not controlled; 2004–2005 cohort</td>
+          <td><span class="badge badge-yellow">Level III</span></td>
+        </tr>
+        <tr>
+          <td>RenoVo (amnion)</td>
+          <td>Duddy 2022 (BMC Vet Research)</td>
+          <td>Prospective case series</td>
+          <td>100</td>
+          <td>72% RTW; 92% vet satisfaction</td>
+          <td>Non-blinded; no control; 2/3 authors conflicted</td>
+          <td><span class="badge badge-yellow">Level III</span></td>
+        </tr>
+        <tr>
+          <td>Hilltop Bio</td>
+          <td>Whitaker/LSU pilot</td>
+          <td>Unpublished case series</td>
+          <td>~10</td>
+          <td>80% sound at 3 months</td>
+          <td>Not peer-reviewed; combination therapy confounds</td>
+          <td><span class="badge badge-red">Level IV–V</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="kpi-grid animate-in" style="margin-top: var(--space-5);">
+    <div class="kpi-card success">
+      <div class="kpi-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="kpi-value">138 horses</div>
+      <div class="kpi-label">195 conditions, 8 sites, 11 vets, 26 weeks — the largest prospective controlled trial in equine regenerative medicine</div>
+    </div>
+    <div class="kpi-card success">
+      <div class="kpi-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="kpi-value">Real SOC</div>
+      <div class="kpi-label">Comparator was real-world biologics — eCTM beat the products these vets are currently using and charging for, not saline</div>
+    </div>
+    <div class="kpi-card success">
+      <div class="kpi-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="kpi-value">Independent</div>
+      <div class="kpi-label">No author received compensation tied to outcomes — independent investigators throughout the trial</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: Cost Per Outcome ===== -->
+<div class="comp-section animate-in">
+  <div class="section-label">COST PER OUTCOME</div>
+  <h2 class="section-title">The True Cost of Treatment</h2>
+  <p class="comp-intro">The pricing conversation must shift from per-unit product cost to total cost of treatment outcome.</p>
+
+  <div class="data-table-wrap animate-in">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Competitive Pricing Comparison</div>
+        <div class="chart-subtitle">Per-unit cost, owner cost, protocol, annual cost, and outcome evidence by product</div>
+      </div>
+    </div>
+    <div class="scroll-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Product / Modality</th>
+          <th>Vet Cost / Unit</th>
+          <th>Owner Cost / Tx</th>
+          <th>Protocol</th>
+          <th>Annual Cost to Owner</th>
+          <th>Outcome Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-ectm">
+          <td class="highlight">equicenta CTM</td>
+          <td class="highlight">$964–$1,095</td>
+          <td>$1,446–$2,190</td>
+          <td>Single injection</td>
+          <td class="highlight">$1,446–$2,190</td>
+          <td>Prospective RCT: 2.72× RTP (p&lt;0.006); 4× safer</td>
+        </tr>
+        <tr>
+          <td>Maintain</td>
+          <td>$374–$625</td>
+          <td>$561–$1,250</td>
+          <td>Single injection, periodic</td>
+          <td>$1,122–$3,750 (2–3×/yr)</td>
+          <td>Leverages eCTM clinical platform</td>
+        </tr>
+        <tr>
+          <td>Pro-Stride APS</td>
+          <td>$250–$350 + centrifuge</td>
+          <td>$400–$800</td>
+          <td>Single; may repeat</td>
+          <td>$400–$1,600</td>
+          <td>RCT (n=40): improvement at 14 days</td>
+        </tr>
+        <tr>
+          <td>IRAP / ACS</td>
+          <td>~$200–$400/processing</td>
+          <td>$1,500–$3,000 (series)</td>
+          <td>3–4 injection series</td>
+          <td>$1,500–$3,000+</td>
+          <td>Uncontrolled; "no definitive evidence" per review</td>
+        </tr>
+        <tr>
+          <td>VetStem</td>
+          <td>~$1,200–$1,800</td>
+          <td>$2,000–$3,500</td>
+          <td>Harvest + 48-hr processing</td>
+          <td>$2,000–$3,500+</td>
+          <td>Retrospective: 77% tendon RTW</td>
+        </tr>
+        <tr>
+          <td>PRP</td>
+          <td>$50–$150/kit</td>
+          <td>$300–$600</td>
+          <td>Single; repeat q6–12 mo</td>
+          <td>$600–$1,200</td>
+          <td>Heterogeneous; no definitive RCT</td>
+        </tr>
+        <tr>
+          <td>RenoVo</td>
+          <td>Est. $300–$600</td>
+          <td>$500–$1,200</td>
+          <td>Single injection</td>
+          <td>$500–$1,200</td>
+          <td>Uncontrolled case series (n=100; conflicted)</td>
+        </tr>
+        <tr>
+          <td>Hilltop Bio</td>
+          <td>~$367</td>
+          <td>$400–$1,000</td>
+          <td>Single injection</td>
+          <td>$400–$1,000</td>
+          <td>No peer-reviewed publications</td>
+        </tr>
+        <tr>
+          <td>Corticosteroid + HA</td>
+          <td>$15–$50 drug cost</td>
+          <td>$200–$500</td>
+          <td>Repeat q3–6 mo</td>
+          <td>$400–$2,000</td>
+          <td>Symptomatic only; cartilage risk</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="reframe-grid animate-in">
+    <div class="reframe-card">
+      <div class="reframe-card-name">equicenta CTM</div>
+      <div class="reframe-card-cost">$1,095 vet cost — single injection</div>
+      <div class="reframe-card-msg">2.72× odds of return to performance, 4× safer, sustained to 26 weeks — <strong style="color: var(--color-primary);">highest value per treatment dollar.</strong></div>
+    </div>
+    <div class="reframe-card">
+      <div class="reframe-card-name">IRAP Series</div>
+      <div class="reframe-card-cost">$1,500–$3,000 — 3–4 injections</div>
+      <div class="reframe-card-msg">No controlled efficacy data. SOC biologics declined after 12 weeks in the EPL trial. Higher total cost, weaker evidence.</div>
+    </div>
+    <div class="reframe-card">
+      <div class="reframe-card-name">VetStem</div>
+      <div class="reframe-card-cost">$2,000–$3,500 per cycle</div>
+      <div class="reframe-card-msg">Invasive surgical harvest, 48-hour processing delay, retrospective survey data only. Exceeds most insurance sub-limits.</div>
+    </div>
+    <div class="reframe-card">
+      <div class="reframe-card-name">Repeat PRP / Corticosteroid</div>
+      <div class="reframe-card-cost">$600–$2,000/yr ongoing</div>
+      <div class="reframe-card-msg">Palliative only — no structural modification evidence. SOC horses rescued with eCTM matched primary eCTM outcomes (p=0.87). The "cheaper" alternatives often lead to re-treatment costs that exceed eCTM.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: Product Modality Comparison ===== -->
+<div class="comp-section animate-in">
+  <div class="section-label">PRODUCT MODALITY COMPARISON</div>
+  <h2 class="section-title">How eCTM Compares</h2>
+
+  <div class="data-table-wrap animate-in">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Full Modality Comparison</div>
+        <div class="chart-subtitle">Source, prep time, storage, regulatory status, evidence level, and key differentiators</div>
+      </div>
+    </div>
+    <div class="scroll-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Modality</th>
+          <th>Product</th>
+          <th>Source</th>
+          <th>Prep Time</th>
+          <th>Storage</th>
+          <th>Regulatory</th>
+          <th>Evidence Level</th>
+          <th>Key Differentiators</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>APS</td>
+          <td>Pro-Stride (Zoetis)</td>
+          <td>Autologous</td>
+          <td>~20 min</td>
+          <td>5-yr kit / 4-hr use</td>
+          <td>Veterinary device</td>
+          <td><span class="ev-dot green"></span> Level II</td>
+          <td>Dual mechanism: ACS + PRP; no withholding</td>
+        </tr>
+        <tr>
+          <td>PRP</td>
+          <td>Restigen, ProVet APC</td>
+          <td>Autologous</td>
+          <td>3–30 min</td>
+          <td>Same session</td>
+          <td>Veterinary device</td>
+          <td><span class="ev-dot yellow"></span> Level III–IV</td>
+          <td>Point-of-care convenience</td>
+        </tr>
+        <tr>
+          <td>IRAP / ACS</td>
+          <td>Orthokine Vet (Dechra)</td>
+          <td>Autologous</td>
+          <td>18–24 hr incubation</td>
+          <td>Freeze up to 1 yr</td>
+          <td>Veterinary device</td>
+          <td><span class="ev-dot yellow"></span> Level III</td>
+          <td>Multiple aliquots from single draw</td>
+        </tr>
+        <tr>
+          <td>BMAC</td>
+          <td>CenTrate (Zoetis)</td>
+          <td>Autologous</td>
+          <td>~15 min</td>
+          <td>Same session</td>
+          <td>Veterinary device</td>
+          <td><span class="ev-dot red"></span> Level IV</td>
+          <td>Concentrates native MSCs</td>
+        </tr>
+        <tr>
+          <td>Adipose MSC</td>
+          <td>VetStem Cell Therapy</td>
+          <td>Autologous</td>
+          <td>48-hr lab</td>
+          <td>Cryopreserved bank</td>
+          <td>Enforcement discretion</td>
+          <td><span class="ev-dot yellow"></span> Level III</td>
+          <td>40,000+ treatments; cell banking</td>
+        </tr>
+        <tr>
+          <td>Amnion Allograft</td>
+          <td>RenoVo (Renovo/EAS)</td>
+          <td>Allogeneic equine</td>
+          <td>Thaw</td>
+          <td>Frozen</td>
+          <td>ACTP; not risk-reviewed</td>
+          <td><span class="ev-dot yellow"></span> Level III</td>
+          <td>Highest IL-1ra (12,406 pg/mL); off-the-shelf</td>
+        </tr>
+        <tr>
+          <td>Birth Tissue (RT)</td>
+          <td>Regenaflex-RT (Hilltop)</td>
+          <td>Allogeneic equine, lyophilized</td>
+          <td>&lt;1 min</td>
+          <td>Room temp, 18 mo</td>
+          <td>INAD filed</td>
+          <td><span class="ev-dot red"></span> Level IV–V</td>
+          <td>Room-temp; no cold chain; exosome focus</td>
+        </tr>
+        <tr class="row-ectm">
+          <td class="highlight">UC Allograft</td>
+          <td class="highlight">equicenta CTM (EPL)</td>
+          <td>Allogeneic equine UC tissue</td>
+          <td>~10 min thaw</td>
+          <td>Cryopreserved</td>
+          <td>ACTP; risk review + INAD</td>
+          <td><span class="ev-dot green"></span> <strong>Level I–II</strong></td>
+          <td class="highlight">First equine UC allograft; 2.72:1 RTP; 4× safer; 2,645 proteins; 4.7% batch CV</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: Handling Price Objections ===== -->
+<div class="comp-section animate-in">
+  <div class="section-label">HANDLING OBJECTIONS</div>
+  <h2 class="section-title">Price Objection Scripts</h2>
+  <p class="comp-intro">Five field-tested responses to the most common objections.</p>
+
+  <div class="talk-grid">
+    <div class="overview-talk-card">
+      <div class="overview-talk-q">"It's too expensive compared to PRP / Pro-Stride."</div>
+      <div class="overview-talk-a">A PRP kit costs you $50–$150. But your patient gets a single-injection allogeneic product with a <strong>138-horse randomized controlled trial</strong> showing 2.72 times the odds of return to performance versus the very biologics you're comparing it to. The SOC biologics in our trial declined after 12 weeks. eCTM sustained improvement to <strong>26 weeks</strong>. When you factor in re-treatment costs for products that fade at 3 months, eCTM is often less expensive per outcome.</div>
+    </div>
+    <div class="overview-talk-card">
+      <div class="overview-talk-q">"My clients won't pay $2,000+ for a single injection."</div>
+      <div class="overview-talk-a">Most major equine insurance policies cover $2,500–$3,500 in lameness treatments per claim. At $1,095 vet cost with your typical 1.5–2× markup, that's <strong>$1,643–$2,190 to the owner — well within the AEIG $2,500 single-claim limit</strong>. For the uninsured owner, consider what they're spending — board, training, entry fees, farrier. A single injection that's nearly 3× more likely to get their horse back to competition is a fraction of the annual investment. We also have <strong>Maintain</strong> at a lower price point for ongoing joint health.</div>
+    </div>
+    <div class="overview-talk-card">
+      <div class="overview-talk-q">"I haven't seen the clinical data — I don't know this product."</div>
+      <div class="overview-talk-a">That's exactly why I'm here. Let me walk you through our clinical study — <strong>138 horses, 8 practices, 11 veterinarians, 26-week follow-up</strong>, led by Dr. Alicia Bertone, the same researcher behind the Pro-Stride landmark trial. No other allograft on the market has this level of evidence. I'd love to have you try 2 units at $1,095 so you can see the results in your own patients.</div>
+    </div>
+    <div class="overview-talk-card">
+      <div class="overview-talk-q">"I need a bigger discount to make this work."</div>
+      <div class="overview-talk-a">Order <strong>5 or more vials and the price drops to $1,007</strong> automatically. No commitments, no forms. If you're doing 2+ cases, you're already there. At <strong>13+ vials per order, you're at $964</strong>. The discounts are built into the order volume — the more you use, the less you pay per unit.</div>
+    </div>
+    <div class="overview-talk-card">
+      <div class="overview-talk-q">"RenoVo / Hilltop is similar and cheaper."</div>
+      <div class="overview-talk-a">RenoVo's best published study is a 100-horse <strong>uncontrolled case series</strong> where two of three authors had financial ties to the company. Hilltop has <strong>no peer-reviewed publications at all</strong>. Our study is a prospective, randomized, controlled trial with independent investigators and 138 horses followed for 26 weeks. The results show eCTM is not just similar — it's <strong>superior to standard-of-care biologics, with 4× fewer adverse events</strong>. When it comes to recommending a product to your clients, would you rather stand behind uncontrolled data or a proper controlled trial?</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: Insurance Fit ===== -->
+<div class="comp-section animate-in">
+  <div class="section-label">INSURANCE COVERAGE</div>
+  <h2 class="section-title">Insurance Positioning</h2>
+
+  <div class="comp-callout animate-in">
+    <strong>Key Talking Point:</strong> At $1,095 vet cost, the owner-facing price at 1.5–2× markup (<strong>$1,643–$2,190</strong>) fits comfortably within AEIG's <strong>$2,500 single-claim limit</strong>. AEIG, Justin, and Hallmark/Chartier explicitly cover regen biologics by name.
+  </div>
+
+  <div class="data-table-wrap animate-in">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Carrier Coverage Matrix</div>
+        <div class="chart-subtitle">Major medical limits, lameness sub-limits, co-pay, and regenerative therapy coverage by insurer</div>
+      </div>
+    </div>
+    <div class="scroll-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Insurer</th>
+          <th>Major Medical Limits</th>
+          <th>Lameness Sub-Limit</th>
+          <th>Co-Pay</th>
+          <th>Regen Therapies Covered</th>
+          <th>eCTM vs. Limit</th>
+          <th>Maintain vs. Limit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight: 600;">AEIG</td>
+          <td>$7,500–$15,000</td>
+          <td>$2,500/claim; $4,000 agg.</td>
+          <td>None</td>
+          <td><span class="badge badge-green">✓</span> Stem cell, PRP, IRAP, Tildren, shockwave</td>
+          <td class="highlight">$1,643–$2,190 = within limit</td>
+          <td>$638–$1,250 = well within</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">Justin Insurance</td>
+          <td>$7,500–$15,000</td>
+          <td>$2,500–$3,500 (tiered)</td>
+          <td>None</td>
+          <td><span class="badge badge-green">✓</span> IRAP, PRP, stem cell, laser/shockwave, bisphosphonate</td>
+          <td class="highlight">Covered at all markup levels</td>
+          <td>Easily covered</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">Hallmark / Chartier</td>
+          <td>$7,500–$15,000</td>
+          <td>$2,500/claim; $4,000 agg.</td>
+          <td>None</td>
+          <td><span class="badge badge-green">✓</span> Stem cell, IRAP, PRP, Tildren, shockwave</td>
+          <td class="highlight">Covered at 1.5–2× markup</td>
+          <td>Covered; fits well</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">Great American</td>
+          <td>$7,500–$15,000</td>
+          <td>$5,000–$7,500 combined</td>
+          <td>20%</td>
+          <td><span class="badge badge-yellow">Limited</span> Lameness sublimit applies; no explicit regen naming</td>
+          <td>Higher sublimit, but 20% co-pay</td>
+          <td>Covered within sublimit</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">Markel</td>
+          <td>$5,000–$10,000</td>
+          <td>No stated sublimit</td>
+          <td>20–30%</td>
+          <td><span class="badge badge-red">Conditional</span> Excludes DJD, arthritis, navicular</td>
+          <td>Uncertain; case-by-case</td>
+          <td>Uncertain coverage</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">ASPCA / Broadstone</td>
+          <td>Health-only plans</td>
+          <td>Not disclosed</td>
+          <td>Not disclosed</td>
+          <td><span class="badge badge-gray">Partial</span> Partial reimbursement for PRP, IRAP</td>
+          <td>Best-effort reimbursement</td>
+          <td>Best-effort</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="bullet-grid animate-in">
+    <div class="bullet-card">
+      <div class="bullet-card-title">Sub-Limit Adequacy</div>
+      <div class="bullet-card-text">EPL's $1,095 pricing is deliberately calibrated to fit within insurance sub-limits at standard veterinary markup levels.</div>
+    </div>
+    <div class="bullet-card">
+      <div class="bullet-card-title">Carrier Breadth</div>
+      <div class="bullet-card-text">AEIG, Justin, and Hallmark/Chartier explicitly cover regenerative therapies by name. Markel and Great American do not.</div>
+    </div>
+    <div class="bullet-card">
+      <div class="bullet-card-title">Stackable Coverage</div>
+      <div class="bullet-card-text">AEIG, Justin, and Chartier permit stacking — power users can construct $6,000–7,500 effective lameness budgets (up to $25,000 total medical).</div>
+    </div>
+    <div class="bullet-card">
+      <div class="bullet-card-title">Insurance Market Growth</div>
+      <div class="bullet-card-text">Horse insurance is growing at 10–12% CAGR vs. regen market 8.3% CAGR — a favorable divergence that expands the addressable insured market.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: Competitor Battle Cards ===== -->
+<div class="comp-section animate-in" style="border-bottom: none;">
+  <div class="section-label">COMPETITOR INTELLIGENCE</div>
+  <h2 class="section-title">Battle Cards</h2>
+  <p class="comp-intro">Quick-reference competitive profiles for field conversations.</p>
+
+  <!-- Zoetis -->
+  <div class="battle-card">
+    <div class="battle-card-header">
+      <div class="battle-card-header-text">
+        <div class="battle-card-company">Zoetis</div>
+        <div class="battle-card-product">Pro-Stride APS</div>
+      </div>
+      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="battle-card-body">
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Products</div>
+        <ul class="battle-card-list">
+          <li>Pro-Stride APS (dual-centrifuge APS)</li>
+          <li>Restigen PRP</li>
+          <li>CenTrate BMA</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Strengths</div>
+        <ul class="battle-card-list strengths">
+          <li>Largest animal health company ($9.5B revenue); dominant distribution (Covetrus, MWI)</li>
+          <li>Bertone 2014 RCT (n=40); AAEP $100K scholarship</li>
+          <li>No withholding period</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Weaknesses</div>
+        <ul class="battle-card-list weaknesses">
+          <li>Autologous only — no off-the-shelf option</li>
+          <li>Variable patient biology affects output</li>
+          <li>Best evidence is for mild-moderate OA only</li>
+          <li>Premium pricing with capital equipment barrier ($2,500–$3,500 centrifuge lock-in)</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">EPL Differentiator</div>
+        <div class="battle-card-diff">eCTM trial is <strong>3.5× larger</strong> (138 vs 40 horses), tested against <strong>real SOC biologics</strong> (not saline), showed sustained improvement to <strong>26 weeks</strong> (vs 14 days), and is off-the-shelf (no centrifuge, no blood draw, no processing variability). Same lead author (Bertone) chose to run the eCTM trial.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dechra / IRAP -->
+  <div class="battle-card">
+    <div class="battle-card-header">
+      <div class="battle-card-header-text">
+        <div class="battle-card-company">Dechra</div>
+        <div class="battle-card-product">IRAP — Orthokine Vet</div>
+      </div>
+      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="battle-card-body">
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Products</div>
+        <ul class="battle-card-list">
+          <li>Orthokine Vet IRAP 60</li>
+          <li>Osteokine PRP</li>
+          <li>ProVet APC</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Strengths</div>
+        <ul class="battle-card-list strengths">
+          <li>Multiple aliquots from single draw (freeze up to 1 year for maintenance)</li>
+          <li>Established IRAP clinical familiarity</li>
+          <li>Device classification (no NADA)</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Weaknesses</div>
+        <ul class="battle-card-list weaknesses">
+          <li>Orthokine requires 18–24 hour incubation — significant inconvenience</li>
+          <li>EQT post-acquisition strategy is companion animal-focused</li>
+          <li>81.1% lameness improvement across 344 horses BUT concluded "no definitive evidence of effectiveness" due to absent controls</li>
+          <li>High debt load constrains investment</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">EPL Differentiator</div>
+        <div class="battle-card-diff">eCTM is <strong>off-the-shelf</strong> (10-min thaw vs 24-hr incubation), with <strong>controlled trial evidence</strong> (IRAP has none). IRAP series costs $1,500–$3,000 for 3–4 injections with no controlled efficacy data; eCTM is a single injection at $1,095 with prospective RCT evidence.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VetStem -->
+  <div class="battle-card">
+    <div class="battle-card-header">
+      <div class="battle-card-header-text">
+        <div class="battle-card-company">VetStem</div>
+        <div class="battle-card-product">Adipose MSC — VetStem Cell Therapy</div>
+      </div>
+      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="battle-card-body">
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Products</div>
+        <ul class="battle-card-list">
+          <li>VetStem Cell Therapy (autologous adipose MSC)</li>
+          <li>PrecisePRP (allogeneic freeze-dried PRP via PetVivo)</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Strengths</div>
+        <ul class="battle-card-list strengths">
+          <li>22-year track record; ~5,000 credentialed vets; 40,000+ treatments</li>
+          <li>Cell banking</li>
+          <li>PetVivo/MWI distribution for PrecisePRP</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Weaknesses</div>
+        <ul class="battle-card-list weaknesses">
+          <li>48-hour processing delay; invasive surgical fat harvest</li>
+          <li>Variable cell yield; cold chain shipping both directions</li>
+          <li>$2,000–$3,500 per cycle exceeds most insurance sub-limits</li>
+          <li>Only retrospective survey evidence (not controlled)</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">EPL Differentiator</div>
+        <div class="battle-card-diff">eCTM is <strong>off-the-shelf</strong> (no surgery, no 48-hr wait), costs <strong>$1,095 vs $2,000–$3,500</strong>, fits within insurance sub-limits, and has <strong>prospective RCT evidence</strong> vs. VetStem's retrospective owner surveys.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RenoVo -->
+  <div class="battle-card">
+    <div class="battle-card-header">
+      <div class="battle-card-header-text">
+        <div class="battle-card-company">Renovo / Equine Amnio Solutions</div>
+        <div class="battle-card-product">RenoVo — Equine Amnion Allograft</div>
+      </div>
+      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="battle-card-body">
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Products</div>
+        <ul class="battle-card-list">
+          <li>RenoVo (acellular, cryopreserved, liquid equine amniotic tissue allograft)</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Strengths</div>
+        <ul class="battle-card-list strengths">
+          <li>High IL-1ra (12,406 pg/mL); off-the-shelf</li>
+          <li>17,000+ horses treated claim</li>
+          <li>Covetrus exclusive distribution</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Weaknesses</div>
+        <ul class="battle-card-list weaknesses">
+          <li>Published evidence limited — Duddy 2022 (n=100) is non-blinded, no control group</li>
+          <li>2/3 authors had financial conflicts</li>
+          <li>Not FDA risk-reviewed</li>
+          <li>Equine-sourced tissue supply is seasonal/limited</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">EPL Differentiator</div>
+        <div class="battle-card-diff">eCTM has a <strong>prospective, randomized, controlled trial</strong> vs. RenoVo's conflicted, uncontrolled case series. eCTM showed <strong>2.72:1 return-to-performance odds</strong> with 4× fewer adverse events — outcomes RenoVo cannot claim because they never ran a controlled trial.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hilltop Bio -->
+  <div class="battle-card">
+    <div class="battle-card-header">
+      <div class="battle-card-header-text">
+        <div class="battle-card-company">Hilltop Bio</div>
+        <div class="battle-card-product">Regenaflex-RT — Lyophilized Birth Tissue</div>
+      </div>
+      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="battle-card-body">
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Products</div>
+        <ul class="battle-card-list">
+          <li>Regenaflex-RT (lyophilized, room temp stable 18 months)</li>
+          <li>Strydaflex</li>
+          <li>Regenaflex-M</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Strengths</div>
+        <ul class="battle-card-list strengths">
+          <li>Room-temperature storage (no cold chain); &lt;1 min prep</li>
+          <li>96% customer retention; 100% YoY sales growth</li>
+          <li>$5M funding; Midwest Vet Supply distribution</li>
+          <li>"Regenerative Medicine 2.0" positioning</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Weaknesses</div>
+        <ul class="battle-card-list weaknesses">
+          <li>No peer-reviewed clinical publications (most significant limitation)</li>
+          <li>Lyophilization may alter heat-labile biological components</li>
+          <li>Small company scale</li>
+          <li>INAD filing does not equal regulatory approval</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">EPL Differentiator</div>
+        <div class="battle-card-diff">Hilltop's biggest selling point is <strong>convenience</strong>. eCTM's biggest selling point is <strong>evidence</strong>. When a vet is recommending a product for a $100K+ performance horse, do they want to stand behind a product with <strong>zero published data</strong>, or a 138-horse randomized controlled trial? Room-temp convenience doesn't matter if the product hasn't been proven to work.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ArthramidVet -->
+  <div class="battle-card">
+    <div class="battle-card-header">
+      <div class="battle-card-header-text">
+        <div class="battle-card-company">ArthramidVet</div>
+        <div class="battle-card-product">PAAG Hydrogel — Injectable Polyacrylamide</div>
+      </div>
+      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="battle-card-body">
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Products</div>
+        <ul class="battle-card-list">
+          <li>ArthramidVet (2.5% injectable polyacrylamide hydrogel)</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Strengths</div>
+        <ul class="battle-card-list strengths">
+          <li>2021 double-blind trial: 83% lame-free at 6 weeks vs 27% triamcinolone</li>
+          <li>Device classification (no NADA)</li>
+          <li>CSU trial underway; different mechanism (synovial integration)</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">Weaknesses</div>
+        <ul class="battle-card-list weaknesses">
+          <li>Not a biologic — hydrogel device, not tissue regeneration</li>
+          <li>Competing for same treatment budget and insurance sub-limit</li>
+        </ul>
+      </div>
+      <div class="battle-card-section">
+        <div class="battle-card-section-title">EPL Differentiator</div>
+        <div class="battle-card-diff">eCTM offers <strong>biological regeneration</strong> (2,645 proteins, tissue scaffold, structural repair) vs. a synthetic hydrogel. eCTM showed <strong>36% ligament remodeling vs. 0% SOC</strong> — actual tissue repair. These products can be complementary, but for biological regeneration, eCTM is the evidence-backed choice.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('#study-competitive .battle-card-header').forEach(h => {
+  h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+});
+</script>
+
+</div><!-- end study-competitive -->
 
 <!-- ===== PROTEIN CATEGORY MODAL ===== -->
 <div class="protein-modal-overlay" id="proteinModal" onclick="if(event.target===this)closeProteinModal()">
