@@ -11878,103 +11878,76 @@ function initMaintAeCharts() {
 <!-- ===== PRICING TAB ===== -->
 <div class="study-panel" id="study-pricing">
 
-<!-- Pricing sub-tab navigation -->
-<div class="sub-tab-container" id="pricing-subtabs" style="margin-bottom: var(--space-6);">
-  <button class="sub-tab-btn active" data-pricingtab="volume">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"/></svg>
-    Volume Discount
-  </button>
-  <button class="sub-tab-btn" data-pricingtab="champion">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 22V8h4v14"/><path d="M6 14l2-6h8l2 6"/></svg>
-    Legacy Champion
-  </button>
-  <button class="sub-tab-btn" data-pricingtab="founder">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    Legacy Founder
-  </button>
-</div>
+<div class="section-label">PRICING</div>
+<h2 class="section-title" style="margin-bottom: var(--space-2);">Pricing &amp; Products</h2>
+<p class="section-desc" style="margin-bottom: var(--space-6);">Volume discount pricing, case study transition, and product expansion roadmap</p>
 
-<!-- ===== VOLUME DISCOUNT ===== -->
-<div class="pricing-panel active" id="pricing-volume">
-
-<div class="section-label">BASE PRICING</div>
-<h2 class="section-title" style="margin-bottom: var(--space-2);">Volume Discount Pricing</h2>
-<p class="section-desc" style="margin-bottom: var(--space-6);">Standard pricing with tiered volume discounts. Free shipping on all orders.</p>
-
-<div class="data-table-wrap animate-in">
-  <table class="data-table pricing-table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Vial Size</th>
-        <th>Vial Base Price</th>
-        <th>Tier 1 <span class="tier-label">(2–4 Vials)</span></th>
-        <th>Tier 2 <span class="tier-label">(5–12 Vials)</span></th>
-        <th>Tier 3 <span class="tier-label">(13–24 Vials)</span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="discount-row">
-        <td colspan="3" style="text-align:right; font-weight:600;">Discount %</td>
-        <td><span class="discount-badge">3%</span></td>
-        <td><span class="discount-badge">8%</span></td>
-        <td><span class="discount-badge">12%</span></td>
-      </tr>
-      <tr>
-        <td class="product-name">equicenta™ CTM</td>
-        <td>1.5 mL</td>
-        <td class="price-base">$1,495</td>
-        <td class="price-cell">$1,451</td>
-        <td class="price-cell">$1,376</td>
-        <td class="price-cell price-best">$1,316</td>
-      </tr>
-      <tr>
-        <td class="product-name">maintain by equicenta™</td>
-        <td>3.0 mL</td>
-        <td class="price-base">$1,335</td>
-        <td class="price-cell">$1,295</td>
-        <td class="price-cell">$1,192</td>
-        <td class="price-cell price-best">$1,140</td>
-      </tr>
-      <tr>
-        <td class="product-name">maintain by equicenta™</td>
-        <td>1.5 mL</td>
-        <td class="price-base">$775</td>
-        <td class="price-cell">$752</td>
-        <td class="price-cell">$692</td>
-        <td class="price-cell price-best">$662</td>
-      </tr>
-      <tr class="shipping-row">
-        <td colspan="2" style="text-align:right; font-weight:600;">Free Shipping</td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Savings comparison vs base -->
-<div class="pricing-savings-card animate-in" style="margin-top: var(--space-6);">
-  <div class="savings-header">Savings vs. Base Price</div>
-  <div class="savings-grid">
-    <div class="savings-item">
-      <div class="savings-product">equicenta™ CTM</div>
-      <div class="savings-amount">Save up to <strong>$179</strong>/vial</div>
-      <div class="savings-pct">12% off at Tier 3</div>
-    </div>
-    <div class="savings-item">
-      <div class="savings-product">maintain 3.0 mL</div>
-      <div class="savings-amount">Save up to <strong>$195</strong>/vial</div>
-      <div class="savings-pct">15% off at Tier 3</div>
-    </div>
-    <div class="savings-item">
-      <div class="savings-product">maintain 1.5 mL</div>
-      <div class="savings-amount">Save up to <strong>$113</strong>/vial</div>
-      <div class="savings-pct">15% off at Tier 3</div>
-    </div>
+<!-- KPI Cards -->
+<div class="kpi-grid animate-in" style="grid-template-columns: repeat(4, 1fr); margin-bottom: var(--space-6);">
+  <div class="kpi-card" style="text-align:center;">
+    <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">eCTM BASE</div>
+    <div class="kpi-value" style="font-size: var(--text-xl);">$1,095</div>
+    <div class="kpi-label">Volume discounts 3&ndash;12%</div>
   </div>
+  <div class="kpi-card" style="text-align:center;">
+    <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">MNT 1.5ML</div>
+    <div class="kpi-value" style="font-size: var(--text-xl);">$425</div>
+    <div class="kpi-label">Follow-up therapy</div>
+  </div>
+  <div class="kpi-card" style="text-align:center;">
+    <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">MNT 3.0ML</div>
+    <div class="kpi-value" style="font-size: var(--text-xl);">$625</div>
+    <div class="kpi-label">Larger format</div>
+  </div>
+  <div class="kpi-card" style="text-align:center;">
+    <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">LTV PER HORSE</div>
+    <div class="kpi-value" style="font-size: var(--text-xl);">$2,370</div>
+    <div class="kpi-label">Treat &rarr; Maintain &rarr; Retain</div>
+  </div>
+</div>
+
+<!-- Two-column: eCTM tiers + Maintain tiers -->
+<div class="charts-grid two-col animate-in" style="margin-bottom: var(--space-6);">
+
+  <!-- eCTM Volume Discount Tiers -->
+  <div class="chart-card">
+    <div class="chart-header"><div>
+      <div class="chart-title">eCTM Volume Discount Tiers</div>
+      <div class="chart-subtitle">equicenta CTM 1.5mL pricing by order volume</div>
+    </div></div>
+    <table class="data-table" style="font-size: var(--text-sm); margin-top: var(--space-3);">
+      <thead><tr><th>Tier</th><th>Price</th><th>Volume</th><th>Discount</th></tr></thead>
+      <tbody>
+        <tr style="font-weight:700;"><td>Base</td><td style="font-weight:800;">$1,095</td><td>1 unit</td><td>&mdash;</td></tr>
+        <tr><td>Tier 1</td><td style="font-weight:700;">$1,062</td><td>2&ndash;4 units</td><td>3% off</td></tr>
+        <tr><td>Tier 2</td><td style="font-weight:700;">$1,007</td><td>5&ndash;12 units</td><td>8% off</td></tr>
+        <tr><td>Tier 3</td><td style="font-weight:700;">$964</td><td>13&ndash;24 units</td><td>12% off</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Maintain Volume Discount Tiers -->
+  <div class="chart-card">
+    <div class="chart-header"><div>
+      <div class="chart-title">Maintain Volume Discount Tiers</div>
+      <div class="chart-subtitle">equicenta Maintain pricing by format and volume</div>
+    </div></div>
+    <table class="data-table" style="font-size: var(--text-sm); margin-top: var(--space-3);">
+      <thead><tr><th>Product</th><th>Price</th><th>Volume</th><th>Discount</th></tr></thead>
+      <tbody>
+        <tr style="font-weight:700;"><td>Maintain 1.5mL (Base)</td><td style="font-weight:800;">$425</td><td>1 unit</td><td>&mdash;</td></tr>
+        <tr><td>Maintain 1.5mL (Tier 1)</td><td style="font-weight:700;">$412</td><td>2&ndash;4 units</td><td>3% off</td></tr>
+        <tr><td>Maintain 1.5mL (Tier 2)</td><td style="font-weight:700;">$391</td><td>5&ndash;12 units</td><td>8% off</td></tr>
+        <tr><td>Maintain 1.5mL (Tier 3)</td><td style="font-weight:700;">$374</td><td>13&ndash;24 units</td><td>12% off</td></tr>
+        <tr style="border-top: 2px solid var(--color-border);"></tr>
+        <tr style="font-weight:700;"><td>Maintain 3.0mL (Base)</td><td style="font-weight:800;">$625</td><td>1 unit</td><td>&mdash;</td></tr>
+        <tr><td>Maintain 3.0mL (Tier 1)</td><td style="font-weight:700;">$606</td><td>2&ndash;4 units</td><td>3% off</td></tr>
+        <tr><td>Maintain 3.0mL (Tier 2)</td><td style="font-weight:700;">$575</td><td>5&ndash;12 units</td><td>8% off</td></tr>
+        <tr><td>Maintain 3.0mL (Tier 3)</td><td style="font-weight:700;">$550</td><td>13&ndash;24 units</td><td>12% off</td></tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
 <!-- Ordering Information -->
@@ -11984,247 +11957,13 @@ function initMaintAeCharts() {
     <h3>Ordering Information</h3>
   </div>
   <ul class="pricing-info-list">
+    <li>Free shipping on all orders</li>
     <li>Orders of 25+ vials must be placed directly through an EPL representative</li>
     <li>All invoices will reflect the vial base price</li>
     <li>Orders are shipped on Mondays &amp; Tuesdays only</li>
     <li>For special shipping requests, please coordinate directly with your EPL representative</li>
   </ul>
 </div>
-
-</div><!-- end pricing-volume -->
-
-<!-- ===== LEGACY CHAMPION ===== -->
-<div class="pricing-panel" id="pricing-champion">
-
-<div class="section-label">LEGACY PROGRAM</div>
-<h2 class="section-title" style="margin-bottom: var(--space-2);">Legacy Champion Pricing</h2>
-<p class="section-desc" style="margin-bottom: var(--space-6);">Enhanced pricing for Legacy Champion partners. Up to 32% off base pricing with volume tiers.</p>
-
-<div class="data-table-wrap animate-in">
-  <table class="data-table pricing-table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Vial Size</th>
-        <th>Vial Base Price</th>
-        <th>Tier 1 <span class="tier-label">(2–4 Vials)</span></th>
-        <th>Tier 2 <span class="tier-label">(5–12 Vials)</span></th>
-        <th>Tier 3 <span class="tier-label">(13–24 Vials)</span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="discount-row">
-        <td colspan="3" style="text-align:right; font-weight:600;">Discount %</td>
-        <td><span class="discount-badge champion-badge">20%</span></td>
-        <td><span class="discount-badge champion-badge">23%</span></td>
-        <td><span class="discount-badge champion-badge">28%</span></td>
-      </tr>
-      <tr>
-        <td class="product-name">equicenta™ CTM</td>
-        <td>1.5 mL</td>
-        <td class="price-base">$1,196</td>
-        <td class="price-cell">$1,160</td>
-        <td class="price-cell">$1,100</td>
-        <td class="price-cell price-best">$1,052</td>
-      </tr>
-      <tr>
-        <td class="product-name">maintain by equicenta™</td>
-        <td>3.0 mL</td>
-        <td class="price-base">$1,068</td>
-        <td class="price-cell">$1,036</td>
-        <td class="price-cell">$983</td>
-        <td class="price-cell price-best">$940</td>
-      </tr>
-      <tr>
-        <td class="product-name">maintain by equicenta™</td>
-        <td>1.5 mL</td>
-        <td class="price-base">$620</td>
-        <td class="price-cell">$602</td>
-        <td class="price-cell">$571</td>
-        <td class="price-cell price-best">$546</td>
-      </tr>
-      <tr class="shipping-row">
-        <td colspan="2" style="text-align:right; font-weight:600;">Free Shipping</td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Savings comparison vs base -->
-<div class="pricing-savings-card animate-in" style="margin-top: var(--space-6);">
-  <div class="savings-header">Savings vs. Base Price</div>
-  <div class="savings-grid">
-    <div class="savings-item">
-      <div class="savings-product">equicenta™ CTM</div>
-      <div class="savings-amount">Save up to <strong>$443</strong>/vial</div>
-      <div class="savings-pct">32% off at Tier 3</div>
-    </div>
-    <div class="savings-item">
-      <div class="savings-product">maintain 3.0 mL</div>
-      <div class="savings-amount">Save up to <strong>$395</strong>/vial</div>
-      <div class="savings-pct">30% off at Tier 3</div>
-    </div>
-    <div class="savings-item">
-      <div class="savings-product">maintain 1.5 mL</div>
-      <div class="savings-amount">Save up to <strong>$229</strong>/vial</div>
-      <div class="savings-pct">30% off at Tier 3</div>
-    </div>
-  </div>
-</div>
-
-<!-- Program Requirements -->
-<div class="pricing-info-card animate-in" style="margin-top: var(--space-6);">
-  <div class="pricing-info-header">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-    <h3>Program Requirements</h3>
-  </div>
-  <ul class="pricing-info-list">
-    <li><strong>Cases:</strong> At least 3 documented cases per year (CTM and/or Maintain) with owner testimonials. Each with full Case Study Paperwork (diagnosis, protocol, follow up, and imaging).</li>
-    <li><strong>Education:</strong> 1 live or virtual educational activity per year. Regional CE talk, local meeting, or EPL Webinar panelist.</li>
-    <li><strong>Digital Presence:</strong> Minimum 3 social posts/year featuring equicenta or Maintain: case pearls or outcome summaries. Tag @EPL and link to EPL website.</li>
-    <li><strong>Feedback:</strong> Complete quarterly product feedback surveys.</li>
-    <li><strong>Testimonials:</strong> Client testimonials with the case studies done.</li>
-  </ul>
-</div>
-
-<!-- Ordering Information -->
-<div class="pricing-info-card animate-in" style="margin-top: var(--space-4);">
-  <div class="pricing-info-header">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-    <h3>Ordering Information</h3>
-  </div>
-  <ul class="pricing-info-list">
-    <li>Orders of 25+ vials must be placed directly through an EPL representative</li>
-    <li>All invoices will reflect the vial base price</li>
-    <li>Orders are shipped on Mondays &amp; Tuesdays only</li>
-    <li>For special shipping requests, please coordinate directly with your EPL representative</li>
-  </ul>
-</div>
-
-</div><!-- end pricing-champion -->
-
-<!-- ===== LEGACY FOUNDER ===== -->
-<div class="pricing-panel" id="pricing-founder">
-
-<div class="section-label">LEGACY PROGRAM</div>
-<h2 class="section-title" style="margin-bottom: var(--space-2);">Legacy Founder Pricing</h2>
-<p class="section-desc" style="margin-bottom: var(--space-6);">Deepest discounts for Legacy Founder partners. Up to 37% off base pricing with volume tiers.</p>
-
-<div class="data-table-wrap animate-in">
-  <table class="data-table pricing-table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Vial Size</th>
-        <th>Vial Base Price</th>
-        <th>Tier 1 <span class="tier-label">(2–4 Vials)</span></th>
-        <th>Tier 2 <span class="tier-label">(5–12 Vials)</span></th>
-        <th>Tier 3 <span class="tier-label">(13–24 Vials)</span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="discount-row">
-        <td colspan="3" style="text-align:right; font-weight:600;">Discount %</td>
-        <td><span class="discount-badge founder-badge">25%</span></td>
-        <td><span class="discount-badge founder-badge">28%</span></td>
-        <td><span class="discount-badge founder-badge">33%</span></td>
-      </tr>
-      <tr>
-        <td class="product-name">equicenta™ CTM</td>
-        <td>1.5 mL</td>
-        <td class="price-base">$1,121</td>
-        <td class="price-cell">$1,088</td>
-        <td class="price-cell">$1,032</td>
-        <td class="price-cell price-best">$987</td>
-      </tr>
-      <tr>
-        <td class="product-name">maintain by equicenta™</td>
-        <td>3.0 mL</td>
-        <td class="price-base">$1,001</td>
-        <td class="price-cell">$972</td>
-        <td class="price-cell">$922</td>
-        <td class="price-cell price-best">$882</td>
-      </tr>
-      <tr>
-        <td class="product-name">maintain by equicenta™</td>
-        <td>1.5 mL</td>
-        <td class="price-base">$581</td>
-        <td class="price-cell">$564</td>
-        <td class="price-cell">$535</td>
-        <td class="price-cell price-best">$512</td>
-      </tr>
-      <tr class="shipping-row">
-        <td colspan="2" style="text-align:right; font-weight:600;">Free Shipping</td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-        <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Savings comparison vs base -->
-<div class="pricing-savings-card animate-in" style="margin-top: var(--space-6);">
-  <div class="savings-header">Savings vs. Base Price</div>
-  <div class="savings-grid">
-    <div class="savings-item">
-      <div class="savings-product">equicenta™ CTM</div>
-      <div class="savings-amount">Save up to <strong>$508</strong>/vial</div>
-      <div class="savings-pct">34% off at Tier 3</div>
-    </div>
-    <div class="savings-item">
-      <div class="savings-product">maintain 3.0 mL</div>
-      <div class="savings-amount">Save up to <strong>$453</strong>/vial</div>
-      <div class="savings-pct">34% off at Tier 3</div>
-    </div>
-    <div class="savings-item">
-      <div class="savings-product">maintain 1.5 mL</div>
-      <div class="savings-amount">Save up to <strong>$263</strong>/vial</div>
-      <div class="savings-pct">34% off at Tier 3</div>
-    </div>
-  </div>
-</div>
-
-<!-- Program Requirements -->
-<div class="pricing-info-card animate-in" style="margin-top: var(--space-6);">
-  <div class="pricing-info-header">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-    <h3>Program Requirements</h3>
-  </div>
-  <ul class="pricing-info-list">
-    <li><strong>Cases:</strong> At least 6 documented cases per year (CTM and/or Maintain) with owner testimonials. Each with full Case Study Paperwork (diagnosis, protocol, follow up, and imaging).</li>
-    <li><strong>Education:</strong> 2 live educational activities per year. Could be a conference lecture or wet lab (AAEP, ACVS, VetPD or regional CE) or EPL-hosted webinar or podcast panel. Client-based meeting at clinic and they co-host.</li>
-    <li><strong>Digital Presence:</strong> Minimum 4 social posts/year featuring equicenta or maintain: case pearls or outcome summaries. Tag @EPL and link to EPL website.</li>
-    <li><strong>Advisory &amp; Research:</strong> Participate in 2 advisory board calls per year. Reasonable availability for co-authoring abstracts or manuscripts when data supports it.</li>
-    <li><strong>Testimonials:</strong> Client testimonials with the case studies.</li>
-  </ul>
-</div>
-
-<!-- Ordering Information -->
-<div class="pricing-info-card animate-in" style="margin-top: var(--space-4);">
-  <div class="pricing-info-header">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-    <h3>Ordering Information</h3>
-  </div>
-  <ul class="pricing-info-list">
-    <li>Orders of 25+ vials must be placed directly through an EPL representative</li>
-    <li>All invoices will reflect the vial base price</li>
-    <li>Orders are shipped on Mondays &amp; Tuesdays only</li>
-    <li>For special shipping requests, please coordinate directly with your EPL representative</li>
-  </ul>
-</div>
-
-</div><!-- end pricing-founder -->
-
-<footer class="site-footer" style="margin-top: var(--space-8);">
-  <div class="footer-left">&#169; 2025 Equine Performance Labs, Austin, TX.</div>
-  <div class="footer-right"><a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a></div>
-</footer>
 
 </div><!-- end study-pricing -->
 
@@ -13463,18 +13202,6 @@ document.querySelectorAll('#study-competitive .battle-card-header').forEach(h =>
 </div>
 
 <script>
-// ========== PRICING TAB NAVIGATION ==========
-document.querySelectorAll('[data-pricingtab]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const tabId = btn.dataset.pricingtab;
-    const container = btn.closest('.sub-tab-container') || btn.parentElement;
-    container.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('pricing-' + tabId).classList.add('active');
-    if (typeof animateIn === 'function') animateIn();
-  });
-});
 
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && document.getElementById('maintainModal').classList.contains('active')) {
