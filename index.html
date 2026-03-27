@@ -1550,10 +1550,22 @@ a:hover { text-decoration: underline; }
 .pricing-kpis {
   grid-template-columns: repeat(3, 1fr);
 }
+#study-pricing .chart-card {
+  min-width: 0;
+  overflow: hidden;
+}
+#study-pricing .data-table {
+  table-layout: auto;
+  width: 100%;
+}
 @media (max-width: 768px) {
   #study-pricing { padding: var(--space-4) var(--space-3); }
   .pricing-kpis { grid-template-columns: 1fr !important; }
   #study-pricing .charts-grid.two-col { grid-template-columns: 1fr; }
+  #study-pricing .chart-card { max-width: 100%; }
+  #study-pricing .data-table { font-size: var(--text-xs); }
+  #study-pricing .data-table th,
+  #study-pricing .data-table td { padding: var(--space-2) var(--space-2); word-break: break-word; }
   .pricing-table { font-size: var(--text-xs); }
   .pricing-table .tier-label { font-size: 9px; }
   .pricing-table .price-base,
