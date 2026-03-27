@@ -1547,8 +1547,13 @@ a:hover { text-decoration: underline; }
   color: var(--color-text-secondary);
 }
 
+.pricing-kpis {
+  grid-template-columns: repeat(3, 1fr);
+}
 @media (max-width: 768px) {
   #study-pricing { padding: var(--space-4) var(--space-3); }
+  .pricing-kpis { grid-template-columns: 1fr !important; }
+  #study-pricing .charts-grid.two-col { grid-template-columns: 1fr; }
   .pricing-table { font-size: var(--text-xs); }
   .pricing-table .tier-label { font-size: 9px; }
   .pricing-table .price-base,
@@ -11883,7 +11888,7 @@ function initMaintAeCharts() {
 <p class="section-desc" style="margin-bottom: var(--space-6);">Volume discount pricing, case study transition, and product expansion roadmap</p>
 
 <!-- KPI Cards -->
-<div class="kpi-grid animate-in" style="grid-template-columns: repeat(4, 1fr); margin-bottom: var(--space-6);">
+<div class="kpi-grid animate-in pricing-kpis" style="margin-bottom: var(--space-6);">
   <div class="kpi-card" style="text-align:center;">
     <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">eCTM BASE</div>
     <div class="kpi-value" style="font-size: var(--text-xl);">$1,095</div>
@@ -11898,11 +11903,6 @@ function initMaintAeCharts() {
     <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">MNT 3.0ML</div>
     <div class="kpi-value" style="font-size: var(--text-xl);">$625</div>
     <div class="kpi-label">Larger format</div>
-  </div>
-  <div class="kpi-card" style="text-align:center;">
-    <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">LTV PER HORSE</div>
-    <div class="kpi-value" style="font-size: var(--text-xl);">$2,370</div>
-    <div class="kpi-label">Treat &rarr; Maintain &rarr; Retain</div>
   </div>
 </div>
 
