@@ -7158,7 +7158,7 @@ a:hover { text-decoration: underline; }
 <!-- SOC Products Breakdown -->
 <div class="sub-panel" id="sub-clin-design-soc-products">
   <div class="section-title" style="margin-bottom: var(--space-2);">SOC Arm — Product Breakdown</div>
-  <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-6);">Exact products administered to the 47 SOC control horses at Day 0. Treatment was selected per veterinarian judgment from non-steroidal biologic and therapeutic options.</p>
+  <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-6);">Complete product breakdown across all 76 SOC injections (47 horses, 67 conditions, plus 9 additional SOC&rarr;SOC re-injections). Treatment was selected per veterinarian judgment from non-steroidal biologic and therapeutic options.</p>
 
   <div class="kpi-grid animate-in" style="grid-template-columns: repeat(4, 1fr); margin-bottom: var(--space-6);">
     <div class="kpi-card" style="text-align:center;">
@@ -7166,15 +7166,15 @@ a:hover { text-decoration: underline; }
       <div class="kpi-label">SOC Horses</div>
     </div>
     <div class="kpi-card" style="text-align:center;">
-      <div class="kpi-value" style="font-size:var(--text-lg);">23</div>
-      <div class="kpi-label">Distinct Products</div>
+      <div class="kpi-value" style="font-size:var(--text-lg);">67</div>
+      <div class="kpi-label">Conditions Treated</div>
     </div>
     <div class="kpi-card" style="text-align:center;">
-      <div class="kpi-value" style="font-size:var(--text-lg);">13</div>
-      <div class="kpi-label">Product Categories</div>
+      <div class="kpi-value" style="font-size:var(--text-lg);">76</div>
+      <div class="kpi-label">Total SOC Injections</div>
     </div>
     <div class="kpi-card" style="text-align:center;">
-      <div class="kpi-value" style="font-size:var(--text-lg);">36%</div>
+      <div class="kpi-value" style="font-size:var(--text-lg);">37%</div>
       <div class="kpi-label">APS/ProStride Share</div>
     </div>
   </div>
@@ -7183,59 +7183,61 @@ a:hover { text-decoration: underline; }
   <div class="chart-card animate-in" style="margin-bottom: var(--space-6);">
     <div class="chart-header"><div>
       <div class="chart-title">SOC Products by Category</div>
-      <div class="chart-subtitle">Number of horses treated with each product category (n=47 SOC horses)</div>
+      <div class="chart-subtitle">Number of injections per product category (n=76 total SOC injections)</div>
     </div></div>
-    <div class="chart-canvas-wrap" style="height: 340px;"><canvas id="clin-chart-soc-category"></canvas></div>
+    <div class="chart-canvas-wrap" style="height: 380px;"><canvas id="clin-chart-soc-category"></canvas></div>
   </div>
 
   <!-- Detailed table with nested products -->
   <div class="data-table-wrap animate-in">
     <div class="chart-header" style="margin-bottom: var(--space-3);"><div>
       <div class="chart-title">SOC Products — Full Detail</div>
-      <div class="chart-subtitle">Every product used in the SOC arm, grouped by category with individual product counts</div>
+      <div class="chart-subtitle">Every product used in the SOC arm, grouped by category. Counts reflect total injections across all 67 conditions plus 9 SOC&rarr;SOC re-injections.</div>
     </div></div>
     <table class="data-table" style="font-size: var(--text-sm);">
-      <thead><tr><th style="text-align:left;">Category / Product</th><th style="text-align:center;">Horses</th><th style="text-align:center;">% of SOC</th></tr></thead>
+      <thead><tr><th style="text-align:left;">Category / Product</th><th style="text-align:center;">Injections</th><th style="text-align:center;">% of Total</th></tr></thead>
       <tbody>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>APS / ProStride</td><td style="text-align:center;">17</td><td style="text-align:center;">36.2%</td></tr>
-        <tr><td style="padding-left:24px;">ProStride</td><td style="text-align:center;">11</td><td style="text-align:center;">23.4%</td></tr>
-        <tr><td style="padding-left:24px;">ProStride APS</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr><td style="padding-left:24px;">Provet (Dechra)</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>PRP Products</td><td style="text-align:center;">5</td><td style="text-align:center;">10.6%</td></tr>
-        <tr><td style="padding-left:24px;">PRP (generic)</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr><td style="padding-left:24px;">PRP (Zoetis)</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr><td style="padding-left:24px;">Restigem PRP</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Chondroprotective</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr><td style="padding-left:24px;">Adequan (PSGAG)</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Alpha-2-Macroglobulin</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr><td style="padding-left:24px;">A2M / PPP</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>IRAP / ACS Products</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr><td style="padding-left:24px;">Arthrex IRAP</td><td style="text-align:center;">2</td><td style="text-align:center;">4.3%</td></tr>
-        <tr><td style="padding-left:24px;">Arthrex ACP</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Hyaluronic Acid</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr><td style="padding-left:24px;">Hyvisc HA</td><td style="text-align:center;">2</td><td style="text-align:center;">4.3%</td></tr>
-        <tr><td style="padding-left:24px;">Hyalovet HA</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Amnion / Allograft</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr><td style="padding-left:24px;">Renovo</td><td style="text-align:center;">2</td><td style="text-align:center;">4.3%</td></tr>
-        <tr><td style="padding-left:24px;">Amnion Allograft</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Stem Cell Products</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr><td style="padding-left:24px;">VetStem MSC</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr><td style="padding-left:24px;">Fat-Derived Stem Cells</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr><td style="padding-left:24px;">Cultured BM Stem Cells</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Polyacrylamide Gel</td><td style="text-align:center;">2</td><td style="text-align:center;">4.3%</td></tr>
-        <tr><td style="padding-left:24px;">Arthramid</td><td style="text-align:center;">2</td><td style="text-align:center;">4.3%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Regenaflex</td><td style="text-align:center;">2</td><td style="text-align:center;">4.3%</td></tr>
-        <tr><td style="padding-left:24px;">Regenaflex (Hilltop Bio)</td><td style="text-align:center;">2</td><td style="text-align:center;">4.3%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Non-Injectable</td><td style="text-align:center;">3</td><td style="text-align:center;">6.4%</td></tr>
-        <tr><td style="padding-left:24px;">Shockwave</td><td style="text-align:center;">2</td><td style="text-align:center;">4.3%</td></tr>
-        <tr><td style="padding-left:24px;">Laser Therapy</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Bone Marrow Aspirate</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr><td style="padding-left:24px;">Zoetis Centrate BMAC</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Not Specified</td><td style="text-align:center;">1</td><td style="text-align:center;">2.1%</td></tr>
-        <tr style="font-weight:700; border-top: 2px solid var(--color-border);"><td>Total SOC Horses</td><td style="text-align:center;" class="highlight">47</td><td style="text-align:center;" class="highlight">100%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>APS / ProStride</td><td style="text-align:center;">28</td><td style="text-align:center;">36.8%</td></tr>
+        <tr><td style="padding-left:24px;">ProStride</td><td style="text-align:center;">18</td><td style="text-align:center;">23.7%</td></tr>
+        <tr><td style="padding-left:24px;">Provet (Dechra)</td><td style="text-align:center;">6</td><td style="text-align:center;">7.9%</td></tr>
+        <tr><td style="padding-left:24px;">ProStride APS</td><td style="text-align:center;">4</td><td style="text-align:center;">5.3%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>IRAP / ACS Products</td><td style="text-align:center;">12</td><td style="text-align:center;">15.8%</td></tr>
+        <tr><td style="padding-left:24px;">Arthrex ACP</td><td style="text-align:center;">6</td><td style="text-align:center;">7.9%</td></tr>
+        <tr><td style="padding-left:24px;">Arthrex IRAP</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr><td style="padding-left:24px;">IRAP series injections (2nd/3rd)</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>PRP Products</td><td style="text-align:center;">7</td><td style="text-align:center;">9.2%</td></tr>
+        <tr><td style="padding-left:24px;">PRP</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr><td style="padding-left:24px;">PRP (Zoetis)</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr><td style="padding-left:24px;">Restigem PRP</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Hyaluronic Acid</td><td style="text-align:center;">5</td><td style="text-align:center;">6.6%</td></tr>
+        <tr><td style="padding-left:24px;">Hyvisc HA</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr><td style="padding-left:24px;">Hyalovet HA</td><td style="text-align:center;">2</td><td style="text-align:center;">2.6%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Alpha-2-Macroglobulin</td><td style="text-align:center;">4</td><td style="text-align:center;">5.3%</td></tr>
+        <tr><td style="padding-left:24px;">A2M / PPP</td><td style="text-align:center;">4</td><td style="text-align:center;">5.3%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Amnion / Allograft</td><td style="text-align:center;">4</td><td style="text-align:center;">5.3%</td></tr>
+        <tr><td style="padding-left:24px;">Renovo</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr><td style="padding-left:24px;">Amnion Allograft</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Polyacrylamide Gel</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr><td style="padding-left:24px;">Arthramid</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Stem Cell Products</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr><td style="padding-left:24px;">VetStem MSC</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr><td style="padding-left:24px;">Fat-Derived Stem Cells</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr><td style="padding-left:24px;">Cultured BM Stem Cells</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Non-Injectable</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
+        <tr><td style="padding-left:24px;">Shockwave</td><td style="text-align:center;">2</td><td style="text-align:center;">2.6%</td></tr>
+        <tr><td style="padding-left:24px;">Laser Therapy</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Bone Marrow Aspirate</td><td style="text-align:center;">2</td><td style="text-align:center;">2.6%</td></tr>
+        <tr><td style="padding-left:24px;">Zoetis Centrate BMAC</td><td style="text-align:center;">2</td><td style="text-align:center;">2.6%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Regenaflex / Hilltop</td><td style="text-align:center;">2</td><td style="text-align:center;">2.6%</td></tr>
+        <tr><td style="padding-left:24px;">Regenaflex (Hilltop Bio)</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr><td style="padding-left:24px;">Regional Limb Perfusion (Hilltop)</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Chondroprotective</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr><td style="padding-left:24px;">Adequan (PSGAG)</td><td style="text-align:center;">1</td><td style="text-align:center;">1.3%</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td>Not Specified</td><td style="text-align:center;">2</td><td style="text-align:center;">2.6%</td></tr>
+        <tr style="font-weight:700; border-top: 2px solid var(--color-border);"><td>Total SOC Injections</td><td style="text-align:center;" class="highlight">76</td><td style="text-align:center;" class="highlight">100%</td></tr>
       </tbody>
     </table>
-    <p style="color: var(--color-text-muted); font-size: 12px; margin-top: 8px;">Source: Clinical-Study-MK2.1.xlsx, &ldquo;Other Tx&rdquo; sheet — Day 0 injection records for all Control (SOC) horses. Product names normalized from raw veterinarian entries. Corticosteroids were excluded from the SOC arm per protocol.</p>
+    <p style="color: var(--color-text-muted); font-size: 12px; margin-top: 8px;">Source: Clinical-Study-MK2.1.xlsx &mdash; &ldquo;LPS&rdquo; sheet (76 Control Day 0 condition records) cross-referenced with &ldquo;Other Tx&rdquo; sheet (injection product names). Multi-condition horses received the same product across conditions. IRAP series injections (2nd/3rd) reflect SOC&rarr;SOC re-injections per protocol. Corticosteroids excluded per protocol.</p>
   </div>
 </div>
 
@@ -10936,20 +10938,20 @@ function initSOCProductsChart(colors) {
   // Category-level data, sorted descending
   var categories = [
     'APS / ProStride',
-    'PRP Products',
-    'A2M / PPP',
     'IRAP / ACS',
+    'PRP Products',
     'Hyaluronic Acid',
+    'A2M / PPP',
     'Amnion / Allograft',
+    'Polyacrylamide',
     'Stem Cells',
     'Non-Injectable',
-    'Polyacrylamide',
-    'Regenaflex',
-    'Chondroprotective',
     'BMAC',
-    'Not Specified'
+    'Regenaflex / Hilltop',
+    'Not Specified',
+    'Chondroprotective'
   ];
-  var counts = [17, 5, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1, 1];
+  var counts = [28, 12, 7, 5, 4, 4, 3, 3, 3, 2, 2, 2, 1];
 
   // Color palette — control orange for the dominant bar, muted tones for the rest
   var barColors = counts.map(function(c, i) {
@@ -10981,7 +10983,7 @@ function initSOCProductsChart(colors) {
           ...d.plugins.tooltip,
           callbacks: {
             label: function(c) {
-              return c.parsed.x + ' horses (' + Math.round(c.parsed.x / 47 * 100) + '% of SOC arm)';
+              return c.parsed.x + ' injections (' + Math.round(c.parsed.x / 76 * 100) + '% of SOC arm)';
             }
           }
         }
@@ -10990,9 +10992,9 @@ function initSOCProductsChart(colors) {
         x: {
           ...d.scales.x,
           beginAtZero: true,
-          max: 20,
+          max: 32,
           grid: { color: colors.divider, drawBorder: false },
-          title: { display: true, text: 'Number of Horses', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } },
+          title: { display: true, text: 'Number of Injections', color: colors.textMuted, font: { family: 'Montserrat', size: 11 } },
           ticks: { ...d.scales.x.ticks, stepSize: 2 }
         },
         y: {
@@ -11014,7 +11016,7 @@ function initSOCProductsChart(colors) {
           ctx2.font = '600 11px Montserrat';
           ctx2.textAlign = 'left';
           ctx2.textBaseline = 'middle';
-          ctx2.fillText(val + ' (' + Math.round(val / 47 * 100) + '%)', x + 6, y);
+          ctx2.fillText(val + ' (' + Math.round(val / 76 * 100) + '%)', x + 6, y);
         });
       }
     }]
