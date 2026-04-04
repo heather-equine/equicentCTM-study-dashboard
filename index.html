@@ -7174,7 +7174,7 @@ a:hover { text-decoration: underline; }
       <div class="kpi-label">Total SOC Injections</div>
     </div>
     <div class="kpi-card" style="text-align:center;">
-      <div class="kpi-value" style="font-size:var(--text-lg);">62%</div>
+      <div class="kpi-value" style="font-size:var(--text-lg);">67%</div>
       <div class="kpi-label">Blood-Derived Therapies</div>
     </div>
   </div>
@@ -7197,14 +7197,14 @@ a:hover { text-decoration: underline; }
     <table class="data-table" style="font-size: var(--text-sm);">
       <thead><tr><th style="text-align:left;">Category</th><th style="text-align:center;">Injections</th><th style="text-align:center;">% of Total</th></tr></thead>
       <tbody>
-        <tr style="font-weight:700; background: var(--color-control); color: #fff;"><td colspan="3">Autologous Blood-Derived Therapies &mdash; 47 injections (61.8%)</td></tr>
+        <tr style="font-weight:700; background: var(--color-control); color: #fff;"><td colspan="3">Autologous Blood-Derived Therapies &mdash; 51 injections (67.1%)</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">APS (Autologous Protein Solution)</td><td style="text-align:center;">28</td><td style="text-align:center;">36.8%</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">ACS / IRAP (Autologous Conditioned Serum)</td><td style="text-align:center;">12</td><td style="text-align:center;">15.8%</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">PRP (Platelet-Rich Plasma)</td><td style="text-align:center;">7</td><td style="text-align:center;">9.2%</td></tr>
-        <tr style="height:8px;"><td colspan="3"></td></tr>
-        <tr style="font-weight:700; background: var(--color-primary); color: #fff;"><td colspan="3">Other Therapies &mdash; 29 injections (38.2%)</td></tr>
-        <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">Hyaluronic Acid</td><td style="text-align:center;">5</td><td style="text-align:center;">6.6%</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">Alpha-2-Macroglobulin (A2M)</td><td style="text-align:center;">4</td><td style="text-align:center;">5.3%</td></tr>
+        <tr style="height:8px;"><td colspan="3"></td></tr>
+        <tr style="font-weight:700; background: var(--color-primary); color: #fff;"><td colspan="3">Other Therapies &mdash; 25 injections (32.9%)</td></tr>
+        <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">Hyaluronic Acid</td><td style="text-align:center;">5</td><td style="text-align:center;">6.6%</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">Birth Tissue Allograft</td><td style="text-align:center;">6</td><td style="text-align:center;">7.9%</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">Stem Cell Therapies (BMAC, Adipose)</td><td style="text-align:center;">5</td><td style="text-align:center;">6.6%</td></tr>
         <tr style="font-weight:700; background: var(--color-surface-2);"><td style="padding-left:12px;">Polyacrylamide Gel</td><td style="text-align:center;">3</td><td style="text-align:center;">3.9%</td></tr>
@@ -10917,20 +10917,20 @@ function initSOCProductsChart(colors) {
     'APS',
     'ACS / IRAP',
     'PRP',
+    'A2M',
     'Birth Tissue Allograft',
-    'Hyaluronic Acid',
     'Stem Cells (BMAC, Adipose)',
-    'Alpha-2-Macroglobulin',
+    'Hyaluronic Acid',
     'Polyacrylamide Gel',
     'Non-Injectable',
     'Not Specified',
     'Chondroprotective'
   ];
-  var counts = [28, 12, 7, 6, 5, 5, 4, 3, 3, 2, 1];
+  var counts = [28, 12, 7, 4, 6, 5, 5, 3, 3, 2, 1];
 
-  // Color palette — orange for blood-derived (first 3), green for the rest
+  // Color palette — orange for blood-derived (first 4), green for the rest
   var barColors = counts.map(function(c, i) {
-    if (i < 3) return colors.control;  // blood-derived therapies in orange
+    if (i < 4) return colors.control;  // blood-derived therapies in orange
     return colors.primary + (i < 6 ? 'CC' : '88');
   });
 
