@@ -3726,7 +3726,251 @@ a:hover { text-decoration: underline; }
 </head>
 <body>
 
+<!-- ===== PIN GATE SECURITY ===== -->
+<div id="pin-gate" style="display:none;">
+  <style>
+    #pin-gate {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--color-bg, #f0f4f0);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .pin-card {
+      background: #fff; border-radius: 16px; padding: 48px 40px;
+      max-width: 400px; width: 90%; text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    [data-theme="dark"] .pin-card { background: #1a1d23; }
+    .pin-logo { width: 64px; height: 64px; margin: 0 auto 16px; }
+    .pin-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem; font-weight: 700; color: var(--color-text, #1a1d23); margin-bottom: 8px;
+    }
+    .pin-subtitle { font-size: 0.85rem; color: var(--color-text-muted, #6b7280); margin-bottom: 24px; }
+    .pin-input {
+      width: 100%; padding: 14px 16px; font-size: 1.1rem; text-align: center;
+      border: 2px solid var(--color-border, #dde1e6); border-radius: 10px;
+      background: var(--color-surface, #fff); color: var(--color-text, #1a1d23);
+      font-family: 'Montserrat', sans-serif; outline: none; transition: border-color 0.2s;
+      letter-spacing: 0.15em;
+    }
+    [data-theme="dark"] .pin-input { background: #23262f; border-color: #3a3f4b; color: #fff; }
+    .pin-input:focus { border-color: #0d3d36; }
+    .pin-input.error { border-color: #ef4444; animation: pinShake 0.4s; }
+    @keyframes pinShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+    .pin-btn {
+      width: 100%; padding: 14px; margin-top: 16px; border: none; border-radius: 10px;
+      background: #0d3d36; color: #fff; font-size: 1rem; font-weight: 600;
+      cursor: pointer; font-family: 'Montserrat', sans-serif; transition: opacity 0.2s;
+    }
+    .pin-btn:hover { opacity: 0.9; }
+    .pin-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .pin-msg { font-size: 0.8rem; margin-top: 12px; min-height: 20px; }
+    .pin-msg.error { color: #ef4444; }
+    .pin-msg.success { color: #16a34a; }
+    .pin-step { display: none; }
+    .pin-step.active { display: block; }
+    .pin-lockout { color: #ef4444; font-size: 0.85rem; margin-top: 12px; }
+    .pin-footer { font-size: 0.75rem; color: var(--color-text-faint, #9ca3af); margin-top: 24px; }
+    .pin-footer a { color: #0d3d36; text-decoration: none; cursor: pointer; }
+    .pin-footer a:hover { text-decoration: underline; }
+  </style>
 
+  <div class="pin-card">
+    <div class="pin-logo">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" fill="#0d3d36"/>
+        <text x="32" y="38" text-anchor="middle" font-family="Cormorant Garamond" font-size="20" font-weight="700" fill="#fff">EPL</text>
+      </svg>
+    </div>
+
+    <!-- Step 1: Returning user — enter personal PIN -->
+    <div class="pin-step" id="pin-step-login">
+      <div class="pin-title">Welcome Back</div>
+      <div class="pin-subtitle">Enter your PIN to access the dashboard</div>
+      <input type="password" class="pin-input" id="pin-login-input" maxlength="8" inputmode="numeric" placeholder="Enter PIN" autocomplete="off">
+      <button class="pin-btn" id="pin-login-btn" onclick="pinLogin()">Unlock</button>
+      <div class="pin-msg" id="pin-login-msg"></div>
+      <div class="pin-footer"><a onclick="pinShowStep('invite')">Use invite code instead</a></div>
+    </div>
+
+    <!-- Step 2: New user — enter invite code -->
+    <div class="pin-step" id="pin-step-invite">
+      <div class="pin-title">equicenta™ CTM</div>
+      <div class="pin-subtitle">Enter your invite code to get started</div>
+      <input type="text" class="pin-input" id="pin-invite-input" placeholder="Invite code" autocomplete="off" style="letter-spacing:0;">
+      <button class="pin-btn" id="pin-invite-btn" onclick="pinVerifyInvite()">Continue</button>
+      <div class="pin-msg" id="pin-invite-msg"></div>
+    </div>
+
+    <!-- Step 3: Create personal PIN -->
+    <div class="pin-step" id="pin-step-create">
+      <div class="pin-title">Create Your PIN</div>
+      <div class="pin-subtitle">Choose a 4–8 digit PIN you'll use to log in</div>
+      <input type="password" class="pin-input" id="pin-create-input" maxlength="8" inputmode="numeric" placeholder="Create PIN">
+      <input type="password" class="pin-input" id="pin-confirm-input" maxlength="8" inputmode="numeric" placeholder="Confirm PIN" style="margin-top:12px;">
+      <button class="pin-btn" onclick="pinCreate()">Set PIN &amp; Enter</button>
+      <div class="pin-msg" id="pin-create-msg"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var INVITE_HASH = '9a910b67a6c03af9b9c0a394f4e010e65364033f5cf93083e37acc08c3113b2f';
+  var SESSION_KEY = 'epl_dash_session';
+  var PIN_KEY = 'epl_dash_pin';
+  var ATTEMPTS_KEY = 'epl_dash_attempts';
+  var LOCKOUT_KEY = 'epl_dash_lockout';
+  var SESSION_HOURS = 24;
+  var MAX_ATTEMPTS = 5;
+  var LOCKOUT_MINUTES = 30;
+
+  // SHA-256 hash function
+  async function sha256(str) {
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  // Check if session is valid
+  function hasValidSession() {
+    var session = localStorage.getItem(SESSION_KEY);
+    if (!session) return false;
+    var expiry = parseInt(session, 10);
+    return Date.now() < expiry;
+  }
+
+  // Check lockout
+  function isLockedOut() {
+    var lockout = localStorage.getItem(LOCKOUT_KEY);
+    if (!lockout) return false;
+    if (Date.now() < parseInt(lockout, 10)) return true;
+    localStorage.removeItem(LOCKOUT_KEY);
+    localStorage.removeItem(ATTEMPTS_KEY);
+    return false;
+  }
+
+  function getAttempts() { return parseInt(localStorage.getItem(ATTEMPTS_KEY) || '0', 10); }
+  function setAttempts(n) { localStorage.setItem(ATTEMPTS_KEY, n.toString()); }
+
+  function grantAccess() {
+    var expiry = Date.now() + (SESSION_HOURS * 60 * 60 * 1000);
+    localStorage.setItem(SESSION_KEY, expiry.toString());
+    localStorage.removeItem(ATTEMPTS_KEY);
+    localStorage.removeItem(LOCKOUT_KEY);
+    document.getElementById('pin-gate').style.display = 'none';
+  }
+
+  function showError(id, msg) {
+    var el = document.getElementById(id);
+    el.textContent = msg; el.className = 'pin-msg error';
+    var input = el.previousElementSibling;
+    while (input && input.tagName !== 'INPUT') input = input.previousElementSibling;
+  }
+
+  function showLockoutMsg(id) {
+    var remaining = Math.ceil((parseInt(localStorage.getItem(LOCKOUT_KEY), 10) - Date.now()) / 60000);
+    showError(id, 'Too many attempts. Try again in ' + remaining + ' minutes.');
+  }
+
+  // Expose functions globally
+  window.pinShowStep = function(step) {
+    document.querySelectorAll('.pin-step').forEach(function(s) { s.classList.remove('active'); });
+    document.getElementById('pin-step-' + step).classList.add('active');
+    var input = document.querySelector('#pin-step-' + step + ' .pin-input');
+    if (input) setTimeout(function() { input.focus(); }, 100);
+  };
+
+  window.pinLogin = async function() {
+    if (isLockedOut()) { showLockoutMsg('pin-login-msg'); return; }
+    var input = document.getElementById('pin-login-input');
+    var val = input.value.trim();
+    if (!val) return;
+    var hash = await sha256(val);
+    var stored = localStorage.getItem(PIN_KEY);
+    if (hash === stored) {
+      grantAccess();
+    } else {
+      var attempts = getAttempts() + 1;
+      setAttempts(attempts);
+      if (attempts >= MAX_ATTEMPTS) {
+        localStorage.setItem(LOCKOUT_KEY, (Date.now() + LOCKOUT_MINUTES * 60000).toString());
+        showLockoutMsg('pin-login-msg');
+        document.getElementById('pin-login-btn').disabled = true;
+      } else {
+        showError('pin-login-msg', 'Incorrect PIN. ' + (MAX_ATTEMPTS - attempts) + ' attempts remaining.');
+      }
+      input.classList.add('error');
+      setTimeout(function() { input.classList.remove('error'); }, 500);
+      input.value = '';
+    }
+  };
+
+  window.pinVerifyInvite = async function() {
+    if (isLockedOut()) { showLockoutMsg('pin-invite-msg'); return; }
+    var input = document.getElementById('pin-invite-input');
+    var val = input.value.trim();
+    if (!val) return;
+    var hash = await sha256(val);
+    if (hash === INVITE_HASH) {
+      pinShowStep('create');
+    } else {
+      var attempts = getAttempts() + 1;
+      setAttempts(attempts);
+      if (attempts >= MAX_ATTEMPTS) {
+        localStorage.setItem(LOCKOUT_KEY, (Date.now() + LOCKOUT_MINUTES * 60000).toString());
+        showLockoutMsg('pin-invite-msg');
+        document.getElementById('pin-invite-btn').disabled = true;
+      } else {
+        showError('pin-invite-msg', 'Invalid invite code. ' + (MAX_ATTEMPTS - attempts) + ' attempts remaining.');
+      }
+      input.classList.add('error');
+      setTimeout(function() { input.classList.remove('error'); }, 500);
+      input.value = '';
+    }
+  };
+
+  window.pinCreate = async function() {
+    var pin = document.getElementById('pin-create-input').value.trim();
+    var confirm = document.getElementById('pin-confirm-input').value.trim();
+    if (pin.length < 4) { showError('pin-create-msg', 'PIN must be at least 4 digits.'); return; }
+    if (!/^\d+$/.test(pin)) { showError('pin-create-msg', 'PIN must be numbers only.'); return; }
+    if (pin !== confirm) {
+      showError('pin-create-msg', 'PINs do not match.');
+      document.getElementById('pin-confirm-input').classList.add('error');
+      setTimeout(function() { document.getElementById('pin-confirm-input').classList.remove('error'); }, 500);
+      return;
+    }
+    var hash = await sha256(pin);
+    localStorage.setItem(PIN_KEY, hash);
+    grantAccess();
+  };
+
+  // Enter key support
+  document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Enter') return;
+    var gate = document.getElementById('pin-gate');
+    if (gate.style.display === 'none') return;
+    if (document.getElementById('pin-step-login').classList.contains('active')) pinLogin();
+    else if (document.getElementById('pin-step-invite').classList.contains('active')) pinVerifyInvite();
+    else if (document.getElementById('pin-step-create').classList.contains('active')) pinCreate();
+  });
+
+  // Init: decide which screen to show
+  if (hasValidSession()) {
+    document.getElementById('pin-gate').style.display = 'none';
+  } else {
+    document.getElementById('pin-gate').style.display = 'flex';
+    if (localStorage.getItem(PIN_KEY)) {
+      pinShowStep('login');
+      if (isLockedOut()) showLockoutMsg('pin-login-msg');
+    } else {
+      pinShowStep('invite');
+      if (isLockedOut()) showLockoutMsg('pin-invite-msg');
+    }
+  }
+})();
+</script>
 
 <!-- ===== HEADER ===== -->
 <header class="site-header">
