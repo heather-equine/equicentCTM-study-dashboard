@@ -12345,9 +12345,9 @@ function initMaintAeCharts() {
 <!-- KPI Cards -->
 <div class="kpi-grid animate-in pricing-kpis" style="margin-bottom: var(--space-6);">
   <div class="kpi-card" style="text-align:center;">
-    <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">eCTM BASE</div>
+    <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">eCTM</div>
     <div class="kpi-value" style="font-size: var(--text-xl);">$825</div>
-    <div class="kpi-label">Volume discounts 3&ndash;12%</div>
+    <div class="kpi-label">Per vial &mdash; flat pricing</div>
   </div>
   <div class="kpi-card" style="text-align:center;">
     <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-1);">MNT 1.5ML</div>
@@ -12361,57 +12361,68 @@ function initMaintAeCharts() {
   </div>
 </div>
 
-<!-- Two-column: eCTM tiers + Maintain tiers -->
-<div class="charts-grid two-col animate-in" style="margin-bottom: var(--space-6);">
+<!-- Product Price List -->
+<div class="data-table-wrap animate-in" style="margin-bottom: var(--space-6);">
+  <div class="chart-header"><div>
+    <div class="chart-title">Product Price List</div>
+    <div class="chart-subtitle">Flat pricing &mdash; same price on every order, every time</div>
+  </div></div>
+  <table class="data-table" style="font-size: var(--text-sm); margin-top: var(--space-3);">
+    <thead><tr><th style="text-align:left;">Product</th><th>Size</th><th>Price</th></tr></thead>
+    <tbody>
+      <tr style="font-weight:700;"><td>equicenta™ CTM</td><td style="text-align:center;">1.5 mL</td><td style="text-align:center; font-weight:800;">$825</td></tr>
+      <tr><td>maintain by equicenta™</td><td style="text-align:center;">1.5 mL</td><td style="text-align:center; font-weight:700;">$425</td></tr>
+      <tr><td>maintain by equicenta™</td><td style="text-align:center;">3.0 mL</td><td style="text-align:center; font-weight:700;">$625</td></tr>
+      <tr style="border-top: 2px solid var(--color-border);"><td style="font-weight:600;">Shipping (flat fee)</td><td style="text-align:center;">&mdash;</td><td style="text-align:center; font-weight:700;">$125</td></tr>
+    </tbody>
+  </table>
+</div>
 
-  <!-- eCTM Volume Discount Tiers -->
-  <div class="chart-card">
-    <div class="chart-header"><div>
-      <div class="chart-title">eCTM Volume Discount Tiers</div>
-      <div class="chart-subtitle">equicenta CTM 1.5mL pricing by order volume</div>
-    </div></div>
-    <table class="data-table" style="font-size: var(--text-sm); margin-top: var(--space-3);">
-      <thead><tr><th>Tier</th><th>Price</th><th>Volume</th><th>Discount</th></tr></thead>
-      <tbody>
-        <tr style="font-weight:700;"><td>Base</td><td style="font-weight:800;">$825</td><td>1 unit</td><td>&mdash;</td></tr>
-        <tr><td>Tier 1</td><td style="font-weight:700;">$800</td><td>2&ndash;4 units</td><td>3% off</td></tr>
-        <tr><td>Tier 2</td><td style="font-weight:700;">$759</td><td>5&ndash;12 units</td><td>8% off</td></tr>
-        <tr><td>Tier 3</td><td style="font-weight:700;">$726</td><td>13&ndash;24 units</td><td>12% off</td></tr>
-      </tbody>
-    </table>
+<!-- Loyalty Program -->
+<div class="animate-in" style="background: var(--color-primary); border-radius: var(--radius-xl); padding: var(--space-6); margin-bottom: var(--space-6); color: #fff;">
+  <div style="display:flex; align-items:flex-start; gap: var(--space-4);">
+    <div style="flex-shrink:0; background: rgba(255,255,255,0.15); border-radius: 50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div style="flex:1;">
+      <div style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-2);">Loyalty Reward: Buy 10, Get 2 Free</div>
+      <div style="font-size: var(--text-sm); line-height: 1.7; opacity: 0.92; margin-bottom: var(--space-4);">
+        Every 10 vials of equicenta™ CTM purchased earns <strong>2 bonus vials free</strong>. Purchases accumulate across all orders &mdash; no minimum order size required. Your rep tracks your count toward the next reward.
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3);">
+        <div style="background: rgba(255,255,255,0.12); border-radius: 10px; padding: var(--space-3); text-align:center;">
+          <div style="font-size: 1.6rem; font-weight: 800;">10</div>
+          <div style="font-size: var(--text-xs); opacity: 0.85; margin-top: 2px;">Vials purchased</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.12); border-radius: 10px; padding: var(--space-3); text-align:center;">
+          <div style="font-size: 1.6rem; font-weight: 800;">+2</div>
+          <div style="font-size: var(--text-xs); opacity: 0.85; margin-top: 2px;">Bonus vials free</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.12); border-radius: 10px; padding: var(--space-3); text-align:center;">
+          <div style="font-size: 1.6rem; font-weight: 800;">$1,650</div>
+          <div style="font-size: var(--text-xs); opacity: 0.85; margin-top: 2px;">Value of reward</div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- Maintain Volume Discount Tiers -->
-  <div class="chart-card">
-    <div class="chart-header"><div>
-      <div class="chart-title">Maintain 1.5mL Tiers</div>
-      <div class="chart-subtitle">Maintenance dose pricing by order volume</div>
-    </div></div>
-    <table class="data-table" style="font-size: var(--text-sm); margin-top: var(--space-3);">
-      <thead><tr><th>Tier</th><th>Price</th><th>Volume</th><th>Discount</th></tr></thead>
-      <tbody>
-        <tr style="font-weight:700;"><td>Base</td><td style="font-weight:800;">$425</td><td>1 unit</td><td>&mdash;</td></tr>
-        <tr><td>Tier 1</td><td style="font-weight:700;">$412</td><td>2&ndash;4 units</td><td>3% off</td></tr>
-        <tr><td>Tier 2</td><td style="font-weight:700;">$391</td><td>5&ndash;12 units</td><td>8% off</td></tr>
-        <tr><td>Tier 3</td><td style="font-weight:700;">$374</td><td>13&ndash;24 units</td><td>12% off</td></tr>
-      </tbody>
-    </table>
-
-    <div class="chart-header" style="margin-top: var(--space-5);"><div>
-      <div class="chart-title">Maintain 3.0mL Tiers</div>
-      <div class="chart-subtitle">Bilateral / large joint pricing by order volume</div>
-    </div></div>
-    <table class="data-table" style="font-size: var(--text-sm); margin-top: var(--space-3);">
-      <thead><tr><th>Tier</th><th>Price</th><th>Volume</th><th>Discount</th></tr></thead>
-      <tbody>
-        <tr style="font-weight:700;"><td>Base</td><td style="font-weight:800;">$625</td><td>1 unit</td><td>&mdash;</td></tr>
-        <tr><td>Tier 1</td><td style="font-weight:700;">$606</td><td>2&ndash;4 units</td><td>3% off</td></tr>
-        <tr><td>Tier 2</td><td style="font-weight:700;">$575</td><td>5&ndash;12 units</td><td>8% off</td></tr>
-        <tr><td>Tier 3</td><td style="font-weight:700;">$550</td><td>13&ndash;24 units</td><td>12% off</td></tr>
-      </tbody>
-    </table>
-  </div>
-
+<!-- How It Works -->
+<div class="data-table-wrap animate-in" style="margin-bottom: var(--space-6);">
+  <div class="chart-header"><div>
+    <div class="chart-title">How the Loyalty Reward Works</div>
+    <div class="chart-subtitle">Purchases accumulate across orders &mdash; no time limit, no minimum order</div>
+  </div></div>
+  <table class="data-table" style="font-size: var(--text-sm); margin-top: var(--space-3);">
+    <thead><tr><th style="text-align:left;">Example</th><th>Orders</th><th>Total Spent</th><th>Reward</th><th>Effective Cost/Unit</th></tr></thead>
+    <tbody>
+      <tr><td>Order 2 at a time</td><td style="text-align:center;">5 orders</td><td style="text-align:center;">$8,250</td><td style="text-align:center;">2 free vials</td><td style="text-align:center; font-weight:700;">$687.50</td></tr>
+      <tr><td>Order 3 at a time</td><td style="text-align:center;">3–4 orders</td><td style="text-align:center;">$8,250</td><td style="text-align:center;">2 free vials</td><td style="text-align:center; font-weight:700;">$687.50</td></tr>
+      <tr><td>Order 5 at a time</td><td style="text-align:center;">2 orders</td><td style="text-align:center;">$8,250</td><td style="text-align:center;">2 free vials</td><td style="text-align:center; font-weight:700;">$687.50</td></tr>
+      <tr><td>Order 10 at once</td><td style="text-align:center;">1 order</td><td style="text-align:center;">$8,250</td><td style="text-align:center;">2 free vials</td><td style="text-align:center; font-weight:700;">$687.50</td></tr>
+    </tbody>
+  </table>
+  <p style="color: var(--color-text-muted); font-size: 12px; margin-top: 8px;">Effective cost/unit calculated as $8,250 &divide; 12 total vials (10 purchased + 2 free) = $687.50. Reward resets after each 10-unit milestone.</p>
 </div>
 
 <!-- Ordering Information -->
@@ -12422,8 +12433,9 @@ function initMaintAeCharts() {
   </div>
   <ul class="pricing-info-list">
     <li>Flat $125 shipping fee on all orders</li>
+    <li>Loyalty reward: purchases accumulate across orders &mdash; buy at your pace</li>
+    <li>Your EPL representative tracks your vial count toward the next reward</li>
     <li>Orders of 25+ vials must be placed directly through an EPL representative</li>
-    <li>All invoices will reflect the vial base price</li>
     <li>Orders are shipped on Mondays &amp; Tuesdays only</li>
     <li>For special shipping requests, please coordinate directly with your EPL representative</li>
   </ul>
@@ -12935,7 +12947,7 @@ function initMaintAeCharts() {
       <tbody>
         <tr class="row-ectm">
           <td class="highlight">equicenta CTM</td>
-          <td class="highlight">$726–$825</td>
+          <td class="highlight">$825</td>
           <td>$1,238–$1,650</td>
           <td>Single injection</td>
           <td class="highlight">$1,238–$1,650</td>
@@ -13060,7 +13072,7 @@ function initMaintAeCharts() {
         </div>
         <div style="margin-bottom: var(--space-3);">
           <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">PRICE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">$825 base / $759 Tier 2 / $726 Tier 3</div>
+          <div style="font-size: var(--text-sm); color: var(--color-text);">$825 per vial &mdash; flat pricing</div>
         </div>
         <div>
           <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">COMPETES WITH</div>
@@ -13255,7 +13267,7 @@ function initMaintAeCharts() {
     </div>
     <div class="overview-talk-card">
       <div class="overview-talk-q">"I need a bigger discount to make this work."</div>
-      <div class="overview-talk-a">Order <strong>5 or more vials and the price drops to $759</strong> automatically. No commitments, no forms. If you're doing 2+ cases, you're already there. At <strong>13+ vials per order, you're at $726</strong>. The discounts are built into the order volume — the more you use, the less you pay per unit.</div>
+      <div class="overview-talk-a">We have a simple loyalty program — <strong>buy 10 vials and get 2 free</strong>. That drops your effective cost to <strong>$687.50 per vial</strong>. Purchases accumulate across all your orders, so there's no pressure to buy in bulk. Your rep tracks your count. You're building toward free product with every case you treat.</div>
     </div>
     <div class="overview-talk-card">
       <div class="overview-talk-q">"RenoVo / Hilltop is similar and cheaper."</div>
