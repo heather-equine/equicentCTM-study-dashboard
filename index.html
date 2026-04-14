@@ -4110,7 +4110,7 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
     <div class="header-right">
-      <button class="theme-toggle export-pdf-btn" onclick="exportTabPDF()" aria-label="Export PDF" style="margin-right:4px;" title="Export Tab as PDF">
+      <button class="theme-toggle" onclick="openExportMenu()" aria-label="Export PDF" style="margin-right:4px;" title="Export PDF Brochure">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
       </button>
       <button class="theme-toggle" id="admin-panel-btn" onclick="adminPanelOpen()" aria-label="Admin panel" style="margin-right:4px;" title="Admin Panel">
@@ -4306,30 +4306,17 @@ if (localStorage.getItem('epl_dash_admin') === 'true' && localStorage.getItem('e
   if (mb) mb.style.display = '';
 }
 
-// Export Tab as PDF
-function exportTabPDF() {
-  // Find the active tab name
-  var activeBtn = document.querySelector('.study-tab.active');
-  var tabName = activeBtn ? activeBtn.textContent.trim() : 'Dashboard';
-  
-  // Set the print header tab name
-  var printTabEl = document.getElementById('print-tab-name');
-  if (printTabEl) printTabEl.textContent = tabName;
-
-  // Temporarily switch to light mode for printing
-  var currentTheme = document.documentElement.getAttribute('data-theme');
-  if (currentTheme === 'dark') {
-    document.documentElement.removeAttribute('data-theme');
-  }
-
-  // Trigger print
-  window.print();
-
-  // Restore dark mode if it was on
-  if (currentTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }
+// Export PDF menu
+function openExportMenu() {
+  document.getElementById('export-overlay').style.display = 'flex';
 }
+function closeExportMenu() {
+  document.getElementById('export-overlay').style.display = 'none';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var overlay = document.getElementById('export-overlay');
+  if (overlay) overlay.addEventListener('click', function(e) { if (e.target === this) closeExportMenu(); });
+});
 
 // Auto-fill invite code from URL param (for the invite link flow)
 (function() {
@@ -4345,6 +4332,57 @@ function exportTabPDF() {
 </script>
 
 
+
+<!-- ===== EXPORT PDF OVERLAY ===== -->
+<div id="export-overlay" style="display:none; position:fixed; inset:0; z-index:99997; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+  <div style="background:var(--color-surface); border-radius:16px; padding:32px; max-width:420px; width:90%; box-shadow:0 8px 40px rgba(0,0,0,0.2); font-family:'Montserrat',sans-serif;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+      <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:1.3rem; font-weight:700; color:var(--color-text);">Export PDF Brochure</div>
+      <button onclick="closeExportMenu()" style="background:none;border:none;cursor:pointer;color:var(--color-text-muted);padding:4px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:20px;">Download a branded PDF brochure to share with vets and stakeholders.</div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <a href="exports/equicenta-ctm-overview.pdf" download style="display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--color-surface-2); border-radius:10px; text-decoration:none; color:var(--color-text); transition:background 0.15s;" onmouseover="this.style.background='var(--color-primary-10, rgba(13,61,54,0.08))'" onmouseout="this.style.background='var(--color-surface-2)'">
+        <div style="width:36px;height:36px;border-radius:8px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600; font-size:0.9rem;">equicenta™ CTM Overview</div>
+          <div style="font-size:0.75rem; color:var(--color-text-muted);">Quick reference &mdash; headline numbers, head-to-head, talking points</div>
+        </div>
+      </a>
+      <a href="exports/maintain-by-equicenta-ctm.pdf" download style="display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--color-surface-2); border-radius:10px; text-decoration:none; color:var(--color-text); transition:background 0.15s;" onmouseover="this.style.background='var(--color-primary-10, rgba(13,61,54,0.08))'" onmouseout="this.style.background='var(--color-surface-2)'">
+        <div style="width:36px;height:36px;border-radius:8px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600; font-size:0.9rem;">maintain &mdash; Performance Management</div>
+          <div style="font-size:0.75rem; color:var(--color-text-muted);">Ideal candidates, protocols, comparisons, pricing</div>
+        </div>
+      </a>
+      <a href="exports/equicenta-pricing.pdf" download style="display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--color-surface-2); border-radius:10px; text-decoration:none; color:var(--color-text); transition:background 0.15s;" onmouseover="this.style.background='var(--color-primary-10, rgba(13,61,54,0.08))'" onmouseout="this.style.background='var(--color-surface-2)'">
+        <div style="width:36px;height:36px;border-radius:8px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600; font-size:0.9rem;">Pricing &amp; Products</div>
+          <div style="font-size:0.75rem; color:var(--color-text-muted);">eCTM flat pricing, maintain volume tiers, ordering info</div>
+        </div>
+      </a>
+      <a href="exports/why-ectm-competitive-selling.pdf" download style="display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--color-surface-2); border-radius:10px; text-decoration:none; color:var(--color-text); transition:background 0.15s;" onmouseover="this.style.background='var(--color-primary-10, rgba(13,61,54,0.08))'" onmouseout="this.style.background='var(--color-surface-2)'">
+        <div style="width:36px;height:36px;border-radius:8px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600; font-size:0.9rem;">Why eCTM &mdash; Competitive Selling</div>
+          <div style="font-size:0.75rem; color:var(--color-text-muted);">Evidence comparison, cost per outcome, objection scripts, insurance</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- ===== STUDY SELECTOR ===== -->
 <div class="study-selector-bar">
