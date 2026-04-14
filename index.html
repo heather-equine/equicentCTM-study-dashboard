@@ -11990,92 +11990,27 @@ function initMaintAeCharts() {
 </div>
 <div style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 400; color: var(--color-text); margin-bottom: var(--space-5);" class="animate-in">Who Is <em style="color: var(--color-primary);">maintain</em> For?</div>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-8);" class="animate-in maint-candidates-grid">
-
-  <!-- Card 1: Post-CTM Recovery Horse -->
-  <div class="maint-what-card" style="flex-direction: column; gap: var(--space-3);">
-    <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
-      <div class="maint-what-icon" style="border-radius: 50%; flex-shrink: 0;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      </div>
-      <div>
-        <div class="maint-what-title">Post-Loading Dose Horse</div>
-        <div class="maint-what-text">Horse received equicenta CTM as the loading dose, responded well, now back in work. Transition to maintain every 90 days to protect the treatment investment.</div>
-      </div>
-    </div>
-    <div style="border-top: 1px solid var(--color-divider); padding-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted);"><span style="font-weight: 600; color: var(--color-text);">Replaces:</span> "Wait and see" approach after treatment</div>
+<div class="maint-candidates animate-in" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-8);">
+  <div class="maint-cand-card">
+    <div class="maint-cand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg></div>
+    <div class="maint-cand-title">Actively Competing</div>
+    <div class="maint-cand-text">Horses on a performance maintenance program that are currently competing and need their joints supported</div>
   </div>
-
-  <!-- Card 2: Active Performance Horse -->
-  <div class="maint-what-card" style="flex-direction: column; gap: var(--space-3);">
-    <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
-      <div class="maint-what-icon" style="border-radius: 50%; flex-shrink: 0;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-      </div>
-      <div>
-        <div class="maint-what-title">Active Performance Horse (Sound, Working Hard)</div>
-        <div class="maint-what-text">High-level competition horse with heavy workload. Joints under stress from training and showing. Proactive maintenance instead of waiting for breakdown.</div>
-      </div>
-    </div>
-    <div style="border-top: 1px solid var(--color-divider); padding-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted);"><span style="font-weight: 600; color: var(--color-text);">Replaces:</span> Repeat HA, repeat steroids, Adequan IM</div>
+  <div class="maint-cand-card">
+    <div class="maint-cand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+    <div class="maint-cand-title">Early Changes</div>
+    <div class="maint-cand-text">Horses with early imaging changes or intermittent stiffness but still in full work</div>
   </div>
-
-  <!-- Card 3: Aging Athlete -->
-  <div class="maint-what-card" style="flex-direction: column; gap: var(--space-3);">
-    <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
-      <div class="maint-what-icon" style="border-radius: 50%; flex-shrink: 0;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div>
-        <div class="maint-what-title">Aging Athlete</div>
-        <div class="maint-what-text">Older horse still competing, early OA changes. Not lame enough for CTM, but needs joint support.</div>
-      </div>
-    </div>
-    <div style="border-top: 1px solid var(--color-divider); padding-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted);"><span style="font-weight: 600; color: var(--color-text);">Replaces:</span> Monthly Legend IV, repeat low-dose corticosteroid</div>
+  <div class="maint-cand-card">
+    <div class="maint-cand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="maint-cand-title">Proactive Owners</div>
+    <div class="maint-cand-text">Performance horses whose owners want to be proactive about joint management plans</div>
   </div>
-
-  <!-- Card 4: Multi-Joint Management -->
-  <div class="maint-what-card" style="flex-direction: column; gap: var(--space-3);">
-    <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
-      <div class="maint-what-icon" style="border-radius: 50%; flex-shrink: 0;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-      </div>
-      <div>
-        <div class="maint-what-title">Multi-Joint Management</div>
-        <div class="maint-what-text">Horse with 2–3 joints needing ongoing support — bilateral hocks, bilateral stifles. Use 3.0mL for bilateral or multi-joint protocols.</div>
-      </div>
-    </div>
-    <div style="border-top: 1px solid var(--color-divider); padding-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted);"><span style="font-weight: 600; color: var(--color-text);">Replaces:</span> Repeated blood draws for PRP/IRAP per joint</div>
+  <div class="maint-cand-card">
+    <div class="maint-cand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div>
+    <div class="maint-cand-title">Post-eCTM Treatment</div>
+    <div class="maint-cand-text">Horses that received equicenta™ CTM during injury and are now being maintained in work</div>
   </div>
-
-  <!-- Card 5: Pre-Season / Post-Season -->
-  <div class="maint-what-card" style="flex-direction: column; gap: var(--space-3);">
-    <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
-      <div class="maint-what-icon" style="border-radius: 50%; flex-shrink: 0;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      </div>
-      <div>
-        <div class="maint-what-title">Pre-Season / Post-Season Tune-Up</div>
-        <div class="maint-what-text">Before the show season: prep joints for the workload ahead. After a heavy season: support recovery and joint health.</div>
-      </div>
-    </div>
-    <div style="border-top: 1px solid var(--color-divider); padding-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted);"><span style="font-weight: 600; color: var(--color-text);">Replaces:</span> Pre-season steroid, post-season rest only</div>
-  </div>
-
-  <!-- Card 6: "Warms Out of It" Horse -->
-  <div class="maint-what-card" style="flex-direction: column; gap: var(--space-3);">
-    <div style="display: flex; align-items: flex-start; gap: var(--space-3);">
-      <div class="maint-what-icon" style="border-radius: 50%; flex-shrink: 0;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
-      </div>
-      <div>
-        <div class="maint-what-title">The "Warms Out of It" Horse</div>
-        <div class="maint-what-text">Subtle stiffness, works out of it, no clinical lameness. Owner notices horse is "not quite right." Too early for CTM, perfect for maintain.</div>
-      </div>
-    </div>
-    <div style="border-top: 1px solid var(--color-divider); padding-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted);"><span style="font-weight: 600; color: var(--color-text);">Replaces:</span> Repeat steroid or "let's just keep an eye on it"</div>
-  </div>
-
 </div>
 
 <!-- WHY MAINTAIN -->
