@@ -3734,8 +3734,110 @@ a:hover { text-decoration: underline; }
 }
 
 </style>
+<!-- Print Stylesheet for PDF Export -->
+<style media="print">
+  /* Hide everything except active tab content */
+  #pin-gate, #admin-overlay, .site-header, .study-nav, .site-footer,
+  .export-pdf-btn, .theme-toggle, #admin-panel-btn,
+  .sub-tab-container, .tab-btn, .clin-tab-nav,
+  .study-selector-bar, .tab-nav-container, .header-right,
+  .maint-hero-pills { display: none !important; }
+
+  /* Show only active panel */
+  .study-panel { display: none !important; }
+  .study-panel.active { display: block !important; }
+
+  /* Remove backgrounds and shadows for clean print */
+  body {
+    background: #fff !important;
+    color: #1a1d23 !important;
+    font-size: 11pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Print header */
+  .print-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16pt 0;
+    border-bottom: 2pt solid #0d3d36;
+    margin-bottom: 20pt;
+  }
+  .print-header-brand {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16pt;
+    font-weight: 700;
+    color: #0d3d36;
+  }
+  .print-header-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8pt;
+    color: #6b7280;
+  }
+
+  /* Print footer */
+  .print-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8pt 0;
+    border-top: 1pt solid #dde1e6;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 7pt;
+    color: #9ca3af;
+    text-align: center;
+  }
+
+  /* Clean up card/section styling for print */
+  .study-panel.active {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Force colors on key elements */
+  .kpi-value { color: #0d3d36 !important; }
+  .highlight { color: #0d3d36 !important; font-weight: 700 !important; }
+  .comp-callout, [style*="background: var(--color-primary)"] {
+    background: #0d3d36 !important;
+    color: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 0.6in 0.5in 0.8in 0.5in;
+    size: letter;
+  }
+
+  /* Prevent page breaks inside cards */
+  .kpi-card, .chart-card, .data-table-wrap, .maint-what-card,
+  .maint-cand-card, .maint-talk-card, .overview-talk-card,
+  .battle-card, .clin-conclusion-item, .reframe-card {
+    break-inside: avoid !important;
+  }
+
+  /* Expand collapsed battle cards for print */
+  .battle-card-body { display: block !important; }
+  .battle-card-chevron { display: none !important; }
+</style>
 </head>
 <body>
+
+<!-- Print-only header and footer (hidden on screen) -->
+<div class="print-header" style="display:none;">
+  <div>
+    <div class="print-header-brand">equicenta™ CTM Dashboard</div>
+    <div class="print-header-sub">Equine Performance Labs, Austin, TX</div>
+  </div>
+  <div class="print-header-sub" id="print-tab-name"></div>
+</div>
+<div class="print-footer" style="display:none;">
+  &copy; 2026 Equine Performance Labs, LLC &mdash; Confidential &mdash; Not for distribution without authorization
+</div>
 
 <!-- ===== PIN GATE SECURITY ===== -->
 <div id="pin-gate" style="display:none;">
@@ -4008,6 +4110,9 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
     <div class="header-right">
+      <button class="theme-toggle export-pdf-btn" onclick="exportTabPDF()" aria-label="Export PDF" style="margin-right:4px;" title="Export Tab as PDF">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+      </button>
       <button class="theme-toggle" id="admin-panel-btn" onclick="adminPanelOpen()" aria-label="Admin panel" style="margin-right:4px;" title="Admin Panel">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </button>
@@ -4199,6 +4304,31 @@ document.getElementById('admin-pin-input').addEventListener('keydown', function(
 if (localStorage.getItem('epl_dash_admin') === 'true' && localStorage.getItem('epl_dash_session')) {
   var mb = document.getElementById('maintain-tab-btn');
   if (mb) mb.style.display = '';
+}
+
+// Export Tab as PDF
+function exportTabPDF() {
+  // Find the active tab name
+  var activeBtn = document.querySelector('.study-tab.active');
+  var tabName = activeBtn ? activeBtn.textContent.trim() : 'Dashboard';
+  
+  // Set the print header tab name
+  var printTabEl = document.getElementById('print-tab-name');
+  if (printTabEl) printTabEl.textContent = tabName;
+
+  // Temporarily switch to light mode for printing
+  var currentTheme = document.documentElement.getAttribute('data-theme');
+  if (currentTheme === 'dark') {
+    document.documentElement.removeAttribute('data-theme');
+  }
+
+  // Trigger print
+  window.print();
+
+  // Restore dark mode if it was on
+  if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
 }
 
 // Auto-fill invite code from URL param (for the invite link flow)
