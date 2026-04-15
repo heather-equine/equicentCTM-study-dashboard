@@ -4393,9 +4393,10 @@ async function adminVerifyPin() {
     document.getElementById('admin-step-dashboard').style.display = 'block';
     adminShowSession();
     adminGenerateQR();
-    // Show hidden maintain tab for admin and persist
+    // Show hidden maintain tab and admin-only tabs, persist flag
     var maintBtn = document.getElementById('maintain-tab-btn');
     if (maintBtn) maintBtn.style.display = '';
+    document.querySelectorAll('.admin-only-tab').forEach(function(el) { el.style.display = ''; });
     localStorage.setItem('epl_dash_admin', 'true');
   } else {
     document.getElementById('admin-pin-msg').textContent = 'Incorrect PIN.';
@@ -4469,6 +4470,7 @@ document.getElementById('admin-pin-input').addEventListener('keydown', function(
 if (localStorage.getItem('epl_dash_admin') === 'true' && localStorage.getItem('epl_dash_session')) {
   var mb = document.getElementById('maintain-tab-btn');
   if (mb) mb.style.display = '';
+  document.querySelectorAll('.admin-only-tab').forEach(function(el) { el.style.display = ''; });
 }
 
 // Export PDF menu
@@ -4580,7 +4582,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
       Educational Videos
     </button>
-    <button class="study-tab" data-study="competitive">
+    <button class="study-tab admin-only-tab" data-study="competitive" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
       Why eCTM
     </button>
