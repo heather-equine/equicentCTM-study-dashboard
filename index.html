@@ -3002,6 +3002,110 @@ a:hover { text-decoration: underline; }
   color: var(--color-text-muted);
 }
 
+/* ========== CLINICAL STUDY OVERVIEW CARDS ========== */
+.clin-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+@media (max-width: 900px) { .clin-overview-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .clin-overview-grid { grid-template-columns: 1fr; } }
+.clin-overview-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  cursor: pointer;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.clin-overview-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+.clin-overview-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.clin-overview-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.clin-overview-card-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.clin-overview-card-subtitle {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+.clin-overview-stats {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.clin-overview-stat-value {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+.clin-overview-stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.clin-overview-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.clin-overview-detail {
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.4;
+}
+.clin-overview-check {
+  color: var(--color-primary);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.clin-overview-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-10);
+  color: var(--color-primary);
+}
+.clin-overview-cta {
+  font-size: var(--text-xs);
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-top: auto;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.clin-overview-card:hover .clin-overview-cta { opacity: 1; }
+
 /* ========== CLINICAL STUDY DESIGN ========== */
 .clin-flow-container {
   background: var(--color-surface);
@@ -4541,15 +4645,15 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="overview-study-body">
       <div class="overview-finding">
         <span class="overview-finding-icon">✓</span>
-        <span><strong>87% pain reduction</strong> vs SOC — significant by Week 2 (p&lt;0.05)</span>
+        <span><strong>87% cumulative pain reduction</strong> vs SOC — significant by Week 2 (p&lt;0.05)</span>
       </div>
       <div class="overview-finding">
         <span class="overview-finding-icon">✓</span>
-        <span><strong>93% swelling reduction</strong> — significant by Week 2 (p&lt;0.03)</span>
+        <span><strong>93% cumulative swelling reduction</strong> — significant by Week 2 (p&lt;0.03)</span>
       </div>
       <div class="overview-finding">
         <span class="overview-finding-icon">✓</span>
-        <span><strong>89% lameness reduction</strong> — significant by Week 4 (p&lt;0.02)</span>
+        <span><strong>89% cumulative lameness reduction</strong> — significant by Week 4 (p&lt;0.02)</span>
       </div>
       <div class="overview-finding">
         <span class="overview-finding-icon">✓</span>
@@ -4675,17 +4779,17 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="overview-compare-soc">Standard of Care</div>
   </div>
   <div class="overview-compare-row">
-    <div class="overview-compare-metric">Pain Reduction</div>
+    <div class="overview-compare-metric">Cumulative Pain Reduction</div>
     <div class="overview-compare-val overview-val-winner">87%</div>
     <div class="overview-compare-val overview-val-loser">56%</div>
   </div>
   <div class="overview-compare-row">
-    <div class="overview-compare-metric">Swelling Reduction</div>
+    <div class="overview-compare-metric">Cumulative Swelling Reduction</div>
     <div class="overview-compare-val overview-val-winner">93%</div>
     <div class="overview-compare-val overview-val-loser">52%</div>
   </div>
   <div class="overview-compare-row">
-    <div class="overview-compare-metric">Lameness Reduction</div>
+    <div class="overview-compare-metric">Cumulative Lameness Reduction</div>
     <div class="overview-compare-val overview-val-winner">89%</div>
     <div class="overview-compare-val overview-val-loser">49%</div>
   </div>
@@ -5882,7 +5986,11 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Clinical Results Tab -->
 <div class="tab-panel active" id="clintab-clin-results">
   <div class="sub-tab-container" id="clin-results-subtabs">
-    <button class="sub-tab-btn active" data-subtab="clin-outcomes">
+    <button class="sub-tab-btn active" data-subtab="clin-overview">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Overview
+    </button>
+    <button class="sub-tab-btn" data-subtab="clin-outcomes">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
       Clinical Outcomes (4)
     </button>
@@ -5908,7 +6016,178 @@ document.addEventListener('DOMContentLoaded', function() {
     </button>
   </div>
 
-  <div class="sub-panel active" id="sub-clin-outcomes">
+  <!-- CLINICAL STUDY OVERVIEW -->
+  <div class="sub-panel active" id="sub-clin-overview">
+    <div class="clin-section-heading">
+      <h3>Study at a Glance</h3>
+      <p>Key findings from the equicenta™ CTM clinical trial (n=138 horses, 195 conditions, 26 weeks)</p>
+    </div>
+
+    <div class="clin-overview-grid animate-in">
+
+      <!-- Clinical Outcomes -->
+      <div class="clin-overview-card" onclick="document.querySelector('[data-subtab=clin-outcomes]').click()">
+        <div class="clin-overview-card-header">
+          <div class="clin-overview-icon" style="background: var(--color-primary-10); color: var(--color-primary);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+          </div>
+          <div>
+            <div class="clin-overview-card-title">Clinical Outcomes</div>
+            <div class="clin-overview-card-subtitle">Pain, swelling &amp; lameness</div>
+          </div>
+        </div>
+        <div class="clin-overview-stats">
+          <div class="clin-overview-stat">
+            <div class="clin-overview-stat-value">87–93%</div>
+            <div class="clin-overview-stat-label">cumulative reduction across all clinical scores</div>
+          </div>
+        </div>
+        <div class="clin-overview-details">
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Pain significant by Week 2 (p&lt;0.05)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Swelling significant by Week 2 (p&lt;0.03)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Lameness significant by Week 4 (p&lt;0.02)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> All outcomes p&lt;0.003 by 12 weeks</div>
+        </div>
+        <div class="clin-overview-badge">p &lt; 0.003</div>
+        <div class="clin-overview-cta">View details →</div>
+      </div>
+
+      <!-- Performance -->
+      <div class="clin-overview-card" onclick="document.querySelector('[data-subtab=clin-performance]').click()">
+        <div class="clin-overview-card-header">
+          <div class="clin-overview-icon" style="background: rgba(251,191,36,0.12); color: #fbbf24;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <div class="clin-overview-card-title">Performance</div>
+            <div class="clin-overview-card-subtitle">Return to work &amp; competition</div>
+          </div>
+        </div>
+        <div class="clin-overview-stats">
+          <div class="clin-overview-stat">
+            <div class="clin-overview-stat-value">2.72:1</div>
+            <div class="clin-overview-stat-label">odds of returning to or exceeding prior performance</div>
+          </div>
+        </div>
+        <div class="clin-overview-details">
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> +153% cumulative performance advantage (p&lt;0.001)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> 79% of top performers were eCTM (p&lt;0.006)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> 8:1 return-to-work ratio vs SOC at 26 weeks</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> SOC joint performance declined after Week 12; eCTM sustained</div>
+        </div>
+        <div class="clin-overview-badge">p &lt; 0.001</div>
+        <div class="clin-overview-cta">View details →</div>
+      </div>
+
+      <!-- General Health & QoL -->
+      <div class="clin-overview-card" onclick="document.querySelector('[data-subtab=clin-health]').click()">
+        <div class="clin-overview-card-header">
+          <div class="clin-overview-icon" style="background: rgba(244,114,182,0.12); color: #f472b6;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
+          </div>
+          <div>
+            <div class="clin-overview-card-title">General Health &amp; QoL</div>
+            <div class="clin-overview-card-subtitle">Owner-reported quality of life</div>
+          </div>
+        </div>
+        <div class="clin-overview-stats">
+          <div class="clin-overview-stat">
+            <div class="clin-overview-stat-value">+49%</div>
+            <div class="clin-overview-stat-label">quality of life index advantage over SOC at 26 weeks</div>
+          </div>
+        </div>
+        <div class="clin-overview-details">
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Body condition: p&lt;0.004</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Hair coat: p&lt;0.029</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Overall health: p&lt;0.001</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Quality of life index: p&lt;0.03</div>
+        </div>
+        <div class="clin-overview-badge">p &lt; 0.03</div>
+        <div class="clin-overview-cta">View details →</div>
+      </div>
+
+      <!-- Safety -->
+      <div class="clin-overview-card" onclick="document.querySelector('[data-subtab=clin-safety]').click()">
+        <div class="clin-overview-card-header">
+          <div class="clin-overview-icon" style="background: rgba(52,211,153,0.12); color: #34d399;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div>
+            <div class="clin-overview-card-title">Safety</div>
+            <div class="clin-overview-card-subtitle">Adverse event profile</div>
+          </div>
+        </div>
+        <div class="clin-overview-stats">
+          <div class="clin-overview-stat">
+            <div class="clin-overview-stat-value">8.3×</div>
+            <div class="clin-overview-stat-label">safer for joints — SOC had 8.3× higher joint adverse event risk</div>
+          </div>
+        </div>
+        <div class="clin-overview-details">
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Overall adverse events: SOC 4× higher (p=0.05)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Joint adverse events: SOC 8.3× higher (p&lt;0.013)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> No serious adverse events attributed to eCTM</div>
+        </div>
+        <div class="clin-overview-badge">p &lt; 0.013</div>
+        <div class="clin-overview-cta">View details →</div>
+      </div>
+
+      <!-- Imaging -->
+      <div class="clin-overview-card" onclick="document.querySelector('[data-subtab=clin-imaging]').click()">
+        <div class="clin-overview-card-header">
+          <div class="clin-overview-icon" style="background: rgba(139,92,246,0.12); color: #8b5cf6;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m-9.5-9h6m6 0h6"/></svg>
+          </div>
+          <div>
+            <div class="clin-overview-card-title">Imaging</div>
+            <div class="clin-overview-card-subtitle">Tissue remodeling (ultrasound)</div>
+          </div>
+        </div>
+        <div class="clin-overview-stats">
+          <div class="clin-overview-stat">
+            <div class="clin-overview-stat-value">36% vs 0%</div>
+            <div class="clin-overview-stat-label">eCTM ligaments showed tissue remodeling; zero for SOC</div>
+          </div>
+        </div>
+        <div class="clin-overview-details">
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Cohen’s d = 0.98 — large treatment effect</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Strongest response in proximal suspensory (d=1.25)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Objective structural repair, not just symptom relief</div>
+        </div>
+        <div class="clin-overview-badge">p &lt; 0.013</div>
+        <div class="clin-overview-cta">View details →</div>
+      </div>
+
+      <!-- Kinematics -->
+      <div class="clin-overview-card" onclick="document.querySelector('[data-subtab=clin-kinematics]').click()">
+        <div class="clin-overview-card-header">
+          <div class="clin-overview-icon" style="background: rgba(56,189,248,0.12); color: #38bdf8;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <div class="clin-overview-card-title">Kinematics</div>
+            <div class="clin-overview-card-subtitle">Objective gait analysis</div>
+          </div>
+        </div>
+        <div class="clin-overview-stats">
+          <div class="clin-overview-stat">
+            <div class="clin-overview-stat-value">p &lt; 0.003</div>
+            <div class="clin-overview-stat-label">objective gait improvement confirmed by AI-assisted kinematic analysis</div>
+          </div>
+        </div>
+        <div class="clin-overview-details">
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Push-off improvement: p&lt;0.003 by Week 2</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Impact improvement: p&lt;0.05 by Week 4</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Confirms clinical scores with machine-measured data</div>
+        </div>
+        <div class="clin-overview-badge">p &lt; 0.003</div>
+        <div class="clin-overview-cta">View details →</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sub-panel" id="sub-clin-outcomes">
 <div class="clin-section-heading">
   <h3>Cumulative Clinical Outcomes</h3>
   <p>Cumulative improvement in pain, swelling, lameness, and composite scores through 12 weeks</p>
