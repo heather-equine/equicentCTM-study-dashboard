@@ -10938,14 +10938,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Study selector
 const studyTabs = document.querySelectorAll('.study-tab');
-const studyPanels = document.querySelectorAll('.study-panel');
 
 studyTabs.forEach(tab => {
   tab.addEventListener('click', () => {
     const study = tab.dataset.study;
-    studyTabs.forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.study-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    studyPanels.forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.study-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('study-' + study).classList.add('active');
     destroyAllCharts();
     initCurrentCharts();
