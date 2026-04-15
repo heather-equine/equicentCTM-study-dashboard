@@ -6089,8 +6089,8 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-lameness-score')" data-race-measure="lameness">
     <div class="chart-header">
       <div>
-        <div class="chart-title">Lameness Score</div>
-        <div class="chart-subtitle">Lameness grade (0–5 scale) over 12 weeks. Lower scores indicate less lameness.</div>
+        <div class="chart-title">Lameness: Zero-Score Achievement</div>
+        <div class="chart-subtitle">% of conditions achieving zero lameness (completely sound) over 12 weeks. eCTM horses were 1.6× more likely to become sound.</div>
       </div>
       <span class="p-badge trending">p &le; 0.06</span>
     </div>
@@ -6101,7 +6101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="chart-info-overlay" id="clin-overlay-lameness-score">
       <div class="chart-info-overlay-header">
-        <h4>Lameness Score</h4>
+        <h4>Lameness: Zero-Score Achievement</h4>
         <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">&times;</button>
       </div>
       <div class="chart-info-overlay-content">
@@ -10830,7 +10830,7 @@ const raceSchematicData = {
     timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
   },
   lameness: {
-    subtitle: 'Lameness Score: equicenta™ CTM vs SOC',
+    subtitle: 'Lameness Zero-Score Achievement: equicenta™ CTM vs SOC',
     studyLength: '12 Week Study',
     pValue: 'p ≤ 0.06',
     pSignificant: false,
