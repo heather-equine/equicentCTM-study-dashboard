@@ -13274,6 +13274,27 @@ function initMaintAeCharts() {
     </div>
   </div>
 
+<script>
+// Quality Documents sub-tab navigation
+(function() {
+  var ifuPanel = document.getElementById('study-ifu');
+  if (!ifuPanel) return;
+  ifuPanel.querySelectorAll('.sub-tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var subtab = btn.dataset.subtab;
+      var container = btn.closest('.sub-tab-container') || btn.parentElement;
+      container.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var panel = document.getElementById('sub-' + subtab);
+      if (panel) {
+        panel.parentElement.querySelectorAll('.sub-panel').forEach(function(p) { p.classList.remove('active'); });
+        panel.classList.add('active');
+      }
+      if (container) container.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+    });
+  });
+})();
+</script>
 </div><!-- end study-ifu -->
 
 <div class="study-panel" id="study-competitive">
