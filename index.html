@@ -3060,6 +3060,157 @@ a:hover { text-decoration: underline; }
   color: var(--color-text-muted);
 }
 
+/* ========== IFU & QUALITY DOCUMENTS ========== */
+.ifu-content {
+  max-width: 900px;
+}
+.ifu-section {
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+.ifu-section:last-child { border-bottom: none; }
+.ifu-section-title {
+  font-size: var(--text-sm);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+.ifu-section p {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+.ifu-section ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.ifu-section ul li {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  padding-left: var(--space-4);
+  position: relative;
+}
+.ifu-section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+.ifu-callout {
+  background: var(--color-primary-10);
+  border-left: 3px solid var(--color-primary);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-3);
+}
+.ifu-list { margin-top: var(--space-3); }
+.ifu-list-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+.ifu-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+@media (max-width: 600px) { .ifu-grid-2col { grid-template-columns: 1fr; } }
+.ifu-grid-2col > div {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+.ifu-step {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.ifu-step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.ifu-step-content { flex: 1; }
+.ifu-step-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+/* Certificate styles */
+.ifu-cert-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+.ifu-cert-header {
+  font-size: var(--text-sm);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-primary-10);
+}
+.ifu-cert-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ifu-cert-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+}
+.ifu-cert-row:nth-child(odd) { background: var(--color-primary-10); }
+.ifu-cert-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.ifu-cert-value {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-align: right;
+}
+.ifu-cert-pass {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
 /* ========== CLINICAL STUDY OVERVIEW CARDS ========== */
 .clin-overview-grid {
   display: grid;
@@ -4589,6 +4740,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="study-tab" data-study="videos">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
       Educational Videos
+    </button>
+    <button class="study-tab" data-study="ifu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Quality Documents
     </button>
     <button class="study-tab admin-only-tab" data-study="competitive" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
@@ -12867,6 +13022,260 @@ function initMaintAeCharts() {
 </footer>
 
 </div><!-- end study-videos -->
+
+<!-- ===== QUALITY DOCUMENTS TAB ===== -->
+<div class="study-panel" id="study-ifu">
+  <div class="sub-tab-container" id="ifu-subtabs">
+    <button class="sub-tab-btn active" data-subtab="ifu-instructions">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Instructions for Use
+    </button>
+    <button class="sub-tab-btn" data-subtab="ifu-certificate">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      Certificate of Processing
+    </button>
+  </div>
+
+  <!-- IFU Sub-tab -->
+  <div class="sub-panel active" id="sub-ifu-instructions">
+    <div class="clin-section-heading">
+      <h3>Allograft Tissue Information &amp; Instructions for Use</h3>
+      <p>250.101.P01 &mdash; CTM Suspension IFU &bull; Rev 02</p>
+    </div>
+
+    <div class="ifu-content animate-in">
+
+      <!-- Product ID -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Product Identification &amp; Description</div>
+        <p>equicenta&trade; CTM is a cryopreserved allogeneic equine umbilical cord derived connective tissue matrix (Wharton&rsquo;s jelly) suspended in a cryopreservation solution. The allograft is recovered, processed, and packaged using controlled, aseptic procedures in accordance with <strong>FDA CVM GFI #218, #253, and #254</strong>. No terminal sterilization is applied.</p>
+      </div>
+
+      <!-- Intended Use -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Intended Use</div>
+        <p>equicenta&trade; CTM is intended for use as a cushioning, space-filling connective tissue matrix within and around equine joints, tendons, and ligaments, providing supplemental structural support to soft-tissue spaces. Intended for intra-articular, intra-lesional, or peri-lesional injection in a single equine patient on a single occasion by <strong>licensed veterinarians only</strong>.</p>
+      </div>
+
+      <!-- Packaging / Storage -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Packaging / Storage</div>
+        <p>Each unit of equicenta&trade; CTM contains 1.5 mL of cryopreserved equine umbilical cord tissue allograft in a sealed inner container (cryovial), placed in a protective pouch and/or outer box. The contents of the cryovial are processed aseptically; the outer packaging and outer vial surface are non-sterile.</p>
+        <div class="ifu-list">
+          <div class="ifu-list-title">Package contents:</div>
+          <ul>
+            <li>1 Foil Pouch</li>
+            <li>1 Certificate of Processing</li>
+            <li>1 CTM Suspension IFU</li>
+            <li>1 Cryogenic Vial (containing allograft suspension)</li>
+            <li>1 Set of Supplemental Labels for Patient Documentation</li>
+          </ul>
+        </div>
+        <div class="ifu-callout">
+          <strong>Store at &minus;40 &deg;C or colder until use.</strong> The product is frozen. Upon receipt, promptly transfer to a freezer that maintains the recommended storage temperature. Once thawed, <strong>use immediately and do not refreeze</strong>. Do not use after the printed expiration date.
+        </div>
+      </div>
+
+      <!-- Donor Screening -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Donor Screening &amp; Testing</div>
+        <p>Donor horses are evaluated according to applicable requirements and internal procedures for disease risk factors and transmissible conditions as per FDA CVM Guidance for Industry #254. Tissue recovery, processing, preservation, packaging, and storage are performed under controlled conditions using aseptic procedures designed to maintain tissue quality and safety. Each allograft unit is assigned a unique identifier to support traceability.</p>
+      </div>
+
+      <!-- Contraindications -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Contraindications</div>
+        <ul>
+          <li>Do not use in equine patients with known hypersensitivity to DMSO, penicillin G, streptomycin, or amphotericin B.</li>
+          <li>Do not use in cases of known or suspected active infection at or near the intended injection site.</li>
+        </ul>
+      </div>
+
+      <!-- Warnings -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Warnings</div>
+        <div class="ifu-grid-2col">
+          <div><strong>Target Species:</strong> For use in horses only.</div>
+          <div><strong>Safety:</strong> Not for use in humans.</div>
+          <div><strong>Storage Safety:</strong> Keep out of reach of children.</div>
+          <div><strong>Handling Risks:</strong> Improper storage, handling, or thawing may adversely affect product characteristics.</div>
+          <div><strong>Single-Use Only:</strong> Do not reuse, re-sterilize, or refreeze once thawed.</div>
+          <div><strong>Product Integrity:</strong> Do not use if any packaging component appears damaged, opened, or compromised, or if the product label is missing or illegible.</div>
+          <div><strong>Expiration:</strong> Do not use after the expiration date printed on the product label.</div>
+        </div>
+      </div>
+
+      <!-- Precautions -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Precautions</div>
+        <div class="ifu-grid-2col">
+          <div><strong>Clinical Protocol:</strong> Use aseptic technique during all handling, preparation, and injection steps.</div>
+          <div><strong>Verification:</strong> Verify patient identity, product identity, lot number, and expiration date prior to use.</div>
+          <div><strong>Clinical Judgment:</strong> The safety of repeated treatment courses in the same horse has not been established; additional treatments should be considered cautiously.</div>
+          <div><strong>Untested Populations:</strong> The product has not been evaluated in breeding, pregnant, or lactating horses, nor has it been tested in donkeys or mules.</div>
+          <div><strong>Administration Limits:</strong> Not intended for intravenous administration.</div>
+          <div><strong>Pressure:</strong> Avoid excessive injection pressure when introducing the product into joint or peri-articular spaces.</div>
+          <div><strong>Concurrent Use:</strong> The safety and performance of concurrent administration with other intra-articular or peri-articular products have not been established.</div>
+        </div>
+      </div>
+
+      <!-- Directions for Use -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Directions for Use</div>
+        <p style="margin-bottom: var(--space-3);">Maintain strict aseptic technique throughout all steps.</p>
+
+        <div class="ifu-step">
+          <div class="ifu-step-number">1</div>
+          <div class="ifu-step-content">
+            <div class="ifu-step-title">Preparation and Inspection</div>
+            <ul>
+              <li>Verify patient identity, product identity, lot number, and expiration date.</li>
+              <li>Verify product label for vial size and content.</li>
+              <li>Inspect packaging for damage, moisture, or compromised seals.</li>
+              <li>Maintain the product in a frozen state (&minus;40&deg;C or colder) until ready to initiate thawing.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ifu-step">
+          <div class="ifu-step-number">2</div>
+          <div class="ifu-step-content">
+            <div class="ifu-step-title">Thawing Procedure</div>
+            <ul>
+              <li>Thaw the sealed cryovial at ambient room temperature; the vial may be held in the palms of gloved hands to facilitate the process.</li>
+              <li>Do not expose the vial to direct heat sources (e.g., microwaves or hot water baths).</li>
+              <li>Allow the product to thaw completely. Once thawed, use immediately and do not refreeze.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ifu-step">
+          <div class="ifu-step-number">3</div>
+          <div class="ifu-step-content">
+            <div class="ifu-step-title">Dosage, Withdrawal, and Administration</div>
+            <ul>
+              <li>Prepare the intended injection site using standard aseptic technique for intra-articular, intra-lesional, or peri-lesional injection.</li>
+              <li>Visually inspect the thawed product; do not use if the vial is damaged or if visible contamination is present.</li>
+              <li>Flick the vial gently to ensure all contents are at the bottom.</li>
+              <li>Using an 18&ndash;22-gauge needle and sterile syringe, withdraw the required dose. Do not mix with other products or solutions.</li>
+              <li>Dosage is lesion-dependent; <strong>the recommended volume per site is 1.5 mL</strong> for joints and ligaments.</li>
+              <li>Slowly inject the product into the target space, avoiding excessive pressure.</li>
+              <li>Apply standard post-injection care and discard any unused product.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Characterization & Safety -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Characterization &amp; Safety</div>
+        <p>equicenta&trade; CTM is a microparticulate matrix derived from equine umbilical cord (Wharton&rsquo;s jelly). As with all allogeneic tissue products, potential risks include local inflammatory responses (e.g., pain, swelling, heat, transient synovitis, or effusion); immune or hypersensitivity reactions (including graft-versus-host-type or allergic responses); and a potential risk of infectious disease transmission.</p>
+        <p style="margin-top: var(--space-2);">Proteomic analysis identified 2,000+ proteins, including fibrillar collagens and glycosaminoglycans. The product exhibits a low inflammatory cytokine profile.</p>
+      </div>
+
+      <!-- Adverse Events -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Potential Adverse Events &amp; Reporting</div>
+        <ul>
+          <li>Local inflammatory responses at or near the injection site (e.g., pain, swelling, heat).</li>
+          <li>Transient synovitis or effusion in the treated joint, which in controlled studies has been observed as a self-limiting transudative synovitis resolving within several days.</li>
+          <li>Infection at the injection or implantation site.</li>
+          <li>Immune or hypersensitivity reactions, including graft-versus-host-type or allergic responses.</li>
+        </ul>
+        <div class="ifu-callout" style="margin-top: var(--space-3);">
+          <strong>Reporting:</strong> Monitor patients according to standard clinical practice. Report suspected adverse reactions to Equine Performance Labs at <strong>(888) 979-3625</strong> or email <strong>adverseevents@equineperformancelabs.com</strong>.
+        </div>
+      </div>
+
+      <!-- Info for Owners -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Information for Horse Owners</div>
+        <p>Owners should be informed that equicenta&trade; CTM is an allogeneic tissue product. Potential side effects include transient pain, swelling, or inflammation at the injection site, and rarely, joint infection. Allograft use carries inherent risks, such as the potential transmission of infectious agents or immune/allergic reactions. <strong>Advise owners to contact their veterinarian immediately</strong> if they observe persistent lameness, excessive heat, discharge, or systemic signs of illness.</p>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">Disclaimer</div>
+        <p>The Veterinary Professional receiving tissue shall have the sole discretion and responsibility to determine, in accordance with applicable law and professional standards, if the allograft is useable and suitable for any and all uses to which the Veterinary Professional shall transplant the allograft.</p>
+        <p style="margin-top: var(--space-2);">Federal (USA) law restricts this product to use by or on the order of a licensed veterinarian.</p>
+        <p style="margin-top: var(--space-2); font-size: var(--text-xs); color: var(--color-text-muted);"><em>equicenta&trade; CTM is a trademark of Equine Performance Labs, LLC, &copy; 2025&ndash;2026. Patent Pending.</em></p>
+      </div>
+
+      <!-- References -->
+      <div class="ifu-section">
+        <div class="ifu-section-title">References</div>
+        <ul>
+          <li>FDA CVM Guidance for Industry #218: Cell-based Products for Animal Use.</li>
+          <li>FDA CVM Guidance for Industry #253: Current Good Manufacturing Practice for Animal Cells, Tissues, and Cell- and Tissue-Based Products.</li>
+          <li>FDA CVM Guidance for Industry #254: Donor Eligibility for Animal Cells, Tissues, and Cell- and Tissue-Based Products.</li>
+          <li>Bertone AL, Reinemeyer C, Tsaprailis G, Ragland D, Leise B. Cryopreserved equine umbilical cord tissue allograft characterization and biocompatibility in vivo in musculoskeletal tissues: a controlled study. BMC Med. 2025;23(1):439. doi:10.1186/s12916-025-04231-7</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Certificate of Processing Sub-tab -->
+  <div class="sub-panel" id="sub-ifu-certificate">
+    <div class="clin-section-heading">
+      <h3>Certificate of Processing</h3>
+      <p>265.102.F02 &mdash; CTM Suspension Certificate &bull; Effective: 06/17/2024</p>
+    </div>
+
+    <div class="ifu-content animate-in">
+
+      <!-- Product Info -->
+      <div class="ifu-cert-card">
+        <div class="ifu-cert-header">Product Information</div>
+        <div class="ifu-cert-grid">
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Donor ID</div><div class="ifu-cert-value">EPL24-003</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Expiration</div><div class="ifu-cert-value">02/02/2027</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Lot No./Tissue ID</div><div class="ifu-cert-value">0031 through 0416</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Description</div><div class="ifu-cert-value">equicent CTM: Cryopreserved Equine Umbilical Cord Tissue Suspension</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Dose</div><div class="ifu-cert-value">1.5 mL</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Mfg Date</div><div class="ifu-cert-value">02/02/2024</div></div>
+        </div>
+        <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6;">Equine Performance Labs certifies that this product has been manufactured under controlled <strong>aseptic</strong> conditions in an <strong>ISO 5 environment</strong> and is in compliance with all applicable procedures and specifications and approved by the EPL Veterinary Medical Director.</p>
+      </div>
+
+      <!-- Disease Testing -->
+      <div class="ifu-cert-card">
+        <div class="ifu-cert-header">Donor Infectious Disease Testing*</div>
+        <div class="ifu-cert-grid">
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Equine Arteritis Virus (EAV) PCR</div><div class="ifu-cert-value ifu-cert-pass">Not Detected</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Equine Herpesvirus-1 (EHV-1) PCR</div><div class="ifu-cert-value ifu-cert-pass">Not Detected</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Equine Herpesvirus-4 (EHV-4) PCR</div><div class="ifu-cert-value ifu-cert-pass">Not Detected</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Eastern Equine Encephalitis (EEE) IgM &amp; PCR</div><div class="ifu-cert-value ifu-cert-pass">Negative</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">West Nile Virus (WNV) IgM</div><div class="ifu-cert-value ifu-cert-pass">Negative</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Equine Infectious Anemia (EIA)</div><div class="ifu-cert-value ifu-cert-pass">Coggins Negative</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Equine Parvovirus PCR</div><div class="ifu-cert-value ifu-cert-pass">Not Detected</div></div>
+        </div>
+        <p style="margin-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted);">* Testing is completed by a certified independent testing laboratory.</p>
+      </div>
+
+      <!-- Sterility & Endotoxin -->
+      <div class="ifu-cert-card">
+        <div class="ifu-cert-header">Sterility &amp; Endotoxin Testing*</div>
+        <div class="ifu-cert-grid">
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Sterility Method</div><div class="ifu-cert-value">AERO/ANAERO MYC/FUNG</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Sterility Results</div><div class="ifu-cert-value ifu-cert-pass">**** No GROWTH ****</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Endotoxin Method</div><div class="ifu-cert-value">Turbidimetric Routine Endotoxin</div></div>
+          <div class="ifu-cert-row"><div class="ifu-cert-label">Endotoxin Results</div><div class="ifu-cert-value ifu-cert-pass">&lt;0.050 EU/mL</div></div>
+        </div>
+      </div>
+
+      <!-- Signed -->
+      <div class="ifu-cert-card" style="text-align: center;">
+        <p style="font-size: var(--text-sm); color: var(--color-text-secondary);">Certified by</p>
+        <p style="font-size: var(--text-base); font-weight: 700; margin-top: var(--space-2);">Haylee Ragland, Director of Operations</p>
+        <p style="font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-1);">Date: 11/05/2025</p>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- end study-ifu -->
+
 <div class="study-panel" id="study-competitive">
 
 <style>
