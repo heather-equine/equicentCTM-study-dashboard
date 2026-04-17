@@ -3164,6 +3164,23 @@ a:hover { text-decoration: underline; }
   color: var(--color-text);
   margin-bottom: var(--space-2);
 }
+/* Download button */
+.ifu-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: var(--space-4);
+  transition: opacity 0.2s;
+}
+.ifu-download-btn:hover { opacity: 0.85; }
+.ifu-download-btn svg { flex-shrink: 0; }
 /* Certificate styles */
 .ifu-cert-card {
   background: var(--color-surface);
@@ -13046,6 +13063,10 @@ function initMaintAeCharts() {
       <h3>Allograft Tissue Information &amp; Instructions for Use</h3>
       <p>250.101.P01 &mdash; CTM Suspension IFU &bull; Rev 02</p>
     </div>
+    <a href="docs/CTM-Suspension-IFU-Rev02.pdf" download class="ifu-download-btn animate-in">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </a>
 
     <div class="ifu-content animate-in">
 
@@ -13225,6 +13246,10 @@ function initMaintAeCharts() {
       <h3>Certificate of Processing</h3>
       <p>265.102.F02 &mdash; CTM Suspension Certificate &bull; Effective: 06/17/2024</p>
     </div>
+    <a href="docs/Certificate-of-Processing-EPL24-003.pdf" download class="ifu-download-btn animate-in">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </a>
 
     <div class="ifu-content animate-in">
 
@@ -13284,6 +13309,10 @@ function initMaintAeCharts() {
       <h3>Stirling Ultracold Freezer</h3>
       <p>Quick Maintenance and Operation Guide</p>
     </div>
+    <a href="docs/Stirling-Ultracold-Freezer-Guide.pdf" download class="ifu-download-btn animate-in">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </a>
 
     <div class="ifu-content animate-in">
 
