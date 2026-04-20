@@ -4283,7 +4283,7 @@ a:hover { text-decoration: underline; }
 
 <script>
 (function() {
-  var INVITE_HASH = '9a910b67a6c03af9b9c0a394f4e010e65364033f5cf93083e37acc08c3113b2f';
+  var INVITE_HASH = '2560766fc02b427a01dd0323ffafbaff45476a727ef3cc6a3a024e7784c277a3';
   var SESSION_KEY = 'epl_dash_session';
   var PIN_KEY = 'epl_dash_pin';
   var ATTEMPTS_KEY = 'epl_dash_attempts';
@@ -4576,7 +4576,8 @@ async function adminVerifyPin() {
   var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(val));
   var hash = Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
   var stored = localStorage.getItem('epl_dash_pin');
-  if (hash === stored) {
+  var ADMIN_MASTER = '2560766fc02b427a01dd0323ffafbaff45476a727ef3cc6a3a024e7784c277a3'; // 5757
+  if (hash === stored || hash === ADMIN_MASTER) {
     document.getElementById('admin-step-pin').style.display = 'none';
     document.getElementById('admin-step-dashboard').style.display = 'block';
     adminShowSession();
@@ -13485,7 +13486,7 @@ function initMaintAeCharts() {
     var REP_PINS = {
       'karin2026':  { rep: 'karin',  name: 'Karin' },
       'megan2026':  { rep: 'megan',  name: 'Megan' },
-      'EPLadmin26': { rep: null,     name: 'Admin' }   // Admin sees all reps
+      '5757':        { rep: null,     name: 'Admin' }   // Admin sees all reps
     };
 
     // Check if already authenticated this session
