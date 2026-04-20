@@ -13479,14 +13479,22 @@ function initMaintAeCharts() {
 
   <script>
   (function() {
-    // Comp dashboard PIN — SHA-256 hash of the access code
-    // Default: "EPLcomp2026" — change the hash below to use a different code
-    var COMP_PIN_HASH = '5a2d3f8b7c1e9d4a6f0b8e2c4d7a1f3e5b9c0d2a4e6f8b1c3d5a7e9f0b2c4d6';
-    var COMP_URL = 'https://heather-equine.github.io/EPL-Sales-Hub/#/';
+    var BASE_URL = 'https://heather-equine.github.io/EPL-Sales-Hub/';
+
+    // Rep PINs — each rep has their own code that locks them to their view
+    var REP_PINS = {
+      'karin2026':  { rep: 'karin',  name: 'Karin' },
+      'megan2026':  { rep: 'megan',  name: 'Megan' },
+      'EPLadmin26': { rep: null,     name: 'Admin' }   // Admin sees all reps
+    };
 
     // Check if already authenticated this session
-    if (sessionStorage.getItem('epl_comp_auth') === 'true') {
-      showCompDash();
+    var savedAuth = sessionStorage.getItem('epl_comp_auth');
+    if (savedAuth) {
+      try {
+        var parsed = JSON.parse(savedAuth);
+        showCompDash(parsed.rep, parsed.name);
+      } catch(e) {}
     }
 
     window.compVerifyPin = function() {
@@ -13494,11 +13502,10 @@ function initMaintAeCharts() {
       var pin = input.value.trim();
       if (!pin) return;
 
-      // Simple hash check — for production you'd use SHA-256
-      // For now, accept the plaintext code
-      if (pin === 'EPLcomp2026') {
-        sessionStorage.setItem('epl_comp_auth', 'true');
-        showCompDash();
+      var match = REP_PINS[pin];
+      if (match) {
+        sessionStorage.setItem('epl_comp_auth', JSON.stringify(match));
+        showCompDash(match.rep, match.name);
       } else {
         document.getElementById('comp-pin-msg').textContent = 'Invalid access code.';
         input.value = '';
@@ -13506,14 +13513,20 @@ function initMaintAeCharts() {
       }
     };
 
-    function showCompDash() {
+    function showCompDash(rep, name) {
       var gate = document.getElementById('comp-pin-gate');
       var container = document.getElementById('comp-iframe-container');
       var iframe = document.getElementById('comp-iframe');
       if (gate) gate.style.display = 'none';
       if (container) container.style.display = 'block';
       if (iframe && iframe.src === 'about:blank') {
-        iframe.src = COMP_URL;
+        var url = BASE_URL;
+        if (rep) {
+          url += '?rep=' + rep + '#/';
+        } else {
+          url += '?admin=true#/';
+        }
+        iframe.src = url;
       }
     }
   })();
