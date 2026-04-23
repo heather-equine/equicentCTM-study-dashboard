@@ -1,0 +1,171 @@
+<!-- Canonical scripts that must be injected into EPL-Sales-Hub/index.html -->
+<!-- Location: inside <body>, after <div id="root"></div>, before </body> -->
+
+<script>
+    // Rep-lock: if ?rep=karin or ?rep=megan is in the URL, lock to that rep
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var lockedRep = params.get('rep');
+      if (!lockedRep) return;
+      lockedRep = lockedRep.toLowerCase();
+
+      // Wait for React to render, then find and click the rep tab + hide others
+      var observer = new MutationObserver(function(mutations, obs) {
+        // Look for buttons/tabs containing rep names
+        var allBtns = document.querySelectorAll('button, [role="tab"]');
+        var found = false;
+        allBtns.forEach(function(btn) {
+          var text = btn.textContent.trim().toLowerCase();
+          // If this is a rep-specific tab (Karin, Megan, etc)
+          if (text === 'karin' || text === 'megan') {
+            if (text === lockedRep) {
+              btn.click();
+              found = true;
+            } else {
+              btn.style.display = 'none';
+            }
+          }
+        });
+        if (found) {
+          obs.disconnect();
+          // Also hide the admin tab if not admin
+          if (params.get('admin') !== 'true') {
+            allBtns.forEach(function(btn) {
+              var t = btn.textContent.trim().toLowerCase();
+              if (t === 'admin' || t === 'edit') btn.style.display = 'none';
+            });
+          }
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      // Safety: disconnect after 15s
+      setTimeout(function() { observer.disconnect(); }, 15000);
+    })();
+
+    // ===== INTERACTIVE COMMISSION TABLE =====
+    // Makes the Monthly Revenue Trajectory table editable
+    (function() {
+      var TIERS = [
+        { floor: 0, ceiling: 75000, rate: 0.05 },
+        { floor: 75000, ceiling: 175000, rate: 0.06 },
+        { floor: 175000, ceiling: 300000, rate: 0.075 },
+        { floor: 300000, ceiling: Infinity, rate: 0.10 }
+      ];
+
+      function calcCommission(revenue) {
+        var total = 0;
+        var remaining = revenue;
+        for (var i = 0; i < TIERS.length; i++) {
+          if (remaining <= 0) break;
+          var tierSize = TIERS[i].ceiling === Infinity ? remaining : TIERS[i].ceiling - TIERS[i].floor;
+          var amount = Math.min(remaining, tierSize);
+          total += amount * TIERS[i].rate;
+          remaining -= amount;
+        }
+        return total;
+      }
+
+      function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }); }
+      function fmtC(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+      function makeInteractive() {
+        // Find the revenue trajectory table by looking for the header text
+        var tables = document.querySelectorAll('table');
+        var targetTable = null;
+        tables.forEach(function(t) {
+          if (t.textContent.indexOf('CTM VIALS') > -1 || t.textContent.indexOf('Ctm Vials') > -1 || t.textContent.indexOf('CTM Vials') > -1) {
+            targetTable = t;
+          }
+        });
+        if (!targetTable) return false;
+
+        var rows = targetTable.querySelectorAll('tbody tr');
+        if (rows.length < 2) return false;
+
+        // Check if already interactive
+        if (targetTable.dataset.interactive === 'true') return true;
+        targetTable.dataset.interactive = 'true';
+
+        var months = [];
+        rows.forEach(function(row, idx) {
+          var cells = row.querySelectorAll('td');
+          if (cells.length < 7) return;
+          var monthText = cells[0].textContent.trim();
+          if (monthText.indexOf('Total') > -1 || monthText.indexOf('total') > -1) return;
+
+          var ctmVials = parseInt(cells[1].textContent.replace(/[^0-9]/g, '')) || 0;
+          var ctmPrice = parseInt(cells[2].textContent.replace(/[^0-9]/g, '')) || 825;
+          var maintainUnits = parseInt(cells[3].textContent.replace(/[^0-9]/g, '')) || 0;
+
+          // Make CTM Vials editable
+          cells[1].innerHTML = '<input type="number" min="0" style="width:60px;text-align:center;border:1.5px solid #ccc;border-radius:4px;padding:4px 6px;font-size:inherit;font-family:inherit;background:transparent;color:inherit;" value="' + ctmVials + '" data-row="' + idx + '" data-field="ctm">';
+
+          // Make Maintain editable
+          cells[3].innerHTML = '<input type="number" min="0" style="width:60px;text-align:center;border:1.5px solid #ccc;border-radius:4px;padding:4px 6px;font-size:inherit;font-family:inherit;background:transparent;color:inherit;" value="' + maintainUnits + '" data-row="' + idx + '" data-field="maintain">';
+
+          months.push({ row: row, cells: cells, ctmPrice: ctmPrice, idx: idx });
+        });
+
+        function recalculate() {
+          var cumulative = 0;
+          var totalCtm = 0, totalMaintain = 0, totalRev = 0, totalComm = 0;
+
+          months.forEach(function(m) {
+            var ctmInput = m.cells[1].querySelector('input');
+            var maintInput = m.cells[3].querySelector('input');
+            var ctmVials = parseInt(ctmInput.value) || 0;
+            var maintainUnits = parseInt(maintInput.value) || 0;
+            var ctmPrice = m.ctmPrice;
+            var maintainPrice = 525;
+
+            var netRev = (ctmVials * ctmPrice) + (maintainUnits * maintainPrice);
+            cumulative += netRev;
+            var cumulativeComm = calcCommission(cumulative);
+            var prevCumComm = calcCommission(cumulative - netRev);
+            var monthComm = cumulativeComm - prevCumComm;
+
+            m.cells[4].textContent = fmt(netRev);
+            m.cells[5].textContent = fmtC(monthComm);
+            m.cells[5].style.color = '#2d9a6f';
+            m.cells[6].textContent = fmt(cumulative);
+
+            totalCtm += ctmVials;
+            totalMaintain += maintainUnits;
+            totalRev += netRev;
+            totalComm += monthComm;
+          });
+
+          // Update totals row
+          var lastRow = targetTable.querySelector('tbody tr:last-child');
+          if (lastRow) {
+            var tc = lastRow.querySelectorAll('td');
+            if (tc.length >= 7 && lastRow.textContent.indexOf('Total') > -1) {
+              tc[1].textContent = totalCtm;
+              tc[3].textContent = totalMaintain + ' units';
+              tc[4].textContent = fmt(totalRev);
+              tc[5].textContent = fmtC(totalComm);
+              tc[5].style.color = '#2d9a6f';
+              tc[6].textContent = fmt(cumulative);
+            }
+          }
+        }
+
+        targetTable.addEventListener('input', function(e) {
+          if (e.target.tagName === 'INPUT') recalculate();
+        });
+
+        return true;
+      }
+
+      // Wait for React to render the table, then make it interactive
+      var intObserver = new MutationObserver(function(mutations, obs) {
+        if (makeInteractive()) obs.disconnect();
+      });
+      intObserver.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function() { intObserver.disconnect(); }, 20000);
+      // Also try on nav changes
+      window.addEventListener('hashchange', function() {
+        setTimeout(makeInteractive, 1000);
+      });
+    })();
+    </script>
