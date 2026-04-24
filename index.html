@@ -13692,11 +13692,15 @@ function initMaintAeCharts() {
       if (gate) gate.style.display = 'none';
       if (container) container.style.display = 'block';
       if (iframe) {
+        // Cache-bust the iframe URL so the browser always fetches the latest Sales Hub
+        // index.html. Without this, a rebuilt-then-restored Sales Hub can be served
+        // from the iframe's cache and show stale/empty data.
+        var cacheBust = '_=' + Date.now();
         var url = BASE_URL;
         if (rep) {
-          url += '?rep=' + rep + '#/';
+          url += '?rep=' + rep + '&' + cacheBust + '#/';
         } else {
-          url += '?admin=true#/';
+          url += '?admin=true&' + cacheBust + '#/';
         }
         // Always reload the iframe on unlock so stale state from a previous session
         // cannot be seen.
