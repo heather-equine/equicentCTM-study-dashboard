@@ -414,14 +414,22 @@
         var rptDate = new Date(activityData.reportDate + 'T00:00:00');
         var rptStr = months[rptDate.getMonth()] + ' ' + rptDate.getDate() + ', ' + rptDate.getFullYear();
         while ((node = walker.nextNode())) {
-          if (/Report:\s*\d{4}-\d{2}-\d{2}/.test(node.textContent)) {
-            node.textContent = node.textContent.replace(/Report:\s*\d{4}-\d{2}-\d{2}/, 'Report: ' + activityData.reportDate);
+          var txt = node.textContent;
+          var changed = false;
+          // Report: YYYY-MM-DD
+          if (/\d{4}-\d{2}-\d{2}/.test(txt) && (/Report/.test(txt) || /Report/.test(node.parentElement.textContent))) {
+            var newTxt = txt.replace(/\d{4}-\d{2}-\d{2}/, activityData.reportDate);
+            if (newTxt !== txt) { node.textContent = newTxt; changed = true; }
           }
-          if (/\d+\s*clients/.test(node.textContent) && /\d{4}-\d{2}-\d{2}/.test(node.parentElement.textContent)) {
-            node.textContent = node.textContent.replace(/\d+\s*clients/, activityData.totalClients + ' clients');
+          // "NN clients" (in the report header)
+          if (!changed && /^\s*\d+\s*clients\b/i.test(txt)) {
+            node.textContent = txt.replace(/\d+\s*clients/i, activityData.totalClients + ' clients');
           }
-          if (/Month-to-date through\s+\w+\s+\d+,?\s+\d{4}/i.test(node.textContent)) {
-            node.textContent = node.textContent.replace(/Month-to-date through\s+\w+\s+\d+,?\s+\d{4}/i, 'Month-to-date through ' + rptStr);
+          // Month-to-date through Mon D, YYYY
+          if (/Month-to-date through/i.test(txt)) {
+            // Replace everything after 'through' up to the dot/bullet separator
+            var updated = txt.replace(/(Month-to-date through)\s+[^·\n]+(·|$)/i, '$1 ' + rptStr + ' $2');
+            if (updated !== txt) node.textContent = updated;
           }
         }
 
@@ -434,8 +442,23 @@
             var w = document.createTreeWalker(div, NodeFilter.SHOW_TEXT, null);
             var tn;
             while ((tn = w.nextNode())) {
-              if (/Company Total:\s*\$[\d,]+/.test(tn.textContent)) {
-                tn.textContent = tn.textContent.replace(/\$[\d,]+/, fmtMoney(k.mtdSales + m.mtdSales));
+              if (/Company Total:/i.test(tn.textContent) || /Company Total:/i.test(tn.parentElement && tn.parentElement.textContent || '')) {
+                // This text node may be just 'Company Total:' and the $value is a sibling
+                if (/\$[\d,]+/.test(tn.textContent)) {
+                  tn.textContent = tn.textContent.replace(/\$[\d,]+/, fmtMoney(k.mtdSales + m.mtdSales));
+                } else {
+                  // Look at siblings of parent
+                  var parent = tn.parentElement;
+                  if (parent) {
+                    var sibs = parent.parentElement ? parent.parentElement.querySelectorAll('*') : [];
+                    for (var s = 0; s < sibs.length; s++) {
+                      if (sibs[s].children.length === 0 && /^\$[\d,]+$/.test(sibs[s].textContent.trim())) {
+                        sibs[s].textContent = fmtMoney(k.mtdSales + m.mtdSales);
+                        break;
+                      }
+                    }
+                  }
+                }
               }
             }
             // Update Karin/Megan values - look for currency leaves
