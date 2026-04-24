@@ -1,17 +1,16 @@
 # Sales Hub Required Injections
 
-These scripts must be present in `EPL-Sales-Hub/index.html` inside `<body>` after `<div id="root"></div>`.
+Scripts that must be present in `EPL-Sales-Hub/index.html` after `<div id="root"></div>`.
 
-Canonical source: `/home/user/workspace/equicentCTM-study-dashboard/.sync/sales-hub-scripts.html`
+Canonical source: `.sync/sales-hub-scripts.html`
+Also required: `EPL-Sales-Hub/payments.json` at repo root.
 
-## Script: Rep-Lock
+## Script 1: Rep-Lock
+`?rep=karin|megan` URL param auto-selects rep and hides others.
 
-Reads `?rep=karin` or `?rep=megan` URL param to auto-select a rep tab and hide others. Also hides Admin/Edit unless `?admin=true` is present.
+## Script 2: Auto-Sync from payments.json
+Fetches `payments.json` and patches MTD Collected + projections in DOM for active rep. Re-runs on rep tab click.
 
 ## History
-- 2026-04-20: Added rep-lock + interactive commission table
-- 2026-04-23: Sales Hub rebuilt with new projection-based design. Interactive commission table script removed (obsolete — new design uses automated projections from uploaded payment files). Rep-lock retained.
-
-## Sync cadence
-
-Checked once per day. If rebuild wipes the rep-lock script, auto-restore from canonical source.
+- 2026-04-20: Added rep-lock
+- 2026-04-23: Sales Hub redesign — removed commission table script, added payments.json auto-sync

@@ -42,4 +42,188 @@
       setTimeout(function() { observer.disconnect(); }, 15000);
     })();
 
+    // ===== AUTO-SYNC FROM payments.json =====
+    (function() {
+      var syncedOnce = false;
+      var currentData = null;
+
+      function findButton(text) {
+        var btns = Array.from(document.querySelectorAll('button, a, label'));
+        return btns.find(function(b) { return b.textContent.trim().toLowerCase() === text.toLowerCase(); });
+      }
+
+      function fmtMoney(n) {
+        return '$' + Math.round(n).toLocaleString('en-US');
+      }
+
+      function fmtMoneyDec(n) {
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      }
+
+      // Which rep is currently active (based on the highlighted tab)
+      function detectActiveRep() {
+        var karinBtn = findButton('Karin');
+        var meganBtn = findButton('Megan');
+        // Active tab usually has a darker background — check via class or inline styles
+        function isActive(btn) {
+          if (!btn) return false;
+          if (btn.getAttribute('aria-selected') === 'true') return true;
+          var cls = (btn.className || '') + '';
+          if (/active|selected/i.test(cls)) return true;
+          var bg = getComputedStyle(btn).backgroundColor;
+          // Active tab has dark green background rgb(~45,~154,~111)
+          if (/rgb\((\d+),\s*(\d+)/.test(bg)) {
+            var m = bg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+            if (m && parseInt(m[1]) < 100 && parseInt(m[2]) > 100) return true;
+          }
+          return false;
+        }
+        if (isActive(karinBtn)) return 'karin';
+        if (isActive(meganBtn)) return 'megan';
+        // Fallback: check if name is in the heading
+        var bodyText = document.body.innerText;
+        if (bodyText.indexOf('Karin Williamson') > -1 && !isActive(meganBtn)) return 'karin';
+        if (bodyText.indexOf('Megan Smith') > -1) return 'megan';
+        return 'karin';
+      }
+
+      function computeProjections(rep) {
+        // Given mtdCollected and days elapsed, compute projected values
+        var mtd = rep.mtdCollected || 0;
+        var asOfDay = currentData.asOfDay || 23;
+        var daysInApril = 30;
+        var monthlyPace = (mtd / asOfDay) * daysInApril; // ~ monthly collection pace
+        var projectedCommissionApril = monthlyPace * 0.10; // Q2 10% flat escalator
+
+        // Apr-Dec projected revenue (9 months)
+        var projectedAprDecRevenue = monthlyPace * 9;
+
+        // Apr-Jun @ 10% flat, Jul-Dec uses waterfall (simplified):
+        // Assume waterfall: first $75K of each month @ 5%, $75-175K @ 6%, $175-300K @ 7.5%, $300K+ @ 10%
+        var aprJunComm = monthlyPace * 3 * 0.10;
+        // For Jul-Dec, apply waterfall per month
+        function monthlyWaterfall(monthly) {
+          var c = 0;
+          if (monthly <= 75000) return monthly * 0.05;
+          c += 75000 * 0.05;
+          if (monthly <= 175000) return c + (monthly - 75000) * 0.06;
+          c += 100000 * 0.06;
+          if (monthly <= 300000) return c + (monthly - 175000) * 0.075;
+          c += 125000 * 0.075;
+          return c + (monthly - 300000) * 0.10;
+        }
+        var julDecComm = monthlyWaterfall(monthlyPace) * 6;
+        var projectedAprDecCommission = aprJunComm + julDecComm;
+
+        var q1Paid = 3525.50; // Q1 pending - known from existing display
+        var base = 110000;
+        var total2026 = base + q1Paid + projectedAprDecCommission;
+
+        return {
+          mtd: mtd,
+          monthlyPace: monthlyPace,
+          projectedCommissionApril: projectedCommissionApril,
+          projectedAprDecRevenue: projectedAprDecRevenue,
+          projectedAprDecCommission: projectedAprDecCommission,
+          total2026: total2026
+        };
+      }
+
+      function updateDisplay() {
+        if (!currentData) return;
+        var activeRep = detectActiveRep();
+        var repData = currentData.reps[activeRep];
+        if (!repData) return;
+
+        var proj = computeProjections(repData);
+
+        // Walk the DOM and update any element whose parent contains a known label
+        function updateByLabel(labelText, newValue) {
+          var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+          var node;
+          while ((node = walker.nextNode())) {
+            if (node.textContent.trim().toUpperCase().indexOf(labelText.toUpperCase()) > -1) {
+              var parent = node.parentElement;
+              // Walk up to find the card
+              for (var i = 0; i < 5 && parent; i++) {
+                var bigValue = parent.querySelector('*');
+                // Find child that has pattern like "$X,XXX" and is a leaf
+                var els = parent.querySelectorAll('*');
+                for (var j = 0; j < els.length; j++) {
+                  var el = els[j];
+                  if (el.children.length === 0 && /^\$[0-9,.]+$/.test(el.textContent.trim())) {
+                    el.textContent = newValue;
+                    return true;
+                  }
+                }
+                parent = parent.parentElement;
+              }
+            }
+          }
+          return false;
+        }
+
+        // Wait a beat to let React render then patch the visible values
+        setTimeout(function() {
+          updateByLabel('MTD COLLECTED', fmtMoney(proj.mtd));
+          updateByLabel('PROJECTED COMMISSION', fmtMoney(proj.projectedCommissionApril));
+          updateByLabel('PROJECTED APR\u2013DEC REVENUE', fmtMoney(proj.projectedAprDecRevenue));
+          updateByLabel('PROJECTED APR\u2013DEC COMMISSION', fmtMoney(proj.projectedAprDecCommission));
+          updateByLabel('PROJECTED 2026 TOTAL', fmtMoney(proj.total2026));
+
+          // Update the $X earned text next to MTD
+          var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+          var node;
+          while ((node = walker.nextNode())) {
+            if (/earned so far this month/i.test(node.textContent)) {
+              var prev = node.parentElement;
+              if (prev) {
+                var firstMatch = prev.textContent.match(/\$([\d,]+(?:\.\d+)?)/);
+                if (firstMatch) {
+                  var earned = proj.projectedCommissionApril * (proj.mtd / (proj.monthlyPace || 1));
+                  // Actually: earned so far this month = mtd * 0.10 (Q2 flat 10%)
+                  earned = proj.mtd * 0.10;
+                  prev.innerHTML = prev.innerHTML.replace(/\$[\d,]+(?:\.\d+)?\s*earned so far this month/, fmtMoney(earned) + ' earned so far this month');
+                }
+              }
+              break;
+            }
+          }
+        }, 200);
+      }
+
+      function syncFromRepo() {
+        fetch('./payments.json?_=' + Date.now())
+          .then(function(r) { return r.ok ? r.json() : null; })
+          .then(function(data) {
+            if (!data) return;
+            currentData = data;
+            window.__EPL_PAYMENTS = data;
+            console.log('[EPL Sync] Payments loaded:', data.lastUpdated, 'Karin:', data.reps.karin.mtdCollected, 'Megan:', data.reps.megan.mtdCollected);
+            updateDisplay();
+          })
+          .catch(function(e) { console.warn('[EPL Sync] payments.json unavailable', e); });
+      }
+
+      // Initial load
+      setTimeout(syncFromRepo, 1500);
+
+      // Re-apply on rep tab click (Karin/Megan toggle)
+      document.body.addEventListener('click', function(e) {
+        var t = e.target;
+        if (!t) return;
+        var text = (t.textContent || '').trim();
+        if (text === 'Karin' || text === 'Megan') {
+          setTimeout(updateDisplay, 500);
+        }
+      }, true);
+
+      // Also re-apply periodically to handle route changes (every 3s for first 30s)
+      var retries = 0;
+      var retryInterval = setInterval(function() {
+        if (currentData) updateDisplay();
+        retries++;
+        if (retries > 10) clearInterval(retryInterval);
+      }, 3000);
+    })();
     </script>
