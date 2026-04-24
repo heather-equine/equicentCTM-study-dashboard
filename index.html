@@ -13489,14 +13489,12 @@ function initMaintAeCharts() {
       '5757':        { rep: null,     name: 'Admin' }   // Admin sees all reps
     };
 
-    // Check if already authenticated this session
-    var savedAuth = sessionStorage.getItem('epl_comp_auth');
-    if (savedAuth) {
-      try {
-        var parsed = JSON.parse(savedAuth);
-        showCompDash(parsed.rep, parsed.name);
-      } catch(e) {}
-    }
+    // SECURITY: Re-lock on every tab switch. Do NOT auto-restore auth from sessionStorage —
+    // every entry to Comp Dashboard requires a fresh PIN. We keep sessionStorage only as a
+    // short-lived marker used while rendering the iframe; it is cleared the moment the user
+    // navigates away.
+    // Clear any stale auth from previous sessions/tabs on load.
+    sessionStorage.removeItem('epl_comp_auth');
 
     window.compVerifyPin = function() {
       var input = document.getElementById('comp-pin-input');
@@ -13520,16 +13518,59 @@ function initMaintAeCharts() {
       var iframe = document.getElementById('comp-iframe');
       if (gate) gate.style.display = 'none';
       if (container) container.style.display = 'block';
-      if (iframe && iframe.src === 'about:blank') {
+      if (iframe) {
         var url = BASE_URL;
         if (rep) {
           url += '?rep=' + rep + '#/';
         } else {
           url += '?admin=true#/';
         }
+        // Always reload the iframe on unlock so stale state from a previous session
+        // cannot be seen.
         iframe.src = url;
       }
     }
+
+    // Public re-lock: hide iframe, show gate, clear auth, blank the iframe.
+    window.compRelock = function() {
+      sessionStorage.removeItem('epl_comp_auth');
+      var gate = document.getElementById('comp-pin-gate');
+      var container = document.getElementById('comp-iframe-container');
+      var iframe = document.getElementById('comp-iframe');
+      var input = document.getElementById('comp-pin-input');
+      var msg = document.getElementById('comp-pin-msg');
+      if (gate) gate.style.display = '';
+      if (container) container.style.display = 'none';
+      if (iframe) iframe.src = 'about:blank';
+      if (input) input.value = '';
+      if (msg) msg.textContent = '';
+    };
+
+    // Hook: re-lock on every study-tab click (any nav away from or back to Comp Dashboard
+    // forces a fresh PIN entry). Use document-level delegation so it works even if tabs
+    // are added/removed dynamically, and no matter when this script runs.
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      while (target && target !== document.body) {
+        if (target.classList && target.classList.contains('study-tab')) {
+          // Re-lock on ANY study-tab click. Capture phase runs before the panel switches.
+          window.compRelock();
+          return;
+        }
+        target = target.parentElement;
+      }
+    }, true); // capture phase
+
+    // Also re-lock if the window loses focus for ≥60 seconds (optional soft-lock on
+    // long idle). Keep this conservative: only triggers on extended away.
+    var blurredAt = null;
+    window.addEventListener('blur', function() { blurredAt = Date.now(); });
+    window.addEventListener('focus', function() {
+      if (blurredAt && Date.now() - blurredAt > 5 * 60 * 1000) {
+        window.compRelock();
+      }
+      blurredAt = null;
+    });
   })();
   </script>
 
