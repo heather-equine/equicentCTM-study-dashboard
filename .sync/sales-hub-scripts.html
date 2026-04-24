@@ -460,13 +460,24 @@
             setCell(idxMegan, fmtMoney(m.mtdSales));
             setCell(idxCompany, fmtMoney(c.mtdSales));
           } else if (mLower.indexOf('mtd collected') > -1) {
-            var pmts = window.__EPL_PAYMENTS;
-            if (pmts && pmts.reps) {
-              var kColl = (pmts.reps.karin && pmts.reps.karin.mtdCollected) || 0;
-              var mColl = (pmts.reps.megan && pmts.reps.megan.mtdCollected) || 0;
+            // Prefer activity.json's native mtdCollected field (added by the
+            // Comp & Sales Analytics task). Fall back to payments.json if
+            // activity.json doesn't include it yet.
+            var kColl = (k.mtdCollected !== undefined) ? k.mtdCollected : null;
+            var mColl = (m.mtdCollected !== undefined) ? m.mtdCollected : null;
+            var cColl = (c.mtdCollected !== undefined) ? c.mtdCollected : null;
+            if (kColl === null) {
+              var pmts = window.__EPL_PAYMENTS;
+              if (pmts && pmts.reps) {
+                kColl = (pmts.reps.karin && pmts.reps.karin.mtdCollected) || 0;
+                mColl = (pmts.reps.megan && pmts.reps.megan.mtdCollected) || 0;
+                cColl = kColl + mColl;
+              }
+            }
+            if (kColl !== null) {
               setCell(idxKarin, fmtMoney(kColl));
               setCell(idxMegan, fmtMoney(mColl));
-              setCell(idxCompany, fmtMoney(kColl + mColl));
+              setCell(idxCompany, fmtMoney(cColl));
             }
           } else if (mLower === 'mtd orders') {
             setCell(idxKarin, String(k.mtdOrders));
