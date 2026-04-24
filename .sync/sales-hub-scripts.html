@@ -1,5 +1,6 @@
 <!-- Canonical scripts that must be injected into EPL-Sales-Hub/index.html -->
 <!-- Location: inside <body>, after <div id="root"></div>, before </body> -->
+<!-- Also required in repo root: payments.json, sync-admin.js -->
 
 <script>
     // Rep-lock: if ?rep=karin or ?rep=megan is in the URL, lock to that rep
@@ -137,26 +138,94 @@
 
         var proj = computeProjections(repData);
 
-        // Walk the DOM and update any element whose parent contains a known label
+        // Find a KPI card by its label text (<p> with uppercase label) and update the big $ value next to it
         function updateByLabel(labelText, newValue) {
-          var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
-          var node;
-          while ((node = walker.nextNode())) {
-            if (node.textContent.trim().toUpperCase().indexOf(labelText.toUpperCase()) > -1) {
-              var parent = node.parentElement;
-              // Walk up to find the card
-              for (var i = 0; i < 5 && parent; i++) {
-                var bigValue = parent.querySelector('*');
-                // Find child that has pattern like "$X,XXX" and is a leaf
-                var els = parent.querySelectorAll('*');
-                for (var j = 0; j < els.length; j++) {
-                  var el = els[j];
-                  if (el.children.length === 0 && /^\$[0-9,.]+$/.test(el.textContent.trim())) {
-                    el.textContent = newValue;
-                    return true;
-                  }
+          var labelUpper = labelText.toUpperCase().replace(/\s+/g, ' ');
+          // Find the specific <p> whose text matches the label (label is always in its own <p>)
+          var pTags = document.querySelectorAll('p');
+          var labelP = null;
+          for (var i = 0; i < pTags.length; i++) {
+            var t = pTags[i].textContent.trim().toUpperCase().replace(/\s+/g, ' ');
+            if (t === labelUpper) {
+              labelP = pTags[i];
+              break;
+            }
+          }
+          if (!labelP) return false;
+
+          // The big $ value is a sibling of labelP within the same card.
+          // Look at next siblings of the label for a $ value.
+          var sib = labelP.nextElementSibling;
+          while (sib) {
+            // Check if this element itself is the $ value
+            var txt = sib.textContent.trim();
+            if (/^\$[0-9,.]+$/.test(txt)) {
+              sib.textContent = newValue;
+              return true;
+            }
+            // Or if it has a direct child that is just the $ value
+            var directChildren = sib.children;
+            for (var k = 0; k < directChildren.length; k++) {
+              if (directChildren[k].children.length === 0 && /^\$[0-9,.]+$/.test(directChildren[k].textContent.trim())) {
+                directChildren[k].textContent = newValue;
+                return true;
+              }
+            }
+            // Or a descendant $ value (but only within this sibling)
+            var descendants = sib.querySelectorAll('*');
+            for (var m = 0; m < descendants.length; m++) {
+              if (descendants[m].children.length === 0 && /^\$[0-9,.]+$/.test(descendants[m].textContent.trim())) {
+                descendants[m].textContent = newValue;
+                return true;
+              }
+            }
+            sib = sib.nextElementSibling;
+          }
+          // Not in siblings — try the parent's other children
+          var parent = labelP.parentElement;
+          if (parent) {
+            var siblings = parent.children;
+            for (var n = 0; n < siblings.length; n++) {
+              if (siblings[n] === labelP) continue;
+              var txt2 = siblings[n].textContent.trim();
+              if (/^\$[0-9,.]+$/.test(txt2)) {
+                siblings[n].textContent = newValue;
+                return true;
+              }
+              var descendants2 = siblings[n].querySelectorAll('*');
+              for (var q = 0; q < descendants2.length; q++) {
+                if (descendants2[q].children.length === 0 && /^\$[0-9,.]+$/.test(descendants2[q].textContent.trim())) {
+                  descendants2[q].textContent = newValue;
+                  return true;
                 }
-                parent = parent.parentElement;
+              }
+            }
+          }
+          return false;
+        }
+
+        // Find MTD Collected value specifically (the $X next to the label)
+        function updateMTDValue(newValue) {
+          // Find the label paragraph first
+          var pTags = document.querySelectorAll('p');
+          for (var i = 0; i < pTags.length; i++) {
+            var p = pTags[i];
+            if (/MTD Collected/i.test(p.textContent) && /drives all projections/i.test(p.textContent)) {
+              // The value is the next <p> sibling of this label
+              var valueP = p.nextElementSibling;
+              if (valueP && valueP.tagName === 'P') {
+                // Replace the leading $X but keep the inner span
+                var firstTextNode = valueP.firstChild;
+                if (firstTextNode && firstTextNode.nodeType === 3) {
+                  firstTextNode.textContent = newValue;
+                  return true;
+                }
+                // Fallback: rebuild
+                var span = valueP.querySelector('span');
+                if (span) {
+                  valueP.childNodes[0].textContent = newValue;
+                  return true;
+                }
               }
             }
           }
@@ -165,11 +234,11 @@
 
         // Wait a beat to let React render then patch the visible values
         setTimeout(function() {
-          updateByLabel('MTD COLLECTED', fmtMoney(proj.mtd));
-          updateByLabel('PROJECTED COMMISSION', fmtMoney(proj.projectedCommissionApril));
+          updateMTDValue(fmtMoney(proj.mtd));
+          updateByLabel('PROJECTED COMMISSION \u2014 APRIL', fmtMoney(proj.projectedCommissionApril));
           updateByLabel('PROJECTED APR\u2013DEC REVENUE', fmtMoney(proj.projectedAprDecRevenue));
           updateByLabel('PROJECTED APR\u2013DEC COMMISSION', fmtMoney(proj.projectedAprDecCommission));
-          updateByLabel('PROJECTED 2026 TOTAL', fmtMoney(proj.total2026));
+          updateByLabel('PROJECTED 2026 TOTAL CASH COMP', fmtMoney(proj.total2026));
 
           // Update the $X earned text next to MTD
           var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
@@ -227,3 +296,6 @@
       }, 3000);
     })();
     </script>
+
+    <!-- Admin Sync Panel (Option C) -->
+    <script src="./sync-admin.js?v=1"></script>
