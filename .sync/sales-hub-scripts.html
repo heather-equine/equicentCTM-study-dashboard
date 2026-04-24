@@ -376,6 +376,15 @@
             setCell(idxKarin, fmtMoney(k.mtdSales));
             setCell(idxMegan, fmtMoney(m.mtdSales));
             setCell(idxCompany, fmtMoney(c.mtdSales));
+          } else if (mLower.indexOf('mtd collected') > -1) {
+            var pmts = window.__EPL_PAYMENTS;
+            if (pmts && pmts.reps) {
+              var kColl = (pmts.reps.karin && pmts.reps.karin.mtdCollected) || 0;
+              var mColl = (pmts.reps.megan && pmts.reps.megan.mtdCollected) || 0;
+              setCell(idxKarin, fmtMoney(kColl));
+              setCell(idxMegan, fmtMoney(mColl));
+              setCell(idxCompany, fmtMoney(kColl + mColl));
+            }
           } else if (mLower === 'mtd orders') {
             setCell(idxKarin, String(k.mtdOrders));
             setCell(idxMegan, String(m.mtdOrders));

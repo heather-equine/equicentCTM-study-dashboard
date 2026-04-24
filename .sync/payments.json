@@ -1,0 +1,64 @@
+{
+  "lastUpdated": "2026-04-23",
+  "uploadedAt": "2026-04-23",
+  "reportingPeriod": {
+    "start": "2026-04-01",
+    "end": "2026-04-23"
+  },
+  "asOfDay": 23,
+  "currentMonth": "Apr",
+  "year": 2026,
+  "reps": {
+    "karin": {
+      "name": "Karin Williamson",
+      "mtdCollected": 25800,
+      "monthlyActuals": {
+        "Apr": {
+          "collected": 25800,
+          "isActual": false,
+          "inProgress": true
+        }
+      },
+      "ytdVialsOrdered": 150,
+      "ytdPaid": 70510
+    },
+    "megan": {
+      "name": "Megan Smith",
+      "mtdCollected": 13200,
+      "monthlyActuals": {
+        "Apr": {
+          "collected": 13200,
+          "isActual": false,
+          "inProgress": true
+        }
+      },
+      "ytdVialsOrdered": 57,
+      "ytdPaid": 25275
+    }
+  },
+  "payments": [
+    {"rep": "karin", "invoice": "ORD-EPL-1062", "customer": "Santa Lucia Farm", "amount": 600, "paymentDate": "2026-04-21"},
+    {"rep": "karin", "invoice": "ORD-EPL-1019", "customer": "Smith Performance Equine", "amount": 700, "paymentDate": "2026-04-21"},
+    {"rep": "karin", "invoice": "ORD-EPL-1051", "customer": "Smith Performance Equine", "amount": 2400, "paymentDate": "2026-04-21"},
+    {"rep": "karin", "invoice": "CINV-EPL-1009", "customer": "Tanner Equine", "amount": 2400, "paymentDate": "2026-04-21"},
+    {"rep": "karin", "invoice": "ORD-EPL-1056", "customer": "Athens Equine", "amount": 350, "paymentDate": "2026-04-20"},
+    {"rep": "karin", "invoice": "ORD-EPL-1034", "customer": "Oakridge Equine Hospital", "amount": 600, "paymentDate": "2026-04-15"},
+    {"rep": "karin", "invoice": "ORD-EPL-1038", "customer": "Paso Robles Equine", "amount": 4800, "paymentDate": "2026-04-12"},
+    {"rep": "karin", "invoice": "ORD-EPL-1037", "customer": "Paso Robles Equine", "amount": 700, "paymentDate": "2026-04-12"},
+    {"rep": "karin", "invoice": "ORD-EPL-1026", "customer": "Mobile Veterinary Practice", "amount": 350, "paymentDate": "2026-04-10"},
+    {"rep": "karin", "invoice": "ORD-EPL-1043", "customer": "Northern Star Equine", "amount": 3600, "paymentDate": "2026-04-08"},
+    {"rep": "karin", "invoice": "ORD-EPL-1047", "customer": "Tanner Equine", "amount": 1800, "paymentDate": "2026-04-07"},
+    {"rep": "karin", "invoice": "ORD-EPL-1045", "customer": "Jenson Equine Hospital", "amount": 600, "paymentDate": "2026-04-07"},
+    {"rep": "karin", "invoice": "ORD-EPL-1040", "customer": "Weatherford Equine Medical Center", "amount": 1400, "paymentDate": "2026-04-06"},
+    {"rep": "karin", "invoice": "ORD-EPL-1030", "customer": "West Texas Equine Clinic", "amount": 700, "paymentDate": "2026-04-06"},
+    {"rep": "karin", "invoice": "ORD-EPL-1041", "customer": "Weatherford Equine Medical Center", "amount": 4800, "paymentDate": "2026-04-05"},
+    {"rep": "megan", "invoice": "ORD-EPL-1046", "customer": "The Feiner Equine", "amount": 600, "paymentDate": "2026-04-22"},
+    {"rep": "megan", "invoice": "CINV-EPL-1007", "customer": "Tryon Equine Hospital", "amount": 600, "paymentDate": "2026-04-14"},
+    {"rep": "megan", "invoice": "CINV-EPL-1005", "customer": "Tryon Equine Hospital", "amount": 1800, "paymentDate": "2026-04-14"},
+    {"rep": "megan", "invoice": "ORD-EPL-1057", "customer": "Tryon Equine Hospital", "amount": 1200, "paymentDate": "2026-04-14"},
+    {"rep": "megan", "invoice": "ORD-EPL-1053", "customer": "The Feiner Equine", "amount": 600, "paymentDate": "2026-04-14"},
+    {"rep": "megan", "invoice": "ORD-EPL-1039", "customer": "WinStar Farm LLC", "amount": 1200, "paymentDate": "2026-04-12"},
+    {"rep": "megan", "invoice": "ORD-EPL-1050", "customer": "Leg Up Equine", "amount": 2400, "paymentDate": "2026-04-08"},
+    {"rep": "megan", "invoice": "ORD-EPL-1042", "customer": "Advanced Equine of the Hudson Valley", "amount": 4800, "paymentDate": "2026-04-01"}
+  ]
+}
