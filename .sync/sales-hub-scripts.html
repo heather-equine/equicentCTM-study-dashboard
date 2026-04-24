@@ -254,6 +254,37 @@
               break;
             }
           }
+
+          // Update 'On pace for $X collected' subtitle in PROJECTED COMMISSION — APRIL card
+          var w2 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+          var n2;
+          while ((n2 = w2.nextNode())) {
+            var t2 = n2.textContent;
+            if (/On pace for\s+\$[\d,]+(?:\.\d+)?\s+collected/i.test(t2)) {
+              n2.textContent = t2.replace(/\$[\d,]+(?:\.\d+)?/, fmtMoney(proj.monthlyPace));
+            }
+          }
+
+          // Update 'Apr–Dec Comm $X' text in PROJECTED 2026 TOTAL CASH COMP subtitle
+          var w3 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+          var n3;
+          while ((n3 = w3.nextNode())) {
+            var t3 = n3.textContent;
+            // Match 'Apr-Dec Comm $X' (en dash or hyphen)
+            if (/Apr[\u2013\-]Dec\s+Comm\s+\$[\d,]+(?:\.\d+)?/i.test(t3)) {
+              n3.textContent = t3.replace(/(Apr[\u2013\-]Dec\s+Comm\s+)\$[\d,]+(?:\.\d+)?/i, '$1' + fmtMoney(proj.projectedAprDecCommission));
+            }
+          }
+
+          // Update 'Upload a Received Payments file to set the pace' — once MTD is loaded, replace that placeholder.
+          // (The card subtitle flips from the placeholder to 'Monthly pace — $X' once we have real data.)
+          var w4 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+          var n4;
+          while ((n4 = w4.nextNode())) {
+            if (/Upload a Received Payments file to set the pace/i.test(n4.textContent)) {
+              n4.textContent = 'Monthly pace · ' + fmtMoney(proj.monthlyPace) + ' (based on MTD collected)';
+            }
+          }
         }, 200);
       }
 
