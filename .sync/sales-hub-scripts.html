@@ -410,16 +410,86 @@
         // Update the report date text
         var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
         var node;
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var rptDate = new Date(activityData.reportDate + 'T00:00:00');
+        var rptStr = months[rptDate.getMonth()] + ' ' + rptDate.getDate() + ', ' + rptDate.getFullYear();
         while ((node = walker.nextNode())) {
           if (/Report:\s*\d{4}-\d{2}-\d{2}/.test(node.textContent)) {
             node.textContent = node.textContent.replace(/Report:\s*\d{4}-\d{2}-\d{2}/, 'Report: ' + activityData.reportDate);
           }
-          if (/Month-to-date through/i.test(node.textContent)) {
-            var d = new Date(activityData.reportDate + 'T00:00:00');
-            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            node.textContent = node.textContent.replace(/Month-to-date through [^·]+/, 'Month-to-date through ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' ');
+          if (/\d+\s*clients/.test(node.textContent) && /\d{4}-\d{2}-\d{2}/.test(node.parentElement.textContent)) {
+            node.textContent = node.textContent.replace(/\d+\s*clients/, activityData.totalClients + ' clients');
+          }
+          if (/Month-to-date through\s+\w+\s+\d+,?\s+\d{4}/i.test(node.textContent)) {
+            node.textContent = node.textContent.replace(/Month-to-date through\s+\w+\s+\d+,?\s+\d{4}/i, 'Month-to-date through ' + rptStr);
           }
         }
+
+        // Patch the Head-to-Head MTD Revenue bar chart (Karin/Megan numbers and Company Total)
+        var h2hCandidates = document.querySelectorAll('div');
+        h2hCandidates.forEach(function(div) {
+          var t = div.textContent || '';
+          if (/HEAD-TO-HEAD MTD REVENUE/i.test(t) && /Company Total:/i.test(t) && div.querySelectorAll('div').length < 30) {
+            // Update Company Total
+            var w = document.createTreeWalker(div, NodeFilter.SHOW_TEXT, null);
+            var tn;
+            while ((tn = w.nextNode())) {
+              if (/Company Total:\s*\$[\d,]+/.test(tn.textContent)) {
+                tn.textContent = tn.textContent.replace(/\$[\d,]+/, fmtMoney(k.mtdSales + m.mtdSales));
+              }
+            }
+            // Update Karin/Megan values - look for currency leaves
+            var leaves = div.querySelectorAll('*');
+            var currencyVals = [];
+            leaves.forEach(function(el) {
+              if (el.children.length === 0 && /^\$[0-9,]+$/.test(el.textContent.trim())) {
+                currencyVals.push(el);
+              }
+            });
+            // Expecting 2 currency leaves: Karin first then Megan
+            if (currencyVals.length >= 2) {
+              currencyVals[0].textContent = fmtMoney(k.mtdSales);
+              currencyVals[1].textContent = fmtMoney(m.mtdSales);
+            }
+          }
+        });
+
+        // Patch 'PROJECTED COMMISSION · MTD' card ($0 on $0 collected)
+        var projCards = document.querySelectorAll('div');
+        projCards.forEach(function(div) {
+          var t = div.textContent || '';
+          if (/PROJECTED COMMISSION.{0,3}MTD/i.test(t) && /Q2 Escalator/i.test(t) && div.querySelectorAll('div').length < 25) {
+            // Find the active rep
+            var activeRep = window.__EPL_ACTIVE_REP || 'karin';
+            var headerHasKarin = /Karin Williamson/i.test(t);
+            var headerHasMegan = /Megan Smith/i.test(t);
+            var useRep = headerHasKarin ? k : (headerHasMegan ? m : k);
+            // Projected commission = MTD collected * 10% (Q2 flat)
+            var payments = window.__EPL_PAYMENTS;
+            if (!payments) return;
+            var repKey = headerHasMegan ? 'megan' : 'karin';
+            var mtdCollected = payments.reps[repKey] ? payments.reps[repKey].mtdCollected : 0;
+            var comm = mtdCollected * 0.10;
+
+            // Find the big $X value - first leaf that matches $pattern
+            var leaves2 = div.querySelectorAll('*');
+            for (var i = 0; i < leaves2.length; i++) {
+              var el = leaves2[i];
+              if (el.children.length === 0 && /^\$[0-9,.]+$/.test(el.textContent.trim())) {
+                el.textContent = fmtMoney(comm);
+                break;
+              }
+            }
+            // Update 'on $X collected' subtitle
+            var w2 = document.createTreeWalker(div, NodeFilter.SHOW_TEXT, null);
+            var tn2;
+            while ((tn2 = w2.nextNode())) {
+              if (/on\s+\$[\d,]+\s+collected/i.test(tn2.textContent)) {
+                tn2.textContent = tn2.textContent.replace(/\$[\d,]+/, fmtMoney(mtdCollected));
+              }
+            }
+          }
+        });
 
         target.dataset.eplPatched = '1';
         target.dataset.eplVersion = activityData.lastUpdated;
