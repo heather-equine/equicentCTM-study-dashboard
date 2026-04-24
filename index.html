@@ -4530,6 +4530,13 @@ a:hover { text-decoration: underline; }
         </div>
       </div>
 
+      <!-- Comp Dashboard rep PIN management -->
+      <div style="background:var(--color-surface-2);border-radius:12px;padding:20px;margin-bottom:20px;">
+        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-faint);margin-bottom:8px;">COMP DASHBOARD — REP PINS</div>
+        <div style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:12px;">Share invite code with rep. They enter it once, then create their own PIN. Reset clears their PIN so they can start over.</div>
+        <div id="admin-rep-pins-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+      </div>
+
       <!-- Session info -->
       <div style="margin-top:20px;padding:16px;border-radius:10px;border:1px solid var(--color-border);">
         <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-faint);margin-bottom:8px;">YOUR SESSION</div>
@@ -4582,6 +4589,7 @@ async function adminVerifyPin() {
     document.getElementById('admin-step-dashboard').style.display = 'block';
     adminShowSession();
     adminGenerateQR();
+    adminRenderRepPins();
     // Show hidden maintain tab and admin-only tabs, persist flag
     var maintBtn = document.getElementById('maintain-tab-btn');
     if (maintBtn) maintBtn.style.display = '';
@@ -4643,6 +4651,61 @@ function adminLogout() {
   localStorage.removeItem('epl_dash_admin');
   adminPanelClose();
   location.reload();
+}
+
+// ===== Comp Dashboard rep PIN management =====
+var COMP_INVITE_CODES = {
+  karin: 'KARIN-EPL-2026',
+  megan: 'MEGAN-EPL-2026'
+};
+var COMP_REP_LABELS = { karin: 'Karin Williamson', megan: 'Megan Smith' };
+
+function adminReadCompPins() {
+  try { return JSON.parse(localStorage.getItem('epl_comp_rep_pins') || '{}'); } catch(e) { return {}; }
+}
+
+function adminRenderRepPins() {
+  var container = document.getElementById('admin-rep-pins-list');
+  if (!container) return;
+  var pins = adminReadCompPins();
+  container.innerHTML = '';
+  ['karin', 'megan'].forEach(function(repKey) {
+    var hasPin = !!pins[repKey];
+    var row = document.createElement('div');
+    row.style.cssText = 'border:1px solid var(--color-border);border-radius:10px;padding:12px;background:var(--color-surface);';
+    row.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+        '<div style="font-weight:600;font-size:0.9rem;color:var(--color-text);font-family:Montserrat,sans-serif;">' + COMP_REP_LABELS[repKey] + '</div>' +
+        '<div style="font-size:0.7rem;padding:3px 8px;border-radius:999px;background:' + (hasPin ? '#dcfce7' : '#fef3c7') + ';color:' + (hasPin ? '#166534' : '#92400e') + ';font-weight:600;">' + (hasPin ? 'PIN SET' : 'AWAITING FIRST LOGIN') + '</div>' +
+      '</div>' +
+      '<div style="font-size:0.72rem;color:var(--color-text-muted);margin-bottom:8px;">Invite code: <span style="font-family:monospace;font-weight:600;color:var(--color-primary);">' + COMP_INVITE_CODES[repKey] + '</span></div>' +
+      '<div style="display:flex;gap:8px;">' +
+        '<button data-copy-code="' + repKey + '" style="flex:1;padding:7px 10px;border:1.5px solid var(--color-primary);border-radius:6px;background:none;color:var(--color-primary);font-size:0.75rem;font-weight:600;cursor:pointer;font-family:Montserrat,sans-serif;">Copy Code</button>' +
+        (hasPin ? '<button data-reset-pin="' + repKey + '" style="flex:1;padding:7px 10px;border:1.5px solid #ef4444;border-radius:6px;background:none;color:#ef4444;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:Montserrat,sans-serif;">Reset PIN</button>' : '') +
+      '</div>';
+    container.appendChild(row);
+  });
+  // Wire buttons
+  container.querySelectorAll('[data-copy-code]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var rep = btn.getAttribute('data-copy-code');
+      navigator.clipboard.writeText(COMP_INVITE_CODES[rep]).then(function() {
+        var orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = orig; }, 1500);
+      });
+    });
+  });
+  container.querySelectorAll('[data-reset-pin]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var rep = btn.getAttribute('data-reset-pin');
+      if (!confirm('Reset ' + COMP_REP_LABELS[rep] + "'s Comp Dashboard PIN?\n\nShe will need to re-enter her invite code and create a new PIN.")) return;
+      var pins = adminReadCompPins();
+      delete pins[rep];
+      localStorage.setItem('epl_comp_rep_pins', JSON.stringify(pins));
+      adminRenderRepPins();
+    });
+  });
 }
 
 // Close on overlay click
@@ -13465,13 +13528,31 @@ function initMaintAeCharts() {
     <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-primary-10); color: var(--color-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
     </div>
-    <h3 style="font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-2);">Competitive Intelligence</h3>
-    <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">This section requires an additional access code.</p>
-    <div style="display: flex; gap: var(--space-2); justify-content: center; align-items: center;">
-      <input type="password" id="comp-pin-input" placeholder="Enter access code" style="padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); font-family: var(--font-body); width: 200px; background: var(--color-surface); color: var(--color-text);" onkeydown="if(event.key==='Enter') compVerifyPin()">
-      <button onclick="compVerifyPin()" style="padding: var(--space-2) var(--space-4); background: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 600; cursor: pointer; font-family: var(--font-body);">Unlock</button>
+
+    <!-- Step 1: Enter personal PIN (or invite code first time) -->
+    <div id="comp-gate-step-pin">
+      <h3 style="font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-2);">Competitive Intelligence</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);" id="comp-pin-subtitle">Enter your PIN to access the dashboard.</p>
+      <div style="display: flex; gap: var(--space-2); justify-content: center; align-items: center;">
+        <input type="password" id="comp-pin-input" placeholder="Enter PIN or invite code" style="padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); font-family: var(--font-body); width: 220px; background: var(--color-surface); color: var(--color-text);" onkeydown="if(event.key==='Enter') compVerifyPin()">
+        <button onclick="compVerifyPin()" style="padding: var(--space-2) var(--space-4); background: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 600; cursor: pointer; font-family: var(--font-body);">Unlock</button>
+      </div>
+      <p id="comp-pin-msg" style="font-size: var(--text-xs); color: #ef4444; margin-top: var(--space-2); min-height: 16px;"></p>
+      <p style="font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-3);" id="comp-pin-hint">First time? Enter your invite code from Heather.</p>
     </div>
-    <p id="comp-pin-msg" style="font-size: var(--text-xs); color: #ef4444; margin-top: var(--space-2);"></p>
+
+    <!-- Step 2: Create personal PIN (first-time reps) -->
+    <div id="comp-gate-step-create" style="display:none;">
+      <h3 style="font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-2);">Create Your PIN</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);" id="comp-create-subtitle">Welcome, <span id="comp-create-rep-name">Rep</span>. Choose a 4–8 digit PIN you'll use to unlock the Comp Dashboard.</p>
+      <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
+        <input type="password" id="comp-create-input" maxlength="8" inputmode="numeric" placeholder="Create PIN (4–8 digits)" style="padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); font-family: var(--font-body); width: 260px; background: var(--color-surface); color: var(--color-text); text-align:center;">
+        <input type="password" id="comp-confirm-input" maxlength="8" inputmode="numeric" placeholder="Confirm PIN" style="padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); font-family: var(--font-body); width: 260px; background: var(--color-surface); color: var(--color-text); text-align:center;" onkeydown="if(event.key==='Enter') compCreatePin()">
+        <button onclick="compCreatePin()" style="padding: var(--space-2) var(--space-6); background: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 600; cursor: pointer; font-family: var(--font-body);">Set PIN &amp; Enter</button>
+      </div>
+      <p id="comp-create-msg" style="font-size: var(--text-xs); color: #ef4444; margin-top: var(--space-2); min-height: 16px;"></p>
+      <button onclick="compGateBackToPin()" style="margin-top: 8px; background:none; border:none; color: var(--color-text-muted); font-size: var(--text-xs); cursor:pointer; text-decoration:underline;">← Back</button>
+    </div>
   </div>
 
   <div id="comp-iframe-container" style="display: none;">
@@ -13482,34 +13563,126 @@ function initMaintAeCharts() {
   (function() {
     var BASE_URL = 'https://heather-equine.github.io/EPL-Sales-Hub/';
 
-    // Rep PINs — each rep has their own code that locks them to their view
-    var REP_PINS = {
-      'karin2026':  { rep: 'karin',  name: 'Karin' },
-      'megan2026':  { rep: 'megan',  name: 'Megan' },
-      '5757':        { rep: null,     name: 'Admin' }   // Admin sees all reps
+    // ===== Invite codes (one-time, per-rep) =====
+    // Admin hardcoded PIN stays '5757'. Reps must first enter their invite code, then
+    // create a personal 4–8 digit PIN. Subsequent logins use only the personal PIN.
+    var INVITE_CODES = {
+      'KARIN-EPL-2026': 'karin',
+      'MEGAN-EPL-2026': 'megan',
+      // Back-compat: the old rep codes work ONLY as invite codes (replaced by personal PIN)
+      'karin2026':      'karin',
+      'megan2026':      'megan'
+    };
+    var ADMIN_PIN = '5757';
+    var REP_NAMES = { karin: 'Karin Williamson', megan: 'Megan Smith' };
+
+    // Storage: epl_comp_rep_pins = { karin: '<sha256-hex>', megan: '<sha256-hex>' }
+    var PINS_KEY = 'epl_comp_rep_pins';
+    function readPins() {
+      try { return JSON.parse(localStorage.getItem(PINS_KEY) || '{}'); } catch(e) { return {}; }
+    }
+    function writePins(obj) { localStorage.setItem(PINS_KEY, JSON.stringify(obj)); }
+
+    async function sha256(str) {
+      var enc = new TextEncoder().encode(str);
+      var buf = await crypto.subtle.digest('SHA-256', enc);
+      return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+    }
+
+    // Admin-exposed reset function (called from admin panel)
+    window.compResetRepPin = function(repKey) {
+      var pins = readPins();
+      delete pins[repKey];
+      writePins(pins);
     };
 
-    // SECURITY: Re-lock on every tab switch. Do NOT auto-restore auth from sessionStorage —
-    // every entry to Comp Dashboard requires a fresh PIN. We keep sessionStorage only as a
-    // short-lived marker used while rendering the iframe; it is cleared the moment the user
-    // navigates away.
-    // Clear any stale auth from previous sessions/tabs on load.
+    // SECURITY: every tab switch requires fresh PIN entry.
     sessionStorage.removeItem('epl_comp_auth');
 
-    window.compVerifyPin = function() {
-      var input = document.getElementById('comp-pin-input');
-      var pin = input.value.trim();
-      if (!pin) return;
+    function showStep(step) {
+      document.getElementById('comp-gate-step-pin').style.display = (step === 'pin' ? 'block' : 'none');
+      document.getElementById('comp-gate-step-create').style.display = (step === 'create' ? 'block' : 'none');
+    }
 
-      var match = REP_PINS[pin];
-      if (match) {
-        sessionStorage.setItem('epl_comp_auth', JSON.stringify(match));
-        showCompDash(match.rep, match.name);
-      } else {
-        document.getElementById('comp-pin-msg').textContent = 'Invalid access code.';
-        input.value = '';
-        input.focus();
+    window.compGateBackToPin = function() {
+      showStep('pin');
+      document.getElementById('comp-pin-input').value = '';
+      document.getElementById('comp-pin-msg').textContent = '';
+      document.getElementById('comp-create-msg').textContent = '';
+      window.__EPL_COMP_PENDING_REP = null;
+    };
+
+    window.compVerifyPin = async function() {
+      var input = document.getElementById('comp-pin-input');
+      var msg = document.getElementById('comp-pin-msg');
+      var entered = input.value.trim();
+      if (!entered) return;
+
+      // 1) Admin hardcoded PIN
+      if (entered === ADMIN_PIN) {
+        sessionStorage.setItem('epl_comp_auth', JSON.stringify({ rep: null, name: 'Admin' }));
+        showCompDash(null, 'Admin');
+        return;
       }
+
+      // 2) Try matching entered value against stored rep PIN hashes
+      var pins = readPins();
+      var hashed = await sha256(entered);
+      for (var repKey in pins) {
+        if (pins[repKey] === hashed) {
+          sessionStorage.setItem('epl_comp_auth', JSON.stringify({ rep: repKey, name: REP_NAMES[repKey] }));
+          showCompDash(repKey, REP_NAMES[repKey]);
+          return;
+        }
+      }
+
+      // 3) Check if entered value is an invite code (case-insensitive)
+      var codeMatch = null;
+      for (var code in INVITE_CODES) {
+        if (code.toUpperCase() === entered.toUpperCase()) { codeMatch = INVITE_CODES[code]; break; }
+      }
+      if (codeMatch) {
+        // If this rep already has a PIN stored, the invite code no longer works
+        if (pins[codeMatch]) {
+          msg.textContent = 'This invite code was already used. Enter your personal PIN instead, or ask Heather to reset it.';
+          input.value = '';
+          input.focus();
+          return;
+        }
+        // First-time setup: proceed to create-PIN step
+        window.__EPL_COMP_PENDING_REP = codeMatch;
+        document.getElementById('comp-create-rep-name').textContent = REP_NAMES[codeMatch];
+        document.getElementById('comp-create-input').value = '';
+        document.getElementById('comp-confirm-input').value = '';
+        document.getElementById('comp-create-msg').textContent = '';
+        showStep('create');
+        setTimeout(function(){ document.getElementById('comp-create-input').focus(); }, 50);
+        return;
+      }
+
+      // 4) Unknown
+      msg.textContent = 'Invalid PIN or invite code.';
+      input.value = '';
+      input.focus();
+    };
+
+    window.compCreatePin = async function() {
+      var repKey = window.__EPL_COMP_PENDING_REP;
+      var msg = document.getElementById('comp-create-msg');
+      if (!repKey) { msg.textContent = 'Session expired. Please re-enter your invite code.'; showStep('pin'); return; }
+      var pin = document.getElementById('comp-create-input').value.trim();
+      var confirm = document.getElementById('comp-confirm-input').value.trim();
+      if (pin.length < 4 || pin.length > 8) { msg.textContent = 'PIN must be 4–8 digits.'; return; }
+      if (!/^\d+$/.test(pin)) { msg.textContent = 'PIN must be numbers only.'; return; }
+      if (pin !== confirm) { msg.textContent = 'PINs do not match.'; return; }
+      if (pin === ADMIN_PIN) { msg.textContent = 'That PIN is reserved. Please choose a different one.'; return; }
+      var hashed = await sha256(pin);
+      var pins = readPins();
+      pins[repKey] = hashed;
+      writePins(pins);
+      window.__EPL_COMP_PENDING_REP = null;
+      sessionStorage.setItem('epl_comp_auth', JSON.stringify({ rep: repKey, name: REP_NAMES[repKey] }));
+      showCompDash(repKey, REP_NAMES[repKey]);
     };
 
     function showCompDash(rep, name) {
@@ -13534,16 +13707,21 @@ function initMaintAeCharts() {
     // Public re-lock: hide iframe, show gate, clear auth, blank the iframe.
     window.compRelock = function() {
       sessionStorage.removeItem('epl_comp_auth');
+      window.__EPL_COMP_PENDING_REP = null;
       var gate = document.getElementById('comp-pin-gate');
       var container = document.getElementById('comp-iframe-container');
       var iframe = document.getElementById('comp-iframe');
       var input = document.getElementById('comp-pin-input');
       var msg = document.getElementById('comp-pin-msg');
+      var cMsg = document.getElementById('comp-create-msg');
       if (gate) gate.style.display = '';
       if (container) container.style.display = 'none';
       if (iframe) iframe.src = 'about:blank';
       if (input) input.value = '';
       if (msg) msg.textContent = '';
+      if (cMsg) cMsg.textContent = '';
+      // Always return to the PIN step, not the create step
+      showStep('pin');
     };
 
     // Hook: re-lock on every study-tab click (any nav away from or back to Comp Dashboard
