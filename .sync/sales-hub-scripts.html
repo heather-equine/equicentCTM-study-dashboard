@@ -1,6 +1,6 @@
-<!-- Canonical scripts that must be injected into EPL-Sales-Hub/index.html -->
+<!-- Canonical scripts for EPL-Sales-Hub/index.html -->
 <!-- Location: inside <body>, after <div id="root"></div>, before </body> -->
-<!-- Also required in repo root: payments.json, activity.json, sync-admin.js -->
+<!-- Also required in repo root: payments.json, activity.json, sync-admin.js, activity-sync.js -->
 
 <script>
     // Rep-lock: if ?rep=karin or ?rep=megan is in the URL, lock to that rep
@@ -550,6 +550,9 @@
       }, 2000);
     })();
     </script>
+
+    <!-- Activity table sync (client-level tables) -->
+    <script src="./activity-sync.js?v=1"></script>
 
     <!-- Admin Sync Panel (Option C) -->
     <script src="./sync-admin.js?v=1"></script>

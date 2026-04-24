@@ -1,16 +1,22 @@
 # Sales Hub Required Injections
 
-Scripts that must be present in `EPL-Sales-Hub/index.html` after `<div id="root"></div>`.
+Files required in `EPL-Sales-Hub/` repo root:
+- `payments.json` — rep MTD collected data
+- `activity.json` — full client-level activity data (aggregates + topAccounts/newClients/outstandingAR/atRiskAccounts per rep)
+- `sync-admin.js` — Option C admin upload panel
+- `activity-sync.js` — client-level table sync
+
+Scripts required in `EPL-Sales-Hub/index.html` inside `<body>` after `<div id="root"></div>`:
+- Rep-lock (?rep=karin|megan)
+- Auto-sync from payments.json
+- Inline Activity table sync (Activity Overview + Head-to-Head bars + Projected Commission MTD)
+- `<script src="./activity-sync.js?v=1">` reference
+- `<script src="./sync-admin.js?v=1">` reference
 
 Canonical source: `.sync/sales-hub-scripts.html`
-Also required: `EPL-Sales-Hub/payments.json` at repo root.
 
-## Script 1: Rep-Lock
-`?rep=karin|megan` URL param auto-selects rep and hides others.
-
-## Script 2: Auto-Sync from payments.json
-Fetches `payments.json` and patches MTD Collected + projections in DOM for active rep. Re-runs on rep tab click.
-
-## History
-- 2026-04-20: Added rep-lock
-- 2026-04-23: Sales Hub redesign — removed commission table script, added payments.json auto-sync
+## Sync cadence
+Daily check at ~8am CDT restores any wiped scripts. If the Sales Hub is rebuilt
+and wipes these injections, either:
+1. Wait for the daily cron
+2. Message in the dashboard task thread to sync manually
