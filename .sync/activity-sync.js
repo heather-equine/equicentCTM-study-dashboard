@@ -73,13 +73,43 @@
 
   function updateWeeklyHeader(repKey) {
     // Update 'Month-to-date through Mon D, YYYY · RepName'
+    // The text may be split across multiple text nodes. Find the container of the
+    // Weekly Activity Recap heading, then update any rep-name text node within the same block.
     var repName = repKey === 'megan' ? 'Megan Smith' : 'Karin Williamson';
-    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var recapHeading = isOnActivityTab();
+    if (!recapHeading) return;
+    // Walk up to find a container that includes both 'Month-to-date through' and rep name
+    var container = recapHeading.parentElement;
+    var tries = 0;
+    while (container && tries < 6) {
+      var txt = container.textContent || '';
+      if (/Month-to-date through/i.test(txt) && /(Karin Williamson|Megan Smith)/.test(txt)) break;
+      container = container.parentElement;
+      tries++;
+    }
+    if (!container) return;
+    // Walk text nodes within container and replace any rep name occurrences
+    var w = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
     var node;
     while ((node = w.nextNode())) {
-      var txt = node.textContent;
-      if (/Month-to-date through/i.test(txt) && /(Karin Williamson|Megan Smith)/.test(txt)) {
-        node.textContent = txt.replace(/(Karin Williamson|Megan Smith)/, repName);
+      var nTxt = node.textContent;
+      if (/(Karin Williamson|Megan Smith)/.test(nTxt)) {
+        node.textContent = nTxt.replace(/(Karin Williamson|Megan Smith)/g, repName);
+      }
+    }
+    // Also update the date in 'Month-to-date through <date>' to the activity report date
+    if (activityData && activityData.reportDate) {
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var rptDate = new Date(activityData.reportDate + 'T00:00:00');
+      var rptStr = months[rptDate.getMonth()] + ' ' + rptDate.getDate() + ', ' + rptDate.getFullYear();
+      var w2 = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+      var node2;
+      while ((node2 = w2.nextNode())) {
+        var t2 = node2.textContent;
+        // Match 'Month-to-date through Mon D, YYYY' (date may have trailing space/separator)
+        if (/Month-to-date through\s+[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}/.test(t2)) {
+          node2.textContent = t2.replace(/(Month-to-date through)\s+[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}/, '$1 ' + rptStr);
+        }
       }
     }
   }
