@@ -97,18 +97,40 @@
         node.textContent = nTxt.replace(/(Karin Williamson|Megan Smith)/g, repName);
       }
     }
-    // Also update the date in 'Month-to-date through <date>' to the activity report date
+    // Also update the date in 'Month-to-date through <date>' to the activity report date.
+    // Text may be split: one node = "Month-to-date through ", next = "Apr 17, 2026", next = " · ".
     if (activityData && activityData.reportDate) {
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       var rptDate = new Date(activityData.reportDate + 'T00:00:00');
       var rptStr = months[rptDate.getMonth()] + ' ' + rptDate.getDate() + ', ' + rptDate.getFullYear();
+      var dateRe = /[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}/;
       var w2 = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+      var nodes = [];
       var node2;
-      while ((node2 = w2.nextNode())) {
-        var t2 = node2.textContent;
-        // Match 'Month-to-date through Mon D, YYYY' (date may have trailing space/separator)
-        if (/Month-to-date through\s+[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}/.test(t2)) {
-          node2.textContent = t2.replace(/(Month-to-date through)\s+[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}/, '$1 ' + rptStr);
+      while ((node2 = w2.nextNode())) nodes.push(node2);
+      // Case A: one text node has both 'Month-to-date through' and a date
+      var handledA = false;
+      for (var a = 0; a < nodes.length; a++) {
+        var ta = nodes[a].textContent;
+        if (/Month-to-date through/i.test(ta) && dateRe.test(ta)) {
+          nodes[a].textContent = ta.replace(dateRe, rptStr);
+          handledA = true;
+        }
+      }
+      // Case B: 'Month-to-date through' in one node, date in a later text node
+      if (!handledA) {
+        for (var b = 0; b < nodes.length; b++) {
+          if (/Month-to-date through/i.test(nodes[b].textContent)) {
+            // Find the next text node that contains a date
+            for (var c = b + 1; c < Math.min(b + 6, nodes.length); c++) {
+              var tc = nodes[c].textContent;
+              if (dateRe.test(tc)) {
+                nodes[c].textContent = tc.replace(dateRe, rptStr);
+                break;
+              }
+            }
+            break;
+          }
         }
       }
     }
@@ -395,8 +417,8 @@
     var repKey = detectActiveRep();
     window.__EPL_ACTIVE_REP = repKey;
 
-    // In admin view, also update the weekly recap header to match selected rep
-    if (isAdminView()) { try { updateWeeklyHeader(repKey); } catch(e){} }
+    // Always refresh the weekly recap header (date + rep name) so it matches activityData
+    try { updateWeeklyHeader(repKey); } catch(e){ console.warn('[EPL] weekly header update failed', e); }
 
     try { patchTopAccounts(repKey); } catch(e) { console.warn('[EPL] topAccounts patch failed', e); }
     try { patchNewClients(repKey); } catch(e) { console.warn('[EPL] newClients patch failed', e); }
