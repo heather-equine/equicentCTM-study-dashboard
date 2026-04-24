@@ -12,12 +12,6 @@
         https://www.perplexity.ai/computer
 -->
 
-<!-- Perplexity Computer Attribution — SEO Meta Tags -->
-<meta name="generator" content="Perplexity Computer">
-<meta name="author" content="Perplexity Computer">
-<meta property="og:see_also" content="https://www.perplexity.ai/computer">
-<link rel="author" href="https://www.perplexity.ai/computer">
-
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -2049,6 +2043,9 @@ a:hover { text-decoration: underline; }
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-divider);
   transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  position: relative;
+  /* Subtle right-edge fade hints at scrollable tabs */
+  background-image: linear-gradient(to right, var(--color-surface), transparent 3%, transparent 97%, var(--color-surface));
 }
 .study-selector {
   max-width: 1400px;
@@ -2057,7 +2054,12 @@ a:hover { text-decoration: underline; }
   display: flex;
   gap: var(--space-3);
   align-items: center;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
+.study-selector::-webkit-scrollbar { height: 6px; }
+.study-selector::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
 .study-tab {
   display: inline-flex;
   align-items: center;
@@ -5191,10 +5193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- FOOTER for overview -->
 <footer class="site-footer" style="margin-top: var(--space-12);">
   <div class="footer-left">
-    © 2025 Equine Performance Labs, Austin, TX.
-  </div>
-  <div class="footer-right">
-    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    © 2025–2026 Equine Performance Labs, Austin, TX.
   </div>
 </footer>
 
@@ -6256,10 +6255,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-left">
-    © 2025 Equine Performance Labs, Austin, TX. Data from Bertone et al. <em>BMC Medicine</em> (2025) 23:439.
-  </div>
-  <div class="footer-right">
-    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    © 2025–2026 Equine Performance Labs, Austin, TX. Data from Bertone et al. <em>BMC Medicine</em> (2025) 23:439.
   </div>
 </footer>
 </div>
@@ -9115,10 +9111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Clinical Footer -->
 <footer class="site-footer">
   <div class="footer-left">
-    © 2025 Equine Performance Labs, LLC · Trial VCT26005934
-  </div>
-  <div class="footer-right">
-    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    © 2025–2026 Equine Performance Labs, LLC · Trial VCT26005934
   </div>
 </footer>
 
@@ -9653,9 +9646,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <footer class="site-footer">
   <div class="footer-left">
     © 2026 Equine Performance Labs, LLC · ACVSMR Poster · Leise, Catunda &amp; Bertone
-  </div>
-  <div class="footer-right">
-    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
   </div>
 </footer>
 
@@ -11204,6 +11194,12 @@ studyTabs.forEach(tab => {
     if (typeof destroyMaintAeCharts === 'function') destroyMaintAeCharts();
     if (typeof initMaintAeCharts === 'function') initMaintAeCharts();
     animateIn();
+    // Scroll to top-left of the new panel so the user sees content
+    // immediately instead of a blank area (fixes the horizontal-scroll bug
+    // when tab rail has been scrolled right to reach tabs like Comp Dashboard).
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Also ensure the clicked tab is visible in the rail after scroll
+    try { tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' }); } catch (e) {}
   });
 });
 
