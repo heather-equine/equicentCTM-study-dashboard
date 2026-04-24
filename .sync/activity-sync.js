@@ -442,20 +442,25 @@
 
   loadActivity();
 
-  // Re-apply on nav clicks
+  // Re-apply on ANY nav click — covers admin toggle, rep tabs, section tabs.
   document.body.addEventListener('click', function(e) {
     if (!e.target) return;
     var text = (e.target.textContent || '').trim();
-    if (text === 'Activity' || text === 'Karin' || text === 'Megan') {
-      setTimeout(patchAll, 700);
+    if (text === 'Activity' || text === 'Karin' || text === 'Megan' ||
+        text === 'Overview' || text === 'Comp' ||
+        text === 'Karin Williamson' || text === 'Megan Smith' ||
+        text === 'Commission Reports' || text === 'Documents') {
+      setTimeout(patchAll, 500);
+      setTimeout(patchAll, 1500); // second pass for slower React updates
     }
   }, true);
 
-  // Periodic retry for React re-renders
-  var retries = 0;
-  var iv = setInterval(function() {
-    patchAll();
-    retries++;
-    if (retries > 20) clearInterval(iv);
-  }, 2000);
+  // Also re-apply on route changes
+  window.addEventListener('hashchange', function() { setTimeout(patchAll, 500); });
+  window.addEventListener('popstate', function() { setTimeout(patchAll, 500); });
+
+  // Permanent low-frequency safety net (every 2 seconds forever). React can
+  // re-render at any time and wipe our patches; a persistent check keeps the
+  // UI consistent even after a long idle or route change.
+  setInterval(patchAll, 2000);
 })();

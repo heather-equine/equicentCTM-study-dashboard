@@ -1,42 +1,61 @@
 <script>
-    // Rep-lock: if ?rep=karin or ?rep=megan is in the URL, lock to that rep
+    // Rep-lock: if ?rep=karin or ?rep=megan is in URL, PERSISTENTLY lock to that rep.
+    // The Sales Hub has its own React auth that can unlock admin features mid-session;
+    // we run a continuous MutationObserver that keeps hiding Admin/Edit/other-rep buttons
+    // no matter what the React bundle tries to render.
     (function() {
       var params = new URLSearchParams(window.location.search);
       var lockedRep = params.get('rep');
       if (!lockedRep) return;
       lockedRep = lockedRep.toLowerCase();
+      if (lockedRep !== 'karin' && lockedRep !== 'megan') return;
+      var otherRep = lockedRep === 'karin' ? 'megan' : 'karin';
 
-      // Wait for React to render, then find and click the rep tab + hide others
-      var observer = new MutationObserver(function(mutations, obs) {
-        // Look for buttons/tabs containing rep names
-        var allBtns = document.querySelectorAll('button, [role="tab"]');
-        var found = false;
-        allBtns.forEach(function(btn) {
-          var text = btn.textContent.trim().toLowerCase();
-          // If this is a rep-specific tab (Karin, Megan, etc)
-          if (text === 'karin' || text === 'megan') {
-            if (text === lockedRep) {
-              btn.click();
-              found = true;
-            } else {
-              btn.style.display = 'none';
+      // Inject CSS so anything with data-epl-hidden is hidden even if React tries to re-show it.
+      var style = document.createElement('style');
+      style.textContent = '[data-epl-hidden="1"]{display:none!important;visibility:hidden!important;pointer-events:none!important;}';
+      (document.head || document.documentElement).appendChild(style);
+
+      var hasClickedLockedRep = false;
+
+      function hideForbidden() {
+        // Hide every button/tab that should NOT be available in rep-locked view:
+        //   • The "other" rep tab (Megan if Karin-locked, etc)
+        //   • Admin tab (reps must never access publishing/admin UI)
+        //   • Edit button (admin-only comp editing)
+        var targets = document.querySelectorAll('button, a, [role="tab"]');
+        targets.forEach(function(btn) {
+          var text = (btn.textContent || '').trim().toLowerCase();
+          if (text === otherRep || text === 'admin' || text === 'edit') {
+            btn.setAttribute('data-epl-hidden', '1');
+          } else if (text === lockedRep) {
+            // Make sure locked-rep tab stays visible AND clicked if not yet active
+            btn.removeAttribute('data-epl-hidden');
+            if (!hasClickedLockedRep) {
+              // click it to select the correct rep
+              try { btn.click(); hasClickedLockedRep = true; } catch(e) {}
             }
           }
         });
-        if (found) {
-          obs.disconnect();
-          // Also hide the admin tab if not admin
-          if (params.get('admin') !== 'true') {
-            allBtns.forEach(function(btn) {
-              var t = btn.textContent.trim().toLowerCase();
-              if (t === 'admin' || t === 'edit') btn.style.display = 'none';
-            });
-          }
+      }
+
+      // Run on every DOM mutation. This is critical: the Sales Hub's React bundle
+      // may re-render nav items after admin auth events, tab switches, etc.
+      var observer = new MutationObserver(function() { hideForbidden(); });
+      observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+      // Initial sweep
+      hideForbidden();
+      // Also run periodically as a belt-and-suspenders safety net
+      setInterval(hideForbidden, 1500);
+      // Expose the active rep for other sync scripts
+      window.__EPL_ACTIVE_REP = lockedRep;
+
+      // Intercept hash changes that attempt to reach admin routes (belt-and-suspenders)
+      window.addEventListener('hashchange', function() {
+        if (/#\/admin/i.test(window.location.hash)) {
+          window.location.hash = '#/';
         }
       });
-      observer.observe(document.body, { childList: true, subtree: true });
-      // Safety: disconnect after 15s
-      setTimeout(function() { observer.disconnect(); }, 15000);
     })();
 
     // ===== AUTO-SYNC FROM payments.json =====
@@ -325,23 +344,35 @@
       // Initial load
       setTimeout(syncFromRepo, 1500);
 
-      // Re-apply on rep tab click (Karin/Megan toggle)
+      // Re-apply on ANY nav click (rep toggle, tab switch) — 500ms after click so
+      // React has finished re-rendering the new view.
       document.body.addEventListener('click', function(e) {
         var t = e.target;
         if (!t) return;
         var text = (t.textContent || '').trim();
-        if (text === 'Karin' || text === 'Megan') {
+        if (text === 'Karin' || text === 'Megan' ||
+            text === 'Overview' || text === 'Activity' || text === 'Comp' ||
+            text === 'Commission Reports' || text === 'Documents' ||
+            /^(Karin|Megan|Overview|Activity|Comp|Commission|Documents)/i.test(text)) {
           setTimeout(updateDisplay, 500);
+          setTimeout(updateDisplay, 1500); // second pass after slower renders
         }
       }, true);
 
-      // Also re-apply periodically to handle route changes (every 3s for first 30s)
-      var retries = 0;
-      var retryInterval = setInterval(function() {
-        if (currentData) updateDisplay();
-        retries++;
-        if (retries > 10) clearInterval(retryInterval);
-      }, 3000);
+      // Also re-apply on route changes
+      window.addEventListener('hashchange', function() { setTimeout(updateDisplay, 500); });
+      window.addEventListener('popstate', function() { setTimeout(updateDisplay, 500); });
+
+      // Permanent low-frequency safety net: if the page displays '$0' or
+      // 'Upload a Received Payments file' placeholder anywhere, re-sync.
+      setInterval(function() {
+        if (!currentData) return;
+        var body = document.body.innerText || '';
+        if (/Upload a Received Payments file/i.test(body) ||
+            /\$0(?!\d)/.test(body.slice(0, 5000))) {
+          updateDisplay();
+        }
+      }, 2000);
     })();
 
     // ===== AUTO-SYNC FROM activity.json (Activity tab) =====
@@ -461,6 +492,10 @@
             setCell(idxKarin, String(k.activeClients));
             setCell(idxMegan, String(m.activeClients));
             setCell(idxCompany, String(c.activeClients));
+          } else if (mLower.indexOf('total client') > -1) {
+            setCell(idxKarin, String(k.totalClients));
+            setCell(idxMegan, String(m.totalClients));
+            setCell(idxCompany, String(c.totalClients));
           }
         });
 
@@ -674,7 +709,7 @@
     </script>
 
     <!-- Activity table sync (client-level tables) -->
-    <script src="./activity-sync.js?v=1"></script>
+    <script src="./activity-sync.js?v=3"></script>
 
     <!-- Admin Sync Panel (Option C) -->
-    <script src="./sync-admin.js?v=1"></script>
+    <script src="./sync-admin.js?v=3"></script>
