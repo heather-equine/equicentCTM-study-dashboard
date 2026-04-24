@@ -518,19 +518,37 @@
                 }
               }
             }
-            // Update Karin/Megan values - look for currency leaves
+            // Update Karin/Megan values. Do NOT rely on DOM order — the React app may
+            // render the current rep first in rep-locked views. Instead, find each bar's
+            // rep by looking at the name label within the same row/block.
             var leaves = div.querySelectorAll('*');
-            var currencyVals = [];
+            var currencyLeaves = [];
             leaves.forEach(function(el) {
-              if (el.children.length === 0 && /^\$[0-9,]+$/.test(el.textContent.trim())) {
-                currencyVals.push(el);
+              if (el.children.length === 0 && /^\$[0-9,]+$/.test((el.textContent || '').trim())) {
+                // Skip the Company Total value (already handled above)
+                var sameRowText = el.parentElement ? (el.parentElement.textContent || '') : '';
+                if (/Company Total/i.test(sameRowText)) return;
+                currencyLeaves.push(el);
               }
             });
-            // Expecting 2 currency leaves: Karin first then Megan
-            if (currencyVals.length >= 2) {
-              currencyVals[0].textContent = fmtMoney(k.mtdSales);
-              currencyVals[1].textContent = fmtMoney(m.mtdSales);
-            }
+
+            currencyLeaves.forEach(function(valEl) {
+              // Walk up to find a container that includes a rep name label
+              var ctx = valEl;
+              for (var depth = 0; depth < 6 && ctx; depth++) {
+                var ctxText = ctx.textContent || '';
+                var hasKarin = /\bKarin\b/.test(ctxText);
+                var hasMegan = /\bMegan\b/.test(ctxText);
+                // Only decide if exactly one is present at this level
+                if (hasKarin && !hasMegan) { valEl.textContent = fmtMoney(k.mtdSales); return; }
+                if (hasMegan && !hasKarin) { valEl.textContent = fmtMoney(m.mtdSales); return; }
+                ctx = ctx.parentElement;
+              }
+              // Fallback to order-based assignment if we couldn't disambiguate
+              var idx = currencyLeaves.indexOf(valEl);
+              if (idx === 0) valEl.textContent = fmtMoney(k.mtdSales);
+              else if (idx === 1) valEl.textContent = fmtMoney(m.mtdSales);
+            });
           }
         });
 
