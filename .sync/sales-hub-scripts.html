@@ -112,7 +112,14 @@
         var julDecComm = monthlyWaterfall(monthlyPace) * 6;
         var projectedAprDecCommission = aprJunComm + julDecComm;
 
-        var q1Paid = 3525.50; // Q1 pending - known from existing display
+        // Q1 paid varies by rep. If we can read it from the DOM (React rendered it),
+        // use that; otherwise fall back to 0 so we don't show wrong subtotals.
+        var q1Paid = 0;
+        try {
+          var bodyText = document.body.innerText || '';
+          var m = bodyText.match(/Q1\s+\$(\d[\d,]*(?:\.\d+)?)/);
+          if (m) q1Paid = parseFloat(m[1].replace(/,/g, ''));
+        } catch(e) {}
         var base = 110000;
         var total2026 = base + q1Paid + projectedAprDecCommission;
 
@@ -245,10 +252,10 @@
               if (prev) {
                 var firstMatch = prev.textContent.match(/\$([\d,]+(?:\.\d+)?)/);
                 if (firstMatch) {
-                  var earned = proj.projectedCommissionApril * (proj.mtd / (proj.monthlyPace || 1));
-                  // Actually: earned so far this month = mtd * 0.10 (Q2 flat 10%)
-                  earned = proj.mtd * 0.10;
-                  prev.innerHTML = prev.innerHTML.replace(/\$[\d,]+(?:\.\d+)?\s*earned so far this month/, fmtMoney(earned) + ' earned so far this month');
+                  // earned so far this month = mtd * 0.10 (Q2 flat 10%)
+                  var earned = proj.mtd * 0.10;
+                  var earnedStr = fmtMoney(earned);
+                  prev.innerHTML = prev.innerHTML.replace(/\$[\d,]+(?:\.\d+)?\s*earned so far this month/, function() { return earnedStr + ' earned so far this month'; });
                 }
               }
               break;
@@ -256,33 +263,47 @@
           }
 
           // Update 'On pace for $X collected' subtitle in PROJECTED COMMISSION — APRIL card
+          // (function replacement to avoid $-backreference interpretation)
           var w2 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
           var n2;
+          var paceValue = fmtMoney(proj.monthlyPace);
           while ((n2 = w2.nextNode())) {
             var t2 = n2.textContent;
             if (/On pace for\s+\$[\d,]+(?:\.\d+)?\s+collected/i.test(t2)) {
-              n2.textContent = t2.replace(/\$[\d,]+(?:\.\d+)?/, fmtMoney(proj.monthlyPace));
+              n2.textContent = t2.replace(/\$[\d,]+(?:\.\d+)?/, function() { return paceValue; });
             }
           }
 
-          // Update 'Apr–Dec Comm $X' text in PROJECTED 2026 TOTAL CASH COMP subtitle
+          // Update 'Apr–Dec Comm $X' text in PROJECTED 2026 TOTAL CASH COMP subtitle.
+          // NOTE: Use a function replacement to avoid $-backreference interpretation in the
+          // replacement string (fmtMoney returns strings like '$10,330' which would otherwise
+          // be partially re-interpreted by .replace).
           var w3 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
           var n3;
+          var commRe = /(Apr[\u2013\-]Dec\s+Comm\s+)\$[\d,]+(?:\.\d+)?/gi;
+          var commText = fmtMoney(proj.projectedAprDecCommission);
           while ((n3 = w3.nextNode())) {
             var t3 = n3.textContent;
-            // Match 'Apr-Dec Comm $X' (en dash or hyphen)
-            if (/Apr[\u2013\-]Dec\s+Comm\s+\$[\d,]+(?:\.\d+)?/i.test(t3)) {
-              n3.textContent = t3.replace(/(Apr[\u2013\-]Dec\s+Comm\s+)\$[\d,]+(?:\.\d+)?/i, '$1' + fmtMoney(proj.projectedAprDecCommission));
+            if (commRe.test(t3)) {
+              commRe.lastIndex = 0; // reset for replace
+              n3.textContent = t3.replace(commRe, function(match, prefix) {
+                return prefix + commText;
+              });
             }
           }
 
-          // Update 'Upload a Received Payments file to set the pace' — once MTD is loaded, replace that placeholder.
-          // (The card subtitle flips from the placeholder to 'Monthly pace — $X' once we have real data.)
+          // Update 'Monthly pace · $X' subtitle (from a previous patch) OR the original
+          // 'Upload a Received Payments file to set the pace' placeholder.
           var w4 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
           var n4;
+          var paceText = 'Monthly pace · ' + fmtMoney(proj.monthlyPace) + ' (based on MTD collected)';
           while ((n4 = w4.nextNode())) {
-            if (/Upload a Received Payments file to set the pace/i.test(n4.textContent)) {
-              n4.textContent = 'Monthly pace · ' + fmtMoney(proj.monthlyPace) + ' (based on MTD collected)';
+            var t4 = n4.textContent;
+            if (/Upload a Received Payments file to set the pace/i.test(t4)) {
+              n4.textContent = paceText;
+            } else if (/Monthly pace\s*·\s*\$[\d,]+(?:\.\d+)?/i.test(t4)) {
+              // Update the already-patched text to this rep's pace
+              n4.textContent = paceText;
             }
           }
         }, 200);
