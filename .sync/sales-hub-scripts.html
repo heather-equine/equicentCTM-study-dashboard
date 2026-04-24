@@ -1,7 +1,3 @@
-<!-- Canonical scripts for EPL-Sales-Hub/index.html -->
-<!-- Location: inside <body>, after <div id="root"></div>, before </body> -->
-<!-- Also required in repo root: payments.json, activity.json, sync-admin.js, activity-sync.js -->
-
 <script>
     // Rep-lock: if ?rep=karin or ?rep=megan is in the URL, lock to that rep
     (function() {
@@ -477,42 +473,89 @@
           }
         });
 
-        // Patch 'PROJECTED COMMISSION · MTD' card ($0 on $0 collected)
-        var projCards = document.querySelectorAll('div');
-        projCards.forEach(function(div) {
-          var t = div.textContent || '';
-          if (/PROJECTED COMMISSION.{0,3}MTD/i.test(t) && /Q2 Escalator/i.test(t) && div.querySelectorAll('div').length < 25) {
-            // Find the active rep
-            var activeRep = window.__EPL_ACTIVE_REP || 'karin';
-            var headerHasKarin = /Karin Williamson/i.test(t);
-            var headerHasMegan = /Megan Smith/i.test(t);
-            var useRep = headerHasKarin ? k : (headerHasMegan ? m : k);
-            // Projected commission = MTD collected * 10% (Q2 flat)
-            var payments = window.__EPL_PAYMENTS;
-            if (!payments) return;
-            var repKey = headerHasMegan ? 'megan' : 'karin';
-            var mtdCollected = payments.reps[repKey] ? payments.reps[repKey].mtdCollected : 0;
-            var comm = mtdCollected * 0.10;
+        // Patch 'PROJECTED COMMISSION · MTD' card
+        // Strategy: find the rep card (contains 'Karin Williamson' or 'Megan Smith' + a $ value)
+        // and fix: (1) the $value, (2) the 'on $X collected' subtitle.
+        // In admin view (?admin=true or both reps visible), clone the card so BOTH reps show.
+        var payments = window.__EPL_PAYMENTS;
+        var isAdminView = /[?&]admin=true/.test(window.location.search) || !/[?&]rep=/.test(window.location.search);
 
-            // Find the big $X value - first leaf that matches $pattern
-            var leaves2 = div.querySelectorAll('*');
-            for (var i = 0; i < leaves2.length; i++) {
-              var el = leaves2[i];
-              if (el.children.length === 0 && /^\$[0-9,.]+$/.test(el.textContent.trim())) {
-                el.textContent = fmtMoney(comm);
+        function patchRepCommissionCard(cardEl, repKey) {
+          if (!payments || !payments.reps[repKey]) return;
+          var mtdCollected = payments.reps[repKey].mtdCollected || 0;
+          var comm = mtdCollected * 0.10;
+          // Update big $ value - first leaf that is a pure $ amount
+          var leaves = cardEl.querySelectorAll('*');
+          for (var i = 0; i < leaves.length; i++) {
+            var el = leaves[i];
+            if (el.children.length === 0 && /^\$[0-9,.]+$/.test((el.textContent || '').trim())) {
+              el.textContent = fmtMoney(comm);
+              break;
+            }
+          }
+          // Update 'on $X collected' subtitle — handle single or split text nodes
+          var subtitleEl = null;
+          var allLeaves = cardEl.querySelectorAll('*');
+          for (var j = 0; j < allLeaves.length; j++) {
+            var leaf = allLeaves[j];
+            if (leaf.children.length === 0) {
+              var txt = (leaf.textContent || '').trim();
+              if (/^on\s+\$[\d,.]+\s+collected$/i.test(txt) || /on\s+\$[\d,.]+\s+collected/i.test(txt)) {
+                subtitleEl = leaf;
                 break;
               }
             }
-            // Update 'on $X collected' subtitle
-            var w2 = document.createTreeWalker(div, NodeFilter.SHOW_TEXT, null);
-            var tn2;
-            while ((tn2 = w2.nextNode())) {
-              if (/on\s+\$[\d,]+\s+collected/i.test(tn2.textContent)) {
-                tn2.textContent = tn2.textContent.replace(/\$[\d,]+/, fmtMoney(mtdCollected));
-              }
+          }
+          if (subtitleEl) {
+            subtitleEl.textContent = 'on ' + fmtMoney(mtdCollected) + ' collected';
+          }
+          cardEl.dataset.eplRep = repKey;
+        }
+
+        // Find all existing rep commission cards (each has a rep name + a $ value leaf)
+        var allCards = document.querySelectorAll('div');
+        var karinCard = null, meganCard = null, projSection = null;
+        allCards.forEach(function(div) {
+          if (div.children.length > 8) return; // want small cards only
+          var text = div.textContent || '';
+          // A rep card should be compact: contains rep name + $ value + 'collected'
+          if (/collected/i.test(text) && /\$[\d,]+/.test(text)) {
+            if (/Karin Williamson/i.test(text) && !karinCard && div.querySelectorAll('div').length < 10) {
+              karinCard = div;
+            } else if (/Megan Smith/i.test(text) && !meganCard && div.querySelectorAll('div').length < 10) {
+              meganCard = div;
             }
           }
         });
+
+        // Also find the outer Projected Commission section (to append Megan's card to)
+        allCards.forEach(function(div) {
+          var t = div.textContent || '';
+          if (/PROJECTED COMMISSION.{0,3}MTD/i.test(t) && /Q2 Escalator/i.test(t) && div.querySelectorAll('div').length < 25) {
+            if (!projSection || div.querySelectorAll('div').length < projSection.querySelectorAll('div').length) {
+              projSection = div;
+            }
+          }
+        });
+
+        if (karinCard) patchRepCommissionCard(karinCard, 'karin');
+        if (meganCard) patchRepCommissionCard(meganCard, 'megan');
+
+        // If admin view, we need BOTH cards. If Megan card missing, clone Karin's.
+        if (isAdminView && karinCard && !meganCard && payments && payments.reps.megan) {
+          var clone = karinCard.cloneNode(true);
+          // Replace 'Karin Williamson' text with 'Megan Smith' in clone
+          var cloneLeaves = clone.querySelectorAll('*');
+          for (var c = 0; c < cloneLeaves.length; c++) {
+            var cl = cloneLeaves[c];
+            if (cl.children.length === 0 && /Karin Williamson/i.test(cl.textContent || '')) {
+              cl.textContent = cl.textContent.replace(/Karin Williamson/i, 'Megan Smith');
+            }
+          }
+          karinCard.parentNode.insertBefore(clone, karinCard.nextSibling);
+          patchRepCommissionCard(clone, 'megan');
+          clone.dataset.eplCloned = '1';
+        }
 
         target.dataset.eplPatched = '1';
         target.dataset.eplVersion = activityData.lastUpdated;
