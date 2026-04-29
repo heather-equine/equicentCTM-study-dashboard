@@ -2088,6 +2088,9 @@ a:hover { text-decoration: underline; }
   color: #0f1117;
 }
 .study-tab svg { width: 16px; height: 16px; flex-shrink: 0; }
+a.study-tab { text-decoration: none; }
+a.study-tab.study-tab-external:hover { background: var(--color-primary); color: white; }
+a.study-tab.study-tab-external:hover svg { color: white; }
 
 
 /* ========== MAINTAIN JOINT RELEVANCE ========== */
@@ -4832,6 +4835,11 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       Pricing
     </button>
+    <a class="study-tab study-tab-external" href="https://unisynhub.com/UnisynHub/#/org-select" target="_blank" rel="noopener noreferrer" title="Opens UnisynHub orders portal in a new tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      Orders
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;margin-left:2px;opacity:0.6;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
     <button class="study-tab" data-study="videos">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
       Educational Videos
@@ -11184,6 +11192,9 @@ const studyTabs = document.querySelectorAll('.study-tab');
 studyTabs.forEach(tab => {
   tab.addEventListener('click', () => {
     const study = tab.dataset.study;
+    // External-link tabs (e.g. Orders → UnisynHub) have no data-study and no
+    // internal panel. Let the browser handle navigation naturally.
+    if (!study) return;
     document.querySelectorAll('.study-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     document.querySelectorAll('.study-panel').forEach(p => p.classList.remove('active'));
