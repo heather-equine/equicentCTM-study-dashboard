@@ -4852,6 +4852,10 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Comp Dashboard
     </button>
+    <button class="study-tab" data-study="fieldcases">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+      Field Cases
+    </button>
     <button class="study-tab admin-only-tab" data-study="competitive" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
       Why eCTM
@@ -13763,6 +13767,220 @@ function initMaintAeCharts() {
   </script>
 
 </div><!-- end study-compdash -->
+
+<!-- ===== FIELD CASES TAB ===== -->
+<div class="study-panel" id="study-fieldcases">
+
+<style>
+#study-fieldcases .fc-hero {
+  background: linear-gradient(135deg, #01696F 0%, #024d52 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: var(--space-6) var(--space-7);
+  margin-bottom: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+#study-fieldcases .fc-hero-text { flex: 1 1 480px; min-width: 0; }
+#study-fieldcases .fc-hero-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.78;
+  margin-bottom: 8px;
+}
+#study-fieldcases .fc-hero-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.18;
+  margin-bottom: 10px;
+  color: #fff;
+}
+#study-fieldcases .fc-hero-desc {
+  font-size: 0.97rem;
+  line-height: 1.55;
+  opacity: 0.92;
+  max-width: 62ch;
+}
+#study-fieldcases .fc-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+#study-fieldcases .fc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+#study-fieldcases .fc-btn-primary {
+  background: #fff;
+  color: #01696F;
+}
+#study-fieldcases .fc-btn-primary:hover {
+  transform: translateY(-1px);
+  background: #f4f9fa;
+}
+#study-fieldcases .fc-btn-ghost {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.35);
+}
+#study-fieldcases .fc-btn-ghost:hover {
+  background: rgba(255,255,255,0.16);
+}
+#study-fieldcases .fc-quick-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+#study-fieldcases .fc-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: var(--space-5);
+}
+#study-fieldcases .fc-card-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+#study-fieldcases .fc-card-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+#study-fieldcases .fc-card-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+}
+#study-fieldcases .fc-callout {
+  background: rgba(1, 105, 111, 0.06);
+  border-left: 4px solid #01696F;
+  border-radius: 8px;
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-6);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+#study-fieldcases .fc-callout strong { color: #01696F; }
+#study-fieldcases .fc-embed-wrap {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+#study-fieldcases .fc-embed-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--color-surface-offset, #f6f7f8);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+#study-fieldcases .fc-embed-bar a {
+  color: #01696F;
+  font-weight: 600;
+  text-decoration: none;
+}
+#study-fieldcases .fc-embed-bar a:hover { text-decoration: underline; }
+#study-fieldcases .fc-iframe {
+  width: 100%;
+  height: 760px;
+  border: 0;
+  display: block;
+}
+@media (max-width: 720px) {
+  #study-fieldcases .fc-iframe { height: 560px; }
+  #study-fieldcases .fc-hero { padding: var(--space-5); }
+}
+</style>
+
+<div class="section-label">FIELD INTELLIGENCE</div>
+<h2 class="section-title" style="margin-bottom: var(--space-2);">Field Use Case Database</h2>
+<p class="section-desc" style="margin-bottom: var(--space-6);">Real-world Equicenta&trade; CTM use cases reported by veterinarians in the EPL network. Add new cases, browse the FAQ View by condition, and watch the dashboard for emerging trends.</p>
+
+<div class="fc-hero animate-in">
+  <div class="fc-hero-text">
+    <div class="fc-hero-eyebrow">For EPL Reps &middot; Internal Use Only</div>
+    <div class="fc-hero-title">What have you seen in the field?</div>
+    <div class="fc-hero-desc">Capture every case your vets report &mdash; labeled and veterinarian-directed. Your colleagues can search the FAQ View in seconds the next time a vet asks &ldquo;what have you seen for X?&rdquo;</div>
+  </div>
+  <div class="fc-hero-actions">
+    <a class="fc-btn fc-btn-primary" href="https://docs.google.com/spreadsheets/d/17JzBC_xkPFUxbgM7nXwLTlp7Pn9GOye_QhIG8WOHT2Q/edit?gid=410119943" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add a New Case
+    </a>
+    <a class="fc-btn fc-btn-ghost" href="https://docs.google.com/spreadsheets/d/17JzBC_xkPFUxbgM7nXwLTlp7Pn9GOye_QhIG8WOHT2Q/edit" target="_blank" rel="noopener noreferrer">
+      Open in Google Sheets
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+  </div>
+</div>
+
+<div class="fc-quick-cards">
+  <div class="fc-card animate-in">
+    <div class="fc-card-label">Tab 1</div>
+    <div class="fc-card-title">Case Database</div>
+    <div class="fc-card-desc">Add a row per case. Dropdowns for condition, anatomical target, route, outcome, and concurrent therapies. Case ID auto-generates.</div>
+  </div>
+  <div class="fc-card animate-in">
+    <div class="fc-card-label">Tab 2</div>
+    <div class="fc-card-title">FAQ View</div>
+    <div class="fc-card-desc">Pick a condition from the dropdown. See every case the team has logged for it &mdash; with vet rationale, outcome, and follow-up timepoint.</div>
+  </div>
+  <div class="fc-card animate-in">
+    <div class="fc-card-label">Tab 3</div>
+    <div class="fc-card-title">Dashboard</div>
+    <div class="fc-card-desc">Live KPIs: total cases, labeled vs. veterinarian-directed, top conditions, outcomes, geography, and submitter breakdown.</div>
+  </div>
+</div>
+
+<div class="fc-callout animate-in">
+  <strong>Regulatory note &middot;</strong> This is internal field intelligence, not promotional material. Reps document what they hear &mdash; they do not promote uses outside the labeled indication. Vet and clinic names are confidential and stay inside the EPL field team.
+</div>
+
+<div class="fc-embed-wrap animate-in">
+  <div class="fc-embed-bar">
+    <span>Live view &middot; signed-in reps with edit access can edit directly in the embed</span>
+    <a href="https://docs.google.com/spreadsheets/d/17JzBC_xkPFUxbgM7nXwLTlp7Pn9GOye_QhIG8WOHT2Q/edit" target="_blank" rel="noopener noreferrer">Open full screen &rarr;</a>
+  </div>
+  <iframe class="fc-iframe"
+    src="https://docs.google.com/spreadsheets/d/17JzBC_xkPFUxbgM7nXwLTlp7Pn9GOye_QhIG8WOHT2Q/edit?rm=minimal&widget=true&headers=true&chrome=false"
+    title="EPL Equicenta CTM &mdash; Field Use Case Database"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen></iframe>
+</div>
+
+<footer class="site-footer" style="margin-top: var(--space-8);">
+  <div class="footer-left">&#169; 2025&ndash;2026 Equine Performance Labs, Austin, TX.</div>
+</footer>
+
+</div><!-- end study-fieldcases -->
 
 <div class="study-panel" id="study-competitive">
 
