@@ -2483,8 +2483,11 @@ a.study-tab.study-tab-external:hover svg { color: white; }
 .overview-hero-subtitle {
   font-size: var(--text-base);
   color: var(--color-text-muted);
-  margin: 0 0 var(--space-6);
+  line-height: 1.6;
+  max-width: 780px;
+  margin: 0 auto var(--space-6);
 }
+.overview-hero-subtitle strong { color: var(--color-text); font-weight: 700; }
 .overview-hero-pills {
   display: flex;
   justify-content: center;
@@ -2563,9 +2566,75 @@ a.study-tab.study-tab-external:hover svg { color: white; }
 /* Stats Grid */
 .overview-stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: var(--space-4);
   margin-bottom: var(--space-8);
+}
+
+/* Study-at-a-Glance credibility strip */
+.overview-credibility {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.overview-cred-item { display: flex; flex-direction: column; gap: 2px; }
+.overview-cred-value {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--color-text);
+  font-family: var(--font-display);
+}
+.overview-cred-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+@media (max-width: 860px) {
+  .overview-credibility { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .overview-credibility { grid-template-columns: 1fr; }
+}
+
+/* Commercial case / milestones callouts */
+.overview-callout {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-5);
+}
+.overview-callout-icon {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-primary-10);
+  border-radius: var(--radius-md);
+}
+.overview-callout-icon svg { width: 22px; height: 22px; stroke: var(--color-primary); }
+.overview-callout-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+.overview-callout-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.overview-callout-text strong { color: var(--color-text); font-weight: 700; }
+@media (max-width: 640px) {
+  .overview-callout { flex-direction: column; gap: 12px; padding: var(--space-4); }
 }
 .overview-stat-card {
   background: var(--color-surface);
@@ -2792,6 +2861,9 @@ a.study-tab.study-tab-external:hover svg { color: white; }
 }
 
 /* Responsive */
+@media (max-width: 1200px) and (min-width: 901px) {
+  .overview-stats-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 900px) {
   .overview-stats-grid { grid-template-columns: repeat(2, 1fr); }
   .overview-studies-grid { grid-template-columns: 1fr; }
@@ -4874,10 +4946,14 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="study-panel active" id="study-overview">
 
 <div class="overview-hero animate-in">
-  <div class="overview-hero-badge">QUICK REFERENCE</div>
+  <div class="overview-hero-badge">PIVOTAL CLINICAL TRIAL RESULTS</div>
   <h1 class="overview-hero-title">equicenta™ CTM at a Glance</h1>
-
-
+  <p class="overview-hero-subtitle">A single, off-the-shelf injection that outperformed the biologic therapies veterinarians use today as standard of care &mdash; delivering <strong>faster, larger, and more durable recovery</strong> in lame performance horses, with a <strong>superior safety profile</strong>.</p>
+  <div class="overview-hero-pills">
+    <span class="overview-pill">First controlled trial of its kind for an umbilical-derived allograft in horses</span>
+    <span class="overview-pill">138 horses &middot; 195 conditions &middot; 8 practices</span>
+    <span class="overview-pill">Head-to-head vs real-world SOC</span>
+  </div>
 </div>
 
 <!-- ELEVATOR PITCH -->
@@ -4926,9 +5002,39 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="overview-stat-context">SOC had 4.8× more injection reactions (vet review, p&lt;0.04)</div>
   </div>
   <div class="overview-stat-card overview-stat-highlight">
+    <div class="overview-stat-value">One</div>
+    <div class="overview-stat-label">Injection vs Many</div>
+    <div class="overview-stat-context">SOC required significantly more repeat injections (p&lt;0.03)</div>
+  </div>
+  <div class="overview-stat-card overview-stat-highlight">
     <div class="overview-stat-value">2,645</div>
     <div class="overview-stat-label">Proteins Identified</div>
     <div class="overview-stat-context">Sustained release as matrix biodegrades</div>
+  </div>
+</div>
+
+<!-- STUDY AT A GLANCE -->
+<div class="overview-section-label animate-in">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  STUDY AT A GLANCE
+</div>
+
+<div class="overview-credibility animate-in">
+  <div class="overview-cred-item">
+    <div class="overview-cred-value">138 / 195</div>
+    <div class="overview-cred-label">horses / conditions across 8 specialty practices (Oct 2024 &ndash; Aug 2025)</div>
+  </div>
+  <div class="overview-cred-item">
+    <div class="overview-cred-value">100% &middot; 98%</div>
+    <div class="overview-cred-label">completed 12-week &middot; 26-week follow-up</div>
+  </div>
+  <div class="overview-cred-item">
+    <div class="overview-cred-value">Head-to-head</div>
+    <div class="overview-cred-label">vs real-world SOC (PRP, APS, ACS, stem cells &amp; more)</div>
+  </div>
+  <div class="overview-cred-item">
+    <div class="overview-cred-value">Independent</div>
+    <div class="overview-cred-label">third-party investigators, statisticians &amp; IACUC oversight; AVMA Clinical Trials Registry</div>
   </div>
 </div>
 
@@ -5116,6 +5222,32 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
+<!-- THE COMMERCIAL CASE -->
+<div class="overview-section-label animate-in">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M20 7h-9M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+  THE COMMERCIAL CASE
+</div>
+
+<div class="overview-callout animate-in">
+  <div class="overview-callout-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.91 8.84 8.56 2.23a1.93 1.93 0 0 0-1.81 0L3.1 4.13a2.12 2.12 0 0 0-.05 3.69l12.22 6.93a2 2 0 0 0 1.94 0L21 12.51a2.12 2.12 0 0 0-.09-3.67Z"/><path d="m3.09 8.84 12.35-6.61"/><path d="M12 22V12"/></svg>
+  </div>
+  <div>
+    <div class="overview-callout-title">A consistent, ready-to-use, single-dose product</div>
+    <div class="overview-callout-text">No patient-side blood draw, no processing variability, no repeat-visit burden. eCTM directly addresses the biggest weaknesses of today&rsquo;s autologous biologics &mdash; <strong>inconsistent quality and short-lived benefit</strong> &mdash; in a market actively seeking alternatives to blood-derived products.</div>
+  </div>
+</div>
+
+<div class="overview-callout animate-in">
+  <div class="overview-callout-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+  </div>
+  <div>
+    <div class="overview-callout-title">Owners see the difference &mdash; a strong adoption signal</div>
+    <div class="overview-callout-text">At 26 weeks, owners rated eCTM horses significantly higher on <strong>body condition, coat quality, overall health, and quality of life</strong> (Health &amp; QoL Index p&lt;0.03). Owner-perceived results drive <strong>adoption, loyalty, and word-of-mouth</strong>.</div>
+  </div>
+</div>
+
 <!-- TALKING POINTS -->
 <div class="overview-section-label animate-in">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -5142,6 +5274,11 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="overview-talk-card">
     <div class="overview-talk-q">Is it safe?</div>
     <div class="overview-talk-a">In the clinical trial (n=138), eCTM had <strong>4.8× fewer injection reactions than standard of care</strong> on veterinary review (p&lt;0.04) and <strong>5.9× fewer on blinded central review</strong> (p=0.002). Reaction rate was <strong>3.4% (5/148) for eCTM vs 7.9–10.5% for SOC</strong>; excess SOC joint reactions were attributed to PAAG overrepresentation. In the separate safety study, zero adverse events were observed in 8 normal horses at 42 days, and no systemic inflammation was detected — SAA levels dropped post-injection.</div>
+  </div>
+
+  <div class="overview-talk-card">
+    <div class="overview-talk-q">One injection or many?</div>
+    <div class="overview-talk-a">eCTM was largely <strong>one-and-done</strong>. Standard of care required <strong>significantly more repeat injections</strong> (p&lt;0.03) &mdash; meaning higher cost, more clinic visits, and greater infection exposure per patient. No second visit, no blood draw, no processing.</div>
   </div>
 
   <div class="overview-talk-card">
