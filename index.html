@@ -3020,104 +3020,6 @@ a.study-tab.study-tab-external:hover svg { color: white; }
 .clin-kpi-card[data-race-kpi]:hover { border-color: var(--color-primary); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 .clin-kpi-card[data-race-kpi].kpi-active { border-color: var(--color-primary); box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 25%, transparent); }
 
-/* ========== RACE SCHEMATIC ========== */
-.race-schematic {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-5);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-.race-schematic:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-.race-header {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  margin-bottom: var(--space-4); gap: var(--space-3);
-}
-.race-title { font-size: var(--text-sm); font-weight: 600; }
-.race-subtitle { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 2px; }
-.race-body { position: relative; padding: var(--space-4) 0; }
-.race-track {
-  position: relative;
-  height: 48px;
-  margin-bottom: var(--space-2);
-  display: flex;
-  align-items: center;
-}
-.race-track-label {
-  position: absolute;
-  left: 0;
-  font-size: 0.5625rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-  writing-mode: horizontal-tb;
-  width: 32px;
-  text-align: right;
-}
-.race-track-label.soc { color: var(--color-control); }
-.race-track-label.ectm { color: var(--color-primary); }
-.race-lane {
-  position: relative;
-  margin-left: 40px;
-  flex: 1;
-  height: 3px;
-  border-radius: 2px;
-}
-.race-lane.soc-lane { background: var(--color-control-10); }
-.race-lane.ectm-lane { background: var(--color-primary-10); }
-.race-horse {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: left 0.3s ease;
-}
-.race-horse svg { display: block; }
-.race-horse-emoji {
-  font-size: 20px;
-  line-height: 1;
-  display: block;
-  filter: grayscale(1);
-}
-.race-horse-emoji.soc { filter: grayscale(1) sepia(1) hue-rotate(-15deg) saturate(3) brightness(0.85); }
-.race-horse-emoji.ectm { filter: grayscale(1) sepia(1) hue-rotate(120deg) saturate(2) brightness(0.7); }
-.race-timeline {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 40px;
-  margin-top: var(--space-2);
-  padding-top: var(--space-2);
-  border-top: 1px solid var(--color-divider);
-}
-.race-time-marker {
-  font-size: 0.5625rem;
-  font-weight: 600;
-  color: var(--color-text-faint);
-  text-align: center;
-}
-.race-p-badge {
-  position: absolute;
-  top: var(--space-2);
-  right: 0;
-  font-size: 0.625rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary-10);
-  color: var(--color-primary);
-}
-.race-study-label {
-  position: absolute;
-  top: var(--space-2);
-  right: 80px;
-  font-size: 0.5625rem;
-  font-weight: 600;
-  color: var(--color-text-faint);
-  letter-spacing: 0.04em;
-}
-
 /* ========== CLINICAL SECTION HEADING ========== */
 .clin-section-heading {
   display: flex;
@@ -4146,22 +4048,6 @@ a.study-tab.study-tab-external:hover svg { color: white; }
 
 
 
-
-/* Race schematic active chart highlight */
-.chart-card[data-race-measure] {
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.chart-card[data-race-measure]:hover {
-  box-shadow: 0 0 0 2px var(--color-primary);
-}
-.chart-card.race-active {
-  box-shadow: 0 0 0 2px var(--color-primary);
-  border-color: var(--color-primary);
-}
-.race-horse {
-  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
 </style>
 <!-- Print Stylesheet for PDF Export -->
@@ -6749,53 +6635,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="charts-grid two-col animate-in">
-  <div class="race-schematic chart-card" id="clinical-race-schematic" data-chart-explain="race-schematic-pain" data-active-measure="pain" onclick="openClinOverlay('race-schematic-pain')">
-  <div class="race-header">
-    <div>
-      <div class="race-title">RACE SCHEMATIC</div>
-      <div class="race-subtitle">Pain Score: equicenta™ CTM vs SOC</div>
-    </div>
-    <div style="text-align:right">
-      <div class="race-study-label" style="position:static;margin-bottom:4px">12 Week Study</div>
-      <span class="p-badge significant">p &lt; 0.02</span>
-    </div>
-  </div>
-  <div class="race-body">
-    <div class="race-track">
-      <div class="race-track-label soc">SOC<br>Control</div>
-      <div class="race-lane soc-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 15%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 28%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 40%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 52%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 65%"><span class="race-horse-emoji soc">🐎</span></div></div>
-    </div>
-    <div class="race-track">
-      <div class="race-track-label ectm">eCTM<br>Treatment</div>
-      <div class="race-lane ectm-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 18%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 38%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 58%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 78%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 95%"><span class="race-horse-emoji ectm">🐎</span></div></div>
-    </div>
-    <div class="race-timeline"><div class="race-time-marker">Wk 0</div><div class="race-time-marker">Wk 1</div><div class="race-time-marker">Wk 2</div><div class="race-time-marker">Wk 4</div><div class="race-time-marker">Wk 8</div><div class="race-time-marker">Wk 12</div></div>
-  </div>
-  <div class="clin-kpi-footnote" style="padding: 0 var(--space-4) var(--space-3);"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Cumulative improvement (AUC across 12-wk trajectory), not endpoint change from baseline</div>
-  <div class="chart-info-overlay" id="clin-overlay-race-schematic-pain">
-  <div class="chart-info-overlay-header">
-    <h4>Race Schematic — Pain Score</h4>
-    <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="chart-info-body">
-    <div class="info-section">
-      <div class="info-label">What is this chart showing?</div>
-      <p class="info-text">This illustrated 'race' diagram visualizes how equicentCTM™ (bottom track) pulled ahead of standard of care (top track) in pain reduction over the 12-week study. The horse figures represent each treatment group progressing through time, with the equicentCTM™ horse clearly pulling ahead by Week 2.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Why does this matter?</div>
-      <p class="info-text">This visualization makes the clinical data intuitive — you can literally see one treatment 'winning the race.' The equicentCTM™ horse pulls ahead at Week 2 (when statistical significance was first achieved, p<0.02) and continues to increase its lead through Week 12. The growing gap between the two horses represents the increasing advantage of equicentCTM™ over standard treatments.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Bottom line:</div>
-      <p class="info-takeaway">equicentCTM™ started outperforming standard of care by Week 2 and the gap continued to widen — the treatment 'won the race' with increasingly better pain outcomes at every time point.</p>
-    </div>
-  </div>
-</div>
-</div>
-  <div class="chart-card" data-chart-explain="pain-score" onclick="openClinOverlay('pain-score')" data-race-measure="pain">
+  <div class="chart-card" data-chart-explain="pain-score" onclick="openClinOverlay('pain-score')">
   <div class="chart-header">
     <div>
       <div class="chart-title">Pain Score</div>
@@ -7034,51 +6874,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="charts-grid two-col animate-in">
-  <div class="race-schematic chart-card" data-chart-explain="race-schematic-performance" onclick="openClinOverlay('race-schematic-performance')">
-  <div class="race-header">
-    <div>
-      <div class="race-title">RACE SCHEMATIC</div>
-      <div class="race-subtitle">Mean Performance: equicenta™ CTM vs SOC</div>
-    </div>
-    <div style="text-align:right">
-      <div class="race-study-label" style="position:static;margin-bottom:4px">26 Week Study</div>
-      <span class="p-badge significant">p &lt; 0.001 (d=2.23)</span>
-    </div>
-  </div>
-  <div class="race-body">
-    <div class="race-track">
-      <div class="race-track-label soc">SOC<br>Control</div>
-      <div class="race-lane soc-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 15%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 25%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 35%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 42%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 50%"><span class="race-horse-emoji soc">🐎</span></div></div>
-    </div>
-    <div class="race-track">
-      <div class="race-track-label ectm">eCTM<br>Treatment</div>
-      <div class="race-lane ectm-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 25%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 42%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 58%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 78%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 95%"><span class="race-horse-emoji ectm">🐎</span></div></div>
-    </div>
-    <div class="race-timeline"><div class="race-time-marker">Wk 0</div><div class="race-time-marker">Wk 4</div><div class="race-time-marker">Wk 8</div><div class="race-time-marker">Wk 12</div><div class="race-time-marker">Wk 20</div><div class="race-time-marker">Wk 26</div></div>
-  </div>
-  <div class="chart-info-overlay" id="clin-overlay-race-schematic-performance">
-  <div class="chart-info-overlay-header">
-    <h4>Race Schematic — Mean Performance</h4>
-    <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="chart-info-body">
-    <div class="info-section">
-      <div class="info-label">What is this chart showing?</div>
-      <p class="info-text">This illustrated race diagram shows equicentCTM™ (bottom track) pulling ahead of SOC (top track) in performance improvement over the full 26-week study period, with checkpoints at Weeks 4, 8, 12, 20, and 26.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Why does this matter?</div>
-      <p class="info-text">Unlike the 12-week clinical outcomes, performance was tracked for the full 26 weeks. This visualization shows the equicentCTM™ horse continuing to pull further ahead even after Week 12, demonstrating that the performance advantage is not just early improvement — it's sustained and growing therapeutic benefit that extends well beyond the initial treatment period.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Bottom line:</div>
-      <p class="info-takeaway">equicentCTM™ showed an accelerating performance advantage over 26 weeks — the gap between treatments kept widening, proving the benefit is durable and growing over time.</p>
-    </div>
-  </div>
-</div>
-</div>
   <div class="chart-card" data-chart-explain="mean-performance" onclick="openClinOverlay('mean-performance')">
   <div class="chart-header">
     <div>
@@ -7322,54 +7117,6 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="clin-kpi-cite">Figure 4, Bertone et al.</div>
 </div>
 
-<div class="charts-grid two-col animate-in">
-  <div class="race-schematic chart-card" data-chart-explain="race-schematic-bcs" onclick="openClinOverlay('race-schematic-bcs')">
-  <div class="race-header">
-    <div>
-      <div class="race-title">RACE SCHEMATIC</div>
-      <div class="race-subtitle">Body Condition Score: equicenta™ CTM vs SOC</div>
-    </div>
-    <div style="text-align:right">
-      <div class="race-study-label" style="position:static;margin-bottom:4px">26 Week Study</div>
-      <span class="p-badge significant">p &lt; 0.004</span>
-    </div>
-  </div>
-  <div class="race-body">
-    <div class="race-track">
-      <div class="race-track-label soc">SOC<br>Control</div>
-      <div class="race-lane soc-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 10%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 12%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 14%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 11%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 10%"><span class="race-horse-emoji soc">🐎</span></div></div>
-    </div>
-    <div class="race-track">
-      <div class="race-track-label ectm">eCTM<br>Treatment</div>
-      <div class="race-lane ectm-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 18%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 32%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 48%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 72%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 95%"><span class="race-horse-emoji ectm">🐎</span></div></div>
-    </div>
-    <div class="race-timeline"><div class="race-time-marker">Wk 0</div><div class="race-time-marker">Wk 4</div><div class="race-time-marker">Wk 8</div><div class="race-time-marker">Wk 12</div><div class="race-time-marker">Wk 20</div><div class="race-time-marker">Wk 26</div></div>
-  </div>
-  <div class="chart-info-overlay" id="clin-overlay-race-schematic-bcs">
-  <div class="chart-info-overlay-header">
-    <h4>Race Schematic — Body Condition Score</h4>
-    <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="chart-info-body">
-    <div class="info-section">
-      <div class="info-label">What is this chart showing?</div>
-      <p class="info-text">This illustrated race diagram shows equicentCTM™ (bottom track) maintaining better body condition than SOC (top track) over the full 26-week study, demonstrating the sustained systemic health benefit.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Why does this matter?</div>
-      <p class="info-text">Body condition improvements take time to manifest — unlike pain which can improve in days, body condition reflects weeks and months of improved comfort and activity. The fact that equicentCTM™ horses showed better condition by 26 weeks confirms the treatment provided lasting systemic benefit, not just temporary symptom relief.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Bottom line:</div>
-      <p class="info-takeaway">equicentCTM™ provided lasting whole-horse benefit — the improving body condition over 26 weeks proves sustained comfort and wellbeing, not just temporary pain relief.</p>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-
 <!-- Client Assessment Categories (Figure 5) -->
 <div class="charts-grid two-col animate-in" style="margin-top: var(--space-6);">
   <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-client-assessment')" style="grid-column: 1 / -1;">
@@ -7439,51 +7186,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="charts-grid two-col animate-in">
-  <div class="race-schematic chart-card" data-chart-explain="race-schematic-ae" onclick="openClinOverlay('race-schematic-ae')">
-  <div class="race-header">
-    <div>
-      <div class="race-title">RACE SCHEMATIC</div>
-      <div class="race-subtitle">Adverse Events: equicenta™ CTM vs SOC</div>
-    </div>
-    <div style="text-align:right">
-      <div class="race-study-label" style="position:static;margin-bottom:4px">12 Week Study</div>
-      <span class="p-badge significant">p &lt; 0.04</span>
-    </div>
-  </div>
-  <div class="race-body">
-    <div class="race-track">
-      <div class="race-track-label soc">SOC<br>Control</div>
-      <div class="race-lane soc-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 12%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 20%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 28%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 35%"><span class="race-horse-emoji soc">🐎</span></div></div>
-    </div>
-    <div class="race-track">
-      <div class="race-track-label ectm">eCTM<br>Treatment</div>
-      <div class="race-lane ectm-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 25%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 50%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 75%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 95%"><span class="race-horse-emoji ectm">🐎</span></div></div>
-    </div>
-    <div class="race-timeline"><div class="race-time-marker">Wk 0</div><div class="race-time-marker">Wk 2</div><div class="race-time-marker">Wk 4</div><div class="race-time-marker">Wk 8</div><div class="race-time-marker">Wk 12</div></div>
-  </div>
-  <div class="chart-info-overlay" id="clin-overlay-race-schematic-ae">
-  <div class="chart-info-overlay-header">
-    <h4>Race Schematic — Adverse Events</h4>
-    <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="chart-info-body">
-    <div class="info-section">
-      <div class="info-label">What is this chart showing?</div>
-      <p class="info-text">This illustrated race diagram shows the adverse event comparison between equicentCTM™ and SOC over 12 weeks. In this case, 'winning the race' means having fewer adverse events — the equicentCTM™ horse runs cleanly while the SOC horse encounters problems.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Why does this matter?</div>
-      <p class="info-text">The safety advantage is one of the most important findings for clinical adoption. Veterinarians face pressure from horse owners concerned about injection reactions. This visualization makes it immediately clear that switching to equicentCTM™ dramatically reduces that risk.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Bottom line:</div>
-      <p class="info-takeaway">equicentCTM™ gave horses a dramatically cleaner, safer treatment experience — far fewer complications than conventional therapies.</p>
-    </div>
-  </div>
-</div>
-</div>
   <div class="chart-card" data-chart-explain="ae-overall" onclick="openClinOverlay('ae-overall')">
     <div class="chart-header">
       <div>
@@ -7591,51 +7293,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="charts-grid two-col animate-in">
-  <div class="race-schematic chart-card" data-chart-explain="race-schematic-trs" onclick="openClinOverlay('race-schematic-trs')">
-  <div class="race-header">
-    <div>
-      <div class="race-title">RACE SCHEMATIC</div>
-      <div class="race-subtitle">Tissue Remodeling Score: equicenta™ CTM vs SOC</div>
-    </div>
-    <div style="text-align:right">
-      <div class="race-study-label" style="position:static;margin-bottom:4px">12 Week Study</div>
-      <span class="p-badge significant">p &lt; 0.013</span>
-    </div>
-  </div>
-  <div class="race-body">
-    <div class="race-track">
-      <div class="race-track-label soc">SOC<br>Control</div>
-      <div class="race-lane soc-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 5%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 5%"><span class="race-horse-emoji soc">🐎</span></div><div class="race-horse" style="left: 5%"><span class="race-horse-emoji soc">🐎</span></div></div>
-    </div>
-    <div class="race-track">
-      <div class="race-track-label ectm">eCTM<br>Treatment</div>
-      <div class="race-lane ectm-lane"><div class="race-horse" style="left: 5%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 20%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 55%"><span class="race-horse-emoji ectm">🐎</span></div><div class="race-horse" style="left: 95%"><span class="race-horse-emoji ectm">🐎</span></div></div>
-    </div>
-    <div class="race-timeline"><div class="race-time-marker">Wk 0</div><div class="race-time-marker">Wk 4</div><div class="race-time-marker">Wk 8</div><div class="race-time-marker">Wk 12</div></div>
-  </div>
-  <div class="chart-info-overlay" id="clin-overlay-race-schematic-trs">
-  <div class="chart-info-overlay-header">
-    <h4>Race Schematic — Tissue Remodeling</h4>
-    <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="chart-info-body">
-    <div class="info-section">
-      <div class="info-label">What is this chart showing?</div>
-      <p class="info-text">This illustrated race diagram shows the tissue remodeling comparison over 12 weeks. The equicentCTM™ horse shows visible structural improvement while the SOC horse shows no imaging response.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Why does this matter?</div>
-      <p class="info-text">Tissue remodeling is the gold standard for demonstrating that a regenerative product is actually regenerating tissue. This visualization makes the binary outcome clear: equicentCTM™ drove structural healing in over a third of ligaments while standard treatments drove zero.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Bottom line:</div>
-      <p class="info-takeaway">equicentCTM™ is the only treatment in this study that produced measurable structural tissue healing — proving it works as a true regenerative therapy.</p>
-    </div>
-  </div>
-</div>
-</div>
   <div class="chart-card" data-chart-explain="trs" onclick="openClinOverlay('trs')">
     <div class="chart-header">
       <div>
@@ -11309,11 +10966,6 @@ function toggleClinOverlay(event, overlayId) {
     document.querySelectorAll('#study-clinical .chart-info-overlay.active').forEach(o => o.classList.remove('active'));
     overlay.classList.add('active');
   }
-  // Update race schematic if this card has a data-race-measure
-  const card = event.currentTarget || event.target.closest('.chart-card[data-race-measure]');
-  if (card && card.dataset && card.dataset.raceMeasure) {
-    updateRaceSchematic(card.dataset.raceMeasure);
-  }
 }
 
 function openClinOverlay(key) {
@@ -11321,11 +10973,6 @@ function openClinOverlay(key) {
   document.querySelectorAll('#study-clinical .chart-info-overlay.active').forEach(o => o.classList.remove('active'));
   const overlay = document.getElementById('clin-overlay-' + key);
   if (overlay) overlay.classList.add('active');
-  // Update race schematic based on the key
-  const measureMap = { 'pain-score': 'pain', 'composite-score': 'composite', 'race-schematic-pain': 'pain' };
-  if (measureMap[key] && typeof updateRaceSchematic === 'function') {
-    updateRaceSchematic(measureMap[key]);
-  }
 }
 
 function closeClinOverlay(event) {
@@ -11341,147 +10988,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-
-// ========== DYNAMIC RACE SCHEMATIC ==========
-const raceSchematicData = {
-  pain: {
-    subtitle: 'Pain Score: equicenta™ CTM vs SOC',
-    studyLength: '12 Week Study',
-    pValue: 'p < 0.02',
-    pSignificant: true,
-    // Horse positions: [wk0, wk1, wk2, wk4, wk8, wk12] as % left
-    soc:  [5, 15, 28, 40, 52, 65],
-    ectm: [5, 18, 38, 58, 78, 95],
-    timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
-  },
-  swelling: {
-    subtitle: 'Swelling Score: equicenta™ CTM vs SOC',
-    studyLength: '12 Week Study',
-    pValue: 'p < 0.02',
-    pSignificant: true,
-    soc:  [5, 12, 22, 38, 48, 55],
-    ectm: [5, 20, 42, 62, 80, 95],
-    timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
-  },
-  lameness: {
-    subtitle: 'Lameness Zero-Score Achievement: equicenta™ CTM vs SOC',
-    studyLength: '12 Week Study',
-    pValue: 'p ≤ 0.06',
-    pSignificant: false,
-    soc:  [5, 14, 25, 38, 50, 60],
-    ectm: [5, 20, 40, 58, 76, 92],
-    timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
-  },
-  composite: {
-    subtitle: 'Composite Clinical Score: equicenta™ CTM vs SOC',
-    studyLength: '12 Week Study',
-    pValue: 'p < 0.001',
-    pSignificant: true,
-    soc:  [5, 12, 20, 33, 47, 55],
-    ectm: [5, 22, 42, 62, 82, 98],
-    timeline: ['Wk 0', 'Wk 1', 'Wk 2', 'Wk 4', 'Wk 8', 'Wk 12']
-  }
-};
-
-function updateRaceSchematic(measure) {
-  const schematic = document.getElementById('clinical-race-schematic');
-  if (!schematic) return;
-  
-  const data = raceSchematicData[measure];
-  if (!data) return;
-  
-  // Update active measure
-  schematic.dataset.activeMeasure = measure;
-  
-  // Update subtitle
-  const subtitle = schematic.querySelector('.race-subtitle');
-  if (subtitle) subtitle.textContent = data.subtitle;
-  
-  // Update study label
-  const studyLabel = schematic.querySelector('.race-study-label');
-  if (studyLabel) studyLabel.textContent = data.studyLength;
-  
-  // Update p-value badge
-  const pBadge = schematic.querySelector('.p-badge');
-  if (pBadge) {
-    pBadge.textContent = data.pValue;
-    pBadge.className = 'p-badge ' + (data.pSignificant ? 'significant' : 'trending');
-  }
-  
-  // Update horse positions
-  const tracks = schematic.querySelectorAll('.race-track');
-  if (tracks.length >= 2) {
-    // SOC track (first)
-    const socHorses = tracks[0].querySelectorAll('.race-horse');
-    data.soc.forEach((pos, i) => {
-      if (socHorses[i]) {
-        socHorses[i].style.left = pos + '%';
-        socHorses[i].style.transition = 'left 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-      }
-    });
-    
-    // eCTM track (second)
-    const ectmHorses = tracks[1].querySelectorAll('.race-horse');
-    data.ectm.forEach((pos, i) => {
-      if (ectmHorses[i]) {
-        ectmHorses[i].style.left = pos + '%';
-        ectmHorses[i].style.transition = 'left 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-      }
-    });
-  }
-  
-  // Update timeline markers
-  const timeline = schematic.querySelector('.race-timeline');
-  if (timeline) {
-    const markers = timeline.querySelectorAll('.race-time-marker');
-    data.timeline.forEach((label, i) => {
-      if (markers[i]) markers[i].textContent = label;
-    });
-  }
-  
-  // Highlight the active chart card
-  document.querySelectorAll('#sub-clin-outcomes .chart-card[data-race-measure]').forEach(card => {
-    card.classList.remove('race-active');
-  });
-  const activeCard = document.querySelector('#sub-clin-outcomes .chart-card[data-race-measure="' + measure + '"]');
-  if (activeCard) activeCard.classList.add('race-active');
-  
-  // Sync KPI card highlight
-  document.querySelectorAll('.clin-kpi-card[data-race-kpi]').forEach(c => c.classList.remove('kpi-active'));
-  const activeKpi = document.querySelector('.clin-kpi-card[data-race-kpi="' + measure + '"]');
-  if (activeKpi) activeKpi.classList.add('kpi-active');
-  
-  // Scroll the race schematic into view smoothly
-  schematic.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-// Add click handlers to chart cards that have data-race-measure
-document.addEventListener('click', function(e) {
-  const card = e.target.closest('.chart-card[data-race-measure]');
-  if (card && card.closest('#sub-clin-outcomes')) {
-    const measure = card.dataset.raceMeasure;
-    if (measure) {
-      updateRaceSchematic(measure);
-    }
-  }
-});
-
-// Add click handlers to KPI stat cards at the top (Pain, Swelling, Lameness, Outcomes)
-document.addEventListener('click', function(e) {
-  const kpiCard = e.target.closest('.clin-kpi-card[data-race-kpi]');
-  if (kpiCard && kpiCard.closest('#sub-clin-outcomes')) {
-    const measure = kpiCard.dataset.raceKpi;
-    if (measure) {
-      updateRaceSchematic(measure);
-      // Highlight active KPI card
-      document.querySelectorAll('.clin-kpi-card[data-race-kpi]').forEach(c => c.classList.remove('kpi-active'));
-      kpiCard.classList.add('kpi-active');
-      // Scroll race schematic into view
-      const schematic = document.getElementById('clinical-race-schematic');
-      if (schematic) schematic.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }
-});
 
 // ========== CLINICAL CHART RENDERING ==========
 function initClinicalCharts() {
