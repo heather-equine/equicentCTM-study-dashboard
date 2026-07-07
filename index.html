@@ -7368,44 +7368,6 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 </div>
-  <div class="chart-card" data-chart-explain="body-condition" onclick="openClinOverlay('body-condition')">
-  <div class="chart-header">
-    <div>
-      <div class="chart-title">Body Condition Score</div>
-      <div class="chart-subtitle">Body condition score at 26 weeks. Higher scores indicate better condition.</div>
-    </div>
-    <span class="p-badge significant">p &lt; 0.004 at 26 weeks</span>
-  </div>
-  <div class="chart-canvas-wrap" style="height: 280px;">
-    <canvas id="clin-chart-bcs"></canvas>
-  </div>
-  <div class="chart-legend">
-    <div class="legend-item"><div class="legend-dot" style="background: var(--color-primary);"></div> equicenta™ CTM</div>
-    <div class="legend-item"><div class="legend-dot" style="background: var(--color-control);"></div> Standard of Care</div>
-  </div>
-  <div class="chart-info-overlay" id="clin-overlay-body-condition">
-  <div class="chart-info-overlay-header">
-    <h4>Body Condition Score</h4>
-    <button class="chart-info-close" onclick="closeClinOverlay(event)" aria-label="Close">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="chart-info-body">
-    <div class="info-section">
-      <div class="info-label">What is this chart showing?</div>
-      <p class="info-text">This line chart tracks Body Condition Score (BCS) on a standard scale over 26 weeks. BCS is a veterinary assessment of overall physical condition — it reflects muscle mass, fat cover, and general health. Higher scores indicate better condition.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Why does this matter?</div>
-      <p class="info-text">Body condition is a holistic indicator of how well a horse is doing overall. Horses in pain or discomfort tend to lose condition — they eat less, exercise less, and their bodies reflect the stress. equicentCTM™ horses showed significantly better body condition at 26 weeks (p<0.004), suggesting the treatment's benefits extend beyond the treated joint or tendon to the horse's overall wellbeing.</p>
-    </div>
-    <div class="info-section">
-      <div class="info-label">Bottom line:</div>
-      <p class="info-takeaway">equicentCTM™ horses maintained significantly better overall body condition, reflecting improved comfort, better appetite, and reduced stress from their musculoskeletal condition.</p>
-    </div>
-  </div>
-</div>
-</div>
 </div>
 
 <div class="charts-grid two-col animate-in">
@@ -7529,16 +7491,6 @@ document.addEventListener('DOMContentLoaded', function() {
   <div></div>
 </div>
 
-<div class="data-table-wrap animate-in">
-  <div class="chart-header" style="padding: var(--space-5) var(--space-5) 0;">
-    <div><div class="chart-title">BODY CONDITION SCORE — DETAILED SCORES</div></div>
-  </div>
-  <table class="data-table">
-    <thead><tr><th>Timepoint</th><th>equicenta™ CTM</th><th>Standard of Care</th><th>Difference</th><th>Advantage</th></tr></thead>
-    <tbody><tr><td>Baseline</td><td>5.0</td><td>5.0</td><td>0.0</td><td>—</td></tr><tr><td>Week 4</td><td>5.2</td><td>5.0</td><td>+0.2</td><td>+4%</td></tr><tr><td>Week 8</td><td>5.5</td><td>5.1</td><td>+0.4</td><td>+8%</td></tr><tr><td>Week 12</td><td class="highlight">5.8</td><td class="highlight">5.2</td><td class="highlight">+0.6</td><td class="highlight">+12% ★ p&lt;0.004</td></tr><tr><td>Week 20</td><td class="highlight">6.2</td><td class="highlight">5.0</td><td class="highlight">+1.2</td><td class="highlight">+24%</td></tr><tr><td>Week 26</td><td class="highlight">6.5</td><td class="highlight">5.0</td><td class="highlight">+1.5</td><td class="highlight">+30%</td></tr></tbody>
-  </table>
-</div>
-  
 <!-- Client Assessment Categories (Figure 5) -->
 <div class="charts-grid two-col animate-in" style="margin-top: var(--space-6);">
   <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-client-assessment')" style="grid-column: 1 / -1;">
@@ -8716,7 +8668,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
     <div class="disc-topic-title">Superiority Over Hemoderivatives</div>
     <div class="disc-topic-subtitle">Why autologous blood products (PRP, ACS, APS) fall short</div>
-    <div class="disc-topic-preview">Autologous hemoderivatives are prepared from blood that is approximately 90–92% water. Albumin and globulin comprise ~93% of soluble proteins and lack tissue scaffold or regenerative properties. Benefits are expected to be short-lived because soluble proteins are absorbed through lymphatics or degraded. SOC controls — over 85% of which received hemoderivative injections — no longer differed from baseline by 26 weeks.</div>
+    <div class="disc-topic-preview">Autologous hemoderivatives are blood-derived; their soluble proteins lack a tissue scaffold and regenerative properties, and are rapidly absorbed or degraded, so benefits are expected to be short-lived. Benefits are expected to be short-lived because soluble proteins are absorbed through lymphatics or degraded. SOC controls — the majority (64.2%) of which received hemoderivative injections — no longer differed from baseline by 26 weeks.</div>
     <div class="disc-click-hint">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
       Click to explore
@@ -8746,7 +8698,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="disc-topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8c0-1.5-.5-2-2-2h-2l-2-3H8L6 6H4C2.5 6 2 6.5 2 8s.5 2 2 2h1l1 10h3v-4h6v4h3l1-10h1c1.5 0 2-.5 2-2z"/></svg></div>
     <div class="disc-topic-title">Rehabilitation & Return to Work</div>
     <div class="disc-topic-subtitle">Consistent rehab protocols and remarkable performance comebacks</div>
-    <div class="disc-topic-preview">Rehabilitation recommendations were remarkably consistent across veterinarians: early hand-walking for ~1 month, progression to swimming and ridden walking by weeks 4–12, and discipline-specific training after week 12. Significantly greater numbers of eCTM horses returned to prior level or better (8 to 1 ratio vs SOC). Several achieved world-champion performances.</div>
+    <div class="disc-topic-preview">Rehabilitation recommendations were remarkably consistent across veterinarians: early hand-walking for ~1 month, progression to swimming and ridden walking by weeks 4–12, and discipline-specific training after week 12. Significantly greater numbers of eCTM horses returned to prior performance level or better (79% vs 21%; odds 2.72:1, p&lt;0.006).</div>
     <div class="disc-click-hint">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
       Click to explore
@@ -8901,7 +8853,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="disc-modal-body">
       <div class="disc-section-label">From the Manuscript</div>
-      <div class="disc-summary-text">Autologous hemoderivatives are prepared from blood that is approximately 90–92% water. Albumin and globulin comprise ~93% of soluble proteins and lack tissue scaffold or regenerative properties. Benefits are expected to be short-lived because soluble proteins are absorbed through lymphatics or degraded. SOC controls — over 85% of which received hemoderivative injections — no longer differed from baseline by 26 weeks.</div>
+      <div class="disc-summary-text">Autologous hemoderivatives are blood-derived; their soluble proteins lack a tissue scaffold and regenerative properties, and are rapidly absorbed or degraded, so benefits are expected to be short-lived. Benefits are expected to be short-lived because soluble proteins are absorbed through lymphatics or degraded. SOC controls — the majority (64.2%) of which received hemoderivative injections — no longer differed from baseline by 26 weeks.</div>
 
       <div class="disc-layperson-box">
         <div class="disc-layperson-label">
@@ -8913,10 +8865,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <div class="disc-section-label">Key Points</div>
       <ul class="disc-key-points">
-    <li>Blood-derived products are ~90–92% water with proteins that lack scaffold or regenerative properties</li>
+    <li>Blood-derived products have soluble proteins that lack scaffold or regenerative properties</li>
     <li>Soluble proteins are absorbed through lymphatics or degraded — effects are inherently short-lived</li>
     <li>A controlled APS study showed benefit at 2 weeks, but longer outcomes are unknown</li>
-    <li>In this trial, &gt;85% of SOC horses received hemoderivatives and returned to baseline by 26 weeks</li>
+    <li>In this trial, the majority (64.2%) of SOC horses received hemoderivatives and returned to baseline by 26 weeks</li>
     <li>PRP reviews concluded robust evidence supporting clinical use in joints remains insufficient</li>
       </ul>
     </div>
@@ -8951,7 +8903,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <li>Specialist surveys: 56% reported negative effects from MSCs, 59% from PRP, 42% from ACS, 20% from APS</li>
     <li>In a human controlled trial, PRP produced significantly more adverse events than plasma or saline</li>
     <li>SOC had 4.8× the odds of an injection reaction (vet review, p&lt;0.04; 5.9× central review, p=0.002); excess SOC joint reactions traced to PAAG, with 3.4× the odds even excluding it (p&lt;0.03)</li>
-    <li>One serious and one non-serious adverse reaction occurred with 2.5% polyacrylamide in this study</li>
+    <li>Two serious joint adverse reactions occurred after 2.5% polyacrylamide (PAAG), one of which persisted at follow-up</li>
     <li>18.1% of veterinarians surveyed saw &gt;5% joint reaction rates from polyacrylamide</li>
       </ul>
     </div>
@@ -9006,14 +8958,14 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="disc-modal-body">
       <div class="disc-section-label">From the Manuscript</div>
-      <div class="disc-summary-text">Rehabilitation recommendations were remarkably consistent across veterinarians: early hand-walking for ~1 month, progression to swimming and ridden walking by weeks 4–12, and discipline-specific training after week 12. Significantly greater numbers of eCTM horses returned to prior level or better (8 to 1 ratio vs SOC). Several achieved world-champion performances.</div>
+      <div class="disc-summary-text">Rehabilitation recommendations were remarkably consistent across veterinarians: early hand-walking for ~1 month, progression to swimming and ridden walking by weeks 4–12, and discipline-specific training after week 12. Significantly greater numbers of eCTM horses returned to prior performance level or better (79% vs 21%; odds 2.72:1, p&lt;0.006).</div>
 
       <div class="disc-layperson-box">
         <div class="disc-layperson-label">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           What This Means
         </div>
-        <div class="disc-layperson-text">All veterinarians in the study followed similar rehabilitation plans — starting with hand-walking, gradually increasing work, and returning to full training after 12 weeks. The real-world results were striking: eCTM horses had 2.72 times the odds of returning to their previous performance level or better (79% of eCTM horses reached top performance score vs 21% of SOC). Several horses achieved extraordinary comebacks, including Thoroughbred racehorses galloping within 6 months of suspensory injury and world-champion performances in cutting and Hackney driving.</div>
+        <div class="disc-layperson-text">All veterinarians in the study followed similar rehabilitation plans — starting with hand-walking, gradually increasing work, and returning to full training after 12 weeks. The real-world results were striking: eCTM horses had 2.72 times the odds of returning to their previous performance level or better (79% of eCTM horses reached top performance score vs 21% of SOC).</div>
       </div>
 
       <div class="disc-section-label">Key Points</div>
@@ -9022,8 +8974,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <li>Weeks 4–12: swimming, ponying, increased walking, small-pen turnout, walking under saddle</li>
     <li>After 12 weeks: discipline-specific under-saddle training or extended turnout</li>
     <li>eCTM odds of returning to or exceeding prior performance: 2.72:1 versus SOC (p&lt;0.006); 79% vs 21% achieved full return</li>
-    <li>Notable eCTM success: TB racehorses galloping within 6 months of proximal suspensory injury</li>
-    <li>World-champion performances in cutting (suspensory branch) and Hackney driving (stifle cyst)</li>
       </ul>
     </div>
   </div>
@@ -11786,12 +11736,6 @@ function initClinicalCharts() {
     }
 
     if (activeSub.id === 'sub-clin-health') {
-      makeClinLineChart('clin-chart-bcs',
-        ['BL', 'Wk4', 'Wk8', 'Wk12', 'Wk20', 'Wk26'],
-        [5.0, 5.2, 5.5, 5.8, 6.2, 6.5],
-        [5.0, 5.0, 5.1, 5.2, 5.0, 5.0],
-        colors, 'BCS', {verticalLine: 3, pLabel: 'p<0.004'}
-      );
       makeClinLineChart('clin-chart-haircoat',
         ['BL', 'Wk4', 'Wk8', 'Wk12', 'Wk20', 'Wk26'],
         [3.0, 3.2, 3.5, 3.8, 4.0, 4.3],
