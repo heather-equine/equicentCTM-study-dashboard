@@ -189,6 +189,15 @@
       "pdf": "sell-sheets/19-practice-launch-playbook.pdf"
     },
     {
+      "id": "23-study-design", "title": "Study Design & Population", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Rigor", "tier": "Primary", "use_case": ["First call", "Objection response", "Leave-behind"],
+      "headline": "How the study was built — and why vets can trust the numbers.",
+      "key_stat": "138 horses · 195 conditions · 8 practices · 11 vets · 1.9:1 allocation",
+      "say": ["Prospective, multicenter, open-label controlled trial across 8 U.S. specialty equine practices", "Quasi-randomized within practice; 1.9:1 eCTM-to-standard-of-care allocation achieved; CONSORT 2025-guided", "Balanced enrollment — no significant differences between arms in breed, age, sex, weight, discipline, or limb", "Full spectrum of 195 musculoskeletal conditions: joints, tendons, ligaments, OCD, and bone cysts", "Over half of horses had failed prior biologic therapy — a challenging, real-world population", "100% follow-up at the 12-week primary endpoint; 98% at 26 weeks", "Standard-of-care arm was 67% autologous blood-derived therapies (APS, ACS/IRAP, PRP, A2M) — a real-world head-to-head comparator"],
+      "dont_say": ["'Randomized controlled trial' — the design was quasi-randomized within practice", "'Blinded to owners' — open-label with blinded vet scoring and blinded imaging/kinematic analysis", "'FDA-approved' or 'registered'"],
+      "pdf": "sell-sheets/23-study-design.pdf"
+    },
+    {
       "id": "20-INTERNAL-economics-of-the-switch", "title": "Economics of the Switch", "audience": ["Internal"],
       "theme": "Internal Enablement", "tier": "Internal", "use_case": ["Internal training"],
       "internal_only": true,
