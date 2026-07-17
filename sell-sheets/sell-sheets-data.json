@@ -1,0 +1,219 @@
+{
+  "meta": {
+    "source": "Bertone AL, Davern A, Sutter WW, et al. Cryopreserved umbilical allograft (equicenta CTM) improves clinical outcomes compared with clinician-selected standard care in performance horses: a pragmatic prospective controlled trial. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329. AVMA VCT #26005934.",
+    "doi": "10.3389/fvets.2026.1833933",
+    "iacuc": "ETCR-2024-0329",
+    "avma_vct": "#26005934",
+    "note": "review_footer intentionally omits the legacy sentence 'Important information: equicenta CTM is under investigation.' per client legal override. Use review_footer everywhere on external-facing modules.",
+    "review_footer": "Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.",
+    "tiers": ["Primary", "Secondary", "Exploratory", "Supporting"],
+    "exploratory_qualifier": "in an exploratory analysis",
+    "universal_prohibited": [
+      "'FDA-approved', 'cleared', or 'registered' — product remains investigational",
+      "Product-brand-specific comparisons ('better than [Trade Name]') — reference the biologic class instead",
+      "'Cures', 'guarantees', or 'no side effects' under any circumstance",
+      "'Randomized controlled trial' — design was quasi-randomized within practice",
+      "'Stem cell therapy' — product is not a cellular product"
+    ]
+  },
+  "cards": [
+    {
+      "id": "01-study-rigor", "title": "Study Rigor", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Rigor", "tier": "Primary", "use_case": ["First call", "Leave-behind", "Launch support"],
+      "headline": "The largest controlled clinical trial of its kind in performance horses, run under CONSORT guidelines with independent biostatistics.",
+      "key_stat": "138 horses · 195 conditions · 8 practices · 100% 12-wk / 98% 26-wk follow-up",
+      "say": ["Prospective multicenter controlled trial, CONSORT-guided", "Independent third-party biostatistics", "100% completion at the 12-week primary endpoint", "IACUC ETCR-2024-0329; AVMA VCT #26005934"],
+      "dont_say": ["'Randomized controlled trial' — design was quasi-randomized within practice", "'Blinded to owners' — trial was open-label with blinded vet scoring", "'FDA-approved' or 'registered'", "'Definitive' or 'confirmatory' — use 'pragmatic' and 'real-world'"],
+      "pdf": "sell-sheets/01-study-rigor.pdf"
+    },
+    {
+      "id": "02-followup-completeness", "title": "Follow-up Completeness", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Rigor", "tier": "Primary", "use_case": ["First call", "Objection response", "Leave-behind"],
+      "headline": "No horses lost at the primary endpoint — follow-up you can defend.",
+      "key_stat": "100% follow-up at 12 weeks (138/138); 98% at 26 weeks (135/138)",
+      "say": ["100% follow-up at the 12-week primary endpoint", "98% follow-up at 26 weeks — only 3 horses lost", "Every enrolled horse assessed at the pre-specified primary endpoint; no imputation required"],
+      "dont_say": ["'Randomized controlled trial'", "Presenting retention as a treatment effect"],
+      "pdf": "sell-sheets/02-followup-completeness.pdf"
+    },
+    {
+      "id": "03-clinical-efficacy", "title": "Clinical Efficacy", "audience": ["Vet", "Owner/Trainer", "Distributor/Sales"],
+      "theme": "Efficacy", "tier": "Primary", "use_case": ["First call", "Leave-behind"],
+      "headline": "Greater cumulative improvement than standard of care in lameness, pain, and swelling, sustained through 12 weeks (p<0.001 all outcomes).",
+      "key_stat": "3:1 higher odds of being pain-free at 12 weeks (p<0.001); separation by week 2 (pain, swelling) and week 4 (lameness)",
+      "say": ["Greater improvement than clinician-selected standard of care", "Sustained through 12 weeks", "Outperformed standard of care on pain and swelling by 2 weeks, lameness by 4 weeks"],
+      "dont_say": ["'Cures' — never use curative language", "'All horses improved' — individual responses vary", "Stating durability beyond 12 weeks outside the joint subgroup context"],
+      "pdf": "sell-sheets/03-clinical-efficacy.pdf"
+    },
+    {
+      "id": "04-onset-of-action", "title": "Onset of Action", "audience": ["Vet", "Owner/Trainer"],
+      "theme": "Efficacy", "tier": "Primary", "use_case": ["First call", "Follow-up"],
+      "headline": "How fast does it work? Separation begins by week 2.",
+      "key_stat": "Pain & swelling separate by 2 weeks; lameness by 4 weeks (p<0.05)",
+      "say": ["Outperformed standard of care on pain and swelling by 2 weeks, lameness by 4 weeks", "Single injection — no re-dose gate"],
+      "dont_say": ["'Cures'", "Extrapolating onset to indications not scored in the trial"],
+      "pdf": "sell-sheets/04-onset-of-action.pdf"
+    },
+    {
+      "id": "05-owner-return-to-work", "title": "Performance — Owner Return-to-Work", "audience": ["Owner/Trainer"],
+      "theme": "Performance", "tier": "Primary", "use_case": ["First call", "Leave-behind", "Follow-up"],
+      "headline": "Healthy horse. Happy client. What 138 owners saw at home over 26 weeks.",
+      "key_stat": "4 of 7 owner-scored categories significantly better for eCTM at 26 weeks; 79% returned to or exceeded prior work",
+      "say": ["Owners of eCTM horses reported significantly better body condition, hair coat, overall health, and quality of life at 6 months", "Four independent owner-reported measures all favored eCTM (p<0.03 to p<0.001)"],
+      "dont_say": ["Presenting owner-reported outcomes as clinical endpoints", "'Proven to improve quality of life' without the 'owner-reported' qualifier", "'Guaranteed return to work'"],
+      "pdf": "sell-sheets/05-owner-return-to-work.pdf"
+    },
+    {
+      "id": "06-return-to-work-headline", "title": "Return-to-Work Headline Stat", "audience": ["Owner/Trainer", "Vet", "Distributor/Sales"],
+      "theme": "Performance", "tier": "Primary", "use_case": ["First call", "Leave-behind"],
+      "headline": "4 out of 5 horses. Back to work at 6 months.",
+      "key_stat": "79% eCTM vs 21% standard of care returned to or exceeded prior performance at 26 weeks; 2.72:1 odds (p<0.006); Cohen's d = 2.23",
+      "say": ["79% of eCTM horses returned to or exceeded prior performance at 26 weeks", "2.72:1 higher odds vs standard of care (p<0.006)", "Preserved in both intent-to-treat and per-protocol analyses"],
+      "dont_say": ["'Guaranteed return to work'", "Extrapolating to disciplines not represented in the trial", "Presenting Cohen's d = 2.23 without narrative context"],
+      "pdf": "sell-sheets/06-return-to-work-headline.pdf"
+    },
+    {
+      "id": "07-trainer-layup-guide", "title": "Trainer Layup & Return Guide", "audience": ["Owner/Trainer"],
+      "theme": "Practice Adoption", "tier": "Primary", "use_case": ["Leave-behind", "Follow-up"],
+      "headline": "Timing the layup. Planning the return.",
+      "key_stat": "Trial clock: change by wk 2, lameness by wk 4, primary endpoint wk 12, return-to-work wk 26",
+      "say": ["Plan the layup on the trial's clock: 2 · 4 · 12 · 26 weeks", "Coordinate all workload decisions with the treating veterinarian"],
+      "dont_say": ["'Guaranteed return to work'", "Presenting the timeline as a fixed medical protocol"],
+      "pdf": "sell-sheets/07-trainer-layup-guide.pdf"
+    },
+    {
+      "id": "08-safety", "title": "Safety", "audience": ["Vet", "Owner/Trainer", "Distributor/Sales"],
+      "theme": "Safety", "tier": "Primary", "use_case": ["First call", "Objection response", "Leave-behind"],
+      "headline": "A cleaner reaction profile than the products it will replace.",
+      "key_stat": "3.4% per-injection reaction rate (5/148); 4.8:1 lower vet-reported (p<0.04); 5.9:1 central review (p=0.002); zero infections",
+      "say": ["Significantly fewer reported adverse reactions than clinician-selected standard of care", "Zero infections and no vet-reported product-related serious adverse events in the eCTM arm", "Safety advantage preserved under conservative central review (5.9:1, p=0.002)"],
+      "dont_say": ["'Zero side effects' — five mild reactions were observed", "'Safer than PRP/APS/ACS' as a standalone statement — must reference standard-of-care comparator language", "Extrapolating safety to off-label or extra-articular use"],
+      "pdf": "sell-sheets/08-safety.pdf"
+    },
+    {
+      "id": "09-structural-healing", "title": "Structural Healing", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Imaging", "tier": "Exploratory", "use_case": ["Objection response", "Leave-behind"],
+      "headline": "A structural signal, not just symptom relief.",
+      "key_stat": "In an exploratory analysis, 36% of eCTM ligaments reached 'Responding' on TRS by 12 wks vs 0% SOC (d=0.98, p=0.013); PSL d=1.25",
+      "say": ["In an exploratory analysis, 36% of eCTM ligaments reached 'Responding' by 12 weeks vs 0% of standard of care", "Largest structural effect was seen in proximal suspensory ligament lesions"],
+      "dont_say": ["'Proven to heal ligaments'", "Removing the exploratory qualifier", "Extrapolating to lesion types not scored in the trial"],
+      "pdf": "sell-sheets/09-structural-healing.pdf"
+    },
+    {
+      "id": "10-ligament-repair", "title": "Ligament Repair", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Imaging", "tier": "Exploratory", "use_case": ["Objection response", "Leave-behind"],
+      "headline": "A structural signal in ligament tissue — largest in the proximal suspensory.",
+      "key_stat": "In an exploratory analysis: PSL d=1.25; lateral suspensory branch d=0.82",
+      "say": ["In an exploratory analysis, treated ligaments showed a structural remodeling signal", "Largest structural effect was seen in proximal suspensory ligament lesions"],
+      "dont_say": ["'Proven to heal ligaments'", "Removing the exploratory qualifier", "Extrapolating to lesion types not scored in the trial"],
+      "pdf": "sell-sheets/10-ligament-repair.pdf"
+    },
+    {
+      "id": "11-kinematic-sleip", "title": "Kinematic (Sleip)", "audience": ["Vet", "Owner/Trainer", "Distributor/Sales"],
+      "theme": "Imaging", "tier": "Exploratory", "use_case": ["Objection response", "Leave-behind"],
+      "headline": "Blinded, sensor-based validation of the symptom story.",
+      "key_stat": "In an exploratory analysis: push-off wk 2 p<0.003, wk 12 p<0.015; impact wk 4 p<0.05",
+      "say": ["Blinded sensor-based kinematic analysis confirmed the clinical scores", "Forelimb symmetry improved more in eCTM horses across push-off and impact phases"],
+      "dont_say": ["'Sleip diagnosed' — the sensor measured, it did not diagnose", "Removing the exploratory qualifier"],
+      "pdf": "sell-sheets/11-kinematic-sleip.pdf"
+    },
+    {
+      "id": "12-forelimb-symmetry", "title": "Forelimb Symmetry", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Imaging", "tier": "Exploratory", "use_case": ["Objection response", "Leave-behind"],
+      "headline": "Greater forelimb symmetry improvement — measured by a blinded sensor.",
+      "key_stat": "In an exploratory analysis: greater cumulative reduction in forelimb asymmetry with eCTM",
+      "say": ["In an exploratory analysis, forelimb symmetry improved more in eCTM horses", "Blinded, sensor-based measurement"],
+      "dont_say": ["'Sleip diagnosed'", "Removing the exploratory qualifier"],
+      "pdf": "sell-sheets/12-forelimb-symmetry.pdf"
+    },
+    {
+      "id": "13-head-to-head-vs-aps", "title": "Head-to-Head vs APS", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Comparator", "tier": "Exploratory", "use_case": ["Objection response", "Leave-behind"],
+      "headline": "Better than the biologic class it is displacing.",
+      "key_stat": "In an exploratory analysis, eCTM outperformed hemoderivatives on lameness (p<0.04) and pain (p<0.003); APS = 51% of hemoderivatives",
+      "say": ["In a pre-specified head-to-head contrast, eCTM outperformed hemoderivatives on lameness and pain", "Against APS — the largest single hemoderivative class in the trial — eCTM produced greater improvement across multiple timepoints (exploratory subgroup)"],
+      "dont_say": ["Product-brand-specific statements ('Better than [Trade Name]')", "Presenting the APS subgroup without noting the smaller n and exploratory tier"],
+      "pdf": "sell-sheets/13-head-to-head-vs-aps.pdf"
+    },
+    {
+      "id": "14-durability-26-weeks", "title": "Durability at 26 Weeks", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Comparator", "tier": "Exploratory", "use_case": ["Objection response", "Leave-behind"],
+      "headline": "Sustained gains where standard of care faded.",
+      "key_stat": "In a joint-focused subgroup analysis, SOC improvement declined toward baseline by 26 weeks while eCTM sustained relief",
+      "say": ["In a sub-class analysis, eCTM sustained pain relief and performance gains at 26 weeks", "Always label as exploratory subgroup"],
+      "dont_say": ["Stating durability beyond 12 weeks outside the joint subgroup context", "Removing the exploratory / subgroup qualifier"],
+      "pdf": "sell-sheets/14-durability-26-weeks.pdf"
+    },
+    {
+      "id": "15-hemoderivatives-context", "title": "Hemoderivatives Context", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Comparator", "tier": "Supporting", "use_case": ["Objection response", "Launch support"],
+      "headline": "The comparator arm reflected real-world biologics use.",
+      "key_stat": "Standard of care spectrum: APS, PRP, ACS, PPP, MSCs, amnion, HA; hemoderivatives = 64% of SOC arm",
+      "say": ["Standard of care reflected the real-world biologics spectrum used by experienced clinicians", "Hemoderivatives made up 64% of the standard-of-care arm"],
+      "dont_say": ["Product-brand-specific comparisons", "Presenting context as a head-to-head finding"],
+      "pdf": "sell-sheets/15-hemoderivatives-context.pdf"
+    },
+    {
+      "id": "16-rescue-subgroup", "title": "Rescue Subgroup", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Comparator", "tier": "Exploratory", "use_case": ["Objection response", "Leave-behind"],
+      "headline": "A safety net for standard-of-care failures.",
+      "key_stat": "In an exploratory analysis, rescue eCTM after SOC failure recovered to performance indistinguishable from first-line eCTM (p=0.87)",
+      "say": ["In an exploratory analysis, horses that failed standard of care and crossed to eCTM reached 26-wk performance indistinguishable from first-line eCTM", "Label as exploratory subgroup"],
+      "dont_say": ["'Guaranteed rescue'", "Removing the exploratory qualifier"],
+      "pdf": "sell-sheets/16-rescue-subgroup.pdf"
+    },
+    {
+      "id": "17-product-differentiation", "title": "Product Differentiation", "audience": ["Vet", "Owner/Trainer", "Distributor/Sales"],
+      "theme": "Differentiation", "tier": "Primary + Supporting", "use_case": ["First call", "Leave-behind", "Launch support"],
+      "headline": "A different class of biologic — not another autologous kit.",
+      "key_stat": "One 1.5 mL intra-articular injection vs standard of care often requiring 2–3 (p<0.03 fewer re-injections)",
+      "say": ["Off-the-shelf cryopreserved umbilical allograft", "Microparticulate suspension of umbilical cord protein", "One intra-articular injection; no chairside blood processing", "Designed to release fetal reparative proteins over time"],
+      "dont_say": ["'Stem cell therapy' — the product is not a cellular product", "'FDA-cleared' or 'approved'", "Stating a specific mechanism of action beyond 'designed to release reparative proteins'"],
+      "pdf": "sell-sheets/17-product-differentiation.pdf"
+    },
+    {
+      "id": "18-case-selection-guide", "title": "Case Selection Guide", "audience": ["Vet"],
+      "theme": "Practice Adoption", "tier": "Supporting", "use_case": ["Leave-behind", "Launch support"],
+      "headline": "Choosing the right cases for eCTM.",
+      "key_stat": "Vet-facing guide to case selection grounded in the trial population (195 conditions across 138 horses)",
+      "say": ["Grounded in the trial's enrolled conditions", "Coordinate case selection with clinical judgment"],
+      "dont_say": ["Extrapolating to conditions not represented in the trial", "'Guaranteed' outcomes"],
+      "pdf": "sell-sheets/18-case-selection-guide.pdf"
+    },
+    {
+      "id": "19-practice-launch-playbook", "title": "Practice Launch Playbook (60 Days)", "audience": ["Vet", "Distributor/Sales"],
+      "theme": "Practice Adoption", "tier": "Supporting", "use_case": ["Launch support", "Leave-behind"],
+      "headline": "A 60-day plan to bring eCTM into your practice.",
+      "key_stat": "Vet-facing adoption playbook for the first 60 days",
+      "say": ["Structured onboarding aligned to the trial's protocols", "Coordinate with the treating veterinarian"],
+      "dont_say": ["'FDA-approved' / 'registered'", "'Guaranteed' outcomes"],
+      "pdf": "sell-sheets/19-practice-launch-playbook.pdf"
+    },
+    {
+      "id": "20-INTERNAL-economics-of-the-switch", "title": "Economics of the Switch", "audience": ["Internal"],
+      "theme": "Internal Enablement", "tier": "Internal", "use_case": ["Internal training"],
+      "internal_only": true,
+      "headline": "INTERNAL — NOT FOR CUSTOMER USE. Economics of switching to eCTM.",
+      "key_stat": "Internal enablement asset — do not distribute to customers",
+      "say": [], "dont_say": ["Do not distribute externally"],
+      "pdf": "sell-sheets/20-INTERNAL-economics-of-the-switch.pdf"
+    },
+    {
+      "id": "21-INTERNAL-coldchain-logistics", "title": "Cold-Chain, Logistics & Inventory", "audience": ["Internal"],
+      "theme": "Internal Enablement", "tier": "Internal", "use_case": ["Internal training"],
+      "internal_only": true,
+      "headline": "INTERNAL — NOT FOR CUSTOMER USE. Cold-chain, logistics & inventory.",
+      "key_stat": "Internal enablement asset — do not distribute to customers",
+      "say": [], "dont_say": ["Do not distribute externally"],
+      "pdf": "sell-sheets/21-INTERNAL-coldchain-logistics.pdf"
+    },
+    {
+      "id": "22-INTERNAL-objection-handler", "title": "Objection Handler (10 Hardest Questions)", "audience": ["Internal"],
+      "theme": "Internal Enablement", "tier": "Internal", "use_case": ["Internal training"],
+      "internal_only": true,
+      "headline": "INTERNAL — NOT FOR CUSTOMER USE. Objection handler — 10 hardest questions.",
+      "key_stat": "Internal enablement asset — do not distribute to customers",
+      "say": [], "dont_say": ["Do not distribute externally"],
+      "pdf": "sell-sheets/22-INTERNAL-objection-handler.pdf"
+    }
+  ]
+}

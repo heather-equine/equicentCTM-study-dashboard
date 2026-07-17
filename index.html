@@ -4042,8 +4042,237 @@ a.study-tab.study-tab-external:hover svg { color: white; }
   .char-modal-body { padding: 20px; }
 }
 
+/* ==================================================================== */
+/* ===== PUBLICATION KIT (pk) COMPONENTS ============================== */
+/* ==================================================================== */
 
+/* Generic panel wrapper for new pk tabs */
+.pk-panel-inner { max-width: 1200px; margin: 0 auto; padding: var(--space-6) var(--space-5) var(--space-12); }
 
+/* Section hero for pk external tabs */
+.pk-hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-lg, 16px);
+  padding: var(--space-10) var(--space-8);
+  margin-bottom: var(--space-8);
+}
+.pk-hero-eyebrow {
+  display: inline-block; font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  background: rgba(255,255,255,0.15); color: #fff;
+  padding: 6px 14px; border-radius: 999px; margin-bottom: var(--space-4);
+}
+.pk-hero-title {
+  font-family: var(--font-display); font-size: var(--text-3xl); line-height: 1.1;
+  margin: 0 0 var(--space-4); color: #fff;
+}
+.pk-hero-sub { font-size: var(--text-base); line-height: 1.5; color: rgba(255,255,255,0.92); max-width: 820px; margin: 0; }
+.pk-hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+
+/* Buttons */
+.pk-btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600;
+  padding: 12px 22px; border-radius: 10px; border: 1.5px solid transparent;
+  text-decoration: none; transition: all 0.15s ease; line-height: 1;
+}
+.pk-btn-primary { background: #fff; color: var(--color-primary); }
+.pk-btn-primary:hover { background: var(--color-surface-offset); }
+.pk-btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+.pk-btn-outline:hover { background: rgba(255,255,255,0.12); }
+.pk-btn-solid { background: var(--color-primary); color: #fff; }
+.pk-btn-solid:hover { background: var(--color-primary-hover); }
+.pk-btn-ghost { background: var(--color-surface); color: var(--color-primary); border-color: var(--color-border); }
+.pk-btn-ghost:hover { background: var(--color-surface-offset); }
+
+/* KPI grid */
+.pk-kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-4); margin-bottom: var(--space-8);
+}
+.pk-kpi-card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary); border-radius: var(--radius-md, 12px);
+  padding: var(--space-5); box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.06));
+}
+.pk-kpi-value { font-family: var(--font-display); font-size: var(--text-xl); color: var(--color-primary); line-height: 1.15; margin-bottom: 6px; }
+.pk-kpi-label { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); line-height: 1.35; }
+
+/* Module card */
+.pk-module {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 12px); padding: var(--space-6);
+  margin-bottom: var(--space-6); box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.06));
+}
+.pk-module-head { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-4); }
+.pk-module-title { font-family: var(--font-display); font-size: var(--text-lg); color: var(--color-text); margin: 0; }
+.pk-module-headline { font-size: var(--text-base); font-weight: 600; color: var(--color-primary); margin: 0 0 var(--space-4); line-height: 1.4; }
+.pk-list { list-style: none; margin: 0; padding: 0; }
+.pk-list li {
+  position: relative; padding: 8px 0 8px 28px; font-size: var(--text-sm);
+  color: var(--color-text); line-height: 1.5; border-bottom: 1px solid var(--color-divider);
+}
+.pk-list li:last-child { border-bottom: none; }
+.pk-list li::before {
+  content: ""; position: absolute; left: 4px; top: 15px; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--color-primary);
+}
+.pk-stat-strip {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4); margin-bottom: var(--space-6);
+}
+.pk-stat {
+  background: var(--color-primary-surface); border: 1px solid var(--color-primary-20);
+  border-radius: 12px; padding: var(--space-5); text-align: center;
+}
+.pk-stat-value { font-family: var(--font-display); font-size: var(--text-2xl); color: var(--color-primary); line-height: 1; margin-bottom: 8px; }
+.pk-stat-label { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 600; line-height: 1.4; }
+
+/* Owner-friendly emphasis panel */
+.pk-owner-panel {
+  background: linear-gradient(135deg, var(--color-primary-surface), var(--color-primary-light));
+  border: 1px solid var(--color-primary-20); border-radius: var(--radius-md, 12px);
+  padding: var(--space-8); text-align: center; margin-bottom: var(--space-6);
+}
+.pk-owner-big { font-family: var(--font-display); font-size: var(--text-3xl); color: var(--color-primary); line-height: 1.05; margin-bottom: var(--space-3); }
+.pk-owner-sub { font-size: var(--text-base); color: var(--color-text); font-weight: 600; }
+
+/* Section label */
+.pk-section-label {
+  display: flex; align-items: center; gap: 10px; font-size: var(--text-xs);
+  font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-text-muted); margin: var(--space-8) 0 var(--space-4);
+}
+.pk-section-label::after { content: ""; flex: 1; height: 1px; background: var(--color-divider); }
+
+/* Evidence tier badges */
+.pk-tier {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem;
+  font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px; white-space: nowrap; line-height: 1.2;
+}
+.pk-tier::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pk-tier-primary     { background: #e8f2ef; color: #0d3d36; }
+.pk-tier-secondary   { background: #e6effb; color: #1d4ed8; }
+.pk-tier-exploratory { background: #fff3e6; color: #b45309; }
+.pk-tier-supporting  { background: #f1f0f4; color: #6b7280; }
+.pk-tier-internal    { background: #fde8e8; color: #b91c1c; }
+[data-theme="dark"] .pk-tier-primary     { background: rgba(13,61,54,0.35); color: #7fd8c6; }
+[data-theme="dark"] .pk-tier-secondary   { background: rgba(29,78,216,0.25); color: #93b4f7; }
+[data-theme="dark"] .pk-tier-exploratory { background: rgba(180,83,9,0.28); color: #f5b972; }
+[data-theme="dark"] .pk-tier-supporting  { background: rgba(107,114,128,0.28); color: #c3c8d1; }
+[data-theme="dark"] .pk-tier-internal    { background: rgba(185,28,28,0.3); color: #f2a3a3; }
+
+/* Exploratory banner */
+.pk-explore-banner {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: #fff3e6; border: 1px solid #f5b972; border-left: 4px solid #da7101;
+  color: #7a4a06; border-radius: 10px; padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm); line-height: 1.45; margin-bottom: var(--space-6);
+}
+[data-theme="dark"] .pk-explore-banner { background: rgba(218,113,1,0.14); color: #f5c88a; border-color: rgba(218,113,1,0.5); }
+.pk-explore-banner svg { flex-shrink: 0; width: 20px; height: 20px; stroke: #da7101; margin-top: 1px; }
+.pk-explore-tag {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; color: #b45309;
+  background: #fff3e6; border: 1px solid #f5b972; padding: 3px 10px; border-radius: 999px;
+}
+[data-theme="dark"] .pk-explore-tag { background: rgba(218,113,1,0.18); color: #f5b972; border-color: rgba(218,113,1,0.5); }
+
+/* Compliance footer */
+.pk-footer {
+  margin-top: var(--space-10); padding: var(--space-5) var(--space-6);
+  background: var(--color-surface-2); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 12px); font-size: var(--text-xs);
+  line-height: 1.6; color: var(--color-text-muted);
+}
+.pk-footer strong { color: var(--color-text); font-weight: 700; }
+
+/* ===== SALES SHEETS LIBRARY ===== */
+.pk-toolbar {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 12px); padding: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+.pk-search-wrap { position: relative; margin-bottom: var(--space-4); }
+.pk-search {
+  width: 100%; box-sizing: border-box; padding: 12px 16px 12px 42px;
+  font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text);
+  background: var(--color-surface-2); border: 1.5px solid var(--color-border); border-radius: 10px;
+}
+.pk-search:focus { outline: none; border-color: var(--color-primary); }
+.pk-search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: var(--color-text-faint); }
+.pk-filter-row { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.pk-filter-group { flex: 1; min-width: 190px; }
+.pk-filter-label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: 6px; }
+.pk-select {
+  width: 100%; box-sizing: border-box; padding: 9px 12px; font-family: var(--font-body);
+  font-size: var(--text-sm); color: var(--color-text); background: var(--color-surface-2);
+  border: 1.5px solid var(--color-border); border-radius: 8px; cursor: pointer;
+}
+.pk-select:focus { outline: none; border-color: var(--color-primary); }
+.pk-results-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted); }
+.pk-clear-btn { background: none; border: none; color: var(--color-primary); font-weight: 600; cursor: pointer; font-size: var(--text-sm); }
+.pk-clear-btn:hover { text-decoration: underline; }
+
+.pk-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-5); }
+.pk-card {
+  display: flex; flex-direction: column; background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: var(--radius-md, 12px);
+  padding: var(--space-5); box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.06));
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.pk-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.10); transform: translateY(-2px); }
+.pk-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: var(--space-3); }
+.pk-card-title { font-family: var(--font-display); font-size: var(--text-lg); color: var(--color-text); margin: 0; line-height: 1.2; }
+.pk-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--space-3); }
+.pk-aud-tag { font-size: 0.68rem; font-weight: 600; color: var(--color-text-muted); background: var(--color-surface-offset); border-radius: 999px; padding: 3px 9px; }
+.pk-card-headline { font-size: var(--text-sm); color: var(--color-text); line-height: 1.45; margin: 0 0 var(--space-3); }
+.pk-card-stat {
+  font-size: var(--text-xs); color: var(--color-primary); font-weight: 600; line-height: 1.4;
+  background: var(--color-primary-surface); border-radius: 8px; padding: 10px 12px; margin-bottom: var(--space-4);
+}
+.pk-card-actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+.pk-card-actions .pk-btn { padding: 9px 14px; font-size: 0.8rem; }
+.pk-card-preview {
+  display: none; margin-top: var(--space-4); padding-top: var(--space-4);
+  border-top: 1px dashed var(--color-border);
+}
+.pk-card-preview.open { display: block; }
+.pk-preview-h { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin: var(--space-3) 0 6px; }
+.pk-say, .pk-dont { list-style: none; margin: 0 0 var(--space-2); padding: 0; }
+.pk-say li, .pk-dont li { font-size: 0.82rem; line-height: 1.45; padding: 4px 0 4px 22px; position: relative; color: var(--color-text); }
+.pk-say li::before { content: "\2713"; position: absolute; left: 0; color: var(--color-success); font-weight: 700; }
+.pk-dont li::before { content: "\2715"; position: absolute; left: 0; color: var(--color-error); font-weight: 700; }
+.pk-empty { text-align: center; padding: var(--space-12) var(--space-6); color: var(--color-text-muted); }
+
+/* ===== INTERNAL ENABLEMENT ===== */
+.pk-internal-warn {
+  display: flex; align-items: center; gap: 12px; background: #fde8e8;
+  border: 1px solid #f5b5b5; border-left: 4px solid #b91c1c; color: #7f1d1d;
+  border-radius: 10px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-6);
+  font-size: var(--text-sm); font-weight: 600; line-height: 1.4;
+}
+[data-theme="dark"] .pk-internal-warn { background: rgba(185,28,28,0.16); color: #f2a3a3; border-color: rgba(185,28,28,0.5); }
+.pk-internal-warn svg { flex-shrink: 0; width: 22px; height: 22px; stroke: #b91c1c; }
+.pk-internal-card { position: relative; overflow: hidden; }
+.pk-internal-badge {
+  display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.05em;
+  text-transform: uppercase; color: #fff; background: #b91c1c; padding: 4px 10px;
+  border-radius: 6px; margin-bottom: var(--space-3);
+}
+.pk-internal-card::after {
+  content: "INTERNAL — NOT FOR CUSTOMER USE"; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-18deg); font-size: 1.15rem; font-weight: 800;
+  letter-spacing: 0.06em; color: rgba(185,28,28,0.10); white-space: nowrap; pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .pk-hero { padding: var(--space-6) var(--space-5); }
+  .pk-filter-group { min-width: 100%; }
+  .pk-card-grid { grid-template-columns: 1fr; }
+}
 
 </style>
 <!-- Print Stylesheet for PDF Export -->
@@ -4810,9 +5039,29 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
       Field Cases
     </button>
+    <button class="study-tab" data-study="performance">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Performance
+    </button>
+    <button class="study-tab" data-study="imaging">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      Imaging &amp; Motion
+    </button>
+    <button class="study-tab" data-study="comppos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+      Competitive Positioning
+    </button>
+    <button class="study-tab" data-study="salessheets">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Sales Sheets
+    </button>
     <button class="study-tab admin-only-tab" data-study="competitive" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
       Why eCTM
+    </button>
+    <button class="study-tab admin-only-tab" data-study="internal" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Internal Enablement
     </button>
     <a class="study-tab study-tab-external" href="https://epl-command-center.onrender.com/#/" target="_blank" rel="noopener noreferrer" title="Opens EPL Ops Hub in a new tab">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -4826,6 +5075,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- ===== OVERVIEW CHEAT SHEET PANEL ===== -->
 <div class="study-panel active" id="study-overview">
+
+<!-- Publication-kit hero (approved copy) -->
+<div class="pk-hero animate-in">
+  <span class="pk-hero-eyebrow">Publication Kit</span>
+  <h1 class="pk-hero-title">Built on evidence. Designed for scrutiny.</h1>
+  <p class="pk-hero-sub">Peer-reviewed, controlled clinical study in performance horses showing earlier symptom improvement, stronger return-to-work outcomes, and a cleaner reaction profile versus clinician-selected standard of care.</p>
+  <div class="pk-hero-actions">
+    <a class="pk-btn pk-btn-primary" href="#" onclick="pkGoTab('clinical'); return false;">Open Clinical Study</a>
+    <a class="pk-btn pk-btn-outline" href="#" onclick="pkGoTab('salessheets'); return false;">Browse Sales Sheets</a>
+  </div>
+</div>
+
+<div class="pk-kpi-grid animate-in">
+  <div class="pk-kpi-card">
+    <div class="pk-kpi-value">138 &middot; 195 &middot; 8</div>
+    <div class="pk-kpi-label">138 performance horses &middot; 195 conditions &middot; 8 U.S. practices</div>
+  </div>
+  <div class="pk-kpi-card">
+    <div class="pk-kpi-value">100%</div>
+    <div class="pk-kpi-label">Completed 12-week primary endpoint</div>
+  </div>
+  <div class="pk-kpi-card">
+    <div class="pk-kpi-value">Wk 2 &middot; Wk 4</div>
+    <div class="pk-kpi-label">Pain and swelling separated by week 2; lameness by week 4</div>
+  </div>
+  <div class="pk-kpi-card">
+    <div class="pk-kpi-value">79% vs 21%</div>
+    <div class="pk-kpi-label">Returned to or exceeded prior performance at 26 weeks</div>
+  </div>
+</div>
 
 <div class="overview-hero animate-in">
   <div class="overview-hero-badge">PIVOTAL CLINICAL TRIAL RESULTS</div>
@@ -5235,6 +5514,8 @@ document.addEventListener('DOMContentLoaded', function() {
     © 2025–2026 Equine Performance Labs, Austin, TX.
   </div>
 </footer>
+
+<div class="pk-footer">Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.</div>
 
 </div><!-- end study-overview -->
 
@@ -6297,6 +6578,45 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
     </a>
   </div>
+</div>
+
+<!-- ===== PUBLICATION-KIT SAFETY MODULES (approved copy) ===== -->
+<div class="pk-panel-inner" style="padding-top:0;">
+  <div class="pk-section-label">Publication Kit — Reaction Profile</div>
+
+  <div class="pk-module">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">A cleaner reaction profile than the products it will replace</h3>
+      <span class="pk-tier pk-tier-primary">Primary</span>
+    </div>
+    <div class="pk-stat-strip">
+      <div class="pk-stat"><div class="pk-stat-value">3.4%</div><div class="pk-stat-label">Per-injection reaction rate in the eCTM arm (5/148)</div></div>
+      <div class="pk-stat"><div class="pk-stat-value">4.8:1</div><div class="pk-stat-label">Lower reported reaction ratio, vet-reported analysis (p&lt;0.04)</div></div>
+      <div class="pk-stat"><div class="pk-stat-value">5.9:1</div><div class="pk-stat-label">Lower ratio under conservative central review (p=0.002)</div></div>
+      <div class="pk-stat"><div class="pk-stat-value">Zero</div><div class="pk-stat-label">Infections and zero vet-reported product-related serious adverse events in the eCTM arm</div></div>
+    </div>
+    <ul class="pk-list">
+      <li>Significantly fewer reported adverse reactions than standard of care.</li>
+      <li>Safety advantage preserved under conservative central review (5.9:1, p=0.002).</li>
+    </ul>
+  </div>
+
+  <div class="pk-module">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Injection-site inflammation</h3>
+      <span class="pk-tier pk-tier-primary">Primary</span>
+    </div>
+    <div class="pk-owner-panel">
+      <div class="pk-owner-big">0/4</div>
+      <div class="pk-owner-sub">Injection-site inflammation score at every follow-up for 100% of eCTM injections.</div>
+    </div>
+    <ul class="pk-list">
+      <li>Injection-site inflammation was a prospectively defined endpoint using a validated 0–4 scale.</li>
+      <li>Reported reactions were mild, self-limited, and appeared early after injection.</li>
+    </ul>
+  </div>
+
+  <div class="pk-footer">Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.</div>
 </div>
 
 <!-- ===== FOOTER ===== -->
@@ -8656,6 +8976,52 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg class="published-evidence-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
     </a>
   </div>
+</div>
+
+<!-- ===== PUBLICATION-KIT CLINICAL MODULES (approved copy) ===== -->
+<div class="pk-panel-inner" style="padding-top:0;">
+  <div class="pk-section-label">Publication Kit — Study Rigor &amp; Efficacy</div>
+
+  <div class="pk-module">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Study design you can defend</h3>
+      <span class="pk-tier pk-tier-primary">Primary</span>
+    </div>
+    <ul class="pk-list">
+      <li>Largest controlled clinical trial of its kind in performance horses.</li>
+      <li>Prospective multicenter controlled trial, CONSORT-guided.</li>
+      <li>138 horses, 195 conditions, 8 practices.</li>
+      <li>Quasi-randomized within practice at a 1.9:1 achieved allocation ratio.</li>
+      <li>Independent third-party biostatistics.</li>
+      <li>IACUC ETCR-2024-0329; AVMA VCT #26005934.</li>
+    </ul>
+  </div>
+
+  <div class="pk-module">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">No horses lost at the primary endpoint</h3>
+      <span class="pk-tier pk-tier-primary">Primary</span>
+    </div>
+    <ul class="pk-list">
+      <li>100% follow-up at 12 weeks (138/138 horses).</li>
+      <li>98% follow-up at 26 weeks (135/138 horses).</li>
+      <li>Every enrolled horse was assessed at the pre-specified primary endpoint; no imputation or missing-data adjustment was required.</li>
+    </ul>
+  </div>
+
+  <div class="pk-module">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Earlier, greater, and sustained improvement</h3>
+      <span class="pk-tier pk-tier-primary">Primary</span>
+    </div>
+    <ul class="pk-list">
+      <li>Greater cumulative improvement than clinician-selected standard of care in lameness, pain, and swelling through 12 weeks (p&lt;0.001 all outcomes).</li>
+      <li>Outperformed standard of care on pain and swelling by 2 weeks and lameness by 4 weeks.</li>
+      <li>3:1 higher odds of being pain-free at 12 weeks (p&lt;0.001).</li>
+    </ul>
+  </div>
+
+  <div class="pk-footer">Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.</div>
 </div>
 
 <!-- Clinical Footer -->
@@ -14374,6 +14740,211 @@ function navigateToSOCProducts(e) {
 
 </div><!-- end study-competitive -->
 
+
+<!-- ==================================================================== -->
+<!-- ===== PUBLICATION KIT: PERFORMANCE PANEL ========================== -->
+<!-- ==================================================================== -->
+<div class="study-panel" id="study-performance">
+<div class="pk-panel-inner">
+  <div class="pk-hero animate-in">
+    <span class="pk-hero-eyebrow">Performance</span>
+    <h1 class="pk-hero-title">The endpoint owners actually care about — returning to work.</h1>
+    <p class="pk-hero-sub">At 26 weeks, eCTM horses returned to work at a rate standard of care could not match — a result preserved across intent-to-treat and per-protocol analyses.</p>
+  </div>
+
+  <div class="pk-stat-strip animate-in">
+    <div class="pk-stat"><div class="pk-stat-value">79% vs 21%</div><div class="pk-stat-label">Returned to or exceeded prior performance at 26 weeks vs standard of care</div></div>
+    <div class="pk-stat"><div class="pk-stat-value">2.72:1</div><div class="pk-stat-label">Higher odds of returning to or exceeding prior performance (p&lt;0.006)</div></div>
+    <div class="pk-stat"><div class="pk-stat-value">d = 2.23</div><div class="pk-stat-label">Large-magnitude performance advantage at 26 weeks (Cohen's d; p&lt;0.001)</div></div>
+  </div>
+
+  <div class="pk-owner-panel animate-in">
+    <div class="pk-owner-big">4 out of 5 horses</div>
+    <div class="pk-owner-sub">on eCTM returned to or exceeded their prior level of work at 6 months.</div>
+  </div>
+
+  <div class="pk-module animate-in">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Support &amp; owner-reported outcomes</h3>
+      <span class="pk-tier pk-tier-primary">Primary</span>
+    </div>
+    <ul class="pk-list">
+      <li>Advantage preserved in both intent-to-treat and per-protocol analyses.</li>
+      <li>Owner-reported outcomes also favored eCTM across body condition, hair coat, overall health, and quality of life at 26 weeks.</li>
+    </ul>
+  </div>
+
+  <div class="pk-footer">Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.</div>
+</div>
+</div><!-- end study-performance -->
+
+
+<!-- ==================================================================== -->
+<!-- ===== PUBLICATION KIT: IMAGING & MOTION PANEL ==================== -->
+<!-- ==================================================================== -->
+<div class="study-panel" id="study-imaging">
+<div class="pk-panel-inner">
+  <div class="pk-hero animate-in">
+    <span class="pk-hero-eyebrow">Imaging &amp; Motion</span>
+    <h1 class="pk-hero-title">Mechanistic and objective support for the symptom story.</h1>
+    <p class="pk-hero-sub">Structural remodeling and blinded, sensor-based kinematics add depth for skeptical clinicians. These findings are exploratory and are labeled accordingly.</p>
+  </div>
+
+  <div class="pk-explore-banner animate-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div>Exploratory analysis — include "in an exploratory analysis" or equivalent language when presenting these results.</div>
+  </div>
+
+  <div class="pk-module animate-in">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Structural healing</h3>
+      <span class="pk-tier pk-tier-exploratory">Exploratory</span>
+      <span class="pk-explore-tag">Exploratory analysis</span>
+    </div>
+    <ul class="pk-list">
+      <li>In an exploratory analysis, 36% of eCTM-treated ligaments reached "Responding" on Tissue Remodeling Score by 12 weeks vs 0% of standard of care (d=0.98, p=0.013).</li>
+      <li>Largest structural effect was observed in proximal suspensory ligament lesions (PSL d=1.25; lateral suspensory branch d=0.82).</li>
+    </ul>
+  </div>
+
+  <div class="pk-module animate-in">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Kinematic (Sleip)</h3>
+      <span class="pk-tier pk-tier-exploratory">Exploratory</span>
+      <span class="pk-explore-tag">Exploratory analysis</span>
+    </div>
+    <ul class="pk-list">
+      <li>In an exploratory analysis, blinded sensor-based gait analysis (Sleip) confirmed the clinical findings, with greater forelimb symmetry improvement in eCTM-treated horses.</li>
+      <li>Push-off improvement was significant at week 2 (p&lt;0.003) and week 12 (p&lt;0.015); impact improvement at week 4 (p&lt;0.05).</li>
+    </ul>
+  </div>
+
+  <div class="pk-footer">Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.</div>
+</div>
+</div><!-- end study-imaging -->
+
+
+<!-- ==================================================================== -->
+<!-- ===== PUBLICATION KIT: COMPETITIVE POSITIONING PANEL ============= -->
+<!-- ==================================================================== -->
+<div class="study-panel" id="study-comppos">
+<div class="pk-panel-inner">
+  <div class="pk-hero animate-in">
+    <span class="pk-hero-eyebrow">Competitive Positioning</span>
+    <h1 class="pk-hero-title">Class-level differentiation — not another autologous kit.</h1>
+    <p class="pk-hero-sub">eCTM was compared against the real-world biologics spectrum experienced clinicians use today. Comparisons are class-level; head-to-head contrasts are exploratory.</p>
+  </div>
+
+  <div class="pk-module animate-in">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Comparator context</h3>
+      <span class="pk-tier pk-tier-supporting">Supporting</span>
+    </div>
+    <ul class="pk-list">
+      <li>Standard of care reflected the real-world biologics spectrum used by experienced clinicians, including APS, PRP, ACS, PPP, MSCs, amnion, and HA.</li>
+      <li>Hemoderivatives made up 64% of the standard-of-care arm.</li>
+    </ul>
+  </div>
+
+  <div class="pk-explore-banner animate-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div>Exploratory analysis — include "in an exploratory analysis" or equivalent language when presenting the head-to-head result.</div>
+  </div>
+
+  <div class="pk-module animate-in">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Head-to-head vs hemoderivatives</h3>
+      <span class="pk-tier pk-tier-exploratory">Exploratory</span>
+      <span class="pk-explore-tag">Exploratory analysis</span>
+    </div>
+    <ul class="pk-list">
+      <li>In an exploratory analysis, eCTM outperformed hemoderivatives on lameness (p&lt;0.04) and pain (p&lt;0.003).</li>
+      <li>APS represented 51% of the hemoderivative subgroup and showed the same directional advantage.</li>
+    </ul>
+  </div>
+
+  <div class="pk-module animate-in">
+    <div class="pk-module-head">
+      <h3 class="pk-module-title">Product differentiation</h3>
+      <span class="pk-tier pk-tier-primary">Primary</span>
+      <span class="pk-tier pk-tier-supporting">Supporting</span>
+    </div>
+    <ul class="pk-list">
+      <li>Off-the-shelf cryopreserved umbilical allograft with no chairside blood processing.</li>
+      <li>One thaw, one injection, consistent lot-to-lot composition.</li>
+      <li>One 1.5 mL intra-articular injection versus standard of care often requiring 2–3 injections (p&lt;0.03 fewer re-injections).</li>
+      <li>Designed to release fetal reparative proteins over time.</li>
+    </ul>
+  </div>
+
+  <div class="pk-footer">Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.</div>
+</div>
+</div><!-- end study-comppos -->
+
+
+<!-- ==================================================================== -->
+<!-- ===== PUBLICATION KIT: SALES SHEETS LIBRARY ====================== -->
+<!-- ==================================================================== -->
+<div class="study-panel" id="study-salessheets">
+<div class="pk-panel-inner">
+  <div class="pk-hero animate-in">
+    <span class="pk-hero-eyebrow">Sales Sheets</span>
+    <h1 class="pk-hero-title">Interactive field-asset library.</h1>
+    <p class="pk-hero-sub">Every customer-facing one-pager, filterable by audience, theme, evidence tier, and use case. Preview approved language in-dashboard, copy it to your clipboard, or open the full sheet.</p>
+  </div>
+
+  <div class="pk-toolbar animate-in">
+    <div class="pk-search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="pk-search" id="pk-search" placeholder="Search sales sheets by title, headline, or stat…" oninput="pkRenderCards()">
+    </div>
+    <div class="pk-filter-row">
+      <div class="pk-filter-group">
+        <label class="pk-filter-label" for="pk-filter-audience">Audience</label>
+        <select class="pk-select" id="pk-filter-audience" onchange="pkRenderCards()"><option value="">All audiences</option></select>
+      </div>
+      <div class="pk-filter-group">
+        <label class="pk-filter-label" for="pk-filter-theme">Theme</label>
+        <select class="pk-select" id="pk-filter-theme" onchange="pkRenderCards()"><option value="">All themes</option></select>
+      </div>
+      <div class="pk-filter-group">
+        <label class="pk-filter-label" for="pk-filter-tier">Evidence tier</label>
+        <select class="pk-select" id="pk-filter-tier" onchange="pkRenderCards()"><option value="">All tiers</option></select>
+      </div>
+      <div class="pk-filter-group">
+        <label class="pk-filter-label" for="pk-filter-usecase">Use case</label>
+        <select class="pk-select" id="pk-filter-usecase" onchange="pkRenderCards()"><option value="">All use cases</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="pk-results-meta">
+    <span id="pk-results-count"></span>
+    <button class="pk-clear-btn" onclick="pkClearFilters()">Clear filters</button>
+  </div>
+
+  <div class="pk-card-grid" id="pk-card-grid"></div>
+
+  <div class="pk-footer">Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.</div>
+</div>
+</div><!-- end study-salessheets -->
+
+
+<!-- ==================================================================== -->
+<!-- ===== PUBLICATION KIT: INTERNAL ENABLEMENT (ADMIN-GATED) ========= -->
+<!-- ==================================================================== -->
+<div class="study-panel" id="study-internal">
+<div class="pk-panel-inner">
+  <div class="pk-internal-warn">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div>INTERNAL — NOT FOR CUSTOMER USE. These assets are restricted to authorized internal staff and must never be distributed externally.</div>
+  </div>
+
+  <div class="pk-card-grid" id="pk-internal-grid"></div>
+</div>
+</div><!-- end study-internal -->
+
+
 <!-- ===== PROTEIN CATEGORY MODAL ===== -->
 <div class="protein-modal-overlay" id="proteinModal" onclick="if(event.target===this)closeProteinModal()">
   <div class="protein-modal">
@@ -14463,6 +15034,236 @@ var vpObserver = new MutationObserver(function() {
 });
 var vpPanel = document.getElementById('study-value');
 if (vpPanel) { vpObserver.observe(vpPanel, { attributes: true, attributeFilter: ['class'] }); }
+</script>
+
+<!-- ==================================================================== -->
+<!-- ===== PUBLICATION KIT: SALES SHEETS + NAV HELPERS ================= -->
+<!-- ==================================================================== -->
+<script>
+(function() {
+  var PK = {
+    review_footer: "Results summarized here are from a single prospective controlled clinical study in performance horses; individual results may vary. Source: Bertone AL, Davern A, Sutter WW, et al. Front. Vet. Sci. 2026. DOI 10.3389/fvets.2026.1833933. IACUC ETCR-2024-0329 · AVMA VCT #26005934.",
+    exploratory_qualifier: "in an exploratory analysis",
+    cards: [
+      {"id":"01-study-rigor","title":"Study Rigor","audience":["Vet","Distributor/Sales"],"theme":"Rigor","tier":"Primary","use_case":["First call","Leave-behind","Launch support"],"headline":"The largest controlled clinical trial of its kind in performance horses, run under CONSORT guidelines with independent biostatistics.","key_stat":"138 horses · 195 conditions · 8 practices · 100% 12-wk / 98% 26-wk follow-up","say":["Prospective multicenter controlled trial, CONSORT-guided","Independent third-party biostatistics","100% completion at the 12-week primary endpoint","IACUC ETCR-2024-0329; AVMA VCT #26005934"],"dont_say":["'Randomized controlled trial' — design was quasi-randomized within practice","'Blinded to owners' — trial was open-label with blinded vet scoring","'FDA-approved' or 'registered'","'Definitive' or 'confirmatory' — use 'pragmatic' and 'real-world'"],"pdf":"sell-sheets/01-study-rigor.pdf"},
+      {"id":"02-followup-completeness","title":"Follow-up Completeness","audience":["Vet","Distributor/Sales"],"theme":"Rigor","tier":"Primary","use_case":["First call","Objection response","Leave-behind"],"headline":"No horses lost at the primary endpoint — follow-up you can defend.","key_stat":"100% follow-up at 12 weeks (138/138); 98% at 26 weeks (135/138)","say":["100% follow-up at the 12-week primary endpoint","98% follow-up at 26 weeks — only 3 horses lost","Every enrolled horse assessed at the pre-specified primary endpoint; no imputation required"],"dont_say":["'Randomized controlled trial'","Presenting retention as a treatment effect"],"pdf":"sell-sheets/02-followup-completeness.pdf"},
+      {"id":"03-clinical-efficacy","title":"Clinical Efficacy","audience":["Vet","Owner/Trainer","Distributor/Sales"],"theme":"Efficacy","tier":"Primary","use_case":["First call","Leave-behind"],"headline":"Greater cumulative improvement than standard of care in lameness, pain, and swelling, sustained through 12 weeks (p<0.001 all outcomes).","key_stat":"3:1 higher odds of being pain-free at 12 weeks (p<0.001); separation by week 2 (pain, swelling) and week 4 (lameness)","say":["Greater improvement than clinician-selected standard of care","Sustained through 12 weeks","Outperformed standard of care on pain and swelling by 2 weeks, lameness by 4 weeks"],"dont_say":["'Cures' — never use curative language","'All horses improved' — individual responses vary","Stating durability beyond 12 weeks outside the joint subgroup context"],"pdf":"sell-sheets/03-clinical-efficacy.pdf"},
+      {"id":"04-onset-of-action","title":"Onset of Action","audience":["Vet","Owner/Trainer"],"theme":"Efficacy","tier":"Primary","use_case":["First call","Follow-up"],"headline":"How fast does it work? Separation begins by week 2.","key_stat":"Pain & swelling separate by 2 weeks; lameness by 4 weeks (p<0.05)","say":["Outperformed standard of care on pain and swelling by 2 weeks, lameness by 4 weeks","Single injection — no re-dose gate"],"dont_say":["'Cures'","Extrapolating onset to indications not scored in the trial"],"pdf":"sell-sheets/04-onset-of-action.pdf"},
+      {"id":"05-owner-return-to-work","title":"Performance — Owner Return-to-Work","audience":["Owner/Trainer"],"theme":"Performance","tier":"Primary","use_case":["First call","Leave-behind","Follow-up"],"headline":"Healthy horse. Happy client. What 138 owners saw at home over 26 weeks.","key_stat":"4 of 7 owner-scored categories significantly better for eCTM at 26 weeks; 79% returned to or exceeded prior work","say":["Owners of eCTM horses reported significantly better body condition, hair coat, overall health, and quality of life at 6 months","Four independent owner-reported measures all favored eCTM (p<0.03 to p<0.001)"],"dont_say":["Presenting owner-reported outcomes as clinical endpoints","'Proven to improve quality of life' without the 'owner-reported' qualifier","'Guaranteed return to work'"],"pdf":"sell-sheets/05-owner-return-to-work.pdf"},
+      {"id":"06-return-to-work-headline","title":"Return-to-Work Headline Stat","audience":["Owner/Trainer","Vet","Distributor/Sales"],"theme":"Performance","tier":"Primary","use_case":["First call","Leave-behind"],"headline":"4 out of 5 horses. Back to work at 6 months.","key_stat":"79% eCTM vs 21% standard of care returned to or exceeded prior performance at 26 weeks; 2.72:1 odds (p<0.006); Cohen's d = 2.23","say":["79% of eCTM horses returned to or exceeded prior performance at 26 weeks","2.72:1 higher odds vs standard of care (p<0.006)","Preserved in both intent-to-treat and per-protocol analyses"],"dont_say":["'Guaranteed return to work'","Extrapolating to disciplines not represented in the trial","Presenting Cohen's d = 2.23 without narrative context"],"pdf":"sell-sheets/06-return-to-work-headline.pdf"},
+      {"id":"07-trainer-layup-guide","title":"Trainer Layup & Return Guide","audience":["Owner/Trainer"],"theme":"Practice Adoption","tier":"Primary","use_case":["Leave-behind","Follow-up"],"headline":"Timing the layup. Planning the return.","key_stat":"Trial clock: change by wk 2, lameness by wk 4, primary endpoint wk 12, return-to-work wk 26","say":["Plan the layup on the trial's clock: 2 · 4 · 12 · 26 weeks","Coordinate all workload decisions with the treating veterinarian"],"dont_say":["'Guaranteed return to work'","Presenting the timeline as a fixed medical protocol"],"pdf":"sell-sheets/07-trainer-layup-guide.pdf"},
+      {"id":"08-safety","title":"Safety","audience":["Vet","Owner/Trainer","Distributor/Sales"],"theme":"Safety","tier":"Primary","use_case":["First call","Objection response","Leave-behind"],"headline":"A cleaner reaction profile than the products it will replace.","key_stat":"3.4% per-injection reaction rate (5/148); 4.8:1 lower vet-reported (p<0.04); 5.9:1 central review (p=0.002); zero infections","say":["Significantly fewer reported adverse reactions than clinician-selected standard of care","Zero infections and no vet-reported product-related serious adverse events in the eCTM arm","Safety advantage preserved under conservative central review (5.9:1, p=0.002)"],"dont_say":["'Zero side effects' — five mild reactions were observed","'Safer than PRP/APS/ACS' as a standalone statement — must reference standard-of-care comparator language","Extrapolating safety to off-label or extra-articular use"],"pdf":"sell-sheets/08-safety.pdf"},
+      {"id":"09-structural-healing","title":"Structural Healing","audience":["Vet","Distributor/Sales"],"theme":"Imaging","tier":"Exploratory","use_case":["Objection response","Leave-behind"],"headline":"A structural signal, not just symptom relief.","key_stat":"In an exploratory analysis, 36% of eCTM ligaments reached 'Responding' on TRS by 12 wks vs 0% SOC (d=0.98, p=0.013); PSL d=1.25","say":["In an exploratory analysis, 36% of eCTM ligaments reached 'Responding' by 12 weeks vs 0% of standard of care","Largest structural effect was seen in proximal suspensory ligament lesions"],"dont_say":["'Proven to heal ligaments'","Removing the exploratory qualifier","Extrapolating to lesion types not scored in the trial"],"pdf":"sell-sheets/09-structural-healing.pdf"},
+      {"id":"10-ligament-repair","title":"Ligament Repair","audience":["Vet","Distributor/Sales"],"theme":"Imaging","tier":"Exploratory","use_case":["Objection response","Leave-behind"],"headline":"A structural signal in ligament tissue — largest in the proximal suspensory.","key_stat":"In an exploratory analysis: PSL d=1.25; lateral suspensory branch d=0.82","say":["In an exploratory analysis, treated ligaments showed a structural remodeling signal","Largest structural effect was seen in proximal suspensory ligament lesions"],"dont_say":["'Proven to heal ligaments'","Removing the exploratory qualifier","Extrapolating to lesion types not scored in the trial"],"pdf":"sell-sheets/10-ligament-repair.pdf"},
+      {"id":"11-kinematic-sleip","title":"Kinematic (Sleip)","audience":["Vet","Owner/Trainer","Distributor/Sales"],"theme":"Imaging","tier":"Exploratory","use_case":["Objection response","Leave-behind"],"headline":"Blinded, sensor-based validation of the symptom story.","key_stat":"In an exploratory analysis: push-off wk 2 p<0.003, wk 12 p<0.015; impact wk 4 p<0.05","say":["Blinded sensor-based kinematic analysis confirmed the clinical scores","Forelimb symmetry improved more in eCTM horses across push-off and impact phases"],"dont_say":["'Sleip diagnosed' — the sensor measured, it did not diagnose","Removing the exploratory qualifier"],"pdf":"sell-sheets/11-kinematic-sleip.pdf"},
+      {"id":"12-forelimb-symmetry","title":"Forelimb Symmetry","audience":["Vet","Distributor/Sales"],"theme":"Imaging","tier":"Exploratory","use_case":["Objection response","Leave-behind"],"headline":"Greater forelimb symmetry improvement — measured by a blinded sensor.","key_stat":"In an exploratory analysis: greater cumulative reduction in forelimb asymmetry with eCTM","say":["In an exploratory analysis, forelimb symmetry improved more in eCTM horses","Blinded, sensor-based measurement"],"dont_say":["'Sleip diagnosed'","Removing the exploratory qualifier"],"pdf":"sell-sheets/12-forelimb-symmetry.pdf"},
+      {"id":"13-head-to-head-vs-aps","title":"Head-to-Head vs APS","audience":["Vet","Distributor/Sales"],"theme":"Comparator","tier":"Exploratory","use_case":["Objection response","Leave-behind"],"headline":"Better than the biologic class it is displacing.","key_stat":"In an exploratory analysis, eCTM outperformed hemoderivatives on lameness (p<0.04) and pain (p<0.003); APS = 51% of hemoderivatives","say":["In a pre-specified head-to-head contrast, eCTM outperformed hemoderivatives on lameness and pain","Against APS — the largest single hemoderivative class in the trial — eCTM produced greater improvement across multiple timepoints (exploratory subgroup)"],"dont_say":["Product-brand-specific statements ('Better than [Trade Name]')","Presenting the APS subgroup without noting the smaller n and exploratory tier"],"pdf":"sell-sheets/13-head-to-head-vs-aps.pdf"},
+      {"id":"14-durability-26-weeks","title":"Durability at 26 Weeks","audience":["Vet","Distributor/Sales"],"theme":"Comparator","tier":"Exploratory","use_case":["Objection response","Leave-behind"],"headline":"Sustained gains where standard of care faded.","key_stat":"In a joint-focused subgroup analysis, SOC improvement declined toward baseline by 26 weeks while eCTM sustained relief","say":["In a sub-class analysis, eCTM sustained pain relief and performance gains at 26 weeks","Always label as exploratory subgroup"],"dont_say":["Stating durability beyond 12 weeks outside the joint subgroup context","Removing the exploratory / subgroup qualifier"],"pdf":"sell-sheets/14-durability-26-weeks.pdf"},
+      {"id":"15-hemoderivatives-context","title":"Hemoderivatives Context","audience":["Vet","Distributor/Sales"],"theme":"Comparator","tier":"Supporting","use_case":["Objection response","Launch support"],"headline":"The comparator arm reflected real-world biologics use.","key_stat":"Standard of care spectrum: APS, PRP, ACS, PPP, MSCs, amnion, HA; hemoderivatives = 64% of SOC arm","say":["Standard of care reflected the real-world biologics spectrum used by experienced clinicians","Hemoderivatives made up 64% of the standard-of-care arm"],"dont_say":["Product-brand-specific comparisons","Presenting context as a head-to-head finding"],"pdf":"sell-sheets/15-hemoderivatives-context.pdf"},
+      {"id":"16-rescue-subgroup","title":"Rescue Subgroup","audience":["Vet","Distributor/Sales"],"theme":"Comparator","tier":"Exploratory","use_case":["Objection response","Leave-behind"],"headline":"A safety net for standard-of-care failures.","key_stat":"In an exploratory analysis, rescue eCTM after SOC failure recovered to performance indistinguishable from first-line eCTM (p=0.87)","say":["In an exploratory analysis, horses that failed standard of care and crossed to eCTM reached 26-wk performance indistinguishable from first-line eCTM","Label as exploratory subgroup"],"dont_say":["'Guaranteed rescue'","Removing the exploratory qualifier"],"pdf":"sell-sheets/16-rescue-subgroup.pdf"},
+      {"id":"17-product-differentiation","title":"Product Differentiation","audience":["Vet","Owner/Trainer","Distributor/Sales"],"theme":"Differentiation","tier":"Primary + Supporting","use_case":["First call","Leave-behind","Launch support"],"headline":"A different class of biologic — not another autologous kit.","key_stat":"One 1.5 mL intra-articular injection vs standard of care often requiring 2–3 (p<0.03 fewer re-injections)","say":["Off-the-shelf cryopreserved umbilical allograft","Microparticulate suspension of umbilical cord protein","One intra-articular injection; no chairside blood processing","Designed to release fetal reparative proteins over time"],"dont_say":["'Stem cell therapy' — the product is not a cellular product","'FDA-cleared' or 'approved'","Stating a specific mechanism of action beyond 'designed to release reparative proteins'"],"pdf":"sell-sheets/17-product-differentiation.pdf"},
+      {"id":"18-case-selection-guide","title":"Case Selection Guide","audience":["Vet"],"theme":"Practice Adoption","tier":"Supporting","use_case":["Leave-behind","Launch support"],"headline":"Choosing the right cases for eCTM.","key_stat":"Vet-facing guide to case selection grounded in the trial population (195 conditions across 138 horses)","say":["Grounded in the trial's enrolled conditions","Coordinate case selection with clinical judgment"],"dont_say":["Extrapolating to conditions not represented in the trial","'Guaranteed' outcomes"],"pdf":"sell-sheets/18-case-selection-guide.pdf"},
+      {"id":"19-practice-launch-playbook","title":"Practice Launch Playbook (60 Days)","audience":["Vet","Distributor/Sales"],"theme":"Practice Adoption","tier":"Supporting","use_case":["Launch support","Leave-behind"],"headline":"A 60-day plan to bring eCTM into your practice.","key_stat":"Vet-facing adoption playbook for the first 60 days","say":["Structured onboarding aligned to the trial's protocols","Coordinate with the treating veterinarian"],"dont_say":["'FDA-approved' / 'registered'","'Guaranteed' outcomes"],"pdf":"sell-sheets/19-practice-launch-playbook.pdf"},
+      {"id":"20-INTERNAL-economics-of-the-switch","title":"Economics of the Switch","audience":["Internal"],"theme":"Internal Enablement","tier":"Internal","use_case":["Internal training"],"internal_only":true,"headline":"INTERNAL — NOT FOR CUSTOMER USE. Economics of switching to eCTM.","key_stat":"Internal enablement asset — do not distribute to customers","say":[],"dont_say":["Do not distribute externally"],"pdf":"sell-sheets/20-INTERNAL-economics-of-the-switch.pdf"},
+      {"id":"21-INTERNAL-coldchain-logistics","title":"Cold-Chain, Logistics & Inventory","audience":["Internal"],"theme":"Internal Enablement","tier":"Internal","use_case":["Internal training"],"internal_only":true,"headline":"INTERNAL — NOT FOR CUSTOMER USE. Cold-chain, logistics & inventory.","key_stat":"Internal enablement asset — do not distribute to customers","say":[],"dont_say":["Do not distribute externally"],"pdf":"sell-sheets/21-INTERNAL-coldchain-logistics.pdf"},
+      {"id":"22-INTERNAL-objection-handler","title":"Objection Handler (10 Hardest Questions)","audience":["Internal"],"theme":"Internal Enablement","tier":"Internal","use_case":["Internal training"],"internal_only":true,"headline":"INTERNAL — NOT FOR CUSTOMER USE. Objection handler — 10 hardest questions.","key_stat":"Internal enablement asset — do not distribute to customers","say":[],"dont_say":["Do not distribute externally"],"pdf":"sell-sheets/22-INTERNAL-objection-handler.pdf"}
+    ]
+  };
+  window.PK = PK;
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
+    });
+  }
+  function isExploratory(card) { return /exploratory/i.test(card.tier); }
+  function tierClass(tier) {
+    var t = String(tier).toLowerCase();
+    if (t.indexOf('internal') > -1) return 'pk-tier-internal';
+    if (t.indexOf('exploratory') > -1) return 'pk-tier-exploratory';
+    if (t.indexOf('supporting') > -1 && t.indexOf('primary') === -1) return 'pk-tier-supporting';
+    if (t.indexOf('secondary') > -1) return 'pk-tier-secondary';
+    return 'pk-tier-primary';
+  }
+  function tierBadges(tier) {
+    return String(tier).split('+').map(function(part) {
+      var label = part.trim();
+      return '<span class="pk-tier ' + tierClass(label) + '">' + esc(label) + '</span>';
+    }).join(' ');
+  }
+
+  var publicCards = PK.cards.filter(function(c) { return !c.internal_only; });
+  var internalCards = PK.cards.filter(function(c) { return c.internal_only; });
+
+  function uniqueSorted(list) {
+    return list.filter(function(v, i) { return list.indexOf(v) === i; }).sort();
+  }
+  function populateFilter(id, values) {
+    var sel = document.getElementById(id);
+    if (!sel) return;
+    uniqueSorted(values).forEach(function(v) {
+      var o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o);
+    });
+  }
+
+  function buildSaySections(card) {
+    var html = '';
+    if (card.say && card.say.length) {
+      html += '<div class="pk-preview-h">Say</div><ul class="pk-say">' +
+        card.say.map(function(s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>';
+    }
+    if (card.dont_say && card.dont_say.length) {
+      html += '<div class="pk-preview-h">Don’t Say</div><ul class="pk-dont">' +
+        card.dont_say.map(function(s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>';
+    }
+    return html;
+  }
+
+  function cardHTML(card, internal) {
+    var audTags = (card.audience || []).map(function(a) { return '<span class="pk-aud-tag">' + esc(a) + '</span>'; }).join('');
+    var explBanner = isExploratory(card)
+      ? '<div class="pk-explore-banner" style="margin-top:var(--space-3);margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div>Exploratory analysis — include “in an exploratory analysis” or equivalent language when presenting this result.</div></div>'
+      : '';
+    var actions;
+    if (internal) {
+      actions = '<a class="pk-btn pk-btn-solid" href="' + esc(card.pdf) + '" target="_blank" rel="noopener noreferrer">Open Full Sheet</a>';
+    } else {
+      actions =
+        '<button class="pk-btn pk-btn-ghost" onclick="PK.togglePreview(this)">Preview Summary</button>' +
+        '<button class="pk-btn pk-btn-ghost" onclick="PK.copyLanguage(this,\'' + card.id + '\')">Copy Approved Language</button>' +
+        '<a class="pk-btn pk-btn-solid" href="' + esc(card.pdf) + '" target="_blank" rel="noopener noreferrer">Open Full Sheet</a>';
+    }
+    var preview = internal ? '' :
+      '<div class="pk-card-preview">' +
+        '<div class="pk-preview-h">Headline</div><p class="pk-card-headline" style="margin-bottom:8px;">' + esc(card.headline) + '</p>' +
+        '<div class="pk-preview-h">Key stat</div><div class="pk-card-stat" style="margin-bottom:12px;">' + esc(card.key_stat) + '</div>' +
+        explBanner +
+        buildSaySections(card) +
+      '</div>';
+    return '<div class="pk-card' + (internal ? ' pk-internal-card' : '') + '" data-id="' + card.id + '">' +
+      (internal ? '<div class="pk-internal-badge">Internal — Not for customer use</div>' : '') +
+      '<div class="pk-card-top"><h3 class="pk-card-title">' + esc(card.title) + '</h3><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">' + tierBadges(card.tier) + '</div></div>' +
+      '<div class="pk-card-tags">' + audTags + '</div>' +
+      '<p class="pk-card-headline">' + esc(card.headline) + '</p>' +
+      '<div class="pk-card-stat">' + esc(card.key_stat) + '</div>' +
+      '<div class="pk-card-actions">' + actions + '</div>' +
+      preview +
+    '</div>';
+  }
+
+  PK.togglePreview = function(btn) {
+    var card = btn.closest('.pk-card');
+    var prev = card.querySelector('.pk-card-preview');
+    if (!prev) return;
+    var open = prev.classList.toggle('open');
+    btn.textContent = open ? 'Hide Summary' : 'Preview Summary';
+  };
+
+  PK.copyLanguage = function(btn, id) {
+    var card = PK.cards.filter(function(c) { return c.id === id; })[0];
+    if (!card) return;
+    var parts = [card.headline];
+    if (isExploratory(card)) parts.push('Qualifier: ' + PK.exploratory_qualifier);
+    parts.push('');
+    parts.push(PK.review_footer);
+    var text = parts.join('\n');
+    var done = function() {
+      var orig = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      setTimeout(function() { btn.textContent = orig; }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function() { PK._fallbackCopy(text, done); });
+    } else {
+      PK._fallbackCopy(text, done);
+    }
+  };
+  PK._fallbackCopy = function(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta); if (done) done();
+  };
+
+  window.pkRenderCards = function() {
+    var grid = document.getElementById('pk-card-grid');
+    if (!grid) return;
+    var q = (document.getElementById('pk-search').value || '').toLowerCase().trim();
+    var fa = document.getElementById('pk-filter-audience').value;
+    var ft = document.getElementById('pk-filter-theme').value;
+    var fr = document.getElementById('pk-filter-tier').value;
+    var fu = document.getElementById('pk-filter-usecase').value;
+    var matches = publicCards.filter(function(c) {
+      if (fa && (c.audience || []).indexOf(fa) === -1) return false;
+      if (ft && c.theme !== ft) return false;
+      if (fr && String(c.tier).toLowerCase().indexOf(fr.toLowerCase()) === -1) return false;
+      if (fu && (c.use_case || []).indexOf(fu) === -1) return false;
+      if (q) {
+        var hay = (c.title + ' ' + c.headline + ' ' + c.key_stat + ' ' + (c.theme||'') + ' ' + (c.audience||[]).join(' ')).toLowerCase();
+        if (hay.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+    var count = document.getElementById('pk-results-count');
+    if (count) count.textContent = matches.length + ' of ' + publicCards.length + ' sales sheets';
+    grid.innerHTML = matches.length
+      ? matches.map(function(c) { return cardHTML(c, false); }).join('')
+      : '';
+    if (!matches.length) {
+      grid.innerHTML = '';
+      grid.insertAdjacentHTML('beforeend', '<div class="pk-empty" style="grid-column:1/-1;">No sales sheets match your filters. <button class="pk-clear-btn" onclick="pkClearFilters()">Clear filters</button></div>');
+    }
+  };
+
+  window.pkClearFilters = function() {
+    ['pk-filter-audience','pk-filter-theme','pk-filter-tier','pk-filter-usecase'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.value = '';
+    });
+    var s = document.getElementById('pk-search'); if (s) s.value = '';
+    pkRenderCards();
+  };
+
+  window.pkGoTab = function(study) {
+    var btn = document.querySelector('.study-tab[data-study="' + study + '"]');
+    if (btn) { btn.click(); return; }
+    // Fallback: activate directly
+    document.querySelectorAll('.study-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.study-panel').forEach(function(p) { p.classList.remove('active'); });
+    var panel = document.getElementById('study-' + study);
+    if (panel) panel.classList.add('active');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
+
+  function initPK() {
+    // Populate filter dropdowns
+    var aud = [], theme = [], usecase = [];
+    publicCards.forEach(function(c) {
+      (c.audience || []).forEach(function(a) { aud.push(a); });
+      if (c.theme) theme.push(c.theme);
+      (c.use_case || []).forEach(function(u) { usecase.push(u); });
+    });
+    populateFilter('pk-filter-audience', aud);
+    populateFilter('pk-filter-theme', theme);
+    populateFilter('pk-filter-usecase', usecase);
+    var tierSel = document.getElementById('pk-filter-tier');
+    if (tierSel) {
+      ['Primary','Secondary','Exploratory','Supporting'].forEach(function(t) {
+        var o = document.createElement('option'); o.value = t; o.textContent = t; tierSel.appendChild(o);
+      });
+    }
+    pkRenderCards();
+    // Internal grid
+    var ig = document.getElementById('pk-internal-grid');
+    if (ig) ig.innerHTML = internalCards.map(function(c) { return cardHTML(c, true); }).join('');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPK);
+  } else {
+    initPK();
+  }
+})();
 </script>
 
 </body>
