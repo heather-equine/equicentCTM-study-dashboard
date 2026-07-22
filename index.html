@@ -696,6 +696,11 @@ a:hover { text-decoration: underline; }
   color: var(--color-control);
 }
 
+.p-badge.ns {
+  background: var(--color-surface-offset);
+  color: var(--color-text-muted);
+}
+
 .chart-canvas-wrap {
   position: relative;
   width: 100%;
@@ -3611,6 +3616,11 @@ a.study-tab.study-tab-external:hover svg { color: white; }
   border-radius: var(--radius-full);
   background: var(--color-primary-10);
   color: var(--color-primary);
+}
+
+.clin-p-tag.ns {
+  background: var(--color-surface-offset);
+  color: var(--color-text-muted);
 }
 
 @media (max-width: 768px) {
@@ -6871,15 +6881,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="clin-overview-stats">
           <div class="clin-overview-stat">
             <div class="clin-overview-stat-value">36% vs 0%</div>
-            <div class="clin-overview-stat-label">eCTM ligaments showed tissue remodeling; zero for SOC</div>
+            <div class="clin-overview-stat-label">TRS substudy (conditions): 8/22 (36%) eCTM vs 0/11 (0%) SOC ligaments responded</div>
           </div>
         </div>
         <div class="clin-overview-details">
-          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Cohen's d = 0.96 — ligament TRS treatment effect (p=0.073)</div>
-          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Strongest response in proximal suspensory (d=1.25)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Responder analysis: Cohen's d = 0.98, p = 0.013 (Figure 5)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check" style="color:var(--color-text-muted);">•</span> Continuous ligament TRS effect a non-significant trend (d = 0.96, p = 0.073, ns)</div>
           <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> Objective structural repair, not just symptom relief</div>
         </div>
-        <div class="clin-overview-badge">p &lt; 0.013</div>
+        <div class="clin-overview-badge">p = 0.013</div>
         <div class="clin-overview-cta">View details →</div>
       </div>
 
@@ -6915,7 +6925,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="sub-panel" id="sub-clin-outcomes">
 <div class="clin-section-heading">
   <h3>Cumulative Clinical Outcomes</h3>
-  <p>Cumulative improvement in pain, swelling, lameness, and composite scores through 12 weeks</p>
+  <p>Cumulative improvement in pain, swelling, lameness, and composite scores through 12 weeks — condition-level analysis vs full SOC Control (Figure 2: eCTM n=128, SOC Control n=67 conditions)</p>
 </div>
 
 <div class="kpi-grid animate-in">
@@ -7464,13 +7474,13 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="clin-kpi-cite">Figure 4, Bertone et al.</div>
 </div>
 
-<!-- Client Assessment Categories (Figure 5) -->
+<!-- Client Assessment Categories (Figure 4) -->
 <div class="charts-grid two-col animate-in" style="margin-top: var(--space-6);">
   <div class="chart-card clickable-chart" onclick="toggleClinOverlay(event, 'clin-overlay-client-assessment')" style="grid-column: 1 / -1;">
     <div class="chart-header">
       <div>
         <div class="chart-title">Client Assessment by Category</div>
-        <div class="chart-subtitle">Owner-reported scores (0&ndash;10) at 26 weeks across seven health and comfort categories (Figure 5). Click for details.</div>
+        <div class="chart-subtitle">Owner-reported scores (0&ndash;10) at 26 weeks across seven health and comfort categories (Figure 4). Click for details.</div>
       </div>
       <span class="p-badge significant">p &lt; 0.001</span>
     </div>
@@ -7620,17 +7630,17 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="sub-panel" id="sub-clin-imaging">
 <div class="clin-section-heading">
   <h3>Imaging</h3>
-  <p>Computational ultrasound tissue remodeling scores at 12 weeks</p>
+  <p>Computational ultrasound tissue remodeling scores at 12 weeks — imaging substudy (conditions: eCTM n=22, SOC Control n=11)</p>
 </div>
 
 <div class="kpi-grid animate-in" style="grid-template-columns: 1fr;">
   <div class="clin-kpi-card">
     <div class="clin-kpi-header">
-      <div class="clin-kpi-label">TRS</div>
-      <div class="clin-kpi-badge">+36%</div>
+      <div class="clin-kpi-label">TRS RESPONDERS (SUBSTUDY)</div>
+      <div class="clin-kpi-badge">8/22 vs 0/11</div>
     </div>
     <div class="clin-kpi-value">36%<span class="clin-kpi-unit">vs 0% SOC</span></div>
-    <div class="clin-kpi-p">p &lt; 0.013</div>
+    <div class="clin-kpi-p">Cohen's d = 0.98 · p = 0.013</div>
     <div class="clin-kpi-sparkline">
       <svg viewBox="0 0 100 28" preserveAspectRatio="none">
         <polyline points="5,25 30,22 60,15 95,3" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
@@ -7644,9 +7654,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="chart-header">
       <div>
         <div class="chart-title">Tissue Remodeling Score</div>
-        <div class="chart-subtitle">Computational ultrasound TRS. 36% of eCTM vs 0% of SOC ligaments responded by 12 weeks.</div>
+        <div class="chart-subtitle">Computational ultrasound TRS, imaging substudy. 8/22 eCTM vs 0/11 SOC ligament conditions responded by 12 weeks.</div>
       </div>
-      <span class="p-badge significant">36% vs 0%, p &lt; 0.013</span>
+      <span class="p-badge significant">8/22 vs 0/11 · d = 0.98, p = 0.013</span>
     </div>
     <div class="chart-canvas-wrap" style="height: 220px;">
       <canvas id="clin-chart-trs"></canvas>
@@ -7661,7 +7671,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="chart-info-body">
     <div class="info-section">
       <div class="info-label">What is this chart showing?</div>
-      <p class="info-text">This horizontal bar chart shows the Tissue Remodeling Score (TRS) results from computational ultrasound imaging of ligament injuries at 12 weeks. 36% of equicentCTM™-treated ligaments showed positive tissue remodeling response, compared to 0% of SOC-treated ligaments (p<0.013).</p>
+      <p class="info-text">This horizontal bar chart shows the Tissue Remodeling Score (TRS) responder results from the computational ultrasound imaging substudy of ligament conditions at 12 weeks (eCTM n=22, SOC Control n=11 conditions). 8 of 22 (36%) equicentCTM™-treated ligament conditions showed a positive tissue remodeling response, compared to 0 of 11 (0%) SOC-treated ligament conditions (Cohen's d = 0.98, p = 0.013; Figure 5).</p>
     </div>
     <div class="info-section">
       <div class="info-label">Why does this matter?</div>
@@ -7678,11 +7688,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="data-table-wrap animate-in">
   <div class="chart-header" style="padding: var(--space-5) var(--space-5) 0;">
-    <div><div class="chart-title">TISSUE REMODELING SCORE — KEY FINDINGS (46 conditions met image-quality criteria)</div></div>
+    <div><div class="chart-title">TISSUE REMODELING SCORE — KEY FINDINGS (imaging substudy: eCTM n=22, SOC Control n=11 conditions)</div></div>
   </div>
   <table class="data-table">
     <thead><tr><th>Measure</th><th>Value</th><th>Statistic</th></tr></thead>
-    <tbody><tr><td>Responding ligaments by 12 weeks</td><td>36% eCTM vs 0% SOC</td><td>p &lt; 0.013</td></tr><tr><td>Ligament TRS treatment effect</td><td>Cohen's d = 0.96</td><td>p = 0.073</td></tr><tr><td>Proximal suspensory ligament</td><td>Cohen's d = 1.25</td><td>—</td></tr><tr><td>Lateral suspensory branch</td><td>Cohen's d = 0.82</td><td>—</td></tr><tr><td>Tendon subcohort (n=13)</td><td>Cohen's d = 0.14 (underpowered)</td><td>—</td></tr><tr><td>Segmentation reproducibility (Dice)</td><td class="highlight">0.931 (range 0.843–0.947)</td><td class="highlight">25 paired ROIs / 8 cases</td></tr><tr><td>Tendon TRS vs limb lameness change (Wk2 &amp; Wk4)</td><td>r = −0.74</td><td>p &lt; 0.02</td></tr><tr><td>2-week TRS vs final TRS</td><td>r = 0.88</td><td>—</td></tr></tbody>
+    <tbody><tr><td>Responding ligament conditions by 12 weeks (substudy)</td><td>8/22 (36%) eCTM vs 0/11 (0%) SOC</td><td>Cohen's d = 0.98 · p = 0.013</td></tr><tr><td>Continuous ligament TRS treatment effect</td><td>Cohen's d = 0.96</td><td>p = 0.073 (ns)</td></tr><tr><td>Proximal suspensory ligament</td><td>Cohen's d = 1.25</td><td>—</td></tr><tr><td>Lateral suspensory branch</td><td>Cohen's d = 0.82</td><td>—</td></tr><tr><td>Tendon subcohort (n=13)</td><td>Cohen's d = 0.14 (underpowered)</td><td>—</td></tr><tr><td>Segmentation reproducibility (Dice)</td><td class="highlight">0.931 (range 0.843–0.947)</td><td class="highlight">25 paired ROIs / 8 cases</td></tr><tr><td>Tendon TRS vs limb lameness change (Wk2 &amp; Wk4)</td><td>r = −0.74</td><td>p &lt; 0.02</td></tr><tr><td>2-week TRS vs final TRS</td><td>r = 0.88</td><td>—</td></tr></tbody>
   </table>
 </div>
 </div>
@@ -7690,7 +7700,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="sub-panel" id="sub-clin-kinematics">
 <div class="clin-section-heading">
   <h3>Kinematics</h3>
-  <p>Objective combined (left + right) forelimb gait asymmetry analysis via Sleip video kinematic software (Sleip.com) — Supplementary Figure S4</p>
+  <p>Objective combined (left + right) forelimb gait asymmetry analysis via Sleip video kinematic software (Sleip.com) — Figure 6</p>
 </div>
 
 <div class="kpi-grid animate-in">
@@ -8446,8 +8456,8 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="clin-conclusion-item"><div class="clin-conclusion-num">1</div><div><div class="clin-conclusion-text">Mean performance index was significantly higher for eCTM at every evaluation point, with a large intention-to-treat advantage at 26 weeks (p&lt;0.001).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> At every single check-in over 6 months, the eCTM horses were performing at a higher level than the standard-treatment horses.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">ITT p &lt; 0.001</span></div></div></div>
     <div class="clin-conclusion-item"><div class="clin-conclusion-num">2</div><div><div class="clin-conclusion-text">The intention-to-treat performance advantage for eCTM was large — Cohen's d = 2.23 (p&lt;0.001) — the strongest p-value in the entire study.</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> When you add up all the performance gains over the entire study, eCTM horses substantially outperformed the other group. This was the single most statistically significant finding in the trial.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">Cohen's d = 2.23</span><span class="clin-p-tag">p &lt; 0.001</span></div></div></div>
     <div class="clin-conclusion-item"><div class="clin-conclusion-num">3</div><div><div class="clin-conclusion-text">Return to prior performance favored eCTM with an odds ratio of 2.72:1 (p&lt;0.006).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> Horses treated with eCTM were nearly 3 times more likely to get back to the same level of competition they were at before the injury.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">OR 2.72:1, p &lt; 0.006</span></div></div></div>
-    <div class="clin-conclusion-item"><div class="clin-conclusion-num">4</div><div><div class="clin-conclusion-text">SOC joint conditions showed a declining performance pattern after Week 12, while eCTM joints continued improving (joint VPO Wk12 p=0.008, Wk26 p=0.004).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> The standard treatments started wearing off after 3 months — horses began declining. eCTM horses kept getting better. This is a critical difference for performance horses with long show seasons.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">Wk12 p = 0.008</span><span class="clin-p-tag">Wk26 p = 0.004</span></div></div></div>
-    <div class="clin-conclusion-item"><div class="clin-conclusion-num">5</div><div><div class="clin-conclusion-text">Soft tissue (ligament) conditions treated with eCTM showed sustained improvement through the 26-week period (ligament VPO Wk12 p&lt;0.03, Wk26 p&lt;0.001).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> eCTM worked well for tendons and ligaments as well as joints — improvement held steady for the full 6 months.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">Wk26 p &lt; 0.001</span></div></div></div>
+    <div class="clin-conclusion-item"><div class="clin-conclusion-num">4</div><div><div class="clin-conclusion-text">SOC joint conditions showed a declining performance pattern after Week 12, while eCTM joints continued improving (joint performance score Wk12 p=0.008, Wk26 p=0.004).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> The standard treatments started wearing off after 3 months — horses began declining. eCTM horses kept getting better. This is a critical difference for performance horses with long show seasons.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">Wk12 p = 0.008</span><span class="clin-p-tag">Wk26 p = 0.004</span></div></div></div>
+    <div class="clin-conclusion-item"><div class="clin-conclusion-num">5</div><div><div class="clin-conclusion-text">Soft tissue (ligament) conditions treated with eCTM showed sustained improvement through the 26-week period (ligament performance score Wk12 p&lt;0.03, Wk26 p&lt;0.001).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> eCTM worked well for tendons and ligaments as well as joints — improvement held steady for the full 6 months.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">Wk26 p &lt; 0.001</span></div></div></div>
   </div>
 </div>
 
@@ -8482,9 +8492,9 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m-9.5-9h6m6 0h6"/></svg>
       <h4>Imaging &amp; Tissue Remodeling</h4>
     </div>
-    <div class="clin-conclusion-item"><div class="clin-conclusion-num">1</div><div><div class="clin-conclusion-text">Tissue Remodeling Score showed a treatment effect favoring eCTM in ligaments (Cohen's d = 0.96, p = 0.073), with 36% of eCTM ligaments showing positive remodeling versus 0% for SOC (p &lt; 0.013).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> On ultrasound, 36% of ligaments treated with eCTM showed actual tissue repair and healing. Zero percent of ligaments treated with standard biologics showed any repair. eCTM doesn't just mask symptoms — it helps rebuild the tissue.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">Ligament TRS d = 0.96 (p = 0.073)</span><span class="clin-p-tag">Responders 36% vs 0% (p &lt; 0.013)</span></div></div></div>
+    <div class="clin-conclusion-item"><div class="clin-conclusion-num">1</div><div><div class="clin-conclusion-text">In the tissue-remodeling imaging substudy (conditions: eCTM n=22, SOC n=11), the TRS responder analysis significantly favored eCTM — 8/22 (36%) of eCTM ligaments showed positive remodeling versus 0/11 (0%) for SOC (Cohen's d = 0.98, p = 0.013, Figure 5). The parallel continuous-effect estimate for ligament TRS was a non-significant trend (Cohen's d = 0.96, p = 0.073).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> In the smaller ultrasound imaging substudy, about a third of ligaments treated with eCTM showed measurable tissue repair, while none of the standard-treatment ligaments did. The responder comparison was statistically significant; a second way of measuring the same effect pointed the same direction but did not reach significance.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">Responders 8/22 vs 0/11 · d = 0.98 (p = 0.013)</span><span class="clin-p-tag ns">Continuous TRS d = 0.96 (p = 0.073, ns)</span></div></div></div>
     <div class="clin-conclusion-item"><div class="clin-conclusion-num">2</div><div><div class="clin-conclusion-text">The strongest TRS response was observed in proximal suspensory ligament injuries (d = 1.25), with moderate effects in other soft tissue types (d = 0.82).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> Suspensory ligament injuries — one of the most common and frustrating injuries in performance horses — responded the best to eCTM. This is where the tissue repair effect was strongest.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">d = 1.25</span></div></div></div>
-    <div class="clin-conclusion-item"><div class="clin-conclusion-num">3</div><div><div class="clin-conclusion-text">TRS response followed a delayed trajectory consistent with structural tissue remodeling; the ligament TRS treatment effect favored eCTM (Cohen's d = 0.96, p = 0.073), and 2-week TRS strongly predicted final TRS (r = 0.88).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> The tissue repair didn't happen overnight — but the early 2-week ultrasound signal strongly predicted the final result, consistent with genuine structural healing over months rather than just short-term inflammation control.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">Ligament TRS d = 0.96 (p = 0.073)</span><span class="clin-p-tag">r = 0.88</span></div></div></div>
+    <div class="clin-conclusion-item"><div class="clin-conclusion-num">3</div><div><div class="clin-conclusion-text">TRS response followed a delayed trajectory consistent with structural tissue remodeling; the continuous ligament TRS treatment effect favored eCTM as a non-significant trend (Cohen's d = 0.96, p = 0.073), and 2-week TRS strongly predicted final TRS (r = 0.88).</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> The tissue repair didn't happen overnight — but the early 2-week ultrasound signal strongly predicted the final result, consistent with genuine structural healing over months rather than just short-term inflammation control.</div><div class="clin-conclusion-tags"><span class="clin-p-tag ns">Continuous TRS d = 0.96 (p = 0.073, ns)</span><span class="clin-p-tag">r = 0.88</span></div></div></div>
   </div>
 </div>
 
@@ -8495,7 +8505,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2"/></svg>
       <h4>Rescue Injections</h4>
     </div>
-    <div class="clin-conclusion-item"><div class="clin-conclusion-num">1</div><div><div class="clin-conclusion-text">When SOC horses were rescued with a different SOC product, they performed significantly worse than eCTM horses at 26 weeks (p&lt;0.001). eCTM rescue horses (re-injected with eCTM) performed equivalently to non-rescue eCTM horses (p=0.87), suggesting a durable therapeutic effect.</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> When standard-treatment horses weren't improving and got switched to a different standard biologic, they still didn't catch up. But when horses got a second dose of eCTM, they did just as well as horses that responded the first time. Switching SOC products doesn't work — switching to eCTM does.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">p &lt; 0.001</span><span class="clin-p-tag">p = 0.87</span></div></div></div>
+    <div class="clin-conclusion-item"><div class="clin-conclusion-num">1</div><div><div class="clin-conclusion-text">When SOC horses were rescued with a different SOC product, they performed significantly worse than eCTM horses at 26 weeks (p&lt;0.001). eCTM rescue horses (re-injected with eCTM) performed equivalently to non-rescue eCTM horses (p=0.87), suggesting a durable therapeutic effect.</div><div class="clin-conclusion-layperson"><strong>In plain terms:</strong> When standard-treatment horses weren't improving and got switched to a different standard biologic, they still didn't catch up. But when horses got a second dose of eCTM, they did just as well as horses that responded the first time. Switching SOC products doesn't work — switching to eCTM does.</div><div class="clin-conclusion-tags"><span class="clin-p-tag">p &lt; 0.001</span><span class="clin-p-tag ns">p = 0.87 (ns, equivalence)</span></div></div></div>
   </div>
 </div>
 </div>
@@ -8887,7 +8897,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="disc-section-label">Key Points</div>
       <ul class="disc-key-points">
     <li>Analyzes the entire ultrasound field at resolutions beyond human visual perception</li>
-    <li>36% of eCTM ligaments showed positive remodeling vs. 0% for SOC (p&lt;0.013)</li>
+    <li>Imaging substudy (eCTM n=22, SOC n=11 conditions): 8/22 (36%) of eCTM ligaments showed positive remodeling vs. 0/11 (0%) for SOC (Cohen's d = 0.98, p = 0.013)</li>
     <li>Strongest response in proximal suspensory ligament injuries (Cohen's d = 1.25)</li>
     <li>TRS effects emerged between Weeks 8 and 12, consistent with structural remodeling timeline</li>
     <li>As an exploratory endpoint, may help flag clinically occult non-responders — horses improving clinically but not structurally (not yet fully validated)</li>
@@ -11489,14 +11499,14 @@ function initClinicalCharts() {
         colors, 'Odds Ratio'
       );
     
-      // Ligament Performance (Figure 7 — ligament VPO, weeks 2,4,12,26)
+      // Ligament Performance (Figure 7 — ligament performance score, weeks 2,4,12,26)
       makeClinLineChart('clin-chart-perf-soft',
         ['Wk2', 'Wk4', 'Wk12', 'Wk26'],
         [0, 0.0, 0.42, 1.18],
         [0, -0.10, -0.15, -0.45],
         colors, 'Cumulative Performance Score', {pLabel: 'Wk12 p<0.03, Wk26 p<0.001'}
       );
-      // Joint Performance (Figure 7 — joint VPO, weeks 2,4,12,26)
+      // Joint Performance (Figure 7 — joint performance score, weeks 2,4,12,26)
       makeClinLineChart('clin-chart-perf-joint',
         ['Wk2', 'Wk4', 'Wk12', 'Wk26'],
         [0, 0, 0.0, 1.0],
@@ -11514,7 +11524,7 @@ function initClinicalCharts() {
 
     if (activeSub.id === 'sub-clin-health') {
     
-      // Client Assessment Categories (Figure 5)
+      // Client Assessment Categories (Figure 4)
       (function() {
         var ctx = document.getElementById('clin-chart-client-assess');
         if (ctx) {
@@ -11583,7 +11593,7 @@ function initClinicalCharts() {
       );
     }
 
-    // ===== KINEMATICS SUB-TAB (Figure 8 - Sleip) =====
+    // ===== KINEMATICS SUB-TAB (Figure 6 - Sleip) =====
     if (activeSub.id === 'sub-clin-kinematics') {
       var sleipLabels = ['BL', 'Wk2', 'Wk4', 'Wk12'];
       var sleipTooltip = { callbacks: { label: function(c) {
