@@ -3623,6 +3623,76 @@ a.study-tab.study-tab-external:hover svg { color: white; }
   color: var(--color-text-muted);
 }
 
+.trs-source-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-offset);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+.trs-endpoint {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+.trs-endpoint-row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+.trs-endpoint-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.25;
+}
+.trs-endpoint-label span {
+  display: block;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  font-size: 0.625rem;
+}
+.trs-endpoint-track {
+  position: relative;
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-full);
+  height: 26px;
+  overflow: hidden;
+}
+.trs-endpoint-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+}
+.trs-endpoint-fill.ectm { background: var(--color-primary); }
+.trs-endpoint-fill.soc { background: var(--color-control); min-width: 4px; }
+.trs-endpoint-val {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  min-width: 88px;
+  text-align: right;
+}
+.trs-endpoint-axis {
+  font-size: 0.625rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+  line-height: 1.4;
+}
+@media (max-width: 768px) {
+  .trs-endpoint-row { grid-template-columns: 84px 1fr auto; gap: var(--space-2); }
+  .trs-endpoint-val { min-width: 74px; font-size: 0.625rem; }
+}
+
 @media (max-width: 768px) {
   .study-selector { 
     flex-direction: column; 
@@ -6781,7 +6851,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="clin-overview-details">
           <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> All outcomes p&lt;0.001 by 12 weeks</div>
           <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> 3× more likely pain-free (p&lt;0.001)</div>
-          <div class="clin-overview-detail"><span class="clin-overview-check">✓</span> &gt;1.6× more likely completely sound (p&lt;0.06)</div>
+          <div class="clin-overview-detail"><span class="clin-overview-check" style="color:var(--color-text-muted);">•</span> Directional trend toward &gt;1.6× odds of complete soundness (p&lt;0.06, ns)</div>
         </div>
         <div class="clin-overview-badge">p &lt; 0.001</div>
         <div class="clin-overview-cta">View details →</div>
@@ -7639,12 +7709,18 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="clin-kpi-label">TRS RESPONDERS (SUBSTUDY)</div>
       <div class="clin-kpi-badge">8/22 vs 0/11</div>
     </div>
+    <div style="margin: 2px 0 8px;"><span class="trs-source-label">Figure 5 · Imaging substudy</span></div>
     <div class="clin-kpi-value">36%<span class="clin-kpi-unit">vs 0% SOC</span></div>
     <div class="clin-kpi-p">Cohen's d = 0.98 · p = 0.013</div>
-    <div class="clin-kpi-sparkline">
-      <svg viewBox="0 0 100 28" preserveAspectRatio="none">
-        <polyline points="5,25 30,22 60,15 95,3" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
-      </svg>
+    <div class="clin-kpi-sparkline" style="display:flex; flex-direction:column; gap:5px; justify-content:center;">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <div style="height:8px; width:36%; min-width:8px; background:var(--color-primary); border-radius:9999px;"></div>
+        <span style="font-size:0.5625rem; color:var(--color-text-muted); font-weight:600; white-space:nowrap;">eCTM 8/22 (36%)</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px;">
+        <div style="height:8px; width:4px; background:var(--color-control); border-radius:9999px;"></div>
+        <span style="font-size:0.5625rem; color:var(--color-text-muted); font-weight:600; white-space:nowrap;">SOC 0/11 (0%)</span>
+      </div>
     </div>
   </div>
 </div>
@@ -7655,11 +7731,22 @@ document.addEventListener('DOMContentLoaded', function() {
       <div>
         <div class="chart-title">Tissue Remodeling Score</div>
         <div class="chart-subtitle">Computational ultrasound TRS, imaging substudy. 8/22 eCTM vs 0/11 SOC ligament conditions responded by 12 weeks.</div>
+        <div style="margin-top:6px;"><span class="trs-source-label">Figure 5 · Imaging substudy</span></div>
       </div>
       <span class="p-badge significant">8/22 vs 0/11 · d = 0.98, p = 0.013</span>
     </div>
-    <div class="chart-canvas-wrap" style="height: 220px;">
-      <canvas id="clin-chart-trs"></canvas>
+    <div class="trs-endpoint" role="img" aria-label="Responding ligament conditions by 12 weeks, imaging substudy. equicenta CTM: 8 of 22, 36 percent. Standard of Care: 0 of 11, 0 percent. Figure 5.">
+      <div class="trs-endpoint-row">
+        <div class="trs-endpoint-label">equicenta™ CTM <span>n = 22 conditions</span></div>
+        <div class="trs-endpoint-track"><div class="trs-endpoint-fill ectm" style="width:36%;"></div></div>
+        <div class="trs-endpoint-val">8/22 (36%)</div>
+      </div>
+      <div class="trs-endpoint-row">
+        <div class="trs-endpoint-label">Standard of Care <span>n = 11 conditions</span></div>
+        <div class="trs-endpoint-track"><div class="trs-endpoint-fill soc" style="width:0%;"></div></div>
+        <div class="trs-endpoint-val">0/11 (0%)</div>
+      </div>
+      <div class="trs-endpoint-axis">Proportion of ligament conditions responding (TRS ≥ 55) at the 12-week endpoint — cross-sectional comparison, not a time series (Cohen's d = 0.98, p = 0.013).</div>
     </div>
     <div class="chart-info-overlay" id="clin-overlay-trs">
   <div class="chart-info-overlay-header">
@@ -11585,13 +11672,8 @@ function initClinicalCharts() {
       );
     }
 
-    if (activeSub.id === 'sub-clin-imaging') {
-      makeClinHorizBar('clin-chart-trs',
-        ['equicenta™ CTM', 'Standard of Care'],
-        [36, 0],
-        colors, '% Responding'
-      );
-    }
+    // TRS responder endpoint is rendered as an accessible HTML/CSS bar comparison
+    // (see .trs-endpoint in #sub-clin-imaging); no canvas chart to initialize here.
 
     // ===== KINEMATICS SUB-TAB (Figure 6 - Sleip) =====
     if (activeSub.id === 'sub-clin-kinematics') {
