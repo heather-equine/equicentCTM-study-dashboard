@@ -108,9 +108,9 @@
       "pdf": "sell-sheets/10-ligament-repair.pdf"
     },
     {
-      "id": "11-kinematic-sleip", "title": "Kinematic (Sleip)", "audience": ["Vet", "Owner/Trainer", "Distributor/Sales"],
+      "id": "11-kinematic-sleip", "title": "Imaging & Kinematics", "audience": ["Vet", "Owner/Trainer", "Distributor/Sales"],
       "theme": "Imaging", "tier": "Exploratory", "use_case": ["Objection response", "Leave-behind"],
-      "headline": "Blinded, sensor-based validation of the symptom story.",
+      "headline": "Two objective measures, one consistent signal.",
       "key_stat": "In an exploratory analysis: push-off wk 2 p<0.003, wk 12 p<0.015; impact wk 4 p<0.05",
       "say": ["Blinded sensor-based kinematic analysis confirmed the clinical scores", "Forelimb symmetry improved more in eCTM horses across push-off and impact phases"],
       "dont_say": ["'Sleip diagnosed' — the sensor measured, it did not diagnose", "Removing the exploratory qualifier"],
