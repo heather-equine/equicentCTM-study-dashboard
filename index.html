@@ -13952,980 +13952,1009 @@ function initMaintAeCharts() {
 <div class="study-panel" id="study-competitive">
 
 <style>
-/* ===== WHY eCTM TAB — SCOPED STYLES ===== */
+/* ===== WHY eCTM TAB — COMPETITIVE SELLING WORKSTATION ===== */
 #study-competitive {
   padding: 0 var(--space-6);
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 @media (max-width: 768px) {
-  #study-competitive { padding: 0 var(--space-3); }
+  #study-competitive { padding: 0 var(--space-4); }
 }
-#study-competitive .comp-callout {
-  background: var(--color-primary);
+
+/* Hero landscape banner */
+.wectm-hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0a4a3a 100%);
   color: #fff;
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
+  border-radius: 14px;
+  padding: var(--space-6) var(--space-6);
+  margin-top: var(--space-4);
   margin-bottom: var(--space-6);
-  line-height: 1.7;
-  font-size: var(--text-sm);
+  position: relative;
+  overflow: hidden;
 }
-#study-competitive .comp-callout strong {
+.wectm-hero::before {
+  content: "";
+  position: absolute; top: 0; right: 0; width: 320px; height: 100%;
+  background: radial-gradient(circle at 100% 50%, rgba(255,255,255,0.08), transparent 70%);
+  pointer-events: none;
+}
+.wectm-hero-eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75); font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+.wectm-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600; line-height: 1.15;
+  margin-bottom: var(--space-2);
   color: #fff;
-  font-weight: 700;
 }
-#study-competitive .comp-intro {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-6);
-  line-height: 1.7;
+.wectm-hero-sub {
+  font-size: 0.95rem; line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+  max-width: 780px;
 }
-
-/* Evidence badges */
-#study-competitive .badge {
+.wectm-hero-cite {
   display: inline-block;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  white-space: nowrap;
-  line-height: 1.5;
+  margin-top: var(--space-3);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.75);
+  border-left: 2px solid rgba(255,255,255,0.35);
+  padding-left: var(--space-3);
 }
-#study-competitive .badge-green {
-  background: rgba(22, 163, 74, 0.12);
-  color: var(--color-success);
-}
-#study-competitive .badge-yellow {
-  background: rgba(245, 158, 11, 0.12);
-  color: var(--color-warning);
-}
-#study-competitive .badge-red {
-  background: rgba(239, 68, 68, 0.12);
-  color: var(--color-error);
-}
-#study-competitive .badge-gray {
-  background: rgba(107, 114, 128, 0.12);
-  color: var(--color-text-muted);
-}
+.wectm-hero-cite a { color: #fff; text-decoration: underline; }
 
-/* Evidence dot indicator */
-#study-competitive .ev-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: var(--radius-full);
-  margin-right: 4px;
-  vertical-align: middle;
+/* Section heading */
+.wectm-section-heading {
+  display: flex; align-items: baseline; gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-2);
 }
-#study-competitive .ev-dot.green { background: var(--color-success); }
-#study-competitive .ev-dot.yellow { background: var(--color-warning); }
-#study-competitive .ev-dot.red { background: var(--color-error); }
-#study-competitive .ev-dot.gray { background: var(--color-text-faint); }
-
-/* Highlighted eCTM row */
-#study-competitive .data-table tr.row-ectm {
-  background: rgba(13, 61, 54, 0.04);
+.wectm-section-eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-primary); font-weight: 700;
 }
-#study-competitive .data-table tr.row-ectm td {
-  font-weight: 600;
-  color: var(--color-primary);
-  border-left: 3px solid var(--color-primary);
-}
-#study-competitive .data-table tr.row-ectm td:first-child {
-  border-left: 3px solid var(--color-primary);
-}
-#study-competitive .data-table tr.row-ectm td:not(:first-child) {
-  border-left: none;
-}
-[data-theme="dark"] #study-competitive .data-table tr.row-ectm {
-  background: rgba(13, 61, 54, 0.15);
-}
-
-/* Section spacing */
-#study-competitive .comp-section {
-  margin-bottom: var(--space-8);
-  padding-bottom: var(--space-6);
-  border-bottom: 1px solid var(--color-divider);
-}
-#study-competitive .comp-section:last-child {
-  border-bottom: none;
-}
-
-/* Value reframe grid */
-#study-competitive .reframe-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  margin-top: var(--space-5);
-}
-@media (max-width: 768px) {
-  #study-competitive .reframe-grid {
-    grid-template-columns: 1fr;
-  }
-}
-#study-competitive .reframe-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-5);
-}
-#study-competitive .reframe-card-name {
-  font-size: var(--text-sm);
-  font-weight: 700;
+.wectm-section-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 600;
   color: var(--color-text);
-  margin-bottom: var(--space-1);
 }
-#study-competitive .reframe-card-cost {
-  font-size: var(--text-xs);
-  color: var(--color-text-faint);
-  margin-bottom: var(--space-3);
-}
-#study-competitive .reframe-card-msg {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  line-height: 1.6;
+.wectm-section-note {
+  font-size: 0.85rem; color: var(--color-text-muted);
+  margin-left: auto;
 }
 
-/* Scrollable table on mobile */
-#study-competitive .scroll-table-wrap {
+/* Landscape table */
+.wectm-landscape-wrap {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  margin-bottom: var(--space-8);
 }
-#study-competitive .scroll-table-wrap .data-table {
+.wectm-landscape-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
   min-width: 900px;
 }
-
-/* Battle cards */
-#study-competitive .battle-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  margin-bottom: var(--space-3);
-  overflow: hidden;
-  transition: box-shadow var(--transition-fast);
-}
-#study-competitive .battle-card:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-#study-competitive .battle-card-header {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-5);
-  user-select: none;
-}
-#study-competitive .battle-card-header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-#study-competitive .battle-card-company {
-  font-size: var(--text-xs);
-  color: var(--color-text-faint);
+.wectm-landscape-table thead th {
+  background: #f4f7f5;
+  color: var(--color-text);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-align: left;
+  padding: var(--space-3) var(--space-3);
+  border-bottom: 2px solid var(--color-border);
+  vertical-align: bottom;
+  position: sticky; top: 0; z-index: 1;
 }
-#study-competitive .battle-card-product {
-  font-size: var(--text-base);
-  font-weight: 700;
-  color: var(--color-text);
+.wectm-landscape-table thead th.wectm-col-ectm {
+  background: var(--color-primary);
+  color: #fff;
 }
-#study-competitive .battle-card-chevron {
-  transition: transform 0.2s ease;
-  color: var(--color-text-muted);
-  flex-shrink: 0;
-}
-#study-competitive .battle-card.open .battle-card-chevron {
-  transform: rotate(180deg);
-}
-#study-competitive .battle-card-body {
-  display: none;
-  padding: 0 var(--space-5) var(--space-5);
-}
-#study-competitive .battle-card.open .battle-card-body {
+.wectm-landscape-table thead th .wectm-col-tag {
   display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 2px;
 }
-#study-competitive .battle-card-section {
-  margin-bottom: var(--space-4);
+.wectm-landscape-table th.wectm-row-label {
+  background: #fafbfa;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: var(--space-2) var(--space-3);
+  width: 130px;
+  vertical-align: top;
+  border-right: 1px solid var(--color-border);
+  text-align: left;
 }
-#study-competitive .battle-card-section:last-child {
-  margin-bottom: 0;
-}
-#study-competitive .battle-card-section-title {
-  font-size: var(--text-xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.wectm-landscape-table th.wectm-row-label span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
   color: var(--color-text-faint);
-  margin-bottom: var(--space-2);
+  margin-top: 2px;
 }
-#study-competitive .battle-card-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-#study-competitive .battle-card-list li {
-  font-size: var(--text-sm);
+.wectm-landscape-table td {
+  padding: var(--space-2) var(--space-3);
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-divider);
   color: var(--color-text);
-  line-height: 1.6;
-  padding-left: var(--space-4);
-  position: relative;
-  margin-bottom: var(--space-1);
+  line-height: 1.4;
 }
-#study-competitive .battle-card-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 6px;
-  height: 6px;
-  border-radius: var(--radius-full);
-  background: var(--color-text-faint);
-}
-#study-competitive .battle-card-list.strengths li::before {
-  background: var(--color-success);
-}
-#study-competitive .battle-card-list.weaknesses li::before {
-  background: var(--color-control);
-}
-#study-competitive .battle-card-diff {
-  background: rgba(13, 61, 54, 0.06);
-  border-left: 3px solid var(--color-primary);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: var(--space-4);
-  font-size: var(--text-sm);
+.wectm-landscape-table td.wectm-cell-ectm {
+  background: rgba(15,110,80,0.06);
   color: var(--color-text);
-  line-height: 1.7;
   font-weight: 500;
 }
-[data-theme="dark"] #study-competitive .battle-card-diff {
-  background: rgba(13, 61, 54, 0.15);
-}
+.wectm-landscape-table tr:last-child td { border-bottom: none; }
 
-/* Bullet cards for coverage gap */
-#study-competitive .bullet-grid {
+/* Case-selection guide */
+.wectm-case-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  margin-top: var(--space-5);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
 }
-@media (max-width: 768px) {
-  #study-competitive .bullet-grid {
-    grid-template-columns: 1fr;
-  }
-}
-#study-competitive .bullet-card {
+.wectm-case-tile {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-5);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 10px;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text);
 }
-#study-competitive .bullet-card-title {
-  font-size: var(--text-sm);
+.wectm-case-tile strong { color: var(--color-primary); }
+
+/* Head-to-head selector */
+.wectm-h2h-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.wectm-h2h-tile {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  padding: var(--space-4);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: left;
+  font-family: inherit;
+  display: flex; flex-direction: column;
+  gap: var(--space-2);
+}
+.wectm-h2h-tile:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15,110,80,0.12);
+}
+.wectm-h2h-tile.active {
+  border-color: var(--color-primary);
+  background: rgba(15,110,80,0.04);
+}
+.wectm-h2h-vs {
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-primary); font-weight: 700;
+}
+.wectm-h2h-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+.wectm-h2h-class {
+  font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.4;
+}
+.wectm-h2h-cta {
+  margin-top: auto;
+  font-size: 0.8rem; color: var(--color-primary); font-weight: 600;
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* Head-to-head detail panel */
+.wectm-h2h-detail {
+  display: none;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: var(--space-5) var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.wectm-h2h-detail.active { display: block; }
+
+.wectm-h2h-header {
+  display: flex; align-items: baseline; gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-divider);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+.wectm-h2h-detail-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 600;
+  color: var(--color-text);
+}
+.wectm-h2h-detail-sub {
+  font-size: 0.85rem; color: var(--color-text-muted);
+}
+
+.wectm-h2h-compare {
+  display: grid;
+  grid-template-columns: 130px 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+@media (max-width: 720px) {
+  .wectm-h2h-compare { grid-template-columns: 100px 1fr 1fr; font-size: 0.85rem; }
+}
+.wectm-h2h-compare > div {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-divider);
+  border-right: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+.wectm-h2h-compare > div:nth-child(3n) { border-right: none; }
+.wectm-h2h-compare > div.wectm-h2h-rowlabel {
+  background: #fafbfa;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: var(--space-3) var(--space-3);
+}
+.wectm-h2h-compare > div.wectm-h2h-rowlabel span {
+  display: block; font-weight: 400; color: var(--color-text-faint); font-size: 0.7rem; margin-top: 2px;
+}
+.wectm-h2h-compare > div.wectm-h2h-cell-ectm {
+  background: rgba(15,110,80,0.05);
+  border-left: 3px solid var(--color-primary);
+}
+.wectm-h2h-compare > div.wectm-h2h-header-cell {
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-3) var(--space-3);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.wectm-h2h-compare > div.wectm-h2h-header-cell.wectm-h2h-competitor {
+  background: #4a5568;
+  color: #fff;
+}
+.wectm-h2h-compare > div.wectm-h2h-header-cell .wectm-h2h-subhead {
+  display: block; font-size: 0.72rem; font-weight: 400; opacity: 0.9; margin-top: 2px;
+}
+
+/* When-to-lead / When-competitor-fits */
+.wectm-lead-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+@media (max-width: 720px) {
+  .wectm-lead-grid { grid-template-columns: 1fr; }
+}
+.wectm-lead-card {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: var(--space-4);
+}
+.wectm-lead-card.wectm-lead-ectm {
+  background: rgba(15,110,80,0.05);
+  border-left: 3px solid var(--color-primary);
+}
+.wectm-lead-card.wectm-lead-competitor {
+  background: #f6f7f9;
+  border-left: 3px solid #7a8794;
+}
+.wectm-lead-card-title {
+  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: var(--space-2);
 }
-#study-competitive .bullet-card-text {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  line-height: 1.6;
+.wectm-lead-card.wectm-lead-competitor .wectm-lead-card-title {
+  color: #4a5568;
+}
+.wectm-lead-card ul {
+  margin: 0; padding-left: var(--space-4);
+  font-size: 0.87rem; line-height: 1.55;
+}
+.wectm-lead-card li { margin-bottom: var(--space-2); }
+
+/* Positioning statement */
+.wectm-positioning {
+  background: linear-gradient(135deg, rgba(15,110,80,0.08), rgba(15,110,80,0.02));
+  border: 1px solid rgba(15,110,80,0.2);
+  border-radius: 10px;
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-5);
+}
+.wectm-positioning-label {
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-primary); font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+.wectm-positioning-text {
+  font-size: 0.95rem; line-height: 1.65;
+  color: var(--color-text);
+  font-style: italic;
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--space-4);
 }
 
-/* Talk card grid (for objection handlers) */
-#study-competitive .talk-grid {
+/* Say / Don't say */
+.wectm-wording {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+.wectm-wording-head {
+  background: #f4f7f5;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+}
+.wectm-wording-row {
   display: grid;
-  gap: var(--space-4);
-  margin-top: var(--space-5);
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--color-divider);
+}
+@media (max-width: 720px) {
+  .wectm-wording-row { grid-template-columns: 1fr; }
+}
+.wectm-wording-row:last-child { border-bottom: none; }
+.wectm-wording-say, .wectm-wording-dontsay {
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.85rem; line-height: 1.5;
+}
+.wectm-wording-say {
+  background: rgba(15,110,80,0.04);
+  border-right: 1px solid var(--color-divider);
+}
+.wectm-wording-say::before {
+  content: "SAY ";
+  font-size: 0.65rem; letter-spacing: 0.12em; font-weight: 700;
+  color: var(--color-primary);
+  display: inline-block; margin-right: 6px;
+}
+.wectm-wording-dontsay { background: #fdf6f6; }
+.wectm-wording-dontsay::before {
+  content: "DON'T SAY ";
+  font-size: 0.65rem; letter-spacing: 0.12em; font-weight: 700;
+  color: #b02a2a;
+  display: inline-block; margin-right: 6px;
+}
+
+/* Downloads */
+.wectm-downloads {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+.wectm-download-card {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.wectm-download-card-title {
+  font-family: var(--font-display);
+  font-size: 0.98rem; font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+.wectm-download-card-meta {
+  font-size: 0.75rem; color: var(--color-text-muted);
+}
+.wectm-download-actions {
+  display: flex; gap: var(--space-2); margin-top: auto; padding-top: var(--space-2);
+}
+.wectm-download-actions a {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 0.78rem; font-weight: 600;
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+  color: var(--color-primary);
+  text-decoration: none;
+  text-align: center;
+  transition: all var(--transition-normal);
+}
+.wectm-download-actions a:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+.wectm-download-actions a.wectm-dl-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.wectm-download-actions a.wectm-dl-primary:hover {
+  background: #0a4a3a;
+}
+
+/* Compliance footer */
+.wectm-compliance {
+  background: #fafbfa;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-4);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+.wectm-compliance strong { color: var(--color-text); }
+.wectm-compliance-title {
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-text); font-weight: 700;
+  margin-bottom: var(--space-2);
 }
 </style>
 
-<!-- ===== SECTION 1: Evidence Quality Comparison ===== -->
-<div class="comp-section animate-in">
-  <div class="section-label">CLINICAL EVIDENCE COMPARISON</div>
-  <h2 class="section-title">Evidence Quality — eCTM vs. Competitors</h2>
-  <p class="comp-intro">In equine regenerative medicine, not all evidence is created equal. The credibility hierarchy — from randomized controlled trials down to case series and expert opinion — separates products that can withstand clinical scrutiny from those that cannot. Here's how eCTM's evidence stacks up against every competitor in the market.</p>
+<!-- ===== HERO ===== -->
+<div class="wectm-hero animate-in">
+  <div class="wectm-hero-eyebrow">Why equicenta® CTM · Competitive Selling Workstation</div>
+  <div class="wectm-hero-title">The Equine Joint Biologics Landscape</div>
+  <div class="wectm-hero-sub">How equicenta® CTM compares against Arthramid® Vet, Pro-Stride® APS, ProVet® APC, IRAP® II, and Adequan® i.m. — with the head-to-head talking points, case-selection triggers, and approved wording rules to win the conversation.</div>
+  <div class="wectm-hero-cite">Key reference: Bertone et al. 2026 · <em>Frontiers in Veterinary Science</em> · <a href="https://www.frontiersin.org/articles/10.3389/fvets.2026.1833933/full" target="_blank" rel="noopener">DOI 10.3389/fvets.2026.1833933</a> · Pragmatic multicenter controlled trial · 138 horses / 195 conditions / 8 U.S. practices / 26-week follow-up</div>
+</div>
 
-  <div class="comp-callout animate-in">
-    <strong>Key Insight:</strong> Lead author <strong>Dr. Alicia Bertone</strong> authored BOTH the Pro-Stride landmark RCT (2014, n=40) AND the equicenta CTM trial (2026, n=138). Same researcher, <strong>3.5× the horses</strong>, real-world SOC comparator instead of saline.
+<!-- ===== SIX-PRODUCT LANDSCAPE TABLE ===== -->
+<div class="wectm-section-heading animate-in">
+  <div>
+    <div class="wectm-section-eyebrow">Landscape at a glance</div>
+    <div class="wectm-section-title">Six-product comparison</div>
+  </div>
+  <div class="wectm-section-note">Scroll horizontally on mobile · Download the full placemat below</div>
+</div>
+<div class="wectm-landscape-wrap animate-in">
+  <table class="wectm-landscape-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="wectm-col-ectm">equicenta® CTM<span class="wectm-col-tag">Cryopreserved equine UC tissue matrix</span></th>
+        <th>Arthramid® Vet<span class="wectm-col-tag">2.5% polyacrylamide hydrogel</span></th>
+        <th>Pro-Stride® APS<span class="wectm-col-tag">Autologous protein solution</span></th>
+        <th>ProVet® APC<span class="wectm-col-tag">Autologous L-PRP</span></th>
+        <th>IRAP® II<span class="wectm-col-tag">Autologous conditioned serum</span></th>
+        <th>Adequan® i.m.<span class="wectm-col-tag">FDA-approved PSGAG (IM DMOAD)</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="wectm-row-label">Product class<span>What it is</span></th>
+        <td class="wectm-cell-ectm">Allogeneic biologic tissue matrix — standardized, off-the-shelf, closed-herd source</td>
+        <td>Synthetic device — 2.5% polyacrylamide hydrogel</td>
+        <td>Autologous device — horse's own blood → protein solution</td>
+        <td>Autologous device — horse's own blood → leukocyte-rich PRP</td>
+        <td>Autologous conditioned serum — horse's own blood, 24-hr incubation product</td>
+        <td>FDA-approved drug (PSGAG / DMOAD) — semi-synthetic</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Route<span>How it's delivered</span></th>
+        <td class="wectm-cell-ectm">Local (intra-articular; peri-tendinous; peri-ligamentous)</td>
+        <td>Intra-articular only — integrates into synovial membrane</td>
+        <td>Intra-articular</td>
+        <td>Intra-articular; soft-tissue at vet discretion</td>
+        <td>Intra-articular</td>
+        <td>Intramuscular (systemic; not IA)</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Primary MOA<span>What it does</span></th>
+        <td class="wectm-cell-ectm">Supports tissue repair &amp; modulates inflammation via ECM proteins, growth factors, EVs</td>
+        <td>Mechanical &amp; biointegrative — cushions and integrates in synovial membrane</td>
+        <td>Concentrated IL-1Ra, A2M, growth factors — cytokine blockade</td>
+        <td>Elevated IL-1Ra:IL-1β ratio &amp; TGF-β1 + platelet growth factors</td>
+        <td>IL-1Ra-dominant ACS — competitive antagonism of IL-1β</td>
+        <td>DMOAD — inhibits catabolic enzymes, stimulates proteoglycan &amp; HA synthesis</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Tissue scope<span>Where evidence exists</span></th>
+        <td class="wectm-cell-ectm">Joints + tendons + ligaments in one multicenter trial</td>
+        <td>Joint OA only</td>
+        <td>Joint OA only (anchor RCT: single joint)</td>
+        <td>Characterization only; use spans joints &amp; soft tissue</td>
+        <td>Joint OA only</td>
+        <td>Joint OA only (labeled: carpal &amp; hock)</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Anchor evidence<span>Strongest publication</span></th>
+        <td class="wectm-cell-ectm"><strong>Bertone 2026</strong> pragmatic multicenter controlled trial (138 horses / 195 conditions / 8 practices)</td>
+        <td>de Clifford 2021 JEVS — single-arm proof-of-concept (n≈32)</td>
+        <td>Bertone &amp; Ishihara 2014 AJVR — saline-controlled RCT (n=40, single joint, 14-day endpoint)</td>
+        <td>Am J Vet Res 2024 characterization only (n=6 horses)</td>
+        <td>2023 systematic review (PMC10747612) — 1/6 studies had a control group; no definitive efficacy</td>
+        <td>FDA FOI Summary NADA 140-901 — placebo-controlled adjuvant-carpitis dose-titration (n=36 healthy horses)</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Comparator<span>Who it was measured against</span></th>
+        <td class="wectm-cell-ectm">Clinician-selected standard of care (real-world active comparator)</td>
+        <td>No comparator (single-arm)</td>
+        <td>Saline</td>
+        <td>No efficacy trial (characterization only)</td>
+        <td>Variable — most published clinical work lacks a control arm</td>
+        <td>Saline placebo in an induced adjuvant-carpitis model</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Population<span>Real-world vs induced</span></th>
+        <td class="wectm-cell-ectm">Naturally occurring disease — performance horses, 8 U.S. specialty practices</td>
+        <td>Client-owned OA (single-arm)</td>
+        <td>Client-owned OA</td>
+        <td>Healthy horses (characterization)</td>
+        <td>&gt;30k humans / &gt;3k horses reported clinically; controlled data limited</td>
+        <td>Healthy Quarter Horses &amp; Thoroughbreds with experimentally induced carpitis</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Key outcome signal<span>The number vets remember</span></th>
+        <td class="wectm-cell-ectm"><strong>Return-to-performance 52.9% vs 29.3%</strong> at 26 wk (OR 2.72; p&lt;0.006)</td>
+        <td>Sustained lameness reduction reported in single-arm follow-up cohorts</td>
+        <td>APS improved lameness &amp; kinetic gait vs saline at 14 d; response concentrated in mild cases (lameness &lt;4, min. radiographic OA)</td>
+        <td>N/A — no efficacy trial</td>
+        <td>Systematic review: no definitive efficacy evidence; individual studies positive but uncontrolled</td>
+        <td>71% improvement in max carpal flexion after full 7-dose regimen</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Onset &amp; durability<span>Timing profile</span></th>
+        <td class="wectm-cell-ectm">Separation from SOC at wk 2–4; sustained through 12 wk; performance signal durable at 26 weeks</td>
+        <td>Effects build over weeks; commercial materials cite months of durability</td>
+        <td>14-day primary endpoint; commercial materials cite up to 1 year</td>
+        <td>Onset 1–4 wk; durability variable (general PRP experience)</td>
+        <td>2–3 IA injections over weeks typical in practice</td>
+        <td>Effects build across 28-day 1/4/7 course; maintenance dosing common</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Workflow<span>Chair time / capex</span></th>
+        <td class="wectm-cell-ectm">Off-the-shelf, single-dose, no equipment</td>
+        <td>In-clinic IA injection; no processing; no capex</td>
+        <td>~20 min 2-step processing on Zoetis Universal Centrifuge + disposables</td>
+        <td>&lt;3 min spin on 4.4-lb portable ProVet centrifuge + disposables</td>
+        <td>24-hr incubation + centrifuge (multi-visit); IRAP II kit + incubator</td>
+        <td>1/4/7 regimen: 500 mg IM q4d × 7 doses over 28 days; no capex</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Dose consistency<span>Batch vs patient</span></th>
+        <td class="wectm-cell-ectm">Batch-tested standardized proteomic + EV profile</td>
+        <td>Synthetic — manufactured to specification</td>
+        <td>Varies with donor horse's blood composition</td>
+        <td>Varies with donor platelet &amp; WBC counts</td>
+        <td>Varies with donor blood + incubation performance</td>
+        <td>FDA-approved lot-to-lot chemistry</td>
+      </tr>
+      <tr>
+        <th class="wectm-row-label">Regulatory status (U.S.)<span>How each is positioned</span></th>
+        <td class="wectm-cell-ectm">Working with FDA CVM to open NADA; cGTP → cGMP by end of Q3</td>
+        <td>Cleared/marketed as a device</td>
+        <td>Cleared/marketed as an autologous device</td>
+        <td>Cleared as a medical device; IFU: efficacy "not established" for bone healing, hemostasis, or other clinical use</td>
+        <td>Marketed as an autologous ACS system</td>
+        <td>FDA-approved drug, NADA #140-901; Rx-only</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== CASE-SELECTION GUIDE ===== -->
+<div class="wectm-section-heading animate-in">
+  <div>
+    <div class="wectm-section-eyebrow">Case-selection guide</div>
+    <div class="wectm-section-title">Lead with equicenta® CTM when…</div>
+  </div>
+  <div class="wectm-section-note">Eight clinical triggers where eCTM is the right first choice</div>
+</div>
+<div class="wectm-case-grid animate-in">
+  <div class="wectm-case-tile"><strong>Tendon or ligament</strong> alongside joint disease — most competitors have joint-only evidence; eCTM has published outcomes across joints, tendons, and ligaments in one multicenter trial.</div>
+  <div class="wectm-case-tile"><strong>Practice wants peer-reviewed clinical efficacy</strong> against a real-world active comparator (not a single-arm study, not a saline-controlled 14-day endpoint, not a characterization study).</div>
+  <div class="wectm-case-tile"><strong>Older, metabolic, or heavily pre-treated horse</strong> where autologous quality (APS / APC / IRAP) is likely to be variable — a standardized allograft removes patient-side variability.</div>
+  <div class="wectm-case-tile"><strong>Advanced or radiographically significant OA</strong> — the Bertone-Ishihara 2014 APS response was concentrated in horses with lameness &lt;4 and minimal radiographic OA.</div>
+  <div class="wectm-case-tile"><strong>Practice doesn't want to invest in a centrifuge</strong> or incubation platform — eCTM is off-the-shelf, single-dose, no equipment.</div>
+  <div class="wectm-case-tile"><strong>Client wants a single episode of care</strong> rather than a multi-visit series (IRAP) or a repeating 7-dose systemic course (Adequan).</div>
+  <div class="wectm-case-tile"><strong>Horse is already on maintenance Adequan and still symptomatic</strong> — add eCTM at the site of active pathology; Adequan and eCTM are frequently used together.</div>
+  <div class="wectm-case-tile"><strong>Off-label joints</strong> (stifle, fetlock, coffin) — Adequan's label is carpal &amp; hock only; eCTM was studied across a broader case spectrum.</div>
+</div>
+
+<!-- ===== HEAD-TO-HEAD SELECTOR ===== -->
+<div class="wectm-section-heading animate-in">
+  <div>
+    <div class="wectm-section-eyebrow">Head-to-head battle deck</div>
+    <div class="wectm-section-title">Detailed comparisons</div>
+  </div>
+  <div class="wectm-section-note">Click a competitor to open the full head-to-head</div>
+</div>
+<div class="wectm-h2h-selector animate-in">
+  <button class="wectm-h2h-tile active" data-h2h="arthramid" onclick="wectmShowH2H('arthramid')">
+    <div class="wectm-h2h-vs">eCTM vs</div>
+    <div class="wectm-h2h-name">Arthramid® Vet</div>
+    <div class="wectm-h2h-class">Synthetic 2.5% polyacrylamide hydrogel device</div>
+    <div class="wectm-h2h-cta">Open comparison →</div>
+  </button>
+  <button class="wectm-h2h-tile" data-h2h="prostride" onclick="wectmShowH2H('prostride')">
+    <div class="wectm-h2h-vs">eCTM vs</div>
+    <div class="wectm-h2h-name">Pro-Stride® APS</div>
+    <div class="wectm-h2h-class">Autologous protein solution (Zoetis)</div>
+    <div class="wectm-h2h-cta">Open comparison →</div>
+  </button>
+  <button class="wectm-h2h-tile" data-h2h="provet" onclick="wectmShowH2H('provet')">
+    <div class="wectm-h2h-vs">eCTM vs</div>
+    <div class="wectm-h2h-name">ProVet® APC</div>
+    <div class="wectm-h2h-class">Autologous leukocyte-rich PRP (Dechra)</div>
+    <div class="wectm-h2h-cta">Open comparison →</div>
+  </button>
+</div>
+
+<!-- Arthramid detail -->
+<div class="wectm-h2h-detail active" id="wectm-h2h-arthramid">
+  <div class="wectm-h2h-header">
+    <div>
+      <div class="wectm-h2h-detail-title">equicenta® CTM vs Arthramid® Vet</div>
+      <div class="wectm-h2h-detail-sub">Biologic allograft vs synthetic hydrogel device</div>
+    </div>
   </div>
 
-  <div class="comp-callout animate-in" style="margin-top: var(--space-3);">
-    <strong>What eCTM Beat:</strong> Two-thirds of all SOC injections in the trial (<strong>67%</strong>) were autologous blood-derived therapies &mdash; APS, ACS/IRAP, PRP, and A2M. These are the products most veterinarians are currently using and charging for. eCTM outperformed them across <strong>every measured outcome</strong> with <strong>markedly fewer injection reactions</strong> (SOC 4.8× the odds on vet review, 5.9× central review), in a single off-the-shelf injection. eCTM horses were <strong>3× more likely to be completely pain-free</strong> (p&lt;0.001) versus these same SOC biologics.
-    <a href="#" onclick="navigateToSOCProducts(event)" style="display:inline-block; margin-top: 8px; color: #fff; text-decoration: underline; font-weight: 600;">View full SOC product breakdown &rarr;</a>
+  <div class="wectm-h2h-compare">
+    <div></div>
+    <div class="wectm-h2h-header-cell">equicenta® CTM<span class="wectm-h2h-subhead">Cryopreserved equine UC tissue matrix (biologic allograft)</span></div>
+    <div class="wectm-h2h-header-cell wectm-h2h-competitor">Arthramid® Vet<span class="wectm-h2h-subhead">2.5% injectable polyacrylamide hydrogel (synthetic device)</span></div>
+
+    <div class="wectm-h2h-rowlabel">Product class<span>What it is</span></div>
+    <div class="wectm-h2h-cell-ectm">Biologic allograft. Native ECM proteins, growth factors, extracellular vesicles.</div>
+    <div>Synthetic medical device. Cross-linked polymer scaffold in 97.5% sterile water; no biologic components.</div>
+
+    <div class="wectm-h2h-rowlabel">Primary MOA<span></span></div>
+    <div class="wectm-h2h-cell-ectm">Biologic: supports tissue repair and modulates inflammation via a multi-modal payload of ECM proteins, growth factors, and messenger particles as the matrix biodegrades.</div>
+    <div>Biomechanical: integrates into the synovial membrane over ~2–4 weeks; scaffold intended to reduce joint-capsule stiffness. Inert, non-pharmacologic.</div>
+
+    <div class="wectm-h2h-rowlabel">Site of action</div>
+    <div class="wectm-h2h-cell-ectm">Joint tissues (synovium, cartilage matrix, peri-articular soft tissue); also used peri-tendinously and peri-ligamentously.</div>
+    <div>Synovial membrane only. Intended to modify joint-capsule mechanics; not indicated for tendon or ligament.</div>
+
+    <div class="wectm-h2h-rowlabel">Tissue scope in evidence</div>
+    <div class="wectm-h2h-cell-ectm">Joints, tendons, and ligaments — same pragmatic controlled trial (195 conditions).</div>
+    <div>Joints only in published evidence. No tendon or ligament indication.</div>
+
+    <div class="wectm-h2h-rowlabel">Anchor peer-reviewed evidence</div>
+    <div class="wectm-h2h-cell-ectm">Bertone et al. 2026 pragmatic controlled multicenter trial (Frontiers Vet Sci) + BMC Medicine 2025 (characterization + 42-day biocompatibility) + ACVSMR 2026 EV/exosome poster.</div>
+    <div>de Clifford et al. 2021 JEVS double-blinded positive-control study vs triamcinolone &amp; sodium hyaluronate in racing Thoroughbred middle carpal joints (n≈33). Plus pilot &amp; review publications.</div>
+
+    <div class="wectm-h2h-rowlabel">Clinical outcome signal</div>
+    <div class="wectm-h2h-cell-ectm">Faster &amp; greater improvement in lameness, pain, swelling vs SOC. Within-arm return-to-performance <strong>52.9% eCTM vs 29.3% SOC</strong> at 26 wk (OR 2.72; p&lt;0.006). Owner-reported body condition, coat, health &amp; QoL also favored eCTM (p&lt;0.03).</div>
+    <div>Anchor RCT: 83.3% lameness resolution at 6 wk vs triamcinolone &amp; HA. Broader case-series data cite ~79–82% lame-free at 6–24 mo.</div>
+
+    <div class="wectm-h2h-rowlabel">Onset &amp; durability</div>
+    <div class="wectm-h2h-cell-ectm">Separation from SOC by week 2 (pain, swelling) and week 4 (lameness); sustained through 12 wk (p&lt;0.001); performance signal durable at 26 weeks.</div>
+    <div>Onset typically 2–4 weeks; durability reported at 6–12 months and up to 24 months in some series. Top-up dose at 4–6 wk noted in label.</div>
+
+    <div class="wectm-h2h-rowlabel">Dosing &amp; workflow</div>
+    <div class="wectm-h2h-cell-ectm">Off-the-shelf, ready-to-use, single-dose in most cases. No blood draw, no processing.</div>
+    <div>Off-the-shelf, single 1 mL intra-articular injection per joint; 48-hour rest and ~2-week reduced-impact workload recommended by label.</div>
+
+    <div class="wectm-h2h-rowlabel">Reversibility</div>
+    <div class="wectm-h2h-cell-ectm">Biodegradable — matrix is metabolized as it delivers bioactives; nothing left behind long-term.</div>
+    <div>Designed to persist in the synovial membrane; label positions long-term integration as a feature. Worth discussing before future surgical/biologic interventions.</div>
+
+    <div class="wectm-h2h-rowlabel">Safety in the Bertone trial</div>
+    <div class="wectm-h2h-cell-ectm">Fewer injection-related adverse events than SOC (4.8× fewer, p&lt;0.04).</div>
+    <div>Polyacrylamide gel appeared inside the Bertone SOC arm without brand identification; product/site not identified. Do not extrapolate to any specific commercial product.</div>
   </div>
 
-  <div class="data-table-wrap animate-in">
-    <div class="chart-header">
-      <div>
-        <div class="chart-title">Evidence Quality Comparison</div>
-        <div class="chart-subtitle">Published clinical evidence by product — design, size, outcomes, and credibility level</div>
-      </div>
+  <div class="wectm-lead-grid">
+    <div class="wectm-lead-card wectm-lead-ectm">
+      <div class="wectm-lead-card-title">When to lead with equicenta® CTM</div>
+      <ul>
+        <li>Case involves tendon or ligament — Arthramid is not indicated outside the joint.</li>
+        <li>Multiple structures at once (joint + soft tissue) — single-modality biologic handles both.</li>
+        <li>Owner or vet prefers a biologic that biodegrades — nothing permanent left behind, especially in younger sport horses with a long career ahead.</li>
+        <li>Poor autologous quality suspected (older horse, metabolic disease, prior heavy treatment) — a standardized allograft removes patient-side variability.</li>
+        <li>Case may need future arthroscopy, surgical repair, or additional biologic layering — a synthetic permanent scaffold could complicate planning.</li>
+      </ul>
     </div>
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Product / Modality</th>
-          <th>Best Published Study</th>
-          <th>Design</th>
-          <th>N</th>
-          <th>Key Outcome</th>
-          <th>Limitations</th>
-          <th>Study Credibility</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="row-ectm">
-          <td class="highlight">equicenta CTM</td>
-          <td>Bertone et al. 2026 (<em>Front. Vet. Sci.</em> 13:1833933)</td>
-          <td>Prospective, multicenter, quasi-randomized, open-label, controlled</td>
-          <td class="highlight">138</td>
-          <td class="highlight">2.72:1 RTP odds; 3× pain-free (p&lt;0.001); SOC 4.8–5.9× reaction odds; sustained to 26 wks</td>
-          <td>Open-label; achieved 1.9:1 allocation</td>
-          <td><span class="badge badge-green">Level I–II</span></td>
-        </tr>
-        <tr>
-          <td>Pro-Stride APS (Zoetis)</td>
-          <td>Bertone 2014 (AJVR)</td>
-          <td>RCT (blinded, placebo-controlled)</td>
-          <td>40</td>
-          <td>Significant lameness improvement at 14 days</td>
-          <td>Small n; best in mild OA</td>
-          <td><span class="badge badge-green">Level II</span></td>
-        </tr>
-        <tr>
-          <td>IRAP / ACS (Dechra)</td>
-          <td>Weinberger 2008</td>
-          <td>Retrospective case series</td>
-          <td>262</td>
-          <td>76% lameness improvement at 6 weeks</td>
-          <td>No control; unblinded</td>
-          <td><span class="badge badge-yellow">Level III</span></td>
-        </tr>
-        <tr>
-          <td>PRP (general)</td>
-          <td>2025 PRISMA systematic review (Animals MDPI)</td>
-          <td>Systematic review</td>
-          <td>11 studies</td>
-          <td>Generally safe; heterogeneity issues</td>
-          <td>No single definitive equine RCT</td>
-          <td><span class="badge badge-yellow">Level III–IV</span></td>
-        </tr>
-        <tr>
-          <td>VetStem Adipose MSC</td>
-          <td>Retrospective surveys (VetStem)</td>
-          <td>Owner survey</td>
-          <td>66 (tendon)</td>
-          <td>77% tendon RTW</td>
-          <td>Not controlled; 2004–2005 cohort</td>
-          <td><span class="badge badge-yellow">Level III</span></td>
-        </tr>
-        <tr>
-          <td>RenoVo (amnion)</td>
-          <td>Duddy 2022 (BMC Vet Research)</td>
-          <td>Prospective case series</td>
-          <td>100</td>
-          <td>72% RTW; 92% vet satisfaction</td>
-          <td>Non-blinded; no control; 2/3 authors conflicted</td>
-          <td><span class="badge badge-yellow">Level III</span></td>
-        </tr>
-        <tr>
-          <td>Hilltop Bio</td>
-          <td>Whitaker/LSU pilot</td>
-          <td>Unpublished case series</td>
-          <td>~10</td>
-          <td>80% sound at 3 months</td>
-          <td>Not peer-reviewed; combination therapy confounds</td>
-          <td><span class="badge badge-red">Level IV–V</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="wectm-lead-card wectm-lead-competitor">
+      <div class="wectm-lead-card-title">When Arthramid® Vet may be the better fit</div>
+      <ul>
+        <li>Isolated, mechanical-driven joint pain where capsular stiffness is the dominant driver and soft tissue is quiet.</li>
+        <li>Chronic OA in an older horse where the goal is comfort and mechanical support rather than tissue-level repair.</li>
+        <li>Client explicitly prefers a non-biologic, non-drug device and understands the material integrates and persists in the synovium.</li>
+        <li>Cases matching the anchor RCT population — middle carpal joint OA in racing Thoroughbreds and comparable presentations.</li>
+        <li>Rehab plan can accommodate the 2–4 week onset window and label rest requirements.</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="kpi-grid animate-in" style="margin-top: var(--space-5);">
-    <div class="kpi-card success">
-      <div class="kpi-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <div class="kpi-value">138 horses</div>
-      <div class="kpi-label">195 conditions, 8 sites, 11 vets, 26 weeks — the first controlled clinical trial of a tissue allograft in horses</div>
+  <div class="wectm-positioning">
+    <div class="wectm-positioning-label">30-second positioning</div>
+    <div class="wectm-positioning-text">"equicenta CTM and Arthramid Vet are often considered for the same lameness cases but they're fundamentally different tools. Arthramid is a synthetic hydrogel that integrates into and persists in the synovial membrane to change joint mechanics. equicenta CTM is a biologic umbilical-tissue matrix that supports tissue repair, biodegrades, and has published clinical evidence across joints, tendons, and ligaments in a 138-horse, 8-practice controlled trial. If the case is joint-only mechanical OA in an older horse, Arthramid can be a reasonable option. If tendon or ligament is involved, if the horse is a younger sport horse, or if you want a biologic with a broader tissue signal and nothing left behind, lead with equicenta CTM."</div>
+  </div>
+
+  <div class="wectm-wording">
+    <div class="wectm-wording-head">Approved wording rules — Arthramid conversations</div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"Arthramid is a synthetic hydrogel device; equicenta CTM is a biologic tissue matrix. Different tools for different cases."</div><div class="wectm-wording-dontsay">"Arthramid is unsafe" or "Arthramid doesn't work" — Arthramid has published efficacy in its indicated joint use.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"Arthramid is indicated for joints only; equicenta CTM has published evidence across joints, tendons, and ligaments."</div><div class="wectm-wording-dontsay">"equicenta CTM replaces Arthramid" — position as an alternative with a different mechanism, not a replacement.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"equicenta CTM biodegrades; Arthramid is designed to integrate and persist in the synovium."</div><div class="wectm-wording-dontsay">"Arthramid stays in the joint forever" — say "is designed to persist in the synovial membrane" per its label.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"In our multicenter controlled trial, eCTM outperformed clinician-selected standard of care on lameness, pain, swelling, and return to performance."</div><div class="wectm-wording-dontsay">"eCTM outperformed Arthramid head-to-head" — the Bertone trial did not run a direct head-to-head vs Arthramid.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"Arthramid product/brand identity in the Bertone SOC arm was not reported; the injection-reaction observation is trial-specific."</div><div class="wectm-wording-dontsay">Naming any specific commercial polyacrylamide product as the source of the Bertone injection-reaction signal.</div></div>
+  </div>
+</div>
+
+<!-- Pro-Stride detail -->
+<div class="wectm-h2h-detail" id="wectm-h2h-prostride">
+  <div class="wectm-h2h-header">
+    <div>
+      <div class="wectm-h2h-detail-title">equicenta® CTM vs Pro-Stride® APS</div>
+      <div class="wectm-h2h-detail-sub">Allogeneic tissue biologic vs autologous protein solution</div>
     </div>
-    <div class="kpi-card success">
-      <div class="kpi-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div class="kpi-value">Real SOC</div>
-      <div class="kpi-label">Comparator was real-world biologics — eCTM beat the products these vets are currently using and charging for, not saline</div>
+  </div>
+
+  <div class="wectm-h2h-compare">
+    <div></div>
+    <div class="wectm-h2h-header-cell">equicenta® CTM<span class="wectm-h2h-subhead">Cryopreserved equine UC tissue matrix</span></div>
+    <div class="wectm-h2h-header-cell wectm-h2h-competitor">Pro-Stride® APS<span class="wectm-h2h-subhead">Autologous protein solution (Zoetis)</span></div>
+
+    <div class="wectm-h2h-rowlabel">Product class</div>
+    <div class="wectm-h2h-cell-ectm">Allogeneic biologic. Native ECM proteins, growth factors, extracellular vesicles. Off-the-shelf.</div>
+    <div>Autologous blood-derived device. Two-step processed concentrate of the horse's own plasma, platelets, and white blood cells.</div>
+
+    <div class="wectm-h2h-rowlabel">Primary MOA</div>
+    <div class="wectm-h2h-cell-ectm">Biologic: supports tissue repair and modulates inflammation via a multi-modal ECM payload released as the matrix biodegrades.</div>
+    <div>Cytokine-blockade + growth factors: concentrates IL-1RA (IRAP), A2M, soluble IL-1R &amp; TNF-R, plus platelet-derived growth factors, to inhibit IL-1/TNF-α inflammatory pathways.</div>
+
+    <div class="wectm-h2h-rowlabel">Site of action</div>
+    <div class="wectm-h2h-cell-ectm">Joint tissues (synovium, cartilage matrix, peri-articular soft tissue); also used peri-tendinously and peri-ligamentously.</div>
+    <div>Intra-articular use only. Joint injection is the studied indication.</div>
+
+    <div class="wectm-h2h-rowlabel">Tissue scope in evidence</div>
+    <div class="wectm-h2h-cell-ectm">Joints, tendons, and ligaments in the same pragmatic controlled trial (195 conditions).</div>
+    <div>Published equine efficacy centered on joints. Anchor RCT evaluated a single joint (middle carpal / metacarpophalangeal).</div>
+
+    <div class="wectm-h2h-rowlabel">Autologous vs allogeneic</div>
+    <div class="wectm-h2h-cell-ectm">Allogeneic, standardized. Same starting material every dose — removes patient-to-patient variability.</div>
+    <div>Autologous. Composition varies with the donor horse's age, health, hydration, and comorbidities.</div>
+
+    <div class="wectm-h2h-rowlabel">Anchor evidence</div>
+    <div class="wectm-h2h-cell-ectm">Bertone 2026 pragmatic controlled multicenter clinical trial (Frontiers Vet Sci) + BMC Medicine 2025 + ACVSMR 2026 poster.</div>
+    <div>Bertone &amp; Ishihara 2014 AJVR — randomized saline-controlled RCT, n=40, single joint, 14-day primary endpoint. Usimaki/Watkins 2024 EVJ — IL-1β synovitis model, n=18.</div>
+
+    <div class="wectm-h2h-rowlabel">Clinical outcome signal</div>
+    <div class="wectm-h2h-cell-ectm">Faster &amp; greater improvement in lameness, pain, swelling vs SOC. Within-arm return-to-performance <strong>52.9% eCTM vs 29.3% SOC</strong> at 26 wk (OR 2.72; p&lt;0.006). Owner-reported body condition, coat, health &amp; QoL also favored eCTM (p&lt;0.03).</div>
+    <div>Bertone &amp; Ishihara 2014: APS improved lameness &amp; kinetic gait vs saline at 14 days; response concentrated in horses with lameness &lt;4 and minimal radiographic OA. Watkins 2024: APS reduced synovitis pathology scores but did not significantly reduce lameness or joint circumference in the IL-1β model.</div>
+
+    <div class="wectm-h2h-rowlabel">Onset &amp; durability</div>
+    <div class="wectm-h2h-cell-ectm">Separation from SOC by week 2/4; sustained through 12 wk; performance signal durable at 26 weeks.</div>
+    <div>Anchor RCT primary endpoint at 14 days; client-assessed improvement at 12 &amp; 52 weeks. No published 26-week active-comparator return-to-performance data in the peer-reviewed equine record.</div>
+
+    <div class="wectm-h2h-rowlabel">Dosing &amp; workflow</div>
+    <div class="wectm-h2h-cell-ectm">Off-the-shelf, ready-to-use, single-dose in most cases. No blood draw, no processing.</div>
+    <div>In-clinic autologous processing: ~20-min two-step process on Zoetis Universal Centrifuge from a fresh blood draw. Same-appointment harvest, process, inject.</div>
+
+    <div class="wectm-h2h-rowlabel">Practice economics</div>
+    <div class="wectm-h2h-cell-ectm">No capital equipment required. Single ready-to-use dose.</div>
+    <div>Requires Zoetis Universal Centrifuge (capex) + per-treatment Pro-Stride disposables kit. Chair time for blood draw + processing.</div>
+
+    <div class="wectm-h2h-rowlabel">Safety</div>
+    <div class="wectm-h2h-cell-ectm">Peer-reviewed 42-day biocompatibility (BMC Medicine 2025). Fewer injection-related adverse events than SOC in Bertone 2026 (4.8× fewer, p&lt;0.04).</div>
+    <div>Bertone &amp; Ishihara 2014: no adverse effects at 14 days. Watkins 2024: no adverse effects in treated horses. As with any IA injection, iatrogenic risks apply.</div>
+  </div>
+
+  <div class="wectm-lead-grid">
+    <div class="wectm-lead-card wectm-lead-ectm">
+      <div class="wectm-lead-card-title">When to lead with equicenta® CTM</div>
+      <ul>
+        <li>Case involves tendon or ligament alongside joint disease — APS has published efficacy in joints only.</li>
+        <li>Older, metabolic, or heavily pre-treated horse — autologous yield likely variable.</li>
+        <li>Advanced or radiographically significant OA — Bertone-Ishihara 2014 APS response was concentrated in horses with lameness &lt;4 and minimal radiographic OA.</li>
+        <li>No in-clinic processing time or practice does not want to invest in the Zoetis centrifuge platform.</li>
+        <li>Client wants a treatment peer-reviewed against a real-world active comparator (not saline placebo) over 26 weeks.</li>
+      </ul>
     </div>
-    <div class="kpi-card success">
-      <div class="kpi-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      </div>
-      <div class="kpi-value">Independent</div>
-      <div class="kpi-label">No author received compensation tied to outcomes — independent investigators throughout the trial</div>
+    <div class="wectm-lead-card wectm-lead-competitor">
+      <div class="wectm-lead-card-title">When Pro-Stride® APS may be the better fit</div>
+      <ul>
+        <li>Clean, single-joint OA in a horse matching the Bertone-Ishihara 2014 responder profile (lameness &lt;4, limited radiographic changes).</li>
+        <li>Vet has an existing Zoetis Universal Centrifuge and Pro-Stride kit; case is well-suited to same-appointment autologous processing.</li>
+        <li>Owner or vet explicitly prefers an autologous, blood-derived product.</li>
+        <li>Corticosteroid-eligible OA where the vet wants to avoid steroids for metabolic reasons and is choosing between APS and PRP.</li>
+        <li>Practice workflow supports longer chair time for blood draw + processing.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wectm-positioning">
+    <div class="wectm-positioning-label">30-second positioning</div>
+    <div class="wectm-positioning-text">"equicenta CTM and Pro-Stride APS are often considered for the same joint cases but they're fundamentally different tools. Pro-Stride is a same-day autologous concentrate of the horse's own IL-1RA, A2M, and growth factors — the composition depends on that individual horse's blood on that day. equicenta CTM is an off-the-shelf allogeneic biologic with a consistent proteomic and EV profile from a closed herd, published clinical evidence across joints, tendons, and ligaments in a 138-horse, 8-practice controlled trial, and a 26-week performance signal against real-world standard of care. If the case is a clean single-joint OA in a healthy horse and the practice already owns the Zoetis platform, Pro-Stride is a reasonable choice. If tendon or ligament is involved, if the horse is older or heavily pre-treated, or if the case has meaningful radiographic OA, lead with equicenta CTM."</div>
+  </div>
+
+  <div class="wectm-wording">
+    <div class="wectm-wording-head">Approved wording rules — Pro-Stride conversations</div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"Pro-Stride is an autologous blood-derived device; equicenta CTM is an allogeneic tissue biologic. Different tools for different cases."</div><div class="wectm-wording-dontsay">"Pro-Stride doesn't work" — Pro-Stride has published efficacy in its indicated joint use (Bertone &amp; Ishihara 2014, AJVR).</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"Autologous products depend on the individual horse's blood quality; eCTM removes patient-side variability with a standardized, batch-tested tissue product."</div><div class="wectm-wording-dontsay">"Autologous products are inconsistent" as a blanket statement — say "composition varies with the donor horse's age, health, hydration, and comorbidities."</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"The Bertone-Ishihara 2014 APS response was concentrated in horses with lameness &lt;4 and minimal radiographic OA — worth considering when case-selecting."</div><div class="wectm-wording-dontsay">"APS only works in mild cases" as a summary — quote the responder-subgroup finding directly from the paper.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"In the Watkins 2024 IL-1β synovitis model, APS improved joint pathology scores but did not significantly reduce lameness or joint circumference vs controls."</div><div class="wectm-wording-dontsay">"APS failed in the induced-synovitis study" — describe the finding factually and attribute to Usimaki/Watkins 2024 EVJ.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"In our multicenter controlled trial, eCTM outperformed clinician-selected standard of care on lameness, pain, swelling, and return to performance."</div><div class="wectm-wording-dontsay">"eCTM beat Pro-Stride head-to-head" — the Bertone 2026 trial did not run a direct head-to-head vs Pro-Stride.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"equicenta CTM is off-the-shelf with no capital equipment required; Pro-Stride is a same-appointment autologous workflow that runs on the Zoetis Universal Centrifuge."</div><div class="wectm-wording-dontsay">Disparaging Zoetis, the Universal Centrifuge platform, or the practice's existing investment in it.</div></div>
+  </div>
+</div>
+
+<!-- ProVet detail -->
+<div class="wectm-h2h-detail" id="wectm-h2h-provet">
+  <div class="wectm-h2h-header">
+    <div>
+      <div class="wectm-h2h-detail-title">equicenta® CTM vs ProVet® APC</div>
+      <div class="wectm-h2h-detail-sub">Allogeneic tissue biologic vs autologous leukocyte-rich PRP</div>
+    </div>
+  </div>
+
+  <div class="wectm-h2h-compare">
+    <div></div>
+    <div class="wectm-h2h-header-cell">equicenta® CTM<span class="wectm-h2h-subhead">Cryopreserved equine UC tissue matrix</span></div>
+    <div class="wectm-h2h-header-cell wectm-h2h-competitor">ProVet® APC<span class="wectm-h2h-subhead">Autologous leukocyte-rich PRP (Dechra, stall-side device)</span></div>
+
+    <div class="wectm-h2h-rowlabel">Product class</div>
+    <div class="wectm-h2h-cell-ectm">Allogeneic biologic. Native ECM proteins, growth factors, extracellular vesicles. Off-the-shelf.</div>
+    <div>Autologous cellular therapy. Leukocyte-rich platelet-rich plasma (L-PRP) prepared stall-side from a small blood draw using the ProVet centrifuge system.</div>
+
+    <div class="wectm-h2h-rowlabel">Primary MOA</div>
+    <div class="wectm-h2h-cell-ectm">Biologic: supports tissue repair and modulates inflammation via a multi-modal ECM payload released as the matrix biodegrades.</div>
+    <div>Platelet + leukocyte concentrate: delivers elevated IL-1Ra (high IL-1Ra:IL-1β ratio) and elevated TGF-β1, plus platelet-derived growth factors.</div>
+
+    <div class="wectm-h2h-rowlabel">Site of action</div>
+    <div class="wectm-h2h-cell-ectm">Joint tissues (synovium, cartilage matrix, peri-articular soft tissue); also used peri-tendinously and peri-ligamentously.</div>
+    <div>Cleared for stall-side prep of an autologous platelet concentrate. Clinical use includes intra-articular joint injection and soft-tissue applications at vet discretion.</div>
+
+    <div class="wectm-h2h-rowlabel">Tissue scope in evidence</div>
+    <div class="wectm-h2h-cell-ectm">Joints, tendons, and ligaments in one pragmatic controlled trial (195 conditions).</div>
+    <div>Characterization published (Am J Vet Res 2024). Peer-reviewed equine efficacy trials for ProVet APC specifically are limited relative to the broader PRP literature.</div>
+
+    <div class="wectm-h2h-rowlabel">Autologous vs allogeneic</div>
+    <div class="wectm-h2h-cell-ectm">Allogeneic, standardized. Same starting material every dose.</div>
+    <div>Autologous. Composition depends on the donor horse's platelet and leukocyte counts, hydration, and comorbidities at time of collection.</div>
+
+    <div class="wectm-h2h-rowlabel">Anchor evidence</div>
+    <div class="wectm-h2h-cell-ectm">Bertone 2026 pragmatic controlled multicenter trial + BMC Medicine 2025 + ACVSMR 2026 poster.</div>
+    <div>Am J Vet Res 2024 characterization: ProVet APC is a leukocyte-rich PRP with elevated IL-1Ra:IL-1β ratio and TGF-β1 (n=6 horses). Manufacturer's IFU notes safety and effectiveness "have not been established" for bone healing, hemostasis, or other clinical use.</div>
+
+    <div class="wectm-h2h-rowlabel">Clinical outcome signal</div>
+    <div class="wectm-h2h-cell-ectm">Faster &amp; greater improvement in lameness, pain, swelling vs SOC. Within-arm return-to-performance <strong>52.9% eCTM vs 29.3% SOC</strong> at 26 wk (OR 2.72; p&lt;0.006). Owner-reported outcomes also favored eCTM (p&lt;0.03).</div>
+    <div>Rationale is mechanistic: elevated IL-1Ra:IL-1β ratio and TGF-β1 in the product output. Clinical outcome data specific to ProVet APC in horses is limited in the peer-reviewed literature.</div>
+
+    <div class="wectm-h2h-rowlabel">Onset &amp; durability</div>
+    <div class="wectm-h2h-cell-ectm">Separation from SOC by week 2/4; sustained through 12 wk; performance signal durable at 26 weeks.</div>
+    <div>Onset and durability follow general PRP experience — onset typically 1–4 weeks; durability variable. No published 26-week active-comparator return-to-performance data for ProVet APC specifically.</div>
+
+    <div class="wectm-h2h-rowlabel">Dosing &amp; workflow</div>
+    <div class="wectm-h2h-cell-ectm">Off-the-shelf, ready-to-use, single-dose in most cases. No blood draw, no processing.</div>
+    <div>Stall-side autologous processing: small blood draw + &lt;3-min centrifugation on the portable ProVet centrifuge (~4.4 lbs). Collection, processing, and reinjection all in one visit.</div>
+
+    <div class="wectm-h2h-rowlabel">Practice economics</div>
+    <div class="wectm-h2h-cell-ectm">No capital equipment required. Single ready-to-use dose.</div>
+    <div>Requires the portable ProVet centrifuge (~4.4 lbs) plus per-treatment disposables. Fast turnaround (&lt;3 min centrifugation) is a workflow advantage over slower autologous platforms.</div>
+
+    <div class="wectm-h2h-rowlabel">Safety</div>
+    <div class="wectm-h2h-cell-ectm">Peer-reviewed 42-day biocompatibility (BMC Medicine 2025). Fewer injection-related adverse events than SOC in Bertone 2026 (4.8× fewer, p&lt;0.04).</div>
+    <div>Autologous origin generally limits allogeneic reaction risk. IFU lists contraindications: active infection, blood supply limitations, previous infections, hemodynamically unstable or hypercoagulable patients.</div>
+  </div>
+
+  <div class="wectm-lead-grid">
+    <div class="wectm-lead-card wectm-lead-ectm">
+      <div class="wectm-lead-card-title">When to lead with equicenta® CTM</div>
+      <ul>
+        <li>Case involves tendon or ligament alongside joint disease — client wants a product with published outcomes across all three tissues.</li>
+        <li>Older, metabolic, or heavily pre-treated horse — autologous platelet quality likely variable.</li>
+        <li>Practice wants peer-reviewed clinical efficacy evidence, not a characterization study, as the anchor for the treatment decision.</li>
+        <li>Vet wants 26-week durable performance data against a real-world active comparator (not a mechanistic rationale extrapolated from other PRP products).</li>
+        <li>Practice does not want to invest in an additional centrifuge platform or per-treatment disposables kit.</li>
+      </ul>
+    </div>
+    <div class="wectm-lead-card wectm-lead-competitor">
+      <div class="wectm-lead-card-title">When ProVet® APC may be the better fit</div>
+      <ul>
+        <li>Practice already owns the ProVet centrifuge and the case fits a fast stall-side autologous workflow.</li>
+        <li>Client or vet explicitly prefers an autologous, blood-derived product.</li>
+        <li>Routine joint inflammation in a young, healthy horse where autologous platelet quality is expected to be strong.</li>
+        <li>Vet is choosing between L-PRP options and values the ProVet product characterization (high IL-1Ra:IL-1β ratio, elevated TGF-β1) on a specific 6-horse cohort.</li>
+        <li>Same-visit turnaround (draw, spin, inject in one appointment) is the operational priority.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wectm-positioning">
+    <div class="wectm-positioning-label">30-second positioning</div>
+    <div class="wectm-positioning-text">"equicenta CTM and ProVet APC are often considered in the same conversation about joint biologics, but they're fundamentally different tools. ProVet is a stall-side autologous platelet-concentrate device — a leukocyte-rich PRP where the composition depends on the individual horse's blood on the day of treatment. equicenta CTM is an off-the-shelf allogeneic biologic with a consistent proteomic and EV profile from a closed herd, published clinical efficacy across joints, tendons, and ligaments in a 138-horse, 8-practice controlled trial, and a 26-week performance signal against real-world standard of care. If the practice already runs the ProVet workflow and the case is a routine joint in a healthy horse, ProVet is a reasonable choice. If tendon or ligament is involved, if the horse is older or heavily pre-treated, or if the practice wants clinical-efficacy evidence rather than a product-characterization study, lead with equicenta CTM."</div>
+  </div>
+
+  <div class="wectm-wording">
+    <div class="wectm-wording-head">Approved wording rules — ProVet APC conversations</div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"ProVet APC is an autologous stall-side platelet-concentrate device; equicenta CTM is an allogeneic tissue biologic. Different tools for different cases."</div><div class="wectm-wording-dontsay">"ProVet doesn't work" — ProVet's output has been characterized in a peer-reviewed study (Am J Vet Res 2024) and is used widely in practice.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"The ProVet manufacturer's IFU explicitly states that safety and effectiveness for bone healing, hemostasis, or other clinical use have not been established."</div><div class="wectm-wording-dontsay">"ProVet is unsafe" — the IFU disclosure is a regulatory clarity statement, not a safety concern.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"The ProVet peer-reviewed anchor is a characterization study on a 6-horse cohort; equicenta CTM is anchored in a 138-horse, 8-practice clinical-efficacy trial."</div><div class="wectm-wording-dontsay">"ProVet has no evidence" — characterize the evidence accurately (characterization vs efficacy).</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"Autologous L-PRP composition varies with the donor horse's platelet and leukocyte counts; equicenta CTM removes patient-side variability with a batch-tested standardized product."</div><div class="wectm-wording-dontsay">"Autologous products are inconsistent" as a blanket claim — describe the specific driver (donor variability).</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"In our multicenter controlled trial, eCTM outperformed clinician-selected standard of care on lameness, pain, swelling, and return to performance."</div><div class="wectm-wording-dontsay">"eCTM beat ProVet head-to-head" — the Bertone 2026 trial did not run a direct head-to-head vs ProVet.</div></div>
+    <div class="wectm-wording-row"><div class="wectm-wording-say">"equicenta CTM is off-the-shelf with no capital equipment required; ProVet is a portable stall-side workflow that runs on the ProVet centrifuge."</div><div class="wectm-wording-dontsay">Disparaging Dechra, the ProVet centrifuge, or the practice's investment in it.</div></div>
+  </div>
+</div>
+
+<!-- ===== DOWNLOADS ===== -->
+<div class="wectm-section-heading animate-in">
+  <div>
+    <div class="wectm-section-eyebrow">Leave-behinds</div>
+    <div class="wectm-section-title">Competitive sales toolkit — PDFs</div>
+  </div>
+  <div class="wectm-section-note">Vet-facing, download or email directly</div>
+</div>
+<div class="wectm-downloads animate-in">
+  <div class="wectm-download-card">
+    <div class="wectm-download-card-title">Landscape Placemat</div>
+    <div class="wectm-download-card-meta">Six-product landscape reference · v1.0 · Aug 2026 · 1 page</div>
+    <div class="wectm-download-actions">
+      <a href="docs/competitive/eCTM-Biologics-Landscape-Placemat-v1.0.pdf" target="_blank" class="wectm-dl-primary">View</a>
+      <a href="docs/competitive/eCTM-Biologics-Landscape-Placemat-v1.0.pdf" download>Download</a>
+    </div>
+  </div>
+  <div class="wectm-download-card">
+    <div class="wectm-download-card-title">vs Arthramid® Vet</div>
+    <div class="wectm-download-card-meta">Head-to-head selling sheet · v1.0 · Aug 2026 · 2 pages</div>
+    <div class="wectm-download-actions">
+      <a href="docs/competitive/eCTM-vs-Arthramid-Vet-v1.0.pdf" target="_blank" class="wectm-dl-primary">View</a>
+      <a href="docs/competitive/eCTM-vs-Arthramid-Vet-v1.0.pdf" download>Download</a>
+    </div>
+  </div>
+  <div class="wectm-download-card">
+    <div class="wectm-download-card-title">vs Pro-Stride® APS</div>
+    <div class="wectm-download-card-meta">Head-to-head selling sheet · v1.0 · Aug 2026 · 3 pages</div>
+    <div class="wectm-download-actions">
+      <a href="docs/competitive/eCTM-vs-ProStride-APS-v1.0.pdf" target="_blank" class="wectm-dl-primary">View</a>
+      <a href="docs/competitive/eCTM-vs-ProStride-APS-v1.0.pdf" download>Download</a>
+    </div>
+  </div>
+  <div class="wectm-download-card">
+    <div class="wectm-download-card-title">vs ProVet® APC</div>
+    <div class="wectm-download-card-meta">Head-to-head selling sheet · v1.0 · Aug 2026 · 3 pages</div>
+    <div class="wectm-download-actions">
+      <a href="docs/competitive/eCTM-vs-ProVet-APC-v1.0.pdf" target="_blank" class="wectm-dl-primary">View</a>
+      <a href="docs/competitive/eCTM-vs-ProVet-APC-v1.0.pdf" download>Download</a>
     </div>
   </div>
 </div>
 
-<!-- ===== SECTION 2: Cost Per Outcome ===== -->
-<div class="comp-section animate-in">
-  <div class="section-label">COST PER OUTCOME</div>
-  <h2 class="section-title">The True Cost of Treatment</h2>
-  <p class="comp-intro">The pricing conversation must shift from per-unit product cost to total cost of treatment outcome.</p>
-
-  <div class="data-table-wrap animate-in">
-    <div class="chart-header">
-      <div>
-        <div class="chart-title">Competitive Pricing Comparison</div>
-        <div class="chart-subtitle">Per-unit cost, owner cost, protocol, annual cost, and outcome evidence by product</div>
-      </div>
-    </div>
-    <div class="scroll-table-wrap">
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Product / Modality</th>
-          <th>Vet Cost / Unit</th>
-          <th>Owner Cost / Tx</th>
-          <th>Protocol</th>
-          <th>Annual Cost to Owner</th>
-          <th>Outcome Evidence</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="row-ectm">
-          <td class="highlight">equicenta CTM</td>
-          <td class="highlight">$825</td>
-          <td>$1,300–$2,000</td>
-          <td>Single injection (most cases)</td>
-          <td class="highlight">$1,300–$2,000</td>
-          <td>Prospective controlled trial: 2.72× RTP (p&lt;0.006); SOC 4.8–5.9× reaction odds</td>
-        </tr>
-        <tr>
-          <td>Maintain</td>
-          <td>$374–$625</td>
-          <td>$561–$1,250</td>
-          <td>Single injection, periodic</td>
-          <td>$1,122–$3,750 (2–3×/yr)</td>
-          <td>Leverages eCTM clinical platform</td>
-        </tr>
-        <tr>
-          <td>Pro-Stride APS</td>
-          <td>$369/kit ($1,897/6-pack) + centrifuge</td>
-          <td>$1,000–$1,500</td>
-          <td>2–3 injection series</td>
-          <td>$2,000–$4,500</td>
-          <td>RCT (n=40): improvement at 14 days</td>
-        </tr>
-        <tr>
-          <td>IRAP / ACS</td>
-          <td>~$200–$400/processing</td>
-          <td>$1,500–$3,000 (series)</td>
-          <td>3–4 injection series</td>
-          <td>$1,500–$3,000+</td>
-          <td>Uncontrolled; "no definitive evidence" per review</td>
-        </tr>
-        <tr>
-          <td>VetStem</td>
-          <td>$1,200/kit</td>
-          <td>$2,000–$3,500</td>
-          <td>Harvest + 48-hr processing</td>
-          <td>$2,000–$3,500+</td>
-          <td>Retrospective: 77% tendon RTW</td>
-        </tr>
-        <tr>
-          <td>Cultured Stem Cells</td>
-          <td>$2,000–$3,000 (harvest + lab grow-out)</td>
-          <td>$5,000–$10,000</td>
-          <td>Surgical harvest + lab expansion</td>
-          <td>$5,000–$10,000</td>
-          <td>Limited controlled equine data</td>
-        </tr>
-        <tr>
-          <td>Restigen PRP</td>
-          <td>$267/kit ($1,338/6-pack)</td>
-          <td>$600–$900/injection</td>
-          <td>2–3 injection series</td>
-          <td>$1,200–$2,700 (2–3×)</td>
-          <td>Heterogeneous; no definitive RCT</td>
-        </tr>
-        <tr>
-          <td>Generic PRP kit</td>
-          <td>$50–$150/kit</td>
-          <td>$150–$300/injection</td>
-          <td>2–3 injection series</td>
-          <td>$300–$900 (2–3×)</td>
-          <td>Heterogeneous; no definitive RCT</td>
-        </tr>
-        <tr>
-          <td>RenoVo</td>
-          <td>Est. $300–$600</td>
-          <td>$500–$1,200</td>
-          <td>Single injection</td>
-          <td>$500–$1,200</td>
-          <td>Uncontrolled case series (n=100; conflicted)</td>
-        </tr>
-        <tr>
-          <td>Hilltop Bio</td>
-          <td>~$367</td>
-          <td>$400–$1,000</td>
-          <td>Single injection</td>
-          <td>$400–$1,000</td>
-          <td>No peer-reviewed publications</td>
-        </tr>
-        <tr>
-          <td>Corticosteroid + HA</td>
-          <td>$15–$50 drug cost</td>
-          <td>$200–$500</td>
-          <td>Repeat q3–6 mo</td>
-          <td>$400–$2,000</td>
-          <td>Symptomatic only; cartilage risk</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <div class="reframe-grid animate-in">
-    <div class="reframe-card">
-      <div class="reframe-card-name">equicenta CTM</div>
-      <div class="reframe-card-cost">$825 vet cost — single injection</div>
-      <div class="reframe-card-msg"><strong>One injection in most cases</strong> — vs. the 2–3 injections ProStride and PRP typically require. 2.72× odds of return to performance, markedly fewer injection reactions (SOC 4.8–5.9× the odds), sustained to 26 weeks — <strong style="color: var(--color-primary);">highest value per treatment dollar.</strong></div>
-    </div>
-    <div class="reframe-card">
-      <div class="reframe-card-name">IRAP Series</div>
-      <div class="reframe-card-cost">$1,500–$3,000 — 3–4 injections</div>
-      <div class="reframe-card-msg">No controlled efficacy data. SOC biologics (incl. ACS/IRAP) had markedly more injection reactions in the EPL trial — excess joint reactions were largely from PAAG, but SOC still had <strong>3.4× the odds even excluding PAAG</strong> (p&lt;0.03). Higher total cost, higher joint AE risk, weaker evidence — all for a product requiring 24-hr incubation and multiple injections.</div>
-    </div>
-    <div class="reframe-card">
-      <div class="reframe-card-name">VetStem</div>
-      <div class="reframe-card-cost">$2,000–$3,500 per cycle</div>
-      <div class="reframe-card-msg">Invasive surgical harvest, 48-hour processing delay, retrospective survey data only.</div>
-    </div>
-    <div class="reframe-card">
-      <div class="reframe-card-name">Repeat PRP / Corticosteroid</div>
-      <div class="reframe-card-cost">$600–$2,000/yr ongoing</div>
-      <div class="reframe-card-msg">Palliative only — no structural modification evidence. SOC horses rescued with eCTM matched primary eCTM outcomes (p=0.87). The "cheaper" alternatives often lead to re-treatment costs that exceed eCTM.</div>
-    </div>
-  </div>
-
-  <!-- Product Positioning — eCTM vs. Maintain -->
-  <div class="data-table-wrap animate-in" style="margin-top: var(--space-6);">
-    <div class="chart-header"><div>
-      <div class="chart-title">Product Positioning &mdash; eCTM vs. Maintain</div>
-      <div class="chart-subtitle">Two products, two distinct clinical use cases</div>
-    </div></div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-top: var(--space-4);">
-      <div style="border: 2px solid var(--color-primary); border-radius: 12px; padding: var(--space-5);">
-        <div style="font-weight: 700; font-size: var(--text-lg); color: var(--color-primary); margin-bottom: var(--space-4);">equicenta CTM</div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">USE CASE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Acute therapeutic: OA flare, tendon/ligament injury, post-surgical</div>
-        </div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">CONCENTRATION</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Full therapeutic dose</div>
-        </div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">CADENCE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Single injection per episode</div>
-        </div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">TARGET HORSE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Actively lame or injured</div>
-        </div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">PRICE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">$825 per vial &mdash; flat pricing</div>
-        </div>
-        <div>
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">COMPETES WITH</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">VetStem, IRAP series, Pro-Stride</div>
-        </div>
-      </div>
-      <div style="border: 2px solid var(--color-control); border-radius: 12px; padding: var(--space-5);">
-        <div style="font-weight: 700; font-size: var(--text-lg); color: var(--color-control); margin-bottom: var(--space-4);">equicenta Maintain</div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">USE CASE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Ongoing joint maintenance: preventive, post-recovery, aging athlete</div>
-        </div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">CONCENTRATION</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Lower concentration, maintenance-level</div>
-        </div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">CADENCE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Periodic (est. 2&ndash;3&times;/year per joint)</div>
-        </div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">TARGET HORSE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Returned to work after treatment; aging performance horse</div>
-        </div>
-        <div style="margin-bottom: var(--space-3);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">PRICE</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">$425 base (1.5mL) / $625 base (3.0mL)</div>
-        </div>
-        <div>
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 2px;">COMPETES WITH</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text);">Repeat HA, corticosteroid, Legend IV, Adequan IM</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Maintain vs. Competing Maintenance Products -->
-  <div class="data-table-wrap animate-in" style="margin-top: var(--space-6);">
-    <div class="chart-header"><div>
-      <div class="chart-title">Maintain vs. Competing Maintenance Products</div>
-      <div class="chart-subtitle">Annual cost and mechanism comparison for ongoing joint maintenance protocols</div>
-    </div></div>
-    <table class="data-table" style="font-size: var(--text-sm); margin-top: var(--space-3);">
-      <thead><tr><th style="text-align:left;">Product</th><th style="text-align:left;">Annual Cost</th><th style="text-align:left;">Mechanism</th></tr></thead>
-      <tbody>
-        <tr><td>Adequan IM</td><td>~$840/year ($70/dose monthly after $490 loading)</td><td>Non-biologic, no regenerative mechanism</td></tr>
-        <tr><td>Legend IV</td><td>~$1,560/year (~$130/dose monthly)</td><td>Non-biologic, lubricant only</td></tr>
-        <tr><td>Repeat PRP</td><td>$600&ndash;$1,200/year (2&times;/year)</td><td>Variable composition, no standardization</td></tr>
-        <tr><td>Repeat low-dose corticosteroid</td><td>$400&ndash;$2,000/year (2&ndash;4&times;)</td><td>Cartilage degradation risk</td></tr>
-        <tr style="font-weight: 700; background: var(--color-primary-10); border-left: 3px solid var(--color-primary);">
-          <td style="color: var(--color-primary);">Maintain</td>
-          <td style="color: var(--color-primary);">$1,122&ndash;$3,750/year (2&ndash;3&times; at $561&ndash;$1,250 to owner)</td>
-          <td>Standardized allogeneic product; published characterization; consistent composition (2,645 proteins, 4.7% batch variation)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-
-<!-- ===== SECTION 5: Clinical Highlights ===== -->
-<div class="comp-section animate-in">
-  <div class="section-label">CLINICAL EVIDENCE</div>
-  <h2 class="section-title">Clinical Highlights</h2>
-
-  <div class="comp-callout animate-in">
-    <strong>Bottom line:</strong> In the first controlled clinical trial of a cryopreserved umbilical allograft in horses — 138 horses, 195 conditions, 8 sites, 11 veterinarians — eCTM outperformed real-world standard-of-care biologics across every measured outcome, in a single off-the-shelf injection, with markedly fewer injection reactions.
-  </div>
-
-  <div class="bullet-grid animate-in">
-    <div class="bullet-card">
-      <div class="bullet-card-title">2.72× return to performance</div>
-      <div class="bullet-card-text">Horses treated with eCTM had 2.72:1 odds of returning to their prior level of performance versus standard-of-care biologics (p&lt;0.006).</div>
-    </div>
-    <div class="bullet-card">
-      <div class="bullet-card-title">3× more likely to be pain-free</div>
-      <div class="bullet-card-text">eCTM horses were roughly 3× more likely to be completely pain-free than horses treated with SOC biologics (p&lt;0.001).</div>
-    </div>
-    <div class="bullet-card">
-      <div class="bullet-card-title">Markedly fewer injection reactions</div>
-      <div class="bullet-card-text">Standard-of-care biologics had 4.8× the odds of injection reactions on veterinary review (5.9× on central review). Even excluding PAAG, SOC still had 3.4× the odds (p&lt;0.03).</div>
-    </div>
-    <div class="bullet-card">
-      <div class="bullet-card-title">Durable to 26 weeks</div>
-      <div class="bullet-card-text">eCTM benefits were sustained through 26 weeks, while standard-of-care outcomes declined after the 12-week mark.</div>
-    </div>
-    <div class="bullet-card">
-      <div class="bullet-card-title">One off-the-shelf injection</div>
-      <div class="bullet-card-text">A single thawed 1.5 mL injection in most cases — no harvest, no incubation, no multi-injection series required by APS, PRP, and IRAP/ACS.</div>
-    </div>
-    <div class="bullet-card">
-      <div class="bullet-card-title">First controlled allograft trial in horses</div>
-      <div class="bullet-card-text">The first controlled clinical trial of a tissue allograft in horses — a real-world SOC comparator arm, not saline, across a full spectrum of 195 musculoskeletal conditions.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== SECTION 6: Competitor Battle Cards ===== -->
-<div class="comp-section animate-in" style="border-bottom: none;">
-  <div class="section-label">COMPETITOR INTELLIGENCE</div>
-  <h2 class="section-title">Battle Cards</h2>
-  <p class="comp-intro">Quick-reference competitive profiles for field conversations.</p>
-
-  <!-- Zoetis -->
-  <div class="battle-card">
-    <div class="battle-card-header">
-      <div class="battle-card-header-text">
-        <div class="battle-card-company">Zoetis</div>
-        <div class="battle-card-product">Pro-Stride APS</div>
-      </div>
-      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-    <div class="battle-card-body">
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Products</div>
-        <ul class="battle-card-list">
-          <li>Pro-Stride APS (dual-centrifuge APS)</li>
-          <li>Restigen PRP</li>
-          <li>CenTrate BMA</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Strengths</div>
-        <ul class="battle-card-list strengths">
-          <li>Largest animal health company ($9.5B revenue); dominant distribution (Covetrus, MWI)</li>
-          <li>Bertone 2014 RCT (n=40); AAEP $100K scholarship</li>
-          <li>No withholding period</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Weaknesses</div>
-        <ul class="battle-card-list weaknesses">
-          <li>Autologous only — no off-the-shelf option</li>
-          <li>Variable patient biology affects output</li>
-          <li>Best evidence is for mild-moderate OA only</li>
-          <li>Premium pricing with capital equipment barrier ($2,500–$3,500 centrifuge lock-in)</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">EPL Differentiator</div>
-        <div class="battle-card-diff">eCTM trial is <strong>3.5× larger</strong> (138 vs 40 horses), tested against <strong>real SOC biologics</strong> (not saline), showed sustained improvement to <strong>26 weeks</strong> (vs 14 days), and is off-the-shelf (no centrifuge, no blood draw, no processing variability). Same lead author (Bertone) chose to run the eCTM trial. eCTM horses were <strong>3× more likely to be pain-free</strong> (p&lt;0.001). The SOC arm &mdash; which included APS products &mdash; had markedly more injection reactions than eCTM (4.8× the odds on vet review, 5.9× central); excess joint reactions were largely from PAAG, with SOC still at <strong>3.4× the odds even excluding PAAG</strong> (p&lt;0.03). ProStride's pivotal trial never measured zero-score achievement or joint-specific adverse events against a real biologic comparator.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Dechra / IRAP -->
-  <div class="battle-card">
-    <div class="battle-card-header">
-      <div class="battle-card-header-text">
-        <div class="battle-card-company">Dechra</div>
-        <div class="battle-card-product">IRAP — Orthokine Vet</div>
-      </div>
-      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-    <div class="battle-card-body">
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Products</div>
-        <ul class="battle-card-list">
-          <li>Orthokine Vet IRAP 60</li>
-          <li>Osteokine PRP</li>
-          <li>ProVet APC</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Strengths</div>
-        <ul class="battle-card-list strengths">
-          <li>Multiple aliquots from single draw (freeze up to 1 year for maintenance)</li>
-          <li>Established IRAP clinical familiarity</li>
-          <li>Device classification (no NADA)</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Weaknesses</div>
-        <ul class="battle-card-list weaknesses">
-          <li>Orthokine requires 18–24 hour incubation — significant inconvenience</li>
-          <li>EQT post-acquisition strategy is companion animal-focused</li>
-          <li>81.1% lameness improvement across 344 horses BUT concluded "no definitive evidence of effectiveness" due to absent controls</li>
-          <li>High debt load constrains investment</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">EPL Differentiator</div>
-        <div class="battle-card-diff">eCTM is <strong>off-the-shelf</strong> (10-min thaw vs 24-hr incubation), with <strong>controlled trial evidence</strong> (IRAP has none). IRAP series costs $1,500–$3,000 for 3–4 injections with no controlled efficacy data; eCTM is a single injection at $825 with prospective controlled-trial evidence. eCTM horses were <strong>3× more likely to be completely pain-free</strong> (p&lt;0.001) &mdash; a hard efficacy outcome IRAP has never proven in a controlled trial. The SOC arm had markedly more injection reactions than eCTM; excess joint reactions were largely from PAAG, with SOC still at <strong>3.4× the odds even excluding it</strong> (p&lt;0.03). A multi-injection series with higher joint adverse event risk vs. a single injection that is significantly safer with proven zero-pain outcomes: the choice is data-driven.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- VetStem -->
-  <div class="battle-card">
-    <div class="battle-card-header">
-      <div class="battle-card-header-text">
-        <div class="battle-card-company">VetStem</div>
-        <div class="battle-card-product">Adipose MSC — VetStem Cell Therapy</div>
-      </div>
-      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-    <div class="battle-card-body">
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Products</div>
-        <ul class="battle-card-list">
-          <li>VetStem Cell Therapy (autologous adipose MSC)</li>
-          <li>PrecisePRP (allogeneic freeze-dried PRP via PetVivo)</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Strengths</div>
-        <ul class="battle-card-list strengths">
-          <li>22-year track record; ~5,000 credentialed vets; 40,000+ treatments</li>
-          <li>Cell banking</li>
-          <li>PetVivo/MWI distribution for PrecisePRP</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Weaknesses</div>
-        <ul class="battle-card-list weaknesses">
-          <li>48-hour processing delay; invasive surgical fat harvest</li>
-          <li>Variable cell yield; cold chain shipping both directions</li>
-          <li>$2,000–$3,500 per cycle — among the highest-cost options</li>
-          <li>Only retrospective survey evidence (not controlled)</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">EPL Differentiator</div>
-        <div class="battle-card-diff">eCTM is <strong>off-the-shelf</strong> (no surgery, no 48-hr wait), costs <strong>$825 vs $2,000–$3,500</strong>, and has <strong>prospective controlled-trial evidence</strong> vs. VetStem's retrospective owner surveys.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RenoVo -->
-  <div class="battle-card">
-    <div class="battle-card-header">
-      <div class="battle-card-header-text">
-        <div class="battle-card-company">Renovo / Equine Amnio Solutions</div>
-        <div class="battle-card-product">RenoVo — Equine Amnion Allograft</div>
-      </div>
-      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-    <div class="battle-card-body">
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Products</div>
-        <ul class="battle-card-list">
-          <li>RenoVo (acellular, cryopreserved, liquid equine amniotic tissue allograft)</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Strengths</div>
-        <ul class="battle-card-list strengths">
-          <li>High IL-1ra (12,406 pg/mL); off-the-shelf</li>
-          <li>17,000+ horses treated claim</li>
-          <li>Covetrus exclusive distribution</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Weaknesses</div>
-        <ul class="battle-card-list weaknesses">
-          <li>Published evidence limited — Duddy 2022 (n=100) is non-blinded, no control group</li>
-          <li>2/3 authors had financial conflicts</li>
-          <li>Not FDA risk-reviewed</li>
-          <li>Equine-sourced tissue supply is seasonal/limited</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">EPL Differentiator</div>
-        <div class="battle-card-diff">eCTM has a <strong>prospective, quasi-randomized, open-label, controlled trial</strong> vs. RenoVo's conflicted, uncontrolled case series. eCTM showed <strong>2.72:1 return-to-performance odds</strong>, horses were <strong>3× more likely to be pain-free</strong> (p&lt;0.001), with markedly fewer injection reactions (SOC 4.8–5.9× the odds) — outcomes RenoVo cannot claim because they never ran a controlled trial.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hilltop Bio -->
-  <div class="battle-card">
-    <div class="battle-card-header">
-      <div class="battle-card-header-text">
-        <div class="battle-card-company">Hilltop Bio</div>
-        <div class="battle-card-product">Regenaflex-RT — Lyophilized Birth Tissue</div>
-      </div>
-      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-    <div class="battle-card-body">
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Products</div>
-        <ul class="battle-card-list">
-          <li>Regenaflex-RT (lyophilized, room temp stable 18 months)</li>
-          <li>Strydaflex</li>
-          <li>Regenaflex-M</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Strengths</div>
-        <ul class="battle-card-list strengths">
-          <li>Room-temperature storage (no cold chain); &lt;1 min prep</li>
-          <li>96% customer retention; 100% YoY sales growth</li>
-          <li>$5M funding; Midwest Vet Supply distribution</li>
-          <li>"Regenerative Medicine 2.0" positioning</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Weaknesses</div>
-        <ul class="battle-card-list weaknesses">
-          <li>No peer-reviewed clinical publications (most significant limitation)</li>
-          <li>Lyophilization may alter heat-labile biological components</li>
-          <li>Small company scale</li>
-          <li>INAD filing does not equal regulatory approval</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">EPL Differentiator</div>
-        <div class="battle-card-diff">Hilltop's biggest selling point is <strong>convenience</strong>. eCTM's biggest selling point is <strong>evidence</strong>. When a vet is recommending a product for a $100K+ performance horse, do they want to stand behind a product with <strong>zero published data</strong>, or a 138-horse quasi-randomized, open-label, controlled trial? Room-temp convenience doesn't matter if the product hasn't been proven to work.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ArthramidVet -->
-  <div class="battle-card">
-    <div class="battle-card-header">
-      <div class="battle-card-header-text">
-        <div class="battle-card-company">ArthramidVet</div>
-        <div class="battle-card-product">PAAG Hydrogel — Injectable Polyacrylamide</div>
-      </div>
-      <svg class="battle-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-    <div class="battle-card-body">
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Products</div>
-        <ul class="battle-card-list">
-          <li>ArthramidVet (2.5% injectable polyacrylamide hydrogel)</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Strengths</div>
-        <ul class="battle-card-list strengths">
-          <li>2021 double-blind trial: 83% lame-free at 6 weeks vs 27% triamcinolone</li>
-          <li>Device classification (no NADA)</li>
-          <li>CSU trial underway; different mechanism (synovial integration)</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">Weaknesses</div>
-        <ul class="battle-card-list weaknesses">
-          <li>Not a biologic — hydrogel device, not tissue regeneration</li>
-          <li>Competing for the same treatment budget</li>
-        </ul>
-      </div>
-      <div class="battle-card-section">
-        <div class="battle-card-section-title">EPL Differentiator</div>
-        <div class="battle-card-diff">eCTM offers <strong>biological regeneration</strong> (2,645 proteins, tissue scaffold, structural repair) vs. a synthetic hydrogel. eCTM showed <strong>36% ligament remodeling vs. 0% SOC</strong> — actual tissue repair. These products can be complementary, but for biological regeneration, eCTM is the evidence-backed choice.</div>
-      </div>
-    </div>
-  </div>
-
+<!-- ===== COMPLIANCE FOOTER ===== -->
+<div class="wectm-compliance">
+  <div class="wectm-compliance-title">Sources &amp; trademark disclaimer</div>
+  <p><strong>Sources.</strong> equicenta CTM: Bertone et al. 2026, <em>Frontiers in Vet Sci</em> (DOI 10.3389/fvets.2026.1833933); BMC Medicine 2025 characterization &amp; 42-day biocompatibility; ACVSMR 2026 EV/exosome poster. Arthramid Vet: de Clifford et al. 2021, JEVS. Pro-Stride APS: Zoetis product page; Bertone &amp; Ishihara 2014, AJVR; Usimaki/Watkins 2024, EVJ. ProVet APC: Dechra ProVet APC IFU; Am J Vet Res 2024 characterization. IRAP II: Vet Sci 2023 systematic review (PMC10747612); Arthrex scientific update. Adequan i.m.: DailyMed label; FDA FOI Summary NADA 140-901.</p>
+  <p><strong>Trademarks &amp; disclaimer.</strong> equicenta® CTM: Equine Performance Labs. Arthramid®: Contura International A/S. Pro-Stride®, Restigen®, Zoetis®: Zoetis Inc. ProVet®, Dechra®: Dechra Pharmaceuticals PLC. IRAP®: Orthogen AG / Arthrex, Inc. Adequan®: American Regent, Inc. (Luitpold Pharmaceuticals). Comparator information is provided for reference under fair-use vet-education purposes and does not imply endorsement; the Bertone 2026 trial did not evaluate these products as named head-to-head comparator arms. Product selection is a clinical decision for the treating veterinarian; individual results may vary.</p>
 </div>
 
 <script>
-document.querySelectorAll('#study-competitive .battle-card-header').forEach(h => {
-  h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
-});
-
-function navigateToSOCProducts(e) {
-  e.preventDefault();
-  // 1. Activate Clinical Study main tab
-  document.querySelectorAll('.study-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.study-panel').forEach(p => p.classList.remove('active'));
-  var clinBtn = document.querySelector('[data-study="clinical"]');
-  var clinPanel = document.getElementById('study-clinical');
-  if (clinBtn) clinBtn.classList.add('active');
-  if (clinPanel) clinPanel.classList.add('active');
-
-  // 2. Activate Study Design clinical sub-tab
-  clinPanel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  clinPanel.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  var designBtn = clinPanel.querySelector('[data-clintab="clin-study-design"]');
-  var designPanel = document.getElementById('clintab-clin-study-design');
-  if (designBtn) designBtn.classList.add('active');
-  if (designPanel) designPanel.classList.add('active');
-
-  // 3. Activate SOC Products sub-tab
-  designPanel.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
-  designPanel.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
-  var socBtn = designPanel.querySelector('[data-subtab="clin-design-soc-products"]');
-  var socPanel = document.getElementById('sub-clin-design-soc-products');
-  if (socBtn) socBtn.classList.add('active');
-  if (socPanel) socPanel.classList.add('active');
-
-  // 4. Init charts and scroll to top
-  if (typeof destroyAllCharts === 'function') destroyAllCharts();
-  if (typeof initCurrentCharts === 'function') initCurrentCharts();
-  if (typeof animateIn === 'function') animateIn();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+// Head-to-head selector
+function wectmShowH2H(target) {
+  document.querySelectorAll('.wectm-h2h-tile').forEach(function(el) {
+    el.classList.toggle('active', el.dataset.h2h === target);
+  });
+  document.querySelectorAll('.wectm-h2h-detail').forEach(function(el) {
+    el.classList.toggle('active', el.id === 'wectm-h2h-' + target);
+  });
+  // Smoothly scroll to the detail panel
+  var detail = document.getElementById('wectm-h2h-' + target);
+  if (detail) {
+    var offset = detail.getBoundingClientRect().top + window.pageYOffset - 100;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  }
 }
 </script>
 
