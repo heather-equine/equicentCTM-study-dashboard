@@ -6789,6 +6789,30 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
+<!-- Supplementary Materials download strip (Bertone 2026 companion) -->
+<div class="evidence-supp-strip animate-in" style="display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:center;justify-content:space-between;background:linear-gradient(135deg, rgba(196,154,108,0.10), rgba(196,154,108,0.03));border:1px solid rgba(196,154,108,0.35);border-radius:12px;padding:var(--space-4) var(--space-5);margin-bottom:var(--space-5);">
+  <div style="display:flex;align-items:center;gap:var(--space-3);flex:1;min-width:280px;">
+    <div style="flex-shrink:0;width:44px;height:44px;border-radius:10px;background:#c49a6c;color:#fff;display:flex;align-items:center;justify-content:center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+    </div>
+    <div style="line-height:1.4;">
+      <div style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#8f6a3f;font-weight:600;margin-bottom:2px;">New · Aug 2026</div>
+      <div style="font-family:var(--font-display);font-size:1.15rem;color:var(--color-text);font-weight:600;">Supplementary Materials — Bertone 2026</div>
+      <div style="font-size:0.85rem;color:var(--color-text-muted);">Full study appendix &mdash; 3 supplementary figures (Case A vs B imaging, Cohen's d forest plot, cumulative-improvement curves) + 6 supplementary tables (S1&ndash;S6: baseline body weight, body condition, recruitment map, case-mix, adverse events, rescue injections). 12 pages.</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+    <a href="docs/Bertone-2026-Supplementary-Materials.pdf" target="_blank" class="ifu-download-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      View
+    </a>
+    <a href="docs/Bertone-2026-Supplementary-Materials.pdf" download class="ifu-download-btn ifu-download-secondary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download
+    </a>
+  </div>
+</div>
+
 <!-- Clinical Tab Navigation -->
 <nav class="tab-nav-container" id="clin-tab-nav">
   <div class="tab-nav" role="tablist">
@@ -13050,6 +13074,10 @@ function initMaintAeCharts() {
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
       Clinical Evidence Booklet
     </button>
+    <button class="sub-tab-btn" data-subtab="ifu-supp-materials">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+      Supplementary Materials
+    </button>
   </div>
 
   <!-- IFU Sub-tab -->
@@ -13472,6 +13500,62 @@ function initMaintAeCharts() {
         <strong>Investigational status:</strong> equicenta&reg; CTM is under investigation. It has not been approved by the U.S. FDA Center for Veterinary Medicine, and the safety and effectiveness of the product for the uses described have not been established. Not for human use. Not for use in food-producing animals. Results are from a single prospective controlled clinical study in performance horses; individual outcomes may vary.
       </div>
 
+    </div>
+  </div>
+
+  <!-- Supplementary Materials Sub-tab -->
+  <div class="sub-panel" id="sub-ifu-supp-materials">
+    <div class="clin-section-heading">
+      <h3>Supplementary Materials &mdash; Bertone et al. 2026</h3>
+      <p>Peer-reviewed &middot; Full study appendix &middot; 12 pages &middot; Aug 2026</p>
+    </div>
+    <div class="ifu-pdf-actions animate-in">
+      <a href="docs/Bertone-2026-Supplementary-Materials.pdf" target="_blank" class="ifu-download-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View PDF
+      </a>
+      <a href="docs/Bertone-2026-Supplementary-Materials.pdf" download class="ifu-download-btn ifu-download-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download
+      </a>
+    </div>
+
+    <div class="ifu-content animate-in">
+      <div class="ifu-section">
+        <div class="ifu-section-title">What's inside</div>
+        <p>Consolidated PDF of the three supplementary figures and six supplementary tables that accompany the peer-reviewed clinical-trial publication in <em>Frontiers in Veterinary Science</em>. Intended as a rep-facing companion for vet conversations that reach into the full study appendix.</p>
+
+        <div class="ifu-grid-2col" style="margin-top:var(--space-4);">
+          <div>
+            <strong>Supplementary Figures</strong>
+            <ul style="margin-top:var(--space-2);">
+              <li><strong>S1</strong> &mdash; Case A vs Case B: ultrasound B-mode, Ocean-Floor colorized mapping, 3D terrain reconstruction, and TRS / MS Core / Quality-Layer score trajectories.</li>
+              <li><strong>S2</strong> &mdash; Convergent treatment-effect signal across modalities: Cohen's <em>d</em> for TRS and VPO Day 180 in ligaments, tendons, and all soft-tissue structures.</li>
+              <li><strong>S3</strong> &mdash; Cumulative improvement over 12 weeks for lameness, pain, and swelling (equicenta&reg; CTM vs SOC APS).</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Supplementary Tables</strong>
+            <ul style="margin-top:var(--space-2);">
+              <li><strong>S1</strong> &mdash; Body weight of horses that completed the trial (kg).</li>
+              <li><strong>S2</strong> &mdash; Mean body-condition score per horse.</li>
+              <li><strong>S3</strong> &mdash; Distribution of practice by recruitment map (horses &amp; conditions).</li>
+              <li><strong>S4</strong> &mdash; Distribution of primary conditions per horse (SOC vs eCTM).</li>
+              <li><strong>S5</strong> &mdash; Adverse-event details by horse and by report (all injections).</li>
+              <li><strong>S6</strong> &mdash; Rescue-injection details at the target site (per protocol).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="ifu-section">
+        <div class="ifu-section-title">Cite as</div>
+        <p style="font-size:0.9rem;line-height:1.55;">Bertone AL, Davern AJ, Sutter WW, Mesch H, Beinlich C, Smith A, Ramstrom C, White S, Dubynsky B, Cantrell K, Hay BP, Davis W, Mazzarelli L. (2026). Cryopreserved umbilical allograft (equicenta&reg; CTM) improves clinical outcomes compared with standard of care in horses with joint, tendon and ligament conditions. <em>Frontiers in Veterinary Science</em>. DOI 10.3389/fvets.2026.1833933.</p>
+      </div>
+
+      <div class="ifu-callout">
+        <strong>Investigational status:</strong> equicenta&reg; CTM is under investigation. It has not been approved by the U.S. FDA Center for Veterinary Medicine, and the safety and effectiveness of the product for the uses described have not been established. Not for human use. Not for use in food-producing animals. Results are from a single prospective controlled clinical study in performance horses; individual outcomes may vary.
+      </div>
     </div>
   </div>
 
