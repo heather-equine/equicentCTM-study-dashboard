@@ -5054,6 +5054,8 @@ function eplIsRepPreview() {
 
 // Set the admin panel's view-mode card and the floating banner to match state
 function eplSyncViewModeUI() {
+  // Resources panel hides admin-only entries in rep view
+  if (typeof window.eplRenderResources === 'function') window.eplRenderResources();
   var preview = eplIsAdmin() && eplIsRepPreview();
   var banner = document.getElementById('rep-preview-banner');
   if (banner) banner.style.display = preview ? 'flex' : 'none';
@@ -5220,6 +5222,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="study-tab" data-study="ifu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
       Quality Documents
+    </button>
+    <button class="study-tab" data-study="resources">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="16" y2="11"/></svg>
+      Resources
     </button>
     <button class="study-tab" data-study="compdash">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -13218,6 +13224,174 @@ function initMaintAeCharts() {
 </div><!-- end study-videos -->
 
 <!-- ===== QUALITY DOCUMENTS TAB ===== -->
+<!-- ===== RESOURCES PANEL =====
+     TO ADD A DOCUMENT:
+     1. Commit the PDF into the docs/ folder of this repo.
+     2. Add one entry to the EPL_RESOURCES array in the script at the bottom of
+        this panel. Only `title` and either `file` or `link` are required.
+     3. Set admin_only: true on anything reps should NOT see.
+     No other edits are needed — the category filter, counts, and cards all build
+     themselves from that array.
+================================================================= -->
+<div class="study-panel" id="study-resources">
+  <div class="clin-section-heading">
+    <h3>Resources</h3>
+    <p>Documents, forms, and reference material for the field team &mdash; newest first.</p>
+  </div>
+
+  <div class="pk-search-wrap animate-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" class="pk-search" id="res-search" placeholder="Search resources by title, description, or category">
+  </div>
+
+  <div class="pk-filter-row animate-in">
+    <div class="pk-filter-group">
+      <label class="pk-filter-label" for="res-filter-category">Category</label>
+      <select class="pk-select" id="res-filter-category"><option value="">All categories</option></select>
+    </div>
+  </div>
+
+  <div class="pk-results-meta animate-in">
+    <span id="res-count">0 resources</span>
+    <button class="pk-clear-btn" id="res-clear-btn" onclick="eplClearResourceFilters()">Clear filters</button>
+  </div>
+
+  <div class="pk-card-grid" id="res-grid"></div>
+</div>
+
+<script>
+(function() {
+  // ===== RESOURCE LIBRARY =====
+  // One object per document. Fields:
+  //   title       (required) card heading
+  //   file        path to a PDF committed in this repo, e.g. 'docs/My-Doc.pdf'
+  //   link        external URL instead of a file (use one or the other)
+  //   category    grouping shown as a tag and in the Category filter
+  //   updated     free text, e.g. 'Rev 02 · Sep 2026'
+  //   description one or two sentences of context
+  //   admin_only  true = hidden from reps, visible only in admin view
+  var EPL_RESOURCES = [
+    // Example (delete or replace):
+    // {
+    //   title: 'Clinical Evidence Booklet',
+    //   file: 'docs/Clinical-Evidence-Booklet-v4.3.pdf',
+    //   category: 'Clinical evidence',
+    //   updated: 'v4.3 · Aug 2026',
+    //   description: '35-page manuscript-aligned companion to Bertone et al. 2026.',
+    //   admin_only: false
+    // },
+  ];
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // Reps never see admin_only items. Admin sees them unless previewing as a rep.
+  function visibleResources() {
+    var isAdmin = (typeof eplIsAdmin === 'function') && eplIsAdmin();
+    var repPreview = (typeof eplIsRepPreview === 'function') && eplIsRepPreview();
+    var showAdminItems = isAdmin && !repPreview;
+    return EPL_RESOURCES.filter(function(r) { return showAdminItems || !r.admin_only; });
+  }
+
+  function cardHTML(r) {
+    var href = r.file || r.link || '';
+    var isFile = !!r.file;
+    var actions = '';
+    if (href) {
+      actions =
+        '<a class="pk-btn pk-btn-solid" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">View</a>' +
+        (isFile ? '<a class="pk-btn pk-btn-ghost" href="' + esc(href) + '" download>Download</a>' : '');
+    } else {
+      actions = '<span class="pk-aud-tag">Link coming soon</span>';
+    }
+    return '' +
+      '<div class="pk-card">' +
+        '<div class="pk-card-top">' +
+          '<h4 class="pk-card-title">' + esc(r.title) + '</h4>' +
+          (r.admin_only ? '<span class="pk-aud-tag" style="background:#fde8e8;color:#7f1d1d;font-weight:700;">Admin only</span>' : '') +
+        '</div>' +
+        '<div class="pk-card-tags">' +
+          (r.category ? '<span class="pk-aud-tag">' + esc(r.category) + '</span>' : '') +
+          (r.updated ? '<span class="pk-aud-tag">' + esc(r.updated) + '</span>' : '') +
+        '</div>' +
+        (r.description ? '<p class="pk-card-headline">' + esc(r.description) + '</p>' : '') +
+        '<div class="pk-card-actions">' + actions + '</div>' +
+      '</div>';
+  }
+
+  function populateCategories() {
+    var sel = document.getElementById('res-filter-category');
+    if (!sel) return;
+    var current = sel.value;
+    var cats = [];
+    visibleResources().forEach(function(r) {
+      if (r.category && cats.indexOf(r.category) === -1) cats.push(r.category);
+    });
+    cats.sort();
+    sel.innerHTML = '<option value="">All categories</option>' + cats.map(function(c) {
+      return '<option value="' + esc(c) + '">' + esc(c) + '</option>';
+    }).join('');
+    if (cats.indexOf(current) !== -1) sel.value = current;
+  }
+
+  // Exposed so the admin rep-preview toggle can re-render this panel
+  window.eplRenderResources = function() {
+    var grid = document.getElementById('res-grid');
+    if (!grid) return;
+    populateCategories();
+    var q = (document.getElementById('res-search') || {}).value || '';
+    q = q.trim().toLowerCase();
+    var cat = (document.getElementById('res-filter-category') || {}).value || '';
+    var all = visibleResources();
+    var rows = all.filter(function(r) {
+      if (cat && r.category !== cat) return false;
+      if (!q) return true;
+      return [r.title, r.description, r.category, r.updated].join(' ').toLowerCase().indexOf(q) !== -1;
+    });
+    var countEl = document.getElementById('res-count');
+    if (countEl) countEl.textContent = rows.length + (rows.length === 1 ? ' resource' : ' resources');
+    var clearBtn = document.getElementById('res-clear-btn');
+    if (clearBtn) clearBtn.style.display = (q || cat) ? '' : 'none';
+
+    if (!all.length) {
+      grid.innerHTML = '<div class="pk-empty" style="grid-column:1/-1;">' +
+        '<div style="font-weight:700;color:var(--color-text);margin-bottom:6px;">No resources yet</div>' +
+        'Documents added to this library will appear here for the field team.</div>';
+      return;
+    }
+    if (!rows.length) {
+      grid.innerHTML = '<div class="pk-empty" style="grid-column:1/-1;">No resources match your filters. ' +
+        '<button class="pk-clear-btn" onclick="eplClearResourceFilters()">Clear filters</button></div>';
+      return;
+    }
+    grid.innerHTML = rows.map(cardHTML).join('');
+  };
+
+  window.eplClearResourceFilters = function() {
+    var s = document.getElementById('res-search'); if (s) s.value = '';
+    var c = document.getElementById('res-filter-category'); if (c) c.value = '';
+    window.eplRenderResources();
+  };
+
+  function initResources() {
+    var s = document.getElementById('res-search');
+    if (s) s.addEventListener('input', window.eplRenderResources);
+    var c = document.getElementById('res-filter-category');
+    if (c) c.addEventListener('change', window.eplRenderResources);
+    window.eplRenderResources();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initResources);
+  } else {
+    initResources();
+  }
+})();
+</script>
+
 <div class="study-panel" id="study-ifu">
   <div class="sub-tab-container" id="ifu-subtabs">
     <button class="sub-tab-btn active" data-subtab="ifu-instructions">
