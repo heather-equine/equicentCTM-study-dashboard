@@ -4885,9 +4885,7 @@ async function adminVerifyPin() {
     adminGenerateQR();
     adminRenderRepPins();
     // Show hidden maintain tab and admin-only tabs, persist flag
-    var maintBtn = document.getElementById('maintain-tab-btn');
-    if (maintBtn) maintBtn.style.display = '';
-    document.querySelectorAll('.admin-only-tab').forEach(function(el) { el.style.display = ''; });
+    eplRevealAdminTabs();
     localStorage.setItem('epl_dash_admin', 'true');
   } else {
     document.getElementById('admin-pin-msg').textContent = 'Incorrect PIN.';
@@ -5012,11 +5010,23 @@ document.getElementById('admin-pin-input').addEventListener('keydown', function(
   if (e.key === 'Enter') adminVerifyPin();
 });
 
-// Show maintain tab if admin was previously verified this session
-if (localStorage.getItem('epl_dash_admin') === 'true' && localStorage.getItem('epl_dash_session')) {
+// Show admin-gated tabs if admin was previously verified this session.
+// Runs after the nav markup exists (this script block precedes the study selector).
+function eplRevealAdminTabs() {
   var mb = document.getElementById('maintain-tab-btn');
   if (mb) mb.style.display = '';
   document.querySelectorAll('.admin-only-tab').forEach(function(el) { el.style.display = ''; });
+}
+function eplApplyAdminState() {
+  var expiry = parseInt(localStorage.getItem('epl_dash_session') || '0', 10);
+  if (localStorage.getItem('epl_dash_admin') === 'true' && expiry && Date.now() < expiry) {
+    eplRevealAdminTabs();
+  }
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', eplApplyAdminState);
+} else {
+  eplApplyAdminState();
 }
 
 // Export PDF menu
