@@ -4799,6 +4799,14 @@ a.study-tab.study-tab-external:hover svg { color: white; }
         </button>
       </div>
 
+      <!-- View as rep -->
+      <div style="background:var(--color-surface-2);border-radius:12px;padding:20px;margin-bottom:20px;">
+        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-faint);margin-bottom:8px;">VIEW MODE</div>
+        <div id="admin-viewmode-state" style="font-size:0.9rem;font-weight:600;color:var(--color-primary);font-family:'Montserrat',sans-serif;margin-bottom:6px;">Admin view &mdash; all tabs visible</div>
+        <div style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:12px;">Switch to rep view to see the dashboard exactly as your reps do, with the admin-only tabs hidden. Your admin session stays active, so you can switch back any time without re-entering your PIN.</div>
+        <button onclick="eplToggleRepPreview()" id="admin-viewmode-btn" style="padding:10px 18px;border:2px solid #0d3d36;border-radius:8px;background:none;color:#0d3d36;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:'Montserrat',sans-serif;">View as rep</button>
+      </div>
+
       <!-- Invite Code -->
       <div style="background:var(--color-surface-2);border-radius:12px;padding:20px;margin-bottom:20px;">
         <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-faint);margin-bottom:8px;">INVITE CODE</div>
@@ -4841,6 +4849,13 @@ a.study-tab.study-tab-external:hover svg { color: white; }
       </div>
     </div>
   </div>
+</div>
+
+<!-- ===== REP PREVIEW BANNER (admin only) ===== -->
+<div id="rep-preview-banner" style="display:none; position:fixed; left:50%; transform:translateX(-50%); bottom:20px; z-index:99996; align-items:center; gap:14px; padding:12px 18px; border-radius:999px; background:#0d3d36; color:#fff; box-shadow:0 6px 24px rgba(0,0,0,0.25); font-family:'Montserrat',sans-serif; max-width:92vw;">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a1c9bf" stroke-width="2" style="flex:0 0 auto;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+  <span style="font-size:0.8rem;font-weight:600;white-space:nowrap;">Viewing as rep</span>
+  <button onclick="eplSetRepPreview(false)" style="padding:7px 14px;border:none;border-radius:999px;background:#a1c9bf;color:#0d3d36;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap;">Back to admin view</button>
 </div>
 
 <script>
@@ -4887,9 +4902,10 @@ async function adminVerifyPin() {
     adminShowSession();
     adminGenerateQR();
     adminRenderRepPins();
-    // Show hidden maintain tab and admin-only tabs, persist flag
-    eplRevealAdminTabs();
+    // Persist admin flag, then apply whichever view mode is active
     localStorage.setItem('epl_dash_admin', 'true');
+    if (eplIsRepPreview()) { eplHideAdminTabs(); } else { eplRevealAdminTabs(); }
+    eplSyncViewModeUI();
   } else {
     document.getElementById('admin-pin-msg').textContent = 'Incorrect PIN.';
     document.getElementById('admin-pin-input').value = '';
@@ -4944,6 +4960,7 @@ function adminDownloadQR() {
 function adminLogout() {
   localStorage.removeItem('epl_dash_session');
   localStorage.removeItem('epl_dash_admin');
+  localStorage.removeItem('epl_dash_rep_preview');
   adminPanelClose();
   location.reload();
 }
@@ -5020,11 +5037,61 @@ function eplRevealAdminTabs() {
   if (mb) mb.style.display = '';
   document.querySelectorAll('.admin-only-tab').forEach(function(el) { el.style.display = ''; });
 }
-function eplApplyAdminState() {
+function eplHideAdminTabs() {
+  var mb = document.getElementById('maintain-tab-btn');
+  if (mb) mb.style.display = 'none';
+  document.querySelectorAll('.admin-only-tab').forEach(function(el) { el.style.display = 'none'; });
+}
+
+function eplIsAdmin() {
   var expiry = parseInt(localStorage.getItem('epl_dash_session') || '0', 10);
-  if (localStorage.getItem('epl_dash_admin') === 'true' && expiry && Date.now() < expiry) {
+  return localStorage.getItem('epl_dash_admin') === 'true' && expiry && Date.now() < expiry;
+}
+
+function eplIsRepPreview() {
+  return localStorage.getItem('epl_dash_rep_preview') === 'true';
+}
+
+// Set the admin panel's view-mode card and the floating banner to match state
+function eplSyncViewModeUI() {
+  var preview = eplIsAdmin() && eplIsRepPreview();
+  var banner = document.getElementById('rep-preview-banner');
+  if (banner) banner.style.display = preview ? 'flex' : 'none';
+  var state = document.getElementById('admin-viewmode-state');
+  var btn = document.getElementById('admin-viewmode-btn');
+  if (state) state.textContent = preview ? 'Rep view \u2014 admin-only tabs hidden' : 'Admin view \u2014 all tabs visible';
+  if (btn) btn.textContent = preview ? 'Back to admin view' : 'View as rep';
+}
+
+// Enter or leave rep preview. Admin session is untouched, so switching back needs no PIN.
+function eplSetRepPreview(on) {
+  if (!eplIsAdmin()) return;
+  if (on) {
+    localStorage.setItem('epl_dash_rep_preview', 'true');
+    // If a now-hidden tab is open, fall back to Overview
+    var active = document.querySelector('.study-tab.active');
+    if (active && active.classList.contains('admin-only-tab')) {
+      var ov = document.querySelector('.study-tab[data-study="overview"]');
+      if (ov) ov.click();
+    }
+    eplHideAdminTabs();
+    adminPanelClose();
+  } else {
+    localStorage.removeItem('epl_dash_rep_preview');
     eplRevealAdminTabs();
   }
+  eplSyncViewModeUI();
+}
+
+function eplToggleRepPreview() {
+  eplSetRepPreview(!eplIsRepPreview());
+}
+
+function eplApplyAdminState() {
+  if (eplIsAdmin() && !eplIsRepPreview()) {
+    eplRevealAdminTabs();
+  }
+  eplSyncViewModeUI();
 }
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', eplApplyAdminState);
