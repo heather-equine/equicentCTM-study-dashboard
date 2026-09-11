@@ -4878,9 +4878,10 @@ async function adminVerifyPin() {
   if (!val) return;
   var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(val));
   var hash = Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
-  var stored = localStorage.getItem('epl_dash_pin');
+  // Admin panel accepts ONLY the admin master PIN. A rep's personal dashboard PIN
+  // must never unlock the admin panel or the admin-gated tabs.
   var ADMIN_MASTER = '2560766fc02b427a01dd0323ffafbaff45476a727ef3cc6a3a024e7784c277a3'; // 5757
-  if (hash === stored || hash === ADMIN_MASTER) {
+  if (hash === ADMIN_MASTER) {
     document.getElementById('admin-step-pin').style.display = 'none';
     document.getElementById('admin-step-dashboard').style.display = 'block';
     adminShowSession();
