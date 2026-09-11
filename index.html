@@ -4836,7 +4836,7 @@ a.study-tab.study-tab-external:hover svg { color: white; }
 
       <!-- Comp Dashboard rep PIN management -->
       <div style="background:var(--color-surface-2);border-radius:12px;padding:20px;margin-bottom:20px;">
-        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-faint);margin-bottom:8px;">COMP DASHBOARD — REP PINS</div>
+        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-faint);margin-bottom:8px;">COMMISSIONS — REP PINS</div>
         <div style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:12px;">Share invite code with rep. They enter it once, then create their own PIN. Reset clears their PIN so they can start over.</div>
         <div id="admin-rep-pins-list" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
@@ -5011,7 +5011,7 @@ function adminRenderRepPins() {
   container.querySelectorAll('[data-reset-pin]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var rep = btn.getAttribute('data-reset-pin');
-      if (!confirm('Reset ' + COMP_REP_LABELS[rep] + "'s Comp Dashboard PIN?\n\nShe will need to re-enter her invite code and create a new PIN.")) return;
+      if (!confirm('Reset ' + COMP_REP_LABELS[rep] + "'s Commissions PIN?\n\nShe will need to re-enter her invite code and create a new PIN.")) return;
       var pins = adminReadCompPins();
       delete pins[rep];
       localStorage.setItem('epl_comp_rep_pins', JSON.stringify(pins));
@@ -5229,7 +5229,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </button>
     <button class="study-tab" data-study="compdash">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Comp Dashboard
+      Commissions
     </button>
     <button class="study-tab" data-study="fieldcases">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
@@ -13961,7 +13961,7 @@ function initMaintAeCharts() {
 
     <!-- Step 1: Enter personal PIN (or invite code first time) -->
     <div id="comp-gate-step-pin">
-      <h3 style="font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-2);">Competitive Intelligence</h3>
+      <h3 style="font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-2);">Commissions</h3>
       <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);" id="comp-pin-subtitle">Enter your PIN to access the dashboard.</p>
       <div style="display: flex; gap: var(--space-2); justify-content: center; align-items: center;">
         <input type="password" id="comp-pin-input" placeholder="Enter PIN or invite code" style="padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); font-family: var(--font-body); width: 220px; background: var(--color-surface); color: var(--color-text);" onkeydown="if(event.key==='Enter') compVerifyPin()">
@@ -13974,7 +13974,7 @@ function initMaintAeCharts() {
     <!-- Step 2: Create personal PIN (first-time reps) -->
     <div id="comp-gate-step-create" style="display:none;">
       <h3 style="font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-2);">Create Your PIN</h3>
-      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);" id="comp-create-subtitle">Welcome, <span id="comp-create-rep-name">Rep</span>. Choose a 4–8 digit PIN you'll use to unlock the Comp Dashboard.</p>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);" id="comp-create-subtitle">Welcome, <span id="comp-create-rep-name">Rep</span>. Choose a 4–8 digit PIN you'll use to unlock Commissions.</p>
       <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
         <input type="password" id="comp-create-input" maxlength="8" inputmode="numeric" placeholder="Create PIN (4–8 digits)" style="padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); font-family: var(--font-body); width: 260px; background: var(--color-surface); color: var(--color-text); text-align:center;">
         <input type="password" id="comp-confirm-input" maxlength="8" inputmode="numeric" placeholder="Confirm PIN" style="padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); font-family: var(--font-body); width: 260px; background: var(--color-surface); color: var(--color-text); text-align:center;" onkeydown="if(event.key==='Enter') compCreatePin()">
