@@ -4576,7 +4576,8 @@ a.study-tab.study-tab-external:hover svg { color: white; }
 
 <script>
 (function() {
-  var INVITE_HASH = '2560766fc02b427a01dd0323ffafbaff45476a727ef3cc6a3a024e7784c277a3';
+  // Rep invite code: 739711 (shared). Separate from the admin master PIN on purpose.
+  var INVITE_HASH = '2473839ece47242faa5ad00324e825e4def6d64aa751b37a731792aa0977bca3';
   var SESSION_KEY = 'epl_dash_session';
   var PIN_KEY = 'epl_dash_pin';
   var ATTEMPTS_KEY = 'epl_dash_attempts';
@@ -4668,7 +4669,8 @@ a.study-tab.study-tab-external:hover svg { color: white; }
   window.pinVerifyInvite = async function() {
     if (isLockedOut()) { showLockoutMsg('pin-invite-msg'); return; }
     var input = document.getElementById('pin-invite-input');
-    var val = input.value.trim();
+    // Normalize so spacing/casing never blocks a valid code
+    var val = input.value.trim().replace(/\s+/g, '').toUpperCase();
     if (!val) return;
     var hash = await sha256(val);
     if (hash === INVITE_HASH) {
@@ -4800,7 +4802,7 @@ a.study-tab.study-tab-external:hover svg { color: white; }
       <!-- Invite Code -->
       <div style="background:var(--color-surface-2);border-radius:12px;padding:20px;margin-bottom:20px;">
         <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-faint);margin-bottom:8px;">INVITE CODE</div>
-        <div style="font-size:1rem;font-weight:600;color:var(--color-primary);font-family:'Montserrat',sans-serif;word-break:break-all;" id="admin-invite-display">EPL Interactive Sales Dashboard invite</div>
+        <div style="font-size:1rem;font-weight:600;color:var(--color-primary);font-family:'Montserrat',sans-serif;word-break:break-all;" id="admin-invite-display">739711</div>
         <button onclick="adminCopyCode()" id="admin-copy-code-btn" style="margin-top:12px;padding:8px 16px;border:2px solid #0d3d36;border-radius:8px;background:none;color:#0d3d36;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:'Montserrat',sans-serif;">Copy Code</button>
       </div>
 
@@ -4851,7 +4853,7 @@ function loadQRLib(cb) {
   document.head.appendChild(s);
 }
 
-var ADMIN_INVITE = 'EPL Interactive Sales Dashboard invite';
+var ADMIN_INVITE = '739711';
 var DASHBOARD_URL = 'https://heather-equine.github.io/equicentCTM-study-dashboard/';
 
 function adminInviteURL() {
