@@ -13236,7 +13236,7 @@ function initMaintAeCharts() {
 <div class="study-panel" id="study-resources">
   <div class="clin-section-heading">
     <h3>Resources</h3>
-    <p>Documents, forms, and reference material for the field team &mdash; newest first.</p>
+    <p>Current EPL and equicenta&reg; CTM documents for the field team. Always use the version posted here.</p>
   </div>
 
   <div class="pk-search-wrap animate-in">
@@ -13271,15 +13271,48 @@ function initMaintAeCharts() {
   //   description one or two sentences of context
   //   admin_only  true = hidden from reps, visible only in admin view
   var EPL_RESOURCES = [
-    // Example (delete or replace):
-    // {
-    //   title: 'Clinical Evidence Booklet',
-    //   file: 'docs/Clinical-Evidence-Booklet-v4.3.pdf',
-    //   category: 'Clinical evidence',
-    //   updated: 'v4.3 · Aug 2026',
-    //   description: '35-page manuscript-aligned companion to Bertone et al. 2026.',
-    //   admin_only: false
-    // },
+    {
+      title: 'Product Pricing & Loyalty Rewards — Karin Williamson',
+      file: 'docs/EPL-Product-Pricing-Rewards-Karin-Williamson.pdf',
+      category: 'Pricing & ordering',
+      updated: 'Current program',
+      description: 'One-page volume pricing (1–3 / 4–7 / 8+ vials), consignment options, and loyalty rewards for equicenta® CTM and Maintain, with Karin’s contact details and order QR code.'
+    },
+    {
+      title: 'Product Pricing & Loyalty Rewards — Megan Smith',
+      file: 'docs/EPL-Product-Pricing-Rewards-Megan-Smith.pdf',
+      category: 'Pricing & ordering',
+      updated: 'Current program',
+      description: 'Same pricing and rewards program as the Karin version, personalized with Megan’s contact details and order QR code.'
+    },
+    {
+      title: 'equicenta® CTM Clinical Evidence & Product Characterization Booklet',
+      file: 'docs/equicenta-CTM-Evidence-Booklet-MBR-ECTM-020-R00.pdf',
+      category: 'Clinical evidence',
+      updated: 'MBR.ECTM.020 R00 · 02 Sept 2026',
+      description: '17-page veterinarian-facing booklet covering the published controlled trial (138 horses, 195 conditions, 8 practices, 26 weeks), the 2.72:1 return-to-performance odds, and product characterization. For veterinary professional use.'
+    },
+    {
+      title: 'equicenta® CTM Veterinarian Trifold',
+      file: 'docs/equicenta-CTM-Vet-Trifold-Rev01.pdf',
+      category: 'Leave-behinds',
+      updated: 'MBR.ECTM Rev 01 · 10 June 2026',
+      description: 'Clinic-facing trifold on evidence, quality systems, and product profile — the standard leave-behind for a first veterinarian conversation.'
+    },
+    {
+      title: 'equicenta® CTM Horse Owner Trifold',
+      file: 'docs/equicenta-CTM-Owner-Trifold-Rev00.pdf',
+      category: 'Leave-behinds',
+      updated: 'MBR.ECTM Rev 00 · 10 June 2026',
+      description: 'Owner-facing trifold written in plain language — what equicenta® CTM is, the evidence behind it, and how to ask a veterinarian about it. For clinic waiting rooms and owner hand-offs.'
+    },
+    {
+      title: 'Stirling Ultracold Freezer — Quick Maintenance & Operation Guide',
+      file: 'docs/Stirling-Ultracold-Freezer-Guide.pdf',
+      category: 'Equipment & handling',
+      updated: 'One-page guide',
+      description: 'Power on/off, changing the temperature set point, weekly defrost, and monthly filter cleaning for clinic freezers — plus the reminder never to put dry ice in the freezer.'
+    },
   ];
 
   function esc(s) {
