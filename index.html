@@ -5116,15 +5116,15 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       Microscopic &amp; Biological Characterization
     </button>
-    <button class="study-tab" data-study="maintain" id="maintain-tab-btn">
+    <button class="study-tab admin-only-tab" data-study="maintain" id="maintain-tab-btn" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       maintain
     </button>
-    <button class="study-tab" data-study="competitive">
+    <button class="study-tab admin-only-tab" data-study="competitive" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
       Why eCTM
     </button>
-    <button class="study-tab" data-study="pricing">
+    <button class="study-tab admin-only-tab" data-study="pricing" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       Pricing
     </button>
@@ -5162,11 +5162,11 @@ document.addEventListener('DOMContentLoaded', function() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
       Imaging &amp; Motion
     </button>
-    <button class="study-tab" data-study="comppos">
+    <button class="study-tab admin-only-tab" data-study="comppos" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
       Competitive Positioning
     </button>
-    <button class="study-tab" data-study="salessheets">
+    <button class="study-tab admin-only-tab" data-study="salessheets" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
       Sales Sheets
     </button>
@@ -5194,7 +5194,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <p class="pk-hero-sub">Peer-reviewed, controlled clinical study in performance horses showing earlier symptom improvement, stronger return-to-work outcomes, and a cleaner reaction profile versus clinician-selected standard of care.</p>
   <div class="pk-hero-actions">
     <a class="pk-btn pk-btn-primary" href="#" onclick="pkGoTab('clinical'); return false;">Open Clinical Study</a>
-    <a class="pk-btn pk-btn-outline" href="#" onclick="pkGoTab('salessheets'); return false;">Browse Sales Sheets</a>
+    <a class="pk-btn pk-btn-outline admin-only-tab" href="#" onclick="pkGoTab('salessheets'); return false;" style="display:none;">Browse Sales Sheets</a>
   </div>
 </div>
 
@@ -15661,6 +15661,8 @@ if (vpPanel) { vpObserver.observe(vpPanel, { attributes: true, attributeFilter: 
 
   window.pkGoTab = function(study) {
     var btn = document.querySelector('.study-tab[data-study="' + study + '"]');
+    // Do not allow navigation to admin-gated tabs while they are hidden
+    if (btn && btn.classList.contains('admin-only-tab') && btn.offsetParent === null) { return; }
     if (btn) { btn.click(); return; }
     // Fallback: activate directly
     document.querySelectorAll('.study-tab').forEach(function(t) { t.classList.remove('active'); });
