@@ -1,22 +1,11 @@
-# Sales Hub Required Injections
+# Sales Hub public sync boundary
 
-Files required in `EPL-Sales-Hub/` repo root:
-- `payments.json` — rep MTD collected data
-- `activity.json` — full client-level activity data (aggregates + topAccounts/newClients/outstandingAR/atRiskAccounts per rep)
-- `sync-admin.js` — Option C admin upload panel
-- `activity-sync.js` — client-level table sync
+Effective October 4, 2026, this replaces the previous injection and sync instructions.
 
-Scripts required in `EPL-Sales-Hub/index.html` inside `<body>` after `<div id="root"></div>`:
-- Rep-lock (?rep=karin|megan)
-- Auto-sync from payments.json
-- Inline Activity table sync (Activity Overview + Head-to-Head bars + Projected Commission MTD)
-- `<script src="./activity-sync.js?v=1">` reference
-- `<script src="./sync-admin.js?v=1">` reference
+The GitHub Pages site is a public Overview/Activity viewer only. Preserve activity.json, activity-history.json, activity/WEEKLY_RECAP_REP.xlsx, payments.json and activity-sync.js. The React public bundle loads this data directly.
 
-Canonical source: `.sync/sales-hub-scripts.html`
+Never restore team.json, commission JSON/XLSX files, payroll ledgers, agent identity registries, plan/baseline files, sync-admin.js, invite/PIN validation, rep-lock scripts or old monolithic inline injections. Compensation and identity data belong behind authenticated, server-scoped APIs in the private dashboard. A query parameter is not authorization.
 
-## Sync cadence
-Daily check at ~8am CDT restores any wiped scripts. If the Sales Hub is rebuilt
-and wipes these injections, either:
-1. Wait for the daily cron
-2. Message in the dashboard task thread to sync manually
+Before every public deployment run privacy_guard.py from EPL-Sales-Hub. After deployment run privacy_guard.py --network. The GitHub Actions guard also runs daily. Failed privacy checks must block restoration of old files or assets.
+
+Public data uploads still update the public activity files. They must never publish compensation or user-identity files. No new rep or agent access has been authorized.
