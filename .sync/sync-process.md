@@ -1,24 +1,11 @@
-# Sales Hub Payments Sync Process
+# Sales Hub public sync boundary
 
-## Current state (Option A — manual file-drop sync)
+Effective October 4, 2026, this replaces the previous injection and sync instructions.
 
-**File:** `EPL-Sales-Hub/payments.json`
-**Last updated:** 2026-04-23
+The GitHub Pages site is a public Overview/Activity viewer only. Preserve activity.json, activity-history.json, activity/WEEKLY_RECAP_REP.xlsx, payments.json and activity-sync.js. The React public bundle loads this data directly.
 
-### How it works
-1. Sales Hub loads `payments.json` on page load
-2. `index.html` auto-sync script reads it and patches MTD Collected + all projected comp values in the DOM
-3. Active rep is auto-detected (Karin vs Megan tab selection)
+Never restore team.json, commission JSON/XLSX files, payroll ledgers, agent identity registries, plan/baseline files, sync-admin.js, invite/PIN validation, rep-lock scripts or old monolithic inline injections. Compensation and identity data belong behind authenticated, server-scoped APIs in the private dashboard. A query parameter is not authorization.
 
-### When you upload a new Received Payments file
-Send both files to the main dashboard task:
-- `CLIENT_ACTIVITY_Report_YYYY-MM-DD-*.csv` (or .xlsx)
-- `Received_Payments_YYYY-MM-DD_to_YYYY-MM-DD.xlsx`
+Before every public deployment run privacy_guard.py from EPL-Sales-Hub. After deployment run privacy_guard.py --network. The GitHub Actions guard also runs daily. Failed privacy checks must block restoration of old files or assets.
 
-Agent will:
-1. Parse the CSV/xlsx to extract per-rep MTD payments
-2. Update `payments.json` with new values (mtdCollected, payments array, lastUpdated date)
-3. Commit + push to gh-pages
-
-## Future state (Option C — automatic API sync)
-TBD — add a "Save to team" button in Sales Hub admin that commits to payments.json via GitHub API.
+Public data uploads still update the public activity files. They must never publish compensation or user-identity files. No new rep or agent access has been authorized.
